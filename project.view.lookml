@@ -64,7 +64,7 @@
 
   - dimension_group: complete
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.complete_date
 
   - dimension: component_id
