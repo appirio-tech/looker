@@ -2,6 +2,7 @@
   sql_table_name: public.project
   fields:
 
+
   - dimension: client_project_id
     primary_key: true
     type: number
@@ -291,4 +292,4 @@
     - project.client_project_id
     - project.count
     - project_result.count
-
+  
