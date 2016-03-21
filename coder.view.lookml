@@ -37,12 +37,12 @@
 
   - dimension_group: create
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.create_date
 
   - dimension_group: dw_stats_updated
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.dw_stats_updated_time
 
   - dimension: editor_id
@@ -83,7 +83,7 @@
 
   - dimension_group: last_login
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.last_login
 
   - dimension: last_name
@@ -92,12 +92,12 @@
 
   - dimension_group: last_site_hit
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.last_site_hit_date
 
   - dimension_group: member_since
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.member_since
 
   - dimension: middle_name
@@ -106,7 +106,7 @@
 
   - dimension_group: modify
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.modify_date
 
   - dimension: notify

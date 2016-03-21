@@ -46,7 +46,7 @@
 
   - dimension_group: checkpoint_end
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.checkpoint_end_date
 
   - dimension: checkpoint_prize_amount
@@ -59,7 +59,7 @@
 
   - dimension_group: checkpoint_start
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.checkpoint_start_date
 
   - dimension_group: complete
@@ -133,7 +133,7 @@
 
   - dimension_group: last_modification
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.last_modification_date
 
   - dimension: level_id
@@ -174,7 +174,7 @@
 
   - dimension_group: posting
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.posting_date
 
   - dimension: project_category_id
@@ -192,12 +192,12 @@
 
   - dimension_group: rating
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.rating_date
 
   - dimension_group: registration_end
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.registration_end_date
 
   - dimension: reliability_cost
@@ -218,7 +218,7 @@
 
   - dimension_group: scheduled_end
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.scheduled_end_date
 
   - dimension: stage_id
@@ -243,7 +243,7 @@
 
   - dimension_group: submitby
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.submitby_date
 
   - dimension: suspended_ind

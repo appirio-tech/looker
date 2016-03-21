@@ -12,7 +12,7 @@
 
   - dimension_group: inquire_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.inquire_timestamp
 
   - dimension: new_rating
@@ -94,7 +94,7 @@
 
   - dimension_group: review_complete_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.review_complete_timestamp
 
   - dimension: submit_ind
@@ -103,7 +103,7 @@
 
   - dimension_group: submit_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.submit_timestamp
 
   - dimension: user_id
