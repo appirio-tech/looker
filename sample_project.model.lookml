@@ -8,7 +8,7 @@
 - explore: country
   joins:
     - join: coder
-      type: inner
+      type: left_outer
       sql_on: ${coder.comp_country_code} = ${country.country_code}
       relationship: one_to_many
 
