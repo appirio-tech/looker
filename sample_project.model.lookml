@@ -5,6 +5,8 @@
 
 - explore: coder
 
+- explore: country
+
 - explore: project
 
 - explore: project_result
