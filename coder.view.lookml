@@ -7,6 +7,11 @@
     type: number
     sql: ${TABLE}.coder_id
 
+  - dimension: country_code
+    type: string
+    # hidden: true
+    sql: ${TABLE}.country_code
+
   - dimension: activation_code
     type: string
     sql: ${TABLE}.activation_code
@@ -31,9 +36,7 @@
     type: string
     sql: ${TABLE}.comp_country_code
 
-  - dimension: country_code
-    type: string
-    sql: ${TABLE}.country_code
+
 
   - dimension_group: create
     type: time
