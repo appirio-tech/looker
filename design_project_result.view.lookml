@@ -12,7 +12,7 @@
 
   - dimension_group: inquire_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.inquire_timestamp
 
   - dimension: is_checkpoint
@@ -38,7 +38,7 @@
 
   - dimension_group: review_complete_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.review_complete_timestamp
 
   - dimension: submission_id
@@ -51,7 +51,7 @@
 
   - dimension_group: submit_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.submit_timestamp
 
   - dimension: upload_id
