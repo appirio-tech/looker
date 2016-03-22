@@ -10,6 +10,11 @@
     type: string
     sql: ${TABLE}.country_name
 
+  - dimension: comp_country_location
+    type: location
+    sql_latitude: ${latitude}
+    sql_longitude: ${longitude}
+  
   - dimension: latitude
     type: number
     sql: ${TABLE}.latitude
