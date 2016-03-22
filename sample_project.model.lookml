@@ -9,7 +9,7 @@
   joins:
     - join: coder
       type: left_outer
-      sql_on: ${coder.comp_country_code} = ${country.country_code}
+      sql_on: ${country.country_code} = ${coder.comp_country_code}
       relationship: one_to_many
 
 
