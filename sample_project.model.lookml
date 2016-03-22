@@ -6,6 +6,12 @@
 - explore: coder
 
 - explore: country
+  joins:
+    - join: coder
+      type: inner
+      sql_on: ${coder.comp_country_code} = ${country.country_code}
+      relationship: one_to_many
+
 
 - explore: project
 
