@@ -22,4 +22,10 @@
       sql_on: ${project_result.project_id} = ${project.client_project_id}
       relationship: many_to_one
 
+- explore: design_project_result
+  joins:
+    - join: project
+      type: left_outer 
+      sql_on: ${design_project_result.project_id} = ${project.client_project_id}
+      relationship: many_to_one
 
