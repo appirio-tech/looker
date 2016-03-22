@@ -3,6 +3,7 @@
   fields:
 
   - dimension: country_code
+    primary_key: true
     type: string
     sql: ${TABLE}.country_code
 
