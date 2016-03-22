@@ -9,8 +9,8 @@
   joins:
     - join: coder
       type: left_outer
-      sql_on: ${country.country_code} = ${coder.comp_country_code}
-      relationship: one_to_many
+      sql_on: ${coder.country_code} = ${country.country_code}
+      relationship: many_to_many
 
 
 - explore: project
