@@ -4,11 +4,12 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 - explore: coder
+- explore: coder_full
 
 - explore: country
   joins:
     - join: coder
-      type: inner
+      type: left_outer
       sql_on: ${coder.country_code} = ${country.country_code}
       relationship: one_to_many
 
