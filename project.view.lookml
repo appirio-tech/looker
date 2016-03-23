@@ -4,24 +4,25 @@
 
 
   - dimension: client_project_id
-    primary_key: true
     type: number
     sql: ${TABLE}.client_project_id
 
-  - dimension: actual_total_prize
-    type: number
+  - measure: actual_total_prize
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.actual_total_prize
 
-  - dimension: admin_fee
-    type: number
+  - measure: admin_fee
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.admin_fee
 
-  - dimension: avg_final_score
-    type: number
+  - measure: avg_final_score
+    type: average
     sql: ${TABLE}.avg_final_score
 
-  - dimension: avg_raw_score
-    type: number
+  - measure: avg_raw_score
+    type: average
     sql: ${TABLE}.avg_raw_score
 
   - dimension: category_desc
@@ -49,8 +50,9 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.checkpoint_end_date
 
-  - dimension: checkpoint_prize_amount
-    type: number
+  - measure: checkpoint_prize_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.checkpoint_prize_amount
 
   - dimension: checkpoint_prize_number
@@ -75,56 +77,63 @@
     type: string
     sql: ${TABLE}.component_name
 
-  - dimension: contest_prizes_total
-    type: number
+  - measure: contest_prizes_total
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.contest_prizes_total
 
   - dimension: copilot
     type: number
     sql: ${TABLE}.copilot
 
-  - dimension: copilot_cost
-    type: number
+  - measure: copilot_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.copilot_cost
 
   - dimension: digital_run_ind
     type: number
     sql: ${TABLE}.digital_run_ind
 
-  - dimension: dr_points
-    type: number
+  - measure: dr_points
+    type: sum
     sql: ${TABLE}.dr_points
 
-  - dimension: duration
-    type: number
+  - measure: duration
+    type: sum
     sql: ${TABLE}.duration
 
-  - dimension: estimated_admin_fee
-    type: number
+  - measure: estimated_admin_fee
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimated_admin_fee
 
-  - dimension: estimated_copilot_cost
-    type: number
+  - measure: estimated_copilot_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimated_copilot_cost
 
-  - dimension: estimated_reliability_cost
-    type: number
+  - measure: estimated_reliability_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimated_reliability_cost
 
-  - dimension: estimated_review_cost
-    type: number
+  - measure: estimated_review_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimated_review_cost
 
-  - dimension: first_place_prize
-    type: number
+  - measure: first_place_prize
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.first_place_prize
 
   - dimension: forum_id
     type: number
     sql: ${TABLE}.forum_id
 
-  - dimension: fulfillment
-    type: number
+  - measure: fulfillment
+    type: average
     sql: ${TABLE}.fulfillment
 
   - dimension: is_private
@@ -140,28 +149,28 @@
     type: string
     sql: ${TABLE}.level_id
 
-  - dimension: num_checkpoint_submissions
-    type: number
+  - measure: num_checkpoint_submissions
+    type: sum
     sql: ${TABLE}.num_checkpoint_submissions
 
-  - dimension: num_registrations
-    type: number
+  - measure: num_registrations
+    type: sum
     sql: ${TABLE}.num_registrations
 
-  - dimension: num_submissions
-    type: number
+  - measure: num_submissions
+    type: sum
     sql: ${TABLE}.num_submissions
 
-  - dimension: num_submissions_passed_review
-    type: number
+  - measure: num_submissions_passed_review
+    type: sum
     sql: ${TABLE}.num_submissions_passed_review
 
-  - dimension: num_valid_checkpoint_submissions
-    type: number
+  - measure: num_valid_checkpoint_submissions
+    type: sum
     sql: ${TABLE}.num_valid_checkpoint_submissions
 
-  - dimension: num_valid_submissions
-    type: number
+  - measure: num_valid_submissions
+    type: sum
     sql: ${TABLE}.num_valid_submissions
 
   - dimension: phase_desc
@@ -186,6 +195,7 @@
     sql: ${TABLE}.project_category_name
 
   - dimension: project_id
+    primary_key: true
     type: number
     # hidden: true
     sql: ${TABLE}.project_id
@@ -200,12 +210,14 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.registration_end_date
 
-  - dimension: reliability_cost
-    type: number
+  - measure: reliability_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.reliability_cost
 
-  - dimension: review_cost
-    type: number
+  - measure: review_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.review_cost
 
   - dimension: review_phase_id
@@ -254,8 +266,9 @@
     type: number
     sql: ${TABLE}.tc_direct_project_id
 
-  - dimension: total_prize
-    type: number
+  - measure: total_prize
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.total_prize
 
   - dimension: version_id

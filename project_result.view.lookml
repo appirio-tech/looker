@@ -2,12 +2,12 @@
   sql_table_name: public.project_result
   fields:
 
-  - dimension: final_points
-    type: number
+  - measure: final_points
+    type: sum
     sql: ${TABLE}.final_points
 
-  - dimension: final_score
-    type: number
+  - measure: final_score
+    type: sum
     sql: ${TABLE}.final_score
 
   - dimension_group: inquire_timestamp
@@ -15,60 +15,62 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.inquire_timestamp
 
-  - dimension: new_rating
-    type: number
+  - measure: new_rating
+    type: sum
     sql: ${TABLE}.new_rating
 
   - dimension: new_rating_id
     type: number
     sql: ${TABLE}.new_rating_id
 
-  - dimension: new_reliability
-    type: number
+  - measure: new_reliability
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.new_reliability
 
-  - dimension: num_appeals
-    type: number
+  - measure: num_appeals
+    type: sum
     sql: ${TABLE}.num_appeals
 
-  - dimension: num_ratings
-    type: number
+  - measure: num_ratings
+    type: sum
     sql: ${TABLE}.num_ratings
 
-  - dimension: num_successful_appeals
-    type: number
+  - measure: num_successful_appeals
+    type: sum
     sql: ${TABLE}.num_successful_appeals
 
-  - dimension: old_rating
-    type: number
+  - measure: old_rating
+    type: sum
     sql: ${TABLE}.old_rating
 
   - dimension: old_rating_id
     type: number
     sql: ${TABLE}.old_rating_id
 
-  - dimension: old_reliability
-    type: number
+  - measure: old_reliability
+    type: sum
     sql: ${TABLE}.old_reliability
 
   - dimension: passed_review_ind
     type: number
     sql: ${TABLE}.passed_review_ind
 
-  - dimension: payment
-    type: number
+  - measure: payment
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.payment
 
   - dimension: placed
     type: number
     sql: ${TABLE}.placed
 
-  - dimension: points_awarded
-    type: number
+  - measure: points_awarded
+    type: sum
     sql: ${TABLE}.points_awarded
 
-  - dimension: potential_points
-    type: number
+  - measure: potential_points
+    type: sum
     sql: ${TABLE}.potential_points
 
   - dimension: project_id
@@ -84,8 +86,8 @@
     type: number
     sql: ${TABLE}.rating_order
 
-  - dimension: raw_score
-    type: number
+  - measure: raw_score
+    type: sum
     sql: ${TABLE}.raw_score
 
   - dimension: reliable_submission_ind

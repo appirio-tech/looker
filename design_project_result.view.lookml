@@ -6,8 +6,8 @@
     type: number
     sql: ${TABLE}.client_selection
 
-  - dimension: dr_points
-    type: number
+  - measure: dr_points
+    type: sum
     sql: ${TABLE}.dr_points
 
   - dimension_group: inquire_timestamp
@@ -23,8 +23,9 @@
     type: number
     sql: ${TABLE}.placement
 
-  - dimension: prize_amount
-    type: number
+  - measure: prize_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.prize_amount
 
   - dimension: prize_id

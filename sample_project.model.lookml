@@ -21,14 +21,14 @@
   joins:
     - join: project
       type: left_outer 
-      sql_on: ${project_result.project_id} = ${project.client_project_id}
+      sql_on: ${project_result.project_id} = ${project.project_id}
       relationship: many_to_one
 
 - explore: design_project_result
   joins:
     - join: project
       type: left_outer 
-      sql_on: ${design_project_result.project_id} = ${project.client_project_id}
+      sql_on: ${design_project_result.project_id} = ${project.project_id}
       relationship: many_to_one
       
 - explore: payment
@@ -42,7 +42,7 @@
       
     - join: calendar
       type: inner
-      sql_on: ${payment.created_calendar_id} = ${calendar.calendar_id}
+      sql_on: ${user_payment.due_calendar_id} = ${calendar.calendar_id}
       relationship: many_to_one
       
 

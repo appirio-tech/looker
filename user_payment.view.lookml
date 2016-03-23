@@ -6,12 +6,14 @@
     type: number
     sql: ${TABLE}.due_calendar_id
 
-  - dimension: gross_amount
-    type: number
+  - measure: gross_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.gross_amount
 
-  - dimension: net_amount
-    type: number
+  - measure: net_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.net_amount
 
   - dimension: paid_calendar_id
@@ -23,8 +25,9 @@
     # hidden: true
     sql: ${TABLE}.payment_id
 
-  - dimension: total_amount
-    type: number
+  - measure: total_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.total_amount
 
   - dimension: user_id
@@ -34,4 +37,6 @@
   - measure: count
     type: count
     drill_fields: [payment.parent_payment_id]
+    
+
 
