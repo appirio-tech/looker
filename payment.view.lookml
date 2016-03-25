@@ -47,8 +47,6 @@
     type: string
     sql: ${TABLE}.payment_desc
 
-
-
   - dimension: payment_status_desc
     type: string
     sql: ${TABLE}.payment_status_desc

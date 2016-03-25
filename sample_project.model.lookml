@@ -31,6 +31,12 @@
       relationship: many_to_one
       
 - explore: payment
+  joins:
+    - join: created_date
+      from: calendar
+      type: inner
+      sql_on: ${payment.created_calendar_id} = ${created_date.calendar_id}
+      relationship: many_to_one
 
 - explore: user_payment
   joins:
@@ -38,12 +44,25 @@
       type: left_outer
       sql_on: ${user_payment.payment_id} = ${payment.payment_id}
       relationship: many_to_one
-      
-    - join: calendar
+
+    - join: coder
       type: inner
-      sql_on: ${user_payment.due_calendar_id} = ${calendar.calendar_id}
-      relationship: many_to_one
+      sql_on: ${user_payment.user_id} = ${coder.coder_id}
+      relationship: many_to_one      
       
+    - join: due_date
+      from: calendar
+      type: inner
+      sql_on: ${user_payment.due_calendar_id} = ${due_date.calendar_id}
+      relationship: many_to_one
+
+    - join: paid_date
+      from: calendar
+      type: inner
+      sql_on: ${user_payment.paid_calendar_id} = ${paid_date.calendar_id}
+      relationship: many_to_one
+
+
 
 - explore: client_project_dim 
 - explore: client_user_stats 
