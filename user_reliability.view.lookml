@@ -4,12 +4,12 @@
 
   - dimension_group: create
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date
 
   - dimension_group: modify
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.modify_date
 
   - dimension: phase_id

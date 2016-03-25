@@ -11,8 +11,8 @@
     type: number
     sql: ${TABLE}.reviewer_id
 
-  - dimension: total_payment
-    type: number
+  - measure: total_payment
+    type: sum
     sql: ${TABLE}.total_payment
 
   - measure: count

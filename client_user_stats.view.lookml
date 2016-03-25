@@ -15,10 +15,6 @@
     type: number
     sql: ${TABLE}.month
 
-  - dimension: user_count
-    type: number
-    sql: ${TABLE}.user_count
-
   - dimension: year
     type: number
     sql: ${TABLE}.year
@@ -26,4 +22,8 @@
   - measure: count
     type: count
     drill_fields: [client_user_stats_id]
+
+  - measure: user_count
+    type: sum
+    sql: ${TABLE}.user_count
 

@@ -8,7 +8,7 @@
 
   - dimension_group: create
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date
 
   - dimension: is_earned_date_populated

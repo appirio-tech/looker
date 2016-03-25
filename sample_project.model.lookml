@@ -4,7 +4,6 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 - explore: coder
-- explore: coder_full
 
 - explore: country
   joins:

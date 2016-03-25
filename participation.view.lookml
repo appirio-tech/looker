@@ -4,7 +4,7 @@
 
   - dimension_group: participation
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.participation_date
 
   - dimension: participation_type

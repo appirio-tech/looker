@@ -16,25 +16,26 @@
     type: number
     sql: ${TABLE}.current_place
 
-  - dimension: current_prize
-    type: number
-    sql: ${TABLE}.current_prize
-
-  - dimension: final_points
-    type: number
-    sql: ${TABLE}.final_points
-
-  - dimension: initial_points
-    type: number
-    sql: ${TABLE}.initial_points
-
-  - dimension: potential_points
-    type: number
-    sql: ${TABLE}.potential_points
-
   - measure: count
     type: count
     drill_fields: detail*
+
+  - measure: current_prize
+    type: sum
+    sql: ${TABLE}.current_prize
+
+  - measure: final_points
+    type: sum
+    sql: ${TABLE}.final_points
+
+  - measure: initial_points
+    type: sum
+    sql: ${TABLE}.initial_points
+
+  - measure: potential_points
+    type: sum
+    sql: ${TABLE}.potential_points
+
 
 
   # ----- Sets of fields for drilling ------

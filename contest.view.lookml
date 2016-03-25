@@ -9,7 +9,7 @@
 
   - dimension_group: contest_end_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.contest_end_timestamp
 
   - dimension: contest_name
@@ -18,7 +18,7 @@
 
   - dimension_group: contest_start_timestamp
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.contest_start_timestamp
 
   - dimension: contest_type_desc

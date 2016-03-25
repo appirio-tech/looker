@@ -120,10 +120,6 @@
     type: string
     sql: ${TABLE}.notify_inquiry
 
-  - dimension: quote
-    type: string
-    sql: ${TABLE}.quote
-
   - dimension: reg_source
     type: string
     sql: ${TABLE}.reg_source
@@ -162,5 +158,5 @@
 
   - measure: count
     type: count
-    drill_fields: [coder_id, first_name, last_name, middle_name]
+    drill_fields: [coder_id, first_name, last_name, middle_name, handle, utm_campaign, utm_medium, utm_source, status]
 

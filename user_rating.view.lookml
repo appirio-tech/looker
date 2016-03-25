@@ -4,7 +4,7 @@
 
   - dimension_group: create_date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date_time
 
   - dimension: highest_rating
@@ -21,12 +21,8 @@
 
   - dimension_group: mod_date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.mod_date_time
-
-  - dimension: num_ratings
-    type: number
-    sql: ${TABLE}.num_ratings
 
   - dimension: phase_id
     type: number
@@ -52,3 +48,6 @@
     type: count
     drill_fields: []
 
+  - measure: num_ratings
+    type: sum
+    sql: ${TABLE}.num_ratings

@@ -6,10 +6,6 @@
     type: number
     sql: ${TABLE}.client_selection
 
-  - measure: dr_points
-    type: sum
-    sql: ${TABLE}.dr_points
-
   - dimension_group: inquire_timestamp
     type: time
     timeframes: [time, date, week, month, year, quarter]
@@ -22,11 +18,6 @@
   - dimension: placement
     type: number
     sql: ${TABLE}.placement
-
-  - measure: prize_amount
-    type: sum
-    value_format: '$#,##0.00;($#,##0.00)'
-    sql: ${TABLE}.prize_amount
 
   - dimension: prize_id
     type: number
@@ -71,3 +62,11 @@
     type: count
     drill_fields: [project.component_name, project.review_phase_name, project.project_category_name, project.client_project_id]
 
+  - measure: dr_points
+    type: sum
+    sql: ${TABLE}.dr_points
+
+  - measure: prize_amount
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.prize_amount

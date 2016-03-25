@@ -15,8 +15,8 @@
     type: number
     sql: ${TABLE}.track_contest_placement
 
-  - dimension: track_contest_prize
-    type: number
+  - measure: track_contest_prize
+    type: sum
     sql: ${TABLE}.track_contest_prize
 
   - dimension: user_id

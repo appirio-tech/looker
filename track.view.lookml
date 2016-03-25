@@ -13,12 +13,12 @@
 
   - dimension_group: track_end
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.track_end_date
 
   - dimension_group: track_start
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.track_start_date
 
   - dimension: track_status_desc

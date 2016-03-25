@@ -7,18 +7,14 @@
     type: number
     sql: ${TABLE}.dr_points_id
 
-  - dimension: amount
-    type: number
-    sql: ${TABLE}.amount
-
   - dimension_group: application
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.application_date
 
   - dimension_group: award
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.award_date
 
   - dimension: dr_points_desc
@@ -78,3 +74,6 @@
     type: count
     drill_fields: [dr_points_id, track.track_id]
 
+  - measure: amount
+    type: sum
+    sql: ${TABLE}.amount

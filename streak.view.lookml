@@ -15,10 +15,6 @@
     type: number
     sql: ${TABLE}.is_current
 
-  - dimension: length
-    type: number
-    sql: ${TABLE}.length
-
   - dimension: phase_id
     type: number
     sql: ${TABLE}.phase_id
@@ -34,4 +30,8 @@
   - measure: count
     type: count
     drill_fields: [coder.coder_id, coder.first_name, coder.last_name, coder.middle_name]
+
+  - measure: length
+    type: sum
+    sql: ${TABLE}.length
 

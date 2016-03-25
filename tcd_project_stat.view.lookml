@@ -2,26 +2,14 @@
   sql_table_name: public.tcd_project_stat
   fields:
 
-  - dimension: cost
-    type: number
-    sql: ${TABLE}.cost
-
   - dimension_group: create
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date
 
   - dimension: create_user
     type: string
     sql: ${TABLE}.create_user
-
-  - dimension: duration
-    type: number
-    sql: ${TABLE}.duration
-
-  - dimension: fulfillment
-    type: number
-    sql: ${TABLE}.fulfillment
 
   - dimension_group: modify
     type: time
@@ -36,20 +24,32 @@
     type: number
     sql: ${TABLE}.project_category_id
 
-  - dimension_group: stat
+  - dimension_group: stat_date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.stat_date
 
   - dimension: tcd_project_id
     type: number
     sql: ${TABLE}.tcd_project_id
 
-  - dimension: total_project
-    type: number
-    sql: ${TABLE}.total_project
-
   - measure: count
     type: count
     drill_fields: []
 
+  - measure: total_project
+    type: sum
+    sql: ${TABLE}.total_project
+
+  - measure: cost
+    type: sum
+    sql: ${TABLE}.cost
+
+
+  - measure: duration
+    type: sum
+    sql: ${TABLE}.duration
+
+  - measure: fulfillment
+    type: sum
+    sql: ${TABLE}.fulfillment

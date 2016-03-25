@@ -10,14 +10,6 @@
     type: number
     sql: ${TABLE}.phase_id
 
-  - dimension: rank
-    type: number
-    sql: ${TABLE}.rank
-
-  - dimension: rank_no_tie
-    type: number
-    sql: ${TABLE}.rank_no_tie
-
   - dimension: school_id
     type: number
     sql: ${TABLE}.school_id
@@ -34,3 +26,10 @@
     type: count
     drill_fields: []
 
+  - measure: rank
+    type: sum
+    sql: ${TABLE}.rank
+
+  - measure: rank_no_tie
+    type: sum
+    sql: ${TABLE}.rank_no_tie

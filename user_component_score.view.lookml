@@ -21,7 +21,7 @@
 
   - dimension_group: create_date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.create_date_time
 
   - dimension: level_id
@@ -30,12 +30,8 @@
 
   - dimension_group: mod_date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.mod_date_time
-
-  - dimension: money
-    type: number
-    sql: ${TABLE}.money
 
   - dimension: phase_id
     type: number
@@ -49,17 +45,9 @@
     type: number
     sql: ${TABLE}.processed
 
-  - dimension: rating
-    type: number
-    sql: ${TABLE}.rating
-
-  - dimension: score
-    type: number
-    sql: ${TABLE}.score
-
   - dimension_group: submission
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.submission_date
 
   - dimension: user_id
@@ -69,4 +57,16 @@
   - measure: count
     type: count
     drill_fields: [user_component_score_id, component_name]
+
+  - measure: money
+    type: sum
+    sql: ${TABLE}.money
+
+  - measure: rating
+    type: sum
+    sql: ${TABLE}.rating
+
+  - measure: score
+    type: sum
+    sql: ${TABLE}.score
 

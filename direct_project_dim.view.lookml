@@ -16,12 +16,12 @@
 
   - dimension_group: project_create
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.project_create_date
 
   - dimension_group: project_modification
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.project_modification_date
 
   - dimension: project_status_id

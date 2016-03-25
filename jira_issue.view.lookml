@@ -7,10 +7,6 @@
     type: number
     sql: ${TABLE}.jira_issue_id
 
-  - dimension: admin_fee
-    type: number
-    sql: ${TABLE}.admin_fee
-
   - dimension: assignee
     type: string
     sql: ${TABLE}.assignee
@@ -22,21 +18,17 @@
 
   - dimension_group: created
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.created
 
   - dimension_group: due
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.due_date
 
   - dimension: issue_type
     type: string
     sql: ${TABLE}.issue_type
-
-  - dimension: payment_amount
-    type: number
-    sql: ${TABLE}.payment_amount
 
   - dimension: payment_status
     type: string
@@ -53,7 +45,7 @@
 
   - dimension_group: resolution
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.resolution_date
 
   - dimension: status
@@ -64,22 +56,14 @@
     type: string
     sql: ${TABLE}.summary
 
-  - dimension: tco_points
-    type: number
-    sql: ${TABLE}.tco_points
-
   - dimension: ticket_id
     type: string
     sql: ${TABLE}.ticket_id
 
   - dimension_group: updated
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.updated
-
-  - dimension: votes
-    type: number
-    sql: ${TABLE}.votes
 
   - dimension: winner
     type: string
@@ -88,6 +72,22 @@
   - measure: count
     type: count
     drill_fields: detail*
+
+  - measure: admin_fee
+    type: sum
+    sql: ${TABLE}.admin_fee
+
+  - measure: votes
+    type: sum
+    sql: ${TABLE}.votes
+
+  - measure: tco_points
+    type: sum
+    sql: ${TABLE}.tco_points
+
+  - measure: payment_amount
+    type: sum
+    sql: ${TABLE}.payment_amount
 
 
   # ----- Sets of fields for drilling ------

@@ -27,25 +27,25 @@
     type: yesno
     sql: ${TABLE}.is_submitter
 
-  - dimension: num_of_final_subs
-    type: number
-    sql: ${TABLE}.num_of_final_subs
-
-  - dimension: num_of_final_wins
-    type: number
-    sql: ${TABLE}.num_of_final_wins
-
-  - dimension: num_of_milestone_subs
-    type: number
-    sql: ${TABLE}.num_of_milestone_subs
-
-  - dimension: num_of_milestone_wins
-    type: number
-    sql: ${TABLE}.num_of_milestone_wins
-
   - dimension: registrant_id
     type: number
     sql: ${TABLE}.registrant_id
+
+  - measure: num_of_final_subs
+    type: sum
+    sql: ${TABLE}.num_of_final_subs
+
+  - measure: num_of_final_wins
+    type: sum
+    sql: ${TABLE}.num_of_final_wins
+
+  - measure: num_of_milestone_subs
+    type: sum
+    sql: ${TABLE}.num_of_milestone_subs
+
+  - measure: num_of_milestone_wins
+    type: sum
+    sql: ${TABLE}.num_of_milestone_wins
 
   - measure: count
     type: count

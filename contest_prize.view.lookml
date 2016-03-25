@@ -16,10 +16,6 @@
     type: number
     sql: ${TABLE}.place
 
-  - dimension: prize_amount
-    type: number
-    sql: ${TABLE}.prize_amount
-
   - dimension: prize_desc
     type: string
     sql: ${TABLE}.prize_desc
@@ -35,4 +31,8 @@
   - measure: count
     type: count
     drill_fields: [contest_prize_id, contest.contest_id, contest.contest_name, contest.project_category_name]
+
+  - measure: prize_amount
+    type: sum
+    sql: ${TABLE}.prize_amount
 
