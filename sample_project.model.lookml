@@ -50,12 +50,6 @@
       sql_on: ${user_payment.user_id} = ${coder.coder_id}
       relationship: many_to_one      
       
-    - join: due_date
-      from: calendar
-      type: inner
-      sql_on: ${user_payment.due_calendar_id} = ${due_date.calendar_id}
-      relationship: many_to_one
-
     - join: paid_date
       from: calendar
       type: inner
