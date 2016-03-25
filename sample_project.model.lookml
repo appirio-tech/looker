@@ -54,7 +54,7 @@
       from: calendar
       type: inner
       sql_on: ${user_payment.paid_calendar_id} = ${paid_date.calendar_id}
-      relationship: many_to_one
+      relationship: one_to_many
 
 
 
