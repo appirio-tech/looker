@@ -9,7 +9,7 @@
   joins:
     - join: coder
       type: left_outer
-      sql_on: ${coder.country_code} = ${country.country_code}
+      sql_on: ${coder.comp_country_code} = ${country.country_code}
       relationship: one_to_many
 
 - explore: calendar
@@ -106,6 +106,7 @@
 - explore: user_reliability 
 - explore: weekly_contest_stats 
 
+- explore: challenge_stats
       
 
 
