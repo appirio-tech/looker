@@ -3,6 +3,8 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
+- explore: challenge_stats
+
 - explore: coder
 
 - explore: country
@@ -106,7 +108,7 @@
 - explore: user_reliability 
 - explore: weekly_contest_stats 
 
-- explore: challenge_stats
+
       
 
 
