@@ -120,3 +120,7 @@
     type: count
     drill_fields: [project.component_name, project.review_phase_name, project.project_category_name, project.client_project_id]
 
+  - measure: count_distinct_user
+    type: count_distinct
+    sql: ${TABLE}.user_id
+

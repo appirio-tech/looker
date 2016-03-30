@@ -26,7 +26,7 @@
              p.viewable_category_ind,
              p.num_submissions_passed_review,
              p.winner_id,
-             winner.handle AS winner_handle,
+             (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
              p.stage_id,
              p.digital_run_ind,
              p.suspended_ind,
@@ -53,13 +53,13 @@
              p.checkpoint_start_date,
              p.checkpoint_end_date,
              p.challenge_manager AS challenge_manager_id,
-             manager.handle AS challenge_manager,
+             (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
              p.challenge_creator AS challenge_creator_id,
-             creator.handle AS challenge_creator,
+             (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
              p.copilot AS copilot_id,
-             copilot.handle AS challenge_copilot,
+             (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
              p.challenge_launcher AS challenge_launcher_id,
-             launcher.handle AS challenge_launcher_handle,
+             (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
              p.registration_end_date,
              p.scheduled_end_date,
              p.checkpoint_prize_amount,
@@ -77,7 +77,7 @@
              p.estimated_copilot_cost,
              p.estimated_admin_fee,
              pr.user_id AS submitter_id,
-             submitter.handle AS submitter_handle,
+             (select max(handle) from coder where pr.user_id = coder.coder_id) AS submitter_handle,
              pr.submit_ind,
              pr.valid_submission_ind,
              pr.raw_score,
@@ -105,26 +105,124 @@
              pr.rating_order
       FROM project p,
            project_result pr,
-           coder winner,
            direct_project_dim direct_project,
            client_project_dim client_project,
-           calendar start_date,
-           coder creator,
-           coder manager,
-           coder launcher,
-           coder copilot,
-           coder submitter
+           calendar start_date
       WHERE p.project_id = pr.project_id
-      AND   p.winner_id = winner.coder_id
       AND   p.tc_direct_project_id = direct_project.direct_project_id
       AND   direct_project.billing_project_id = client_project.billing_project_id
       AND   p.start_date_calendar_id = start_date.calendar_id 
-      AND   p.challenge_creator = creator.coder_id
-      AND   p.challenge_manager = manager.coder_id
-      AND   p.challenge_launcher = launcher.coder_id
-      AND   p.copilot = copilot.coder_id
-      AND   pr.user_id = submitter.coder_id
-
+      UNION
+      SELECT p.project_id,
+             p.component_id,
+             p.component_name,
+             p.num_registrations,
+             p.num_submissions,
+             p.num_valid_submissions,
+             p.avg_raw_score,
+             p.avg_final_score,
+             p.phase_id,
+             p.phase_desc,
+             p.category_id,
+             p.category_desc,
+             p.posting_date,
+             p.submitby_date,
+             p.complete_date,
+             p.review_phase_id,
+             p.review_phase_name,
+             p.status_id,
+             p.status_desc,
+             p.level_id,
+             p.rating_date,
+             p.viewable_category_ind,
+             p.num_submissions_passed_review,
+             p.winner_id,
+             (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
+             p.stage_id,
+             p.digital_run_ind,
+             p.suspended_ind,
+             p.project_category_id,
+             p.project_category_name,
+             p.tc_direct_project_id,
+             direct_project.name AS project_name,
+             direct_project.billing_project_id AS billing_account_id,
+             client_project.project_name as billing_account_name,
+             client_project.customer_number,
+             client_project.client_name,
+             p.admin_fee,
+             p.contest_prizes_total,
+             p.client_project_id,
+             p.start_date_calendar_id,
+             start_date.date AS start_date,
+             p.duration,
+             p.fulfillment,
+             p.last_modification_date,
+             p.first_place_prize,
+             p.num_checkpoint_submissions,
+             p.num_valid_checkpoint_submissions,
+             p.total_prize,
+             p.checkpoint_start_date,
+             p.checkpoint_end_date,
+             p.challenge_manager AS challenge_manager_id,
+             (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
+             p.challenge_creator AS challenge_creator_id,
+             (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
+             p.copilot AS copilot_id,
+             (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
+             p.challenge_launcher AS challenge_launcher_id,
+             (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
+             p.registration_end_date,
+             p.scheduled_end_date,
+             p.checkpoint_prize_amount,
+             p.checkpoint_prize_number,
+             p.dr_points,
+             p.reliability_cost,
+             p.review_cost,
+             p.forum_id,
+             p.submission_viewable,
+             p.is_private,
+             p.actual_total_prize,
+             p.copilot_cost,
+             p.estimated_reliability_cost,
+             p.estimated_review_cost,
+             p.estimated_copilot_cost,
+             p.estimated_admin_fee,
+             pr.user_id AS submitter_id,
+             (select max(handle) from coder where pr.user_id = coder.coder_id) AS submitter_handle,
+             pr.submit_ind,
+             pr.valid_submission_ind,
+             null AS raw_score,
+             null AS final_score,
+             pr.inquire_timestamp,
+             pr.submit_timestamp,
+             pr.review_complete_timestamp,
+             pr.prize_amount AS payment,
+             null AS old_rating,
+             null AS new_rating,
+             null AS old_reliability,
+             null AS new_reliability,
+             pr.placement AS placed,
+             null AS rating_ind,
+             null AS passed_review_ind,
+             null AS points_awarded,
+             null AS final_points,
+             null AS potential_points,
+             null AS reliable_submission_ind,
+             null AS num_appeals,
+             null AS num_successful_appeals,
+             null AS old_rating_id,
+             null AS new_rating_id,
+             null AS num_ratings,
+             null AS rating_order
+      FROM project p,
+           design_project_result pr,
+           direct_project_dim direct_project,
+           client_project_dim client_project,
+           calendar start_date
+      WHERE p.project_id = pr.project_id
+      AND   p.tc_direct_project_id = direct_project.direct_project_id
+      AND   direct_project.billing_project_id = client_project.billing_project_id
+      AND   p.start_date_calendar_id = start_date.calendar_id 
 
   fields:
   - measure: count
@@ -560,6 +658,10 @@
   - dimension: rating_order
     type: number
     sql: ${TABLE}.rating_order
+
+  - measure: count_distinct_submitter
+    type: count_distinct
+    sql: ${TABLE}.submitter_handle    
     
   sets:
       detail:
