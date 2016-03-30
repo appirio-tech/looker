@@ -2,10 +2,27 @@
   sql_table_name: public.user_payment
   fields:
 
+  - dimension: payment_id
+    type: number
+    # hidden: true
+    sql: ${TABLE}.payment_id
+
+  - dimension: user_id
+    type: number
+    sql: ${TABLE}.user_id
+
   - dimension: due_calendar_id
     type: number
     sql: ${TABLE}.due_calendar_id
 
+  - dimension: paid_calendar_id
+    type: number
+    sql: ${TABLE}.paid_calendar_id
+
+  - measure: count
+    type: count
+    drill_fields: [payment.parent_payment_id]
+    
   - measure: gross_amount
     type: sum
     value_format: '$#,##0.00;($#,##0.00)'
@@ -16,27 +33,10 @@
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.net_amount
 
-  - dimension: paid_calendar_id
-    type: number
-    sql: ${TABLE}.paid_calendar_id
-
-  - dimension: payment_id
-    type: number
-    # hidden: true
-    sql: ${TABLE}.payment_id
-
   - measure: total_amount
     type: sum
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.total_amount
 
-  - dimension: user_id
-    type: number
-    sql: ${TABLE}.user_id
-
-  - measure: count
-    type: count
-    drill_fields: [payment.parent_payment_id]
-    
 
 

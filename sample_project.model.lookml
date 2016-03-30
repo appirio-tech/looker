@@ -3,8 +3,11 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
+# Derived Views
 - explore: challenge_stats
+- explore: member_payments
 
+# Table Views
 - explore: coder
 
 - explore: country
@@ -39,26 +42,18 @@
       type: inner
       sql_on: ${payment.created_calendar_id} = ${created_date.calendar_id}
       relationship: many_to_one
-
-- explore: user_payment
-  joins:
-    - join: payment
-      type: left_outer
-      sql_on: ${user_payment.payment_id} = ${payment.payment_id}
-      relationship: many_to_one
-
+      
+    - join: user_payment
+      type: inner
+      sql_on: ${payment.payment_id} = ${user_payment.payment_id}
+      relationship: one_to_many
+      
     - join: coder
       type: inner
       sql_on: ${user_payment.user_id} = ${coder.coder_id}
-      relationship: many_to_one      
-      
-    - join: paid_date
-      from: calendar
-      type: inner
-      sql_on: ${user_payment.paid_calendar_id} = ${paid_date.calendar_id}
-      relationship: one_to_many
+      relationship: many_to_many 
 
-
+- explore: user_payment 
 
 - explore: client_project_dim 
 - explore: client_user_stats 
