@@ -42,7 +42,6 @@
              p.contest_prizes_total,
              p.client_project_id,
              p.start_date_calendar_id,
-             start_date.date AS start_date,
              p.duration,
              p.fulfillment,
              p.last_modification_date,
@@ -106,12 +105,10 @@
       FROM project p,
            project_result pr,
            direct_project_dim direct_project,
-           client_project_dim client_project,
-           calendar start_date
+           client_project_dim client_project
       WHERE p.project_id = pr.project_id
       AND   p.tc_direct_project_id = direct_project.direct_project_id
       AND   direct_project.billing_project_id = client_project.billing_project_id
-      AND   p.start_date_calendar_id = start_date.calendar_id 
       UNION
       SELECT p.project_id,
              p.component_id,
@@ -153,7 +150,6 @@
              p.contest_prizes_total,
              p.client_project_id,
              p.start_date_calendar_id,
-             start_date.date AS start_date,
              p.duration,
              p.fulfillment,
              p.last_modification_date,
@@ -217,12 +213,10 @@
       FROM project p,
            design_project_result pr,
            direct_project_dim direct_project,
-           client_project_dim client_project,
-           calendar start_date
+           client_project_dim client_project
       WHERE p.project_id = pr.project_id
       AND   p.tc_direct_project_id = direct_project.direct_project_id
       AND   direct_project.billing_project_id = client_project.billing_project_id
-      AND   p.start_date_calendar_id = start_date.calendar_id 
 
   fields:
   - measure: count

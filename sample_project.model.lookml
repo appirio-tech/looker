@@ -9,13 +9,13 @@
 
 # Table Views
 - explore: coder
-
-- explore: country
   joins:
-    - join: coder
+    - join: country
       type: left_outer
       sql_on: ${coder.comp_country_code} = ${country.country_code}
-      relationship: one_to_many
+      relationship: many_to_one
+
+- explore: country
 
 - explore: calendar
 
@@ -63,7 +63,15 @@
 - explore: contest_result 
 - explore: contest_season_xref 
 - explore: contest_stage_xref 
+
 - explore: copilot_statistics 
+  joins:
+    - join: coder
+      type: inner 
+      sql_on: ${copilot_statistics.user_id} = ${coder.coder_id}
+      relationship: one_to_one
+
+
 - explore: country_user_rank 
 - explore: data_type_lu 
 - explore: direct_project_dim 
