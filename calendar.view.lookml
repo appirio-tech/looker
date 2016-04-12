@@ -9,7 +9,7 @@
 
   - dimension_group: date
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.date
 
   - dimension: day_of_month
