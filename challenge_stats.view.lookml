@@ -21,6 +21,13 @@
              p.review_phase_name,
              p.status_id,
              p.status_desc,
+             CASE
+                WHEN p.status_desc = 'Completed' THEN 'Completed'
+                WHEN p.status_desc = 'Cancelled - Failed Review' THEN 'Cancelled'
+                WHEN p.status_desc = 'Cancelled - Failed Screening' THEN 'Cancelled'
+                WHEN p.status_desc = 'Cancelled - Zero Submissions' THEN 'Cancelled'
+                ELSE 'Cancelled-Client Request'
+             END AS Fulfilled,
              p.level_id,
              p.rating_date,
              p.viewable_category_ind,
@@ -129,6 +136,14 @@
              p.review_phase_name,
              p.status_id,
              p.status_desc,
+             CASE
+                WHEN p.status_desc = 'Completed' THEN 'Completed'
+                WHEN p.status_desc = 'Cancelled - Failed Review' THEN 'Cancelled'
+                WHEN p.status_desc = 'Cancelled - Failed Screening' THEN 'Cancelled'
+                WHEN p.status_desc = 'Cancelled - Zero Submissions' THEN 'Cancelled'
+                ELSE 'Cancelled-Client Request'
+             END AS Fulfilled,
+ 
              p.level_id,
              p.rating_date,
              p.viewable_category_ind,
@@ -302,6 +317,10 @@
     type: string
     sql: ${TABLE}.status_desc
 
+  - dimension: fulfilled
+    type: string
+    sql: ${TABLE}.fulfilled
+    
   - dimension: level_id
     type: number
     sql: ${TABLE}.level_id
