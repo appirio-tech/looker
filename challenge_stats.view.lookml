@@ -183,6 +183,34 @@
              p.suspended_ind,
              p.project_category_id,
              p.project_category_name,
+             CASE
+                WHEN p.project_category_name = 'First2Finish' THEN 'Develop'
+                WHEN p.project_category_name = 'Code' THEN 'Develop'
+                WHEN p.project_category_name = 'Assembly Competition' THEN 'Develop'
+                WHEN p.project_category_name = 'UI Prototype Competition' THEN 'Design'
+                WHEN p.project_category_name = 'Web Design' THEN 'Design'
+                WHEN p.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
+                WHEN p.project_category_name = 'Bug Hunt' THEN 'Develop'
+                WHEN p.project_category_name = 'Design First2Finish' THEN 'Design'
+                WHEN p.project_category_name = 'Wireframes' THEN 'Design'
+                WHEN p.project_category_name = 'Architecture' THEN 'Develop'
+                WHEN p.project_category_name = 'Print/Presentation' THEN 'Design'
+                WHEN p.project_category_name = 'Copilot Posting' THEN 'Develop'
+                WHEN p.project_category_name = 'Idea Generation' THEN 'Develop'
+                WHEN p.project_category_name = 'Logo Design' THEN 'Develop'
+                WHEN p.project_category_name = 'Application Front-End Design' THEN 'Design'
+                WHEN p.project_category_name = 'Banners/Icons' THEN 'Design'
+                WHEN p.project_category_name = 'Test Scenarios' THEN 'Develop'
+                WHEN p.project_category_name = 'Content Creation' THEN 'Design'
+                WHEN p.project_category_name = 'Test Suites' THEN 'Design'
+                WHEN p.project_category_name = 'Specification' THEN 'Design'
+                WHEN p.project_category_name = 'Marathon Match' THEN 'Data Science'
+                WHEN p.project_category_name = 'Conceptualization' THEN 'Develop'
+                WHEN p.project_category_name = 'Studio Other' THEN 'Design'
+                WHEN p.project_category_name = 'Design' THEN 'Design'
+                WHEN p.project_category_name = 'Development' THEN 'Develop'
+                ELSE 'Other'
+             END AS Track,
              p.tc_direct_project_id,
              direct_project.name AS project_name,
              direct_project.billing_project_id AS billing_account_id,
