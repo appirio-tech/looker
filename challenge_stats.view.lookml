@@ -22,11 +22,12 @@
              p.status_id,
              p.status_desc,
              CASE
-                WHEN p.status_desc = 'Completed' THEN 'Completed'
+                WHEN p.status_desc = 'Cancelled - Requirements Infeasible' THEN 'Dismissed'
+                WHEN p.status_desc = 'Cancelled - Client Request' THEN 'Dismissed'
                 WHEN p.status_desc = 'Cancelled - Failed Review' THEN 'Cancelled'
                 WHEN p.status_desc = 'Cancelled - Failed Screening' THEN 'Cancelled'
                 WHEN p.status_desc = 'Cancelled - Zero Submissions' THEN 'Cancelled'
-                ELSE 'Cancelled-Client Request'
+                ELSE 'Completed'
              END AS Fulfilled,
              p.level_id,
              p.rating_date,
