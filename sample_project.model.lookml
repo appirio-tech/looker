@@ -8,6 +8,8 @@
 - explore: member_payments
 
 # Table Views
+- explore: cost_transaction
+
 - explore: coder
   joins:
     - join: country
