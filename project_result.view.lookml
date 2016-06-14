@@ -1,5 +1,5 @@
 - view: project_result
-  sql_table_name: public.project_result
+  sql_table_name: tcs_dw.project_result
   fields:
 
   - measure: final_points

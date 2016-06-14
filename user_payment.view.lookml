@@ -1,5 +1,5 @@
 - view: user_payment
-  sql_table_name: public.user_payment
+  sql_table_name: tcs_dw.user_payment
   fields:
 
   - dimension: payment_id

@@ -1,5 +1,5 @@
 - view: project_platform
-  sql_table_name: public.project_platform
+  sql_table_name: tcs_dw.project_platform
   fields:
 
   - dimension: project_platform_id

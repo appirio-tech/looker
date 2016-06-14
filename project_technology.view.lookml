@@ -1,5 +1,5 @@
 - view: project_technology
-  sql_table_name: public.project_technology
+  sql_table_name: tcs_dw.project_technology
   fields:
 
   - dimension: project_technology_id

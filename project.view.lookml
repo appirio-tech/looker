@@ -1,5 +1,5 @@
 - view: project
-  sql_table_name: public.project
+  sql_table_name: tcs_dw.project
   fields:
 
 

@@ -1,5 +1,5 @@
 - view: direct_project_dim
-  sql_table_name: public.direct_project_dim
+  sql_table_name: tcs_dw.direct_project_dim
   fields:
 
   - dimension: billing_project_id

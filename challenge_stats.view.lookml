@@ -138,10 +138,10 @@
              pr.new_rating_id,
              pr.num_ratings,
              pr.rating_order
-      FROM project p,
-           project_result pr,
-           direct_project_dim direct_project,
-           client_project_dim client_project
+      FROM tcs_dw.project p,
+           tcs_dw.project_result pr,
+           tcs_dw.direct_project_dim direct_project,
+           tcs_dw.client_project_dim client_project
       WHERE p.project_id = pr.project_id
       AND   p.tc_direct_project_id = direct_project.direct_project_id
       AND   direct_project.billing_project_id = client_project.billing_project_id
@@ -282,10 +282,10 @@
              null AS new_rating_id,
              null AS num_ratings,
              null AS rating_order
-      FROM project p,
-           design_project_result pr,
-           direct_project_dim direct_project,
-           client_project_dim client_project
+      FROM tcs_dw.project p,
+           tcs_dw.design_project_result pr,
+           tcs_dw.direct_project_dim direct_project,
+           tcs_dw.client_project_dim client_project
       WHERE p.project_id = pr.project_id
       AND   p.tc_direct_project_id = direct_project.direct_project_id
       AND   direct_project.billing_project_id = client_project.billing_project_id

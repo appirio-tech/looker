@@ -1,5 +1,5 @@
 - view: copilot_statistics
-  sql_table_name: public.copilot_statistics
+  sql_table_name: tcs_dw.copilot_statistics
   fields:
 
   - dimension: copilot_profile_id

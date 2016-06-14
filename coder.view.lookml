@@ -1,5 +1,5 @@
 - view: coder
-  sql_table_name: public.coder
+  sql_table_name: topcoder_dw.coder
   fields:
 
   - dimension: coder_id

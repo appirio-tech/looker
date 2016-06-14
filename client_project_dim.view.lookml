@@ -1,5 +1,5 @@
 - view: client_project_dim
-  sql_table_name: public.client_project_dim
+  sql_table_name: tcs_dw.client_project_dim
   fields:
 
   - dimension: billing_account_code

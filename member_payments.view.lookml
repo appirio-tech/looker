@@ -31,12 +31,12 @@
           up.net_amount,
           up.gross_amount,
           up.total_amount    
-      FROM payment p,
-           user_payment up,
+      FROM topcoder_dw.payment p,
+           topcoder_dw.user_payment up,
            calendar mod_date,
            calendar due_date,
            calendar paid_date,
-           coder payee
+           topcoder_dw.coder payee
       WHERE p.payment_id = up.payment_id
         AND p.modified_calendar_id = mod_date.calendar_id
         AND up.due_calendar_id = due_date.calendar_id

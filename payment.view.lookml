@@ -1,5 +1,5 @@
 - view: payment
-  sql_table_name: public.payment
+  sql_table_name: topcoder_dw.payment
   fields:
 
   - dimension: payment_id

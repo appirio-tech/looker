@@ -1,5 +1,5 @@
 - view: design_project_result
-  sql_table_name: public.design_project_result
+  sql_table_name: tcs_dw.design_project_result
   fields:
 
   - dimension: client_selection

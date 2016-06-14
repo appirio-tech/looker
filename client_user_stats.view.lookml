@@ -1,5 +1,5 @@
 - view: client_user_stats
-  sql_table_name: public.client_user_stats
+  sql_table_name: tcs_dw.client_user_stats
   fields:
 
   - dimension: client_user_stats_id
