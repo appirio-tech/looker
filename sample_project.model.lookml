@@ -11,11 +11,11 @@
 # Table Views
 - explore: cost_transaction
 
-- explore: coder
+- explore: user
   joins:
     - join: country
       type: left_outer
-      sql_on: ${coder.comp_country_code} = ${country.country_code}
+      sql_on: ${user.comp_country_code} = ${country.country_code}
       relationship: many_to_one
 
 - explore: country
@@ -51,9 +51,9 @@
       sql_on: ${payment.payment_id} = ${user_payment.payment_id}
       relationship: one_to_many
       
-    - join: coder
+    - join: user
       type: inner
-      sql_on: ${user_payment.user_id} = ${coder.coder_id}
+      sql_on: ${user_payment.user_id} = ${user.coder_id}
       relationship: many_to_many 
 
 - explore: user_payment 
@@ -69,9 +69,9 @@
 
 - explore: copilot_statistics 
   joins:
-    - join: coder
+    - join: user
       type: inner 
-      sql_on: ${copilot_statistics.user_id} = ${coder.coder_id}
+      sql_on: ${copilot_statistics.user_id} = ${user.coder_id}
       relationship: one_to_one
 
 

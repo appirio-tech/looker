@@ -1,4 +1,4 @@
-- view: coder
+- view: user
   sql_table_name: topcoder_dw.coder
   fields:
 
