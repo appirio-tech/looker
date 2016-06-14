@@ -98,6 +98,17 @@
 - explore: streak 
 - explore: streak_type_lu 
 - explore: submission 
+- explore: submission_review 
+  joins:
+    - join: user
+      type: inner
+      sql_on: ${submission_review.reviewer_id} = ${user.coder_id}
+      relationship: many_to_one 
+    - join: project
+      type: inner 
+      sql_on: ${submission_review.project_id} = ${project.project_id}
+      relationship: many_to_one
+- explore: subjective_response 
 - explore: tcd_project_stat 
 - explore: track 
 - explore: track_contest 
