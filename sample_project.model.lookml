@@ -30,6 +30,10 @@
       type: left_outer 
       sql_on: ${project_result.project_id} = ${project.project_id}
       relationship: many_to_one
+    - join: user
+      type: inner 
+      sql_on: ${project_result.user_id} = ${user.coder_id}
+      relationship: many_to_one
 
 - explore: design_project_result
   joins:
