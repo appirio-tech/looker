@@ -4,6 +4,7 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 # Derived Views
+- explore: challenge_cost
 - explore: challenge_stats
 - explore: member_payments
 
@@ -58,13 +59,13 @@
 - explore: user_payment 
 
 - explore: client_project_dim 
-- explore: client_user_stats 
-- explore: contest 
-- explore: contest_prize 
-- explore: contest_project_xref 
-- explore: contest_result 
-- explore: contest_season_xref 
-- explore: contest_stage_xref 
+#- explore: client_user_stats 
+#- explore: contest 
+#- explore: contest_prize 
+#- explore: contest_project_xref 
+#- explore: contest_result 
+#- explore: contest_season_xref 
+#- explore: contest_stage_xref 
 
 - explore: copilot_statistics 
   joins:
@@ -75,9 +76,9 @@
 
 
 - explore: country_user_rank 
-- explore: data_type_lu 
+#- explore: data_type_lu 
 - explore: direct_project_dim 
-- explore: dr_points 
+#- explore: dr_points 
 - explore: event 
 - explore: jira_issue 
 - explore: monthly_contest_stats 
@@ -85,12 +86,12 @@
 - explore: participation_metrics_report_copilot 
 - explore: participation_metrics_report_member 
 - explore: project_platform 
-- explore: project_review 
-- explore: project_spec_review_xref 
+#- explore: project_review 
+#- explore: project_spec_review_xref 
 - explore: project_technology 
-- explore: review_resp 
+#- explore: review_resp 
 - explore: rookie 
-- explore: royalty 
+#- explore: royalty 
 - explore: school_user_rank 
 - explore: season 
 - explore: stage 
@@ -104,8 +105,8 @@
 - explore: user_achievement_rule 
 - explore: user_achievement_type_lu 
 - explore: user_achievement_xref 
-- explore: user_component_score 
-- explore: user_contest_prize 
+#- explore: user_component_score 
+#- explore: user_contest_prize 
 - explore: user_event_xref 
 - explore: user_rank 
 - explore: user_rank_type_lu 
