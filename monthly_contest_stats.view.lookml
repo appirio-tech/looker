@@ -1,5 +1,5 @@
 - view: monthly_contest_stats
-  sql_table_name: public.monthly_contest_stats
+  sql_table_name: tcs_dw.monthly_contest_stats
   fields:
 
   - dimension: client_project_id

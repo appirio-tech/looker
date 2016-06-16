@@ -1,5 +1,5 @@
 - view: user_rating
-  sql_table_name: public.user_rating
+  sql_table_name: tcs_dw.user_rating
   fields:
 
   - dimension_group: create_date

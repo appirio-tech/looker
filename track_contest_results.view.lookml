@@ -1,5 +1,5 @@
 - view: track_contest_results
-  sql_table_name: public.track_contest_results
+  sql_table_name: tcs_dw.track_contest_results
   fields:
 
   - dimension: taxable_track_contest_prize

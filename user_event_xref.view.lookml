@@ -1,5 +1,5 @@
 - view: user_event_xref
-  sql_table_name: public.user_event_xref
+  sql_table_name: tcs_dw.user_event_xref
   fields:
 
   - dimension_group: create

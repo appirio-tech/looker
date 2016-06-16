@@ -1,5 +1,5 @@
 - view: country
-  sql_table_name: public.country
+  sql_table_name: topcoder_dw.country
   fields:
 
   - dimension: country_code

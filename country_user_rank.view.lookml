@@ -1,5 +1,5 @@
 - view: country_user_rank
-  sql_table_name: public.country_user_rank
+  sql_table_name: topcoder_dw.country_user_rank
   fields:
 
   - dimension: country_code

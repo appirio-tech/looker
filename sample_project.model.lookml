@@ -1,4 +1,4 @@
-- connection: tcdw_qa
+- connection: prod_-_topcoder_redshift
 
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards

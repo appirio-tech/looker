@@ -1,5 +1,5 @@
 - view: user_achievement_xref
-  sql_table_name: public.user_achievement_xref
+  sql_table_name: tcs_dw.user_achievement_xref
   fields:
 
   - dimension: auto_loaded

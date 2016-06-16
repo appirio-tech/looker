@@ -1,5 +1,5 @@
 - view: user_rank_type_lu
-  sql_table_name: public.user_rank_type_lu
+  sql_table_name: tcs_dw.user_rank_type_lu
   fields:
 
   - dimension: user_rank_type_desc

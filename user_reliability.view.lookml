@@ -1,5 +1,5 @@
 - view: user_reliability
-  sql_table_name: public.user_reliability
+  sql_table_name: tcs_dw.user_reliability
   fields:
 
   - dimension_group: create

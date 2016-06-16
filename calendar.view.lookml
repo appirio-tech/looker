@@ -1,5 +1,5 @@
 - view: calendar
-  sql_table_name: public.calendar
+  sql_table_name: topcoder_dw.calendar
   fields:
 
   - dimension: calendar_id

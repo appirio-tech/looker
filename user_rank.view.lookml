@@ -1,5 +1,5 @@
 - view: user_rank
-  sql_table_name: public.user_rank
+  sql_table_name: tcs_dw.user_rank
   fields:
 
   - dimension: percentile

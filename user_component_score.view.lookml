@@ -1,5 +1,5 @@
 - view: user_component_score
-  sql_table_name: public.user_component_score
+  sql_table_name: tcs_dw.user_component_score
   fields:
 
   - dimension: user_component_score_id

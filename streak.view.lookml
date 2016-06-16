@@ -1,5 +1,5 @@
 - view: streak
-  sql_table_name: public.streak
+  sql_table_name: topcoder_dw.streak
   fields:
 
   - dimension: coder_id

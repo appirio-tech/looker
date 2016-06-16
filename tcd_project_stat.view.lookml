@@ -1,5 +1,5 @@
 - view: tcd_project_stat
-  sql_table_name: public.tcd_project_stat
+  sql_table_name: tcs_dw.tcd_project_stat
   fields:
 
   - dimension_group: create

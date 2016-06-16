@@ -1,5 +1,5 @@
 - view: season
-  sql_table_name: public.season
+  sql_table_name: topcoder_dw.season
   fields:
 
   - dimension: next_rookie_season_id

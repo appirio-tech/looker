@@ -1,5 +1,5 @@
 - view: project_spec_review_xref
-  sql_table_name: public.project_spec_review_xref
+  sql_table_name: tcs_dw.project_spec_review_xref
   fields:
 
   - dimension: project_id

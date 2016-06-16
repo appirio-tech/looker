@@ -1,5 +1,5 @@
 - view: track
-  sql_table_name: public.track
+  sql_table_name: tcs_dw.track
   fields:
 
   - dimension: track_id

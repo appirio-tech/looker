@@ -1,5 +1,5 @@
 - view: stage
-  sql_table_name: public.stage
+  sql_table_name: topcoder_dw.stage
   fields:
 
   - dimension: stage_id

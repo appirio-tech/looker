@@ -1,5 +1,5 @@
 - view: royalty
-  sql_table_name: public.royalty
+  sql_table_name: topcoder_dw.royalty
   fields:
 
   - dimension: amount

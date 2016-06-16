@@ -1,5 +1,5 @@
 - view: participation_metrics_report_member
-  sql_table_name: public.participation_metrics_report_member
+  sql_table_name: tcs_dw.participation_metrics_report_member
   fields:
 
   - dimension: contest_id

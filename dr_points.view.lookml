@@ -1,5 +1,5 @@
 - view: dr_points
-  sql_table_name: public.dr_points
+  sql_table_name: tcs_dw.dr_points
   fields:
 
   - dimension: dr_points_id

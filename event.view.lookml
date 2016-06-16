@@ -1,5 +1,5 @@
 - view: event
-  sql_table_name: public.event
+  sql_table_name: topcoder_dw.event
   fields:
 
   - dimension: event_id

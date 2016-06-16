@@ -1,5 +1,5 @@
 - view: review_resp
-  sql_table_name: public.review_resp
+  sql_table_name: tcs_dw.review_resp
   fields:
 
   - dimension: review_resp_id

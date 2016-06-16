@@ -1,5 +1,5 @@
 - view: track_contest
-  sql_table_name: public.track_contest
+  sql_table_name: tcs_dw.track_contest
   fields:
 
   - dimension: track_contest_id

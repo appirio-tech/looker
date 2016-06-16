@@ -1,5 +1,5 @@
 - view: school_user_rank
-  sql_table_name: public.school_user_rank
+  sql_table_name: topcoder_dw.school_user_rank
   fields:
 
   - dimension: percentile

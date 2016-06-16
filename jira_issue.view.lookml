@@ -1,5 +1,5 @@
 - view: jira_issue
-  sql_table_name: public.jira_issue
+  sql_table_name: tcs_dw.jira_issue
   fields:
 
   - dimension: jira_issue_id

@@ -1,5 +1,5 @@
 - view: streak_type_lu
-  sql_table_name: public.streak_type_lu
+  sql_table_name: topcoder_dw.streak_type_lu
   fields:
 
   - dimension: streak_desc

@@ -1,5 +1,5 @@
 - view: submission
-  sql_table_name: public.submission
+  sql_table_name: tcs_dw.submission
   fields:
 
   - dimension: submission_id

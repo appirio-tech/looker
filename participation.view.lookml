@@ -1,5 +1,5 @@
 - view: participation
-  sql_table_name: public.participation
+  sql_table_name: tcs_dw.participation
   fields:
 
   - dimension_group: participation

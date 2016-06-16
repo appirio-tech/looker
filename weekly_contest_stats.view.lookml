@@ -1,5 +1,5 @@
 - view: weekly_contest_stats
-  sql_table_name: public.weekly_contest_stats
+  sql_table_name: tcs_dw.weekly_contest_stats
   fields:
 
   - dimension: avg_contest_fees

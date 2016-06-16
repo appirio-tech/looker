@@ -1,5 +1,5 @@
 - view: rookie
-  sql_table_name: public.rookie
+  sql_table_name: topcoder_dw.rookie
   fields:
 
   - dimension: confirmed_ind

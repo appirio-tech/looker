@@ -1,5 +1,5 @@
 - view: user_contest_prize
-  sql_table_name: public.user_contest_prize
+  sql_table_name: tcs_dw.user_contest_prize
   fields:
 
   - dimension: contest_id
