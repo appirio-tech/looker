@@ -134,7 +134,12 @@
   - measure: count
     type: count
     drill_fields: detail*
-
+    
+  - measure: fee
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: DECODE(${TABLE}.line_item_category, 'Contest Fee', ${TABLE}.line_item_amount, 0)
+    
 
   # ----- Sets of fields for drilling ------
   sets:
