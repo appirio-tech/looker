@@ -1,12 +1,12 @@
 - view: challenge_volume
   derived_table:
     sql: |
-      select launch_date,
+      select date(payment_date) payment_date,
              client,
              direct_project_name,
              contest_id, 
              category,
-             count(*)/count(*)
+             count(*)/count(*) count
       from cost_transaction
       group by 1,2,3,4,5
 
@@ -28,7 +28,10 @@
        type: string
        sql: ${TABLE}.category
 
-     - dimension: launch_date
+     - dimension: transaction_date
        type: time
        timeframes: [date, week, month, year, quarter]
-       sql: ${TABLE}.launch_date
+       sql: ${TABLE}.payment_date
+
+     - measure: count
+       type: count
