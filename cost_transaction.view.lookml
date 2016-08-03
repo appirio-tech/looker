@@ -74,7 +74,7 @@
     type: string
     sql: ${TABLE}.is_studio
 
-  - dimension_group: launch
+  - dimension_group: launch 
     type: time
     timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.launch_date
