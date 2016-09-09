@@ -1,4 +1,4 @@
-- view: project
+- view: challenge
   sql_table_name: tcs_dw.project
   fields:
 
@@ -25,23 +25,23 @@
     type: average
     sql: ${TABLE}.avg_raw_score
 
-  - dimension: category_desc
+  - dimension: parent_category_desc
     type: string
     sql: ${TABLE}.category_desc
 
-  - dimension: category_id
+  - dimension: parent_category_id
     type: number
     sql: ${TABLE}.category_id
 
-  - dimension: challenge_creator
+  - dimension: challenge_creator_id
     type: number
     sql: ${TABLE}.challenge_creator
 
-  - dimension: challenge_launcher
+  - dimension: challenge_launcher_id
     type: number
     sql: ${TABLE}.challenge_launcher
 
-  - dimension: challenge_manager
+  - dimension: challenge_manager_id
     type: number
     sql: ${TABLE}.challenge_manager
 
@@ -73,7 +73,7 @@
     type: number
     sql: ${TABLE}.component_id
 
-  - dimension: component_name
+  - dimension: challenge_name
     type: string
     sql: ${TABLE}.component_name
 
@@ -82,7 +82,7 @@
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.contest_prizes_total
 
-  - dimension: copilot
+  - dimension: copilot_id
     type: number
     sql: ${TABLE}.copilot
 
@@ -145,9 +145,9 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.last_modification_date
 
-  - dimension: level_id
-    type: string
-    sql: ${TABLE}.level_id
+#  - dimension: level_id
+#    type: string
+#    sql: ${TABLE}.level_id
 
   - measure: num_checkpoint_submissions
     type: sum
@@ -173,24 +173,24 @@
     type: sum
     sql: ${TABLE}.num_valid_submissions
 
-  - dimension: phase_desc
-    type: string
-    sql: ${TABLE}.phase_desc
+#  - dimension: phase_desc
+#    type: string
+#    sql: ${TABLE}.phase_desc
 
-  - dimension: phase_id
-    type: number
-    sql: ${TABLE}.phase_id
+#  - dimension: phase_id
+#    type: number
+#    sql: ${TABLE}.phase_id
 
   - dimension_group: posting
     type: time
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.posting_date
 
-  - dimension: project_category_id
+  - dimension: challenge_category_id
     type: number
     sql: ${TABLE}.project_category_id
 
-  - dimension: project_category_name
+  - dimension: challenge_category_name
     type: string
     sql: ${TABLE}.project_category_name
 
