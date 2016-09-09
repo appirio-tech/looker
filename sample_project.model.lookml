@@ -115,10 +115,32 @@
 - explore: participation 
 - explore: participation_metrics_report_copilot 
 - explore: participation_metrics_report_member 
-- explore: project_platform 
+
+- explore: project_platform
+  joins:
+    - join: challenge
+      type: left_outer 
+      sql_on: ${challenge.project_id} = ${project_platform.project_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+
 #- explore: project_review 
 #- explore: project_spec_review_xref 
+
 - explore: project_technology 
+  joins:
+    - join: challenge
+      type: left_outer 
+      sql_on: ${challenge.project_id} = ${project_technology.project_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+
 #- explore: review_resp 
 - explore: rookie 
 #- explore: royalty 
@@ -128,6 +150,7 @@
 - explore: streak 
 - explore: streak_type_lu 
 - explore: submission 
+
 - explore: submission_review 
   joins:
     - join: user
@@ -138,6 +161,7 @@
       type: inner 
       sql_on: ${submission_review.project_id} = ${challenge.project_id}
       relationship: many_to_one
+
 - explore: subjective_response 
 - explore: tcd_project_stat 
 - explore: track 
