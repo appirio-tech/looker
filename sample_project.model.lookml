@@ -91,6 +91,35 @@
       type: left_outer 
       sql_on: ${design_project_result.project_id} = ${challenge.project_id}
       relationship: many_to_one
+    - join: submitter
+      from: user
+      type: inner 
+      sql_on: ${design_project_result.user_id} = ${submitter.coder_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+    - join: copilot
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.copilot_id} = ${copilot.coder_id}
+      relationship: many_to_one
+    - join: creator
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id}
+      relationship: many_to_one
+    - join: manager
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id}
+      relationship: many_to_one
+    - join: launcher
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
+      relationship: many_to_one
       
 - explore: payment
   joins:
