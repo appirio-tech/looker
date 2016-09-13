@@ -60,6 +60,30 @@
       type: inner 
       sql_on: ${project_result.user_id} = ${user.coder_id}
       relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+    - join: copilot
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.copilot_id} = ${copilot.coder_id}
+      relationship: many_to_one
+    - join: creator
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id}
+      relationship: many_to_one
+    - join: manager
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id}
+      relationship: many_to_one
+    - join: launcher
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
+      relationship: many_to_one
 
 - explore: design_project_result
   joins:
@@ -111,10 +135,37 @@
 #- explore: dr_points 
 - explore: event 
 - explore: jira_issue 
-- explore: monthly_contest_stats 
-- explore: participation 
+#- explore: monthly_contest_stats 
+#- explore: participation 
 - explore: participation_metrics_report_copilot 
+  joins:
+    - join: user
+      type: inner 
+      sql_on: ${participation_metrics_report_copilot.copilot_id} = ${user.coder_id}
+      relationship: one_to_one
+    - join: challenge
+      type: left_outer 
+      sql_on: ${challenge.project_id} = ${participation_metrics_report_copilot.contest_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+
 - explore: participation_metrics_report_member 
+  joins:
+    - join: user
+      type: inner 
+      sql_on: ${participation_metrics_report_member.registrant_id} = ${user.coder_id}
+      relationship: one_to_one
+    - join: challenge
+      type: left_outer 
+      sql_on: ${challenge.project_id} = ${participation_metrics_report_member.contest_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
 
 - explore: project_platform
   joins:
@@ -145,8 +196,8 @@
 - explore: rookie 
 #- explore: royalty 
 - explore: school_user_rank 
-- explore: season 
-- explore: stage 
+#- explore: season 
+#- explore: stage 
 - explore: streak 
 - explore: streak_type_lu 
 - explore: submission 
@@ -163,7 +214,7 @@
       relationship: many_to_one
 
 - explore: subjective_response 
-- explore: tcd_project_stat 
+#- explore: tcd_project_stat 
 - explore: track 
 - explore: track_contest 
 - explore: track_contest_results 
