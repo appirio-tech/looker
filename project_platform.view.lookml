@@ -1,4 +1,4 @@
-- view: project_platform
+- view: challenge_platform
   sql_table_name: tcs_dw.project_platform
   fields:
 

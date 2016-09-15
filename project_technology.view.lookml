@@ -1,4 +1,4 @@
-- view: project_technology
+- view: challenge_technology
   sql_table_name: tcs_dw.project_technology
   fields:
 
