@@ -12,6 +12,18 @@
 # Table Views
 - explore: cost_transaction
 
+- explore: consulting_time_and_material
+  joins:
+    - join: resource
+      from: user
+      type: left_outer 
+      sql_on: ${consulting_time_and_material.resource_topcoder_user_id} = ${resource.coder_id}
+      relationship: many_to_one
+    - join: cost_transaction
+      type: left_outer 
+      sql_on: ${consulting_time_and_material.account_name} = ${cost_transaction.client}
+      relationship: many_to_one
+      
 - explore: user
   joins:
     - join: country

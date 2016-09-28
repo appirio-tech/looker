@@ -129,6 +129,7 @@
 
   - dimension: transation_id
     type: number
+    primary_key: true
     sql: ${TABLE}.transation_id
 
   - measure: count
