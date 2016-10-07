@@ -8,6 +8,7 @@
 - explore: challenge_volume
 - explore: challenge_stats
 - explore: member_payments
+- explore: copilot
 
 # Table Views
 - explore: cost_transaction
