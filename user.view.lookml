@@ -1,5 +1,5 @@
 - view: user
-  sql_table_name: topcoder_dw.coder
+  sql_table_name: tcs_dw.coder
   fields:
 
   - dimension: coder_id

@@ -1,5 +1,5 @@
 - view: contest_project_xref
-  sql_table_name: public.contest_project_xref
+  sql_table_name: tcs_dw.contest_project_xref
   fields:
 
   - dimension: contest_id

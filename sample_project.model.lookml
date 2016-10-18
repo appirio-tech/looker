@@ -63,6 +63,8 @@
       sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
       relationship: many_to_one
 
+      
+
 - explore: project_result
   joins:
     - join: challenge
@@ -141,12 +143,10 @@
       type: inner
       sql_on: ${payment.created_calendar_id} = ${created_date.calendar_id}
       relationship: many_to_one
-      
     - join: user_payment
       type: inner
       sql_on: ${payment.payment_id} = ${user_payment.payment_id}
       relationship: one_to_many
-      
     - join: user
       type: inner
       sql_on: ${user_payment.user_id} = ${user.coder_id}
@@ -156,7 +156,14 @@
 
 - explore: client_project_dim 
 #- explore: client_user_stats 
-#- explore: contest 
+
+- explore: contest 
+  joins:
+    - join: contest_project_xref
+      type: inner 
+      sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id}
+      relationship: one_to_many
+
 #- explore: contest_prize 
 #- explore: contest_project_xref 
 #- explore: contest_result 
