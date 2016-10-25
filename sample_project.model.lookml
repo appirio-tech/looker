@@ -271,6 +271,11 @@
       type: inner 
       sql_on: ${project_result.user_id} = ${submitter.coder_id}
       relationship: many_to_one
+    - join: submitter_country
+      from: country
+      type: left_outer
+      sql_on: ${submitter.comp_country_code} = ${submitter_country.country_code}
+      relationship: many_to_one
 
 #- explore: project_review 
 #- explore: project_spec_review_xref 
@@ -317,6 +322,11 @@
       from: user
       type: inner 
       sql_on: ${project_result.user_id} = ${submitter.coder_id}
+      relationship: many_to_one
+    - join: submitter_country
+      from: country
+      type: left_outer
+      sql_on: ${submitter.comp_country_code} = ${submitter_country.country_code}
       relationship: many_to_one
       
 #- explore: review_resp 
