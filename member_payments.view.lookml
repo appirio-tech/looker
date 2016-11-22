@@ -31,12 +31,12 @@
           up.net_amount,
           up.gross_amount,
           up.total_amount    
-      FROM topcoder_dw.payment p,
-           topcoder_dw.user_payment up,
-           topcoder_dw.calendar mod_date,
-           topcoder_dw.calendar due_date,
-           topcoder_dw.calendar paid_date,
-           topcoder_dw.coder payee
+      FROM tcs_dw.payment p,
+           tcs_dw.user_payment up,
+           tcs_dw.calendar mod_date,
+           tcs_dw.calendar due_date,
+           tcs_dw.calendar paid_date,
+           tcs_dw.coder payee
       WHERE p.payment_id = up.payment_id
         AND p.modified_calendar_id = mod_date.calendar_id
         AND up.due_calendar_id = due_date.calendar_id

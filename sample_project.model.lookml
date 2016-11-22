@@ -36,6 +36,11 @@
 
 - explore: calendar
 
+- explore: connect_project
+
+- explore: connect_project_members
+
+
 - explore: challenge
   joins:
     - join: client_project_dim
@@ -45,6 +50,10 @@
     - join: direct_project_dim
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
       relationship: many_to_one
     - join: copilot
       from: user
@@ -87,6 +96,10 @@
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
       relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
+      relationship: many_to_one
     - join: copilot
       from: user
       type: left_outer 
@@ -126,6 +139,10 @@
     - join: direct_project_dim
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
       relationship: many_to_one
     - join: copilot
       from: user
@@ -192,7 +209,16 @@
 
 - explore: country_user_rank 
 #- explore: data_type_lu 
+
 - explore: direct_project_dim 
+  joins:
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
+      relationship: many_to_one
+
+
+
 #- explore: dr_points 
 - explore: event 
 - explore: jira_issue 
@@ -246,6 +272,10 @@
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
       relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
+      relationship: many_to_one
     - join: copilot
       from: user
       type: left_outer 
@@ -297,6 +327,10 @@
     - join: direct_project_dim
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
       relationship: many_to_one
     - join: copilot
       from: user
@@ -356,6 +390,10 @@
     - join: direct_project_dim
       type: left_outer 
       sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid}
       relationship: many_to_one
     - join: copilot
       from: user
