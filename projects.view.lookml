@@ -7,8 +7,9 @@
     type: number
     sql: ${TABLE}.directprojectid
 
-  - dimension: actualprice
-    type: number
+  - measure: actualprice
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.actualprice
 
   - dimension: billingaccountid
@@ -25,7 +26,8 @@
     sql: ${TABLE}.challengeeligibility
 
   - dimension: createdat
-    type: string
+    type: time
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.createdat
 
   - dimension: createdby
@@ -33,7 +35,8 @@
     sql: ${TABLE}.createdby
 
   - dimension: deletedat
-    type: string
+    type: time
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.deletedat
 
   - dimension: description
@@ -44,8 +47,9 @@
     type: string
     sql: ${TABLE}.details
 
-  - dimension: estimatedprice
-    type: number
+  - measure: estimatedprice
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimatedprice
 
   - dimension: external
@@ -69,7 +73,8 @@
     sql: ${TABLE}.type
 
   - dimension: updatedat
-    type: string
+    type: time
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.updatedat
 
   - dimension: updatedby
