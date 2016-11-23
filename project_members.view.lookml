@@ -50,3 +50,7 @@
     type: count
     drill_fields: [id, projects.directprojectid, projects.name]
 
+  - measure: count_distinct_members
+    type: count_distinct
+    sql: ${id}
+    drill_fields: [id]
