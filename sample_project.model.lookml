@@ -37,6 +37,20 @@
 - explore: calendar
 
 - explore: connect_project
+  joins:
+    - join: direct_project_dim
+      type: left_outer 
+      sql_on:  ${connect_project.directprojectid} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.billing_project_id} = ${direct_project_dim.billing_project_id}
+      relationship: many_to_one
+    - join: connect_project_members
+      type: left_outer 
+      sql_on: ${connect_project.id} = ${connect_project_members.projectid}
+      relationship: many_to_one
+
 
 - explore: connect_project_members
 

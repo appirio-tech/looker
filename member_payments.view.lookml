@@ -18,7 +18,7 @@
           p.modified_time_id,
           p.installment_number,
           p.jira_ticket_id,
-          p.created_calendar_id,
+          create_date.date as date_created,
           p.created_time_id,
           up.payment_id,
           up.user_id,
@@ -36,11 +36,13 @@
            tcs_dw.calendar mod_date,
            tcs_dw.calendar due_date,
            tcs_dw.calendar paid_date,
+           tcs_dw.calendar create_date,
            tcs_dw.coder payee
       WHERE p.payment_id = up.payment_id
         AND p.modified_calendar_id = mod_date.calendar_id
         AND up.due_calendar_id = due_date.calendar_id
         AND up.paid_calendar_id = paid_date.calendar_id
+        AND p.created_calendar_id = create_date.calendar_id
         AND up.user_id = payee.coder_id
 
   fields:
@@ -90,6 +92,11 @@
        timeframes: [time, date, week, month, year, quarter]
        sql: ${TABLE}.date_modified
 
+     - dimension: date_created
+       type: time
+       timeframes: [time, date, week, month, year, quarter]
+       sql: ${TABLE}.date_created
+
      - dimension: installment_number
        type: number
        sql: ${TABLE}.installment_number
@@ -97,10 +104,6 @@
      - dimension: jira_ticket_id
        type: string
        sql: ${TABLE}.jira_ticket_id
-
-     - dimension: created_calendar_id
-       type: number
-       sql: ${TABLE}.created_calendar_id
 
      - dimension: user_id
        type: number
