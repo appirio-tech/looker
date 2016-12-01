@@ -12,6 +12,11 @@
 
 # Table Views
 - explore: cost_transaction
+  joins:
+    - join: connect_project
+      type: left_outer 
+      sql_on: ${cost_transaction.direct_project_id} = ${connect_project.directprojectid}
+      relationship: many_to_one
 
 - explore: consulting_time_and_material
   joins:
@@ -89,7 +94,18 @@
       type: left_outer 
       sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
       relationship: many_to_one
-
+    - join: contest_project_xref
+      type: inner 
+      sql_on: ${challenge.project_id} = ${contest_project_xref.project_id}
+      relationship: many_to_one
+    - join: contest
+      type: inner 
+      sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id}
+      relationship: many_to_one
+    - join: event
+      type: inner 
+      sql_on: ${contest.event_id} = ${event.event_id}
+      relationship: many_to_one
       
 
 - explore: project_result
@@ -206,6 +222,43 @@
       type: inner 
       sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id}
       relationship: one_to_many
+    - join: event
+      type: inner 
+      sql_on: ${contest.event_id} = ${event.event_id}
+      relationship: many_to_many
+    - join: challenge
+      type: left_outer 
+      sql_on: ${contest_project_xref.project_id} = ${challenge.project_id}
+      relationship: many_to_one
+    - join: client_project_dim
+      type: left_outer 
+      sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
+      relationship: many_to_one
+    - join: direct_project_dim
+      type: left_outer 
+      sql_on:  ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id}
+      relationship: many_to_one
+    - join: copilot
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.copilot_id} = ${copilot.coder_id}
+      relationship: many_to_one
+    - join: creator
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id}
+      relationship: many_to_one
+    - join: manager
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id}
+      relationship: many_to_one
+    - join: launcher
+      from: user
+      type: left_outer 
+      sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
+      relationship: many_to_one
+
 
 #- explore: contest_prize 
 #- explore: contest_project_xref 
