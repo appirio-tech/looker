@@ -95,15 +95,15 @@
       sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id}
       relationship: many_to_one
     - join: contest_project_xref
-      type: inner 
+      type: left_outer 
       sql_on: ${challenge.project_id} = ${contest_project_xref.project_id}
       relationship: many_to_one
     - join: contest
-      type: inner 
+      type: left_outer
       sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id}
       relationship: many_to_one
     - join: event
-      type: inner 
+      type: left_outer 
       sql_on: ${contest.event_id} = ${event.event_id}
       relationship: many_to_one
       
