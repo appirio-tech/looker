@@ -287,7 +287,21 @@
 
 
 #- explore: dr_points 
+
 - explore: event 
+  joins:
+    - join: event_registration
+      type: inner 
+      sql_on: ${event.event_id} = ${event_registration.event_id}
+      relationship: many_to_many
+    - join: registrant
+      from: user
+      type: inner 
+      sql_on: ${event_registration.user_id} = ${registrant.coder_id}
+      relationship: many_to_many
+
+
+
 - explore: jira_issue 
 #- explore: monthly_contest_stats 
 #- explore: participation 
