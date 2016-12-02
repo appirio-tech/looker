@@ -456,9 +456,15 @@
 
 - explore: submission_review 
   joins:
-    - join: user
+    - join: reviewer
+      from: user
       type: inner
-      sql_on: ${submission_review.reviewer_id} = ${user.coder_id}
+      sql_on: ${submission_review.reviewer_id} = ${reviewer.coder_id}
+      relationship: many_to_one 
+    - join: reviewer_responsibility
+      from: review_resp
+      type: inner
+      sql_on: ${submission_review.review_resp_id} = ${reviewer_responsibility.review_resp_id}
       relationship: many_to_one 
     - join: challenge
       type: inner 
