@@ -8,6 +8,7 @@
              category,
              count(*)/count(*) count
       from cost_transaction
+      where line_item_category <> 'Contest Fee'
       group by 1,2,3,4,5
 
   fields:
