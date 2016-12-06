@@ -124,3 +124,6 @@
     type: count_distinct
     sql: ${TABLE}.user_id
 
+  - measure: count_challenges
+    type: number
+    sql: COUNT(${project_id})
