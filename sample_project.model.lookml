@@ -299,6 +299,10 @@
       type: inner 
       sql_on: ${event_registration.user_id} = ${registrant.coder_id}
       relationship: many_to_many
+    - join: country
+      type: left_outer
+      sql_on: ${registrant.comp_country_code} = ${country.country_code}
+      relationship: many_to_one
 
 
 
