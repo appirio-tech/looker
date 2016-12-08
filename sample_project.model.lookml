@@ -119,6 +119,10 @@
       type: inner 
       sql_on: ${project_result.user_id} = ${user.coder_id}
       relationship: many_to_one
+    - join: country
+      type: left_outer
+      sql_on: ${user.comp_country_code} = ${country.country_code}
+      relationship: many_to_one      
     - join: client_project_dim
       type: left_outer 
       sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
@@ -163,6 +167,11 @@
       type: inner 
       sql_on: ${design_project_result.user_id} = ${submitter.coder_id}
       relationship: many_to_one
+    - join: submitter_country
+      from: country
+      type: left_outer
+      sql_on: ${submitter.comp_country_code} = ${submitter_country.country_code}
+      relationship: many_to_one 
     - join: client_project_dim
       type: left_outer 
       sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id}
