@@ -70,3 +70,11 @@
     type: sum
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.prize_amount
+    
+  - measure: count_distinct_user
+    type: count_distinct
+    sql: ${TABLE}.user_id
+
+  - measure: count_challenges
+    type: number
+    sql: COUNT(${project_id})    
