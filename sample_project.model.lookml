@@ -533,6 +533,10 @@
       type: inner 
       sql_on: ${user_rating.user_id} = ${user.coder_id}
       relationship: many_to_one
+    - join: country
+      type: left_outer
+      sql_on: ${user.comp_country_code} = ${country.country_code}
+      relationship: many_to_one
       
 - explore: user_reliability 
 - explore: weekly_contest_stats 
