@@ -9,6 +9,7 @@
 - explore: challenge_stats
 - explore: member_payments
 - explore: copilot
+- explore: challenge_type
 
 # Table Views
 - explore: cost_transaction
@@ -520,7 +521,19 @@
 - explore: user_event_xref 
 - explore: user_rank 
 - explore: user_rank_type_lu 
+
 - explore: user_rating 
+  joins:
+    - join: challenge_type
+      from: challenge_type
+      type: left_outer
+      sql_on: ${user_rating.phase_id} = ${challenge_type.phase_id}
+      relationship: many_to_one 
+    - join: user
+      type: inner 
+      sql_on: ${user_rating.user_id} = ${user.coder_id}
+      relationship: many_to_one
+      
 - explore: user_reliability 
 - explore: weekly_contest_stats 
 
