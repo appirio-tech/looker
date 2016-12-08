@@ -543,6 +543,20 @@
 
 - explore: coder_rank
 
+- explore: algo_rating
+  joins:
+    - join: user
+      type: inner 
+      sql_on: ${algo_rating.coder_id} = ${user.coder_id}
+      relationship: many_to_one
+    - join: country
+      type: left_outer
+      sql_on: ${user.comp_country_code} = ${country.country_code}
+      relationship: many_to_one
+    - join: algo_rating_type_lu
+      type: inner 
+      sql_on: ${algo_rating.algo_rating_type_id} = ${algo_rating_type_lu.algo_rating_type_id}
+      relationship: many_to_one
       
 
 
