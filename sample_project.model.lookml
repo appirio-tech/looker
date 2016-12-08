@@ -552,11 +552,18 @@
 
 - explore: coder_rank
 
+
+- explore: language_lu
+
 - explore: algo_rating
   joins:
     - join: user
       type: inner 
       sql_on: ${algo_rating.coder_id} = ${user.coder_id}
+      relationship: many_to_one
+    - join: language_lu
+      type: inner 
+      sql_on: ${user.language_id} = ${language_lu.language_id}
       relationship: many_to_one
     - join: country
       type: left_outer
