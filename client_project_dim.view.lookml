@@ -6,7 +6,7 @@
     type: string
     sql: ${TABLE}.billing_account_code
 
-  - dimension: billing_project_id
+  - dimension: billing_account_id
     type: number
     sql: ${TABLE}.billing_project_id
 
@@ -50,7 +50,7 @@
     timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.project_modification_date
 
-  - dimension: project_name
+  - dimension: billing_account_name
     type: string
     sql: ${TABLE}.project_name
 

@@ -50,7 +50,7 @@
       relationship: many_to_one
     - join: client_project_dim
       type: left_outer 
-      sql_on: ${client_project_dim.billing_project_id} = ${direct_project_dim.billing_project_id}
+      sql_on: ${client_project_dim.billing_account_id} = ${direct_project_dim.billing_account_id}
       relationship: many_to_one
     - join: connect_project_members
       type: left_outer 
@@ -465,7 +465,7 @@
 #- explore: season 
 #- explore: stage 
 - explore: streak 
-- explore: streak_type_lu 
+- explore: streak_type_lu
 - explore: submission 
 
 - explore: submission_review 

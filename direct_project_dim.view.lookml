@@ -2,7 +2,7 @@
   sql_table_name: tcs_dw.direct_project_dim
   fields:
 
-  - dimension: billing_project_id
+  - dimension: billing_account_id
     type: number
     sql: ${TABLE}.billing_project_id
 
@@ -27,6 +27,17 @@
   - dimension: project_status_id
     type: number
     sql: ${TABLE}.project_status_id
+
+  - dimension: project_status_desc
+    type: string
+    sql: |
+      CASE WHEN ${project_status_id} = 1 THEN 'Active'
+          WHEN ${project_status_id} = 2 THEN 'Inactive'
+          WHEN ${project_status_id} = 3 THEN 'Cancelled'
+          WHEN ${project_status_id} = 4 THEN 'Completed'
+          WHEN ${project_status_id} = 5 THEN 'Draft'
+          ELSE 'NA' 
+      END
 
   - measure: count
     type: count
