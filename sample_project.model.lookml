@@ -574,6 +574,7 @@
       sql_on: ${algo_rating.algo_rating_type_id} = ${algo_rating_type_lu.algo_rating_type_id}
       relationship: many_to_one
       
+- explore: subscription
 
 
 
