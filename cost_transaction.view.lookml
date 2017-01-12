@@ -139,7 +139,10 @@
   - measure: fee
     type: sum
     value_format: '$#,##0.00;($#,##0.00)'
-    sql: DECODE(${TABLE}.line_item_category, 'Contest Fee', ${TABLE}.line_item_amount, 0)
+#    sql: DECODE(${TABLE}.line_item_category, 'Contest Fee', ${TABLE}.line_item_amount, 0)
+    sql: ${TABLE}.line_item_amount
+    filters:
+      line_item_category: 'Contest Fee'
 
   - measure: member_payments
     type: sum
