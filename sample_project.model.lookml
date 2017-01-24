@@ -56,6 +56,10 @@
       type: left_outer 
       sql_on: ${connect_project.id} = ${connect_project_members.projectid}
       relationship: many_to_one
+    - join: connect_messages
+      type: left_outer 
+      sql_on: ${connect_project.id} = ${connect_messages.referenceid}
+      relationship: one_to_many
 
 
 - explore: connect_project_members
