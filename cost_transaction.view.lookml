@@ -152,6 +152,15 @@
       line_item_category: '-Contest Fee'
 
 
+  - measure: count_challenges
+    type: count_distinct
+    sql: ${TABLE}.contest_id
+
+  - measure: count_jira_tasks
+    type: count_distinct
+    sql: ${TABLE}.reference_id
+
+
   # ----- Sets of fields for drilling ------
   sets:
     detail:
