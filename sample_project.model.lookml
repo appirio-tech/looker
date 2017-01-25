@@ -56,11 +56,20 @@
       type: left_outer 
       sql_on: ${connect_project.id} = ${connect_project_members.projectid}
       relationship: many_to_one
+    - join: connect_project_member_user
+      from: user
+      type: left_outer 
+      sql_on: ${connect_project_members.createdby} = ${connect_project_member_user.coder_id}
+      relationship: many_to_one
     - join: connect_messages
       type: left_outer 
       sql_on: ${connect_project.id} = ${connect_messages.referenceid}
       relationship: one_to_many
-
+    - join: message_author
+      from: user
+      type: left_outer 
+      sql_on: ${connect_messages.createdby} = ${message_author.coder_id}
+      relationship: many_to_one
 
 - explore: connect_project_members
 
