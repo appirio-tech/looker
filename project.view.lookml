@@ -140,6 +140,10 @@
     type: number
     sql: ${TABLE}.is_private
 
+  - dimension: task_ind
+    type: number
+    sql: ${TABLE}.task_ind
+
   - dimension_group: last_modification
     type: time
     timeframes: [time, date, week, month, year, quarter]
