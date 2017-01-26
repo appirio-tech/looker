@@ -142,7 +142,7 @@
 
   - dimension: task_ind
     type: number
-    sql: ${TABLE}.task_ind
+    sql: NVL(${TABLE}.task_ind, 0)
 
   - dimension_group: last_modification
     type: time
