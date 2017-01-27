@@ -4,8 +4,6 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 # Derived Views
-- explore: challenge_cost
-- explore: challenge_volume
 - explore: challenge_stats
 - explore: member_payments
 - explore: copilot

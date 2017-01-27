@@ -295,6 +295,11 @@
     type: count
     drill_fields: detail*
 
+  - measure: estimated_member_payments
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.estimated_copilot_cost + ${TABLE}.estimated_reliability_cost + ${TABLE}.estimated_review_cost + ${TABLE}.total_prize
+
 
   # ----- Sets of fields for drilling ------
   sets:
