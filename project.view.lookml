@@ -237,6 +237,13 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.scheduled_end_date
 
+  # If the completed date is null (challenge not completed), then use the scheduled end date.
+  - dimension_group: projected_end
+    description: 'If the completed date is null (challenge not completed), then use the scheduled end date.'
+    type: time
+    timeframes: [time, date, week, month, year, quarter]
+    sql: NVL(${TABLE}.complete_date, ${TABLE}.scheduled_end_date)
+
   - dimension: stage_id
     type: number
     sql: ${TABLE}.stage_id
