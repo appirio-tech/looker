@@ -152,4 +152,9 @@
        value_format: '$#,##0.00;($#,##0.00)'
        sql: ${TABLE}.total_amount
 
+     - measure: count
+       type: count
 
+     - measure: count_distinct_user
+       type: count_distinct
+       sql: ${TABLE}.user_id
