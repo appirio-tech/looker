@@ -3,6 +3,8 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
+- week_start_day: sunday    # sets the week start day to Sunday
+
 # Derived Views
 - explore: challenge_stats
 - explore: member_payments
