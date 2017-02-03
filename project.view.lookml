@@ -186,6 +186,7 @@
 #    sql: ${TABLE}.phase_id
 
   - dimension_group: posting
+    description: "Start of registration. If challenge is draft, then uses scheduled start date."
     type: time
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.posting_date
