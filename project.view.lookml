@@ -7,24 +7,6 @@
     type: number
     sql: ${TABLE}.client_project_id
 
-  - measure: actual_total_prize
-    type: sum
-    value_format: '$#,##0.00;($#,##0.00)'
-    sql: ${TABLE}.actual_total_prize
-
-  - measure: admin_fee
-    type: sum
-    value_format: '$#,##0.00;($#,##0.00)'
-    sql: ${TABLE}.admin_fee
-
-  - measure: avg_final_score
-    type: average
-    sql: ${TABLE}.avg_final_score
-
-  - measure: avg_raw_score
-    type: average
-    sql: ${TABLE}.avg_raw_score
-
   - dimension: parent_category_desc
     type: string
     sql: ${TABLE}.category_desc
@@ -215,16 +197,6 @@
     timeframes: [time, date, week, month, year, quarter]
     sql: ${TABLE}.registration_end_date
 
-  - measure: reliability_cost
-    type: sum
-    value_format: '$#,##0.00;($#,##0.00)'
-    sql: ${TABLE}.reliability_cost
-
-  - measure: review_cost
-    type: sum
-    value_format: '$#,##0.00;($#,##0.00)'
-    sql: ${TABLE}.review_cost
-
   - dimension: review_phase_id
     type: number
     sql: ${TABLE}.review_phase_id
@@ -307,6 +279,54 @@
     type: sum
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.estimated_copilot_cost + ${TABLE}.estimated_reliability_cost + ${TABLE}.estimated_review_cost + ${TABLE}.total_prize
+
+  - measure: actual_total_prize
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.actual_total_prize
+
+  - measure: average_actual_total_prize
+    type: average
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.actual_total_prize
+
+  - measure: admin_fee
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.admin_fee
+
+  - measure: average_admin_fee
+    type: average
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.admin_fee
+
+  - measure: avg_final_score
+    type: average
+    sql: ${TABLE}.avg_final_score
+
+  - measure: avg_raw_score
+    type: average
+    sql: ${TABLE}.avg_raw_score
+
+  - measure: reliability_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.reliability_cost
+
+  - measure: average_reliability_cost
+    type: average
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.reliability_cost
+
+  - measure: review_cost
+    type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.review_cost
+
+  - measure: average_review_cost
+    type: average
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.review_cost
 
 
   # ----- Sets of fields for drilling ------

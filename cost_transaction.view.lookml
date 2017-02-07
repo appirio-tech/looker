@@ -144,8 +144,23 @@
     filters:
       line_item_category: 'Contest Fee'
 
+  - measure: average_fee
+    type: average
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.line_item_amount
+    filters:
+      line_item_category: 'Contest Fee'
+
+
   - measure: member_payments
     type: sum
+    value_format: '$#,##0.00;($#,##0.00)'
+    sql: ${TABLE}.line_item_amount
+    filters:
+      line_item_category: '-Contest Fee'
+
+  - measure: average_member_payments
+    type: average
     value_format: '$#,##0.00;($#,##0.00)'
     sql: ${TABLE}.line_item_amount
     filters:
