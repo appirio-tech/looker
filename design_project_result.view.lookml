@@ -78,3 +78,19 @@
   - measure: count_challenges
     type: number
     sql: COUNT(${project_id})    
+
+  - measure: count_valid_submissions
+    type: number
+    sql: SUM(${valid_submission_ind})
+
+  - measure: count_first_place_wins
+    type: number
+    sql: COUNT(DECODE(${placement}, 1, 1, 0))
+    
+  - measure: count_non_first_place_wins
+    type: number
+    sql: |
+       COUNT(CASE WHEN ${placement} > 1
+       THEN 1
+       ELSE NULL 
+       END)
