@@ -85,7 +85,11 @@
 
   - measure: count_first_place_wins
     type: number
-    sql: COUNT(DECODE(${placement}, 1, 1, 0))
+    sql: |
+       COUNT(CASE WHEN ${placement} = 1
+       THEN 1
+       ELSE NULL 
+       END)
     
   - measure: count_non_first_place_wins
     type: number
