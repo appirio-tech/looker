@@ -70,6 +70,10 @@ view: connect_project {
     sql: ${TABLE}.details ;;
   }
 
+#  dimension: refcode {
+#    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
+#  }
+
   measure: estimatedprice {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
@@ -106,7 +110,7 @@ view: connect_project {
         label: "3: Reviewed"
       }
       when: {
-        sql: ${TABLE}.status = 'acive' ;;
+        sql: ${TABLE}.status = 'active' ;;
         label: "4: Active"
       }
       when: {
