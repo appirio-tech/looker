@@ -92,14 +92,43 @@ view: connect_project {
   }
 
   dimension: status {
-    type: string
-    sql: ${TABLE}.status ;;
+    case: {
+      when: {
+        sql: ${TABLE}.status = 'draft' ;;
+        label: "1: Draft"
+      }
+      when: {
+        sql: ${TABLE}.status = 'in_review' ;;
+        label: "2: In Review"
+      }
+      when: {
+        sql: ${TABLE}.status = 'reviewed' ;;
+        label: "3: Reviewed"
+      }
+      when: {
+        sql: ${TABLE}.status = 'acive' ;;
+        label: "4: Active"
+      }
+      when: {
+        sql: ${TABLE}.status = 'completed' ;;
+        label: "5: Completed"
+      }
+      when: {
+        sql: ${TABLE}.status = 'cancelled' ;;
+        label: "6: Cancelled"
+      }
+      when: {
+        sql: ${TABLE}.status = 'paused' ;;
+        label: "7: Paused"
+      }
+      else: "8: Unknown"
+    }
   }
 
-  dimension: type {
-    type: string
-    sql: ${TABLE}.type ;;
-  }
+    dimension: type {
+      type: string
+      sql: ${TABLE}.type ;;
+    }
 
   dimension_group: updatedat {
     type: time
