@@ -131,6 +131,24 @@ view: design_project_result {
        ;;
   }
 
+  measure: count_second_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 2
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_third_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 3
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
   measure: count_non_first_place_wins {
     type: number
     sql: COUNT(CASE WHEN ${placement} > 1
