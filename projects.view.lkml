@@ -163,9 +163,8 @@ view: connect_project {
   }
 
   measure: submitted_count {   # count of submitted projects
-    type: count_distinct
+    type: count
     drill_fields: [directprojectid, name, project_members.count]
-    sql: ${TABLE}.status ;;
     filters: {
       field: status
       value: "in review, reviewed, active, completed, cancelled, paused"
