@@ -129,6 +129,25 @@ view: connect_project {
     }
   }
 
+  dimension: statusderived {
+    case: {
+      when: {
+        sql: ${TABLE}.status = 'in_review' OR
+        sql: ${TABLE}.status = 'reviewed' OR
+        sql: ${TABLE}.status = 'active' OR
+        sql: ${TABLE}.status = 'completed' OR
+        sql: ${TABLE}.status = 'cancelled' OR
+        sql: ${TABLE}.status = 'paused';;
+        label: "9: Submitted"
+      }
+      when: {
+        sql: ${TABLE}.status = 'active' OR
+        sql: ${TABLE}.status = 'completed';;
+        label: "10: Activated"
+      }
+    }
+  }
+
     dimension: type {
       type: string
       sql: ${TABLE}.type ;;
