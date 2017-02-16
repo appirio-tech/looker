@@ -163,7 +163,7 @@ view: connect_project {
   }
 
   measure: submitted_count {   # count of submitted projects
-    type: count
+    type: sum
     drill_fields: [directprojectid, name, project_members.count]
     filters: {
       field: status
