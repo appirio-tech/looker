@@ -129,25 +129,6 @@ view: connect_project {
     }
   }
 
-  dimension: statusderived {
-    case: {
-      when: {
-        sql: ${TABLE}.status = 'in review' OR
-             ${TABLE}.status = 'reviewed' OR
-             ${TABLE}.status = 'active' OR
-             ${TABLE}.status = 'completed' OR
-             ${TABLE}.status = 'cancelled' OR
-             ${TABLE}.status = 'paused';;
-        label: "9: Submitted"
-      }
-      when: {
-        sql: ${TABLE}.status = 'active' OR
-             ${TABLE}.status = 'completed';;
-        label: "10: Activated"
-      }
-    }
-  }
-
     dimension: type {
       type: string
       sql: ${TABLE}.type ;;
@@ -179,5 +160,14 @@ view: connect_project {
   measure: count {
     type: count
     drill_fields: [directprojectid, name, project_members.count]
+  }
+
+  measure: submitted_count {   # count of submitted projects
+    type: count
+    drill_fields: [directprojectid, name, project_members.count]
+    filters: {
+      field: status
+      value: "in review, reviewed, active, completed, cancelled, paused"
+    }
   }
 }
