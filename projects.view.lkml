@@ -132,17 +132,17 @@ view: connect_project {
   dimension: statusderived {
     case: {
       when: {
-        sql: ${TABLE}.status = 'in_review' OR
-        sql: ${TABLE}.status = 'reviewed' OR
-        sql: ${TABLE}.status = 'active' OR
-        sql: ${TABLE}.status = 'completed' OR
-        sql: ${TABLE}.status = 'cancelled' OR
-        sql: ${TABLE}.status = 'paused';;
+        sql: ${TABLE}.status = 'in review' OR
+             ${TABLE}.status = 'reviewed' OR
+             ${TABLE}.status = 'active' OR
+             ${TABLE}.status = 'completed' OR
+             ${TABLE}.status = 'cancelled' OR
+             ${TABLE}.status = 'paused';;
         label: "9: Submitted"
       }
       when: {
         sql: ${TABLE}.status = 'active' OR
-        sql: ${TABLE}.status = 'completed';;
+             ${TABLE}.status = 'completed';;
         label: "10: Activated"
       }
     }
