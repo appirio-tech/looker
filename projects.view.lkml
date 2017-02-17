@@ -168,7 +168,7 @@ view: connect_project {
   }
 
   measure: submitted_count {   # count of submitted projects
-    type: sum
+    type: count
     # drill_fields: [directprojectid, name, project_members.count]
     # sql: ${TABLE}.id ;;
     filters: {
