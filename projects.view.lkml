@@ -176,4 +176,25 @@ view: connect_project {
     }
   }
 
+  measure: activated_count {
+    type: count
+    description: "Count of activated projects. Includes active and completed."
+    filters: {
+      field: raw_status
+      value: "active, completed"
+    }
+  }
+
+  measure: submitted_percentage {
+    type: number
+    description: "Projects submitted as a percent of created projects."
+    sql: ${submitted_count} / ${count} ;;
+  }
+
+  measure: activated_percentage {
+    type: number
+    description: "Projects activated as a percent of submitted projects."
+    sql: ${activated_count} / ${submitted_count}  ;;
+  }
+
 }
