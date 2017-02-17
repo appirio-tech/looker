@@ -187,14 +187,16 @@ view: connect_project {
 
   measure: submitted_percentage {
     type: number
+    value_format_name: percent_0
     description: "Projects submitted as a percent of created projects."
-    sql: ${submitted_count} / ${count} ;;
+    sql: 1.0 * ${submitted_count} / NULLIF(${count}, 0);;
   }
 
   measure: activated_percentage {
-    type: number
-    description: "Projects activated as a percent of submitted projects."
-    sql: ${activated_count} / ${submitted_count}  ;;
+  type: number
+  value_format_name: percent_0
+  description: "Projects activated as a percent of submitted projects."
+  sql: 1.0 * ${activated_count} / NULLIF(${submitted_count}, 0)  ;;
   }
 
 }
