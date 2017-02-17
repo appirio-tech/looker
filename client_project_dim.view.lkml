@@ -98,6 +98,43 @@ view: client_project_dim {
     sql: ${TABLE}.subscription_number ;;
   }
 
+  dimension: billing_account_status {
+    type: string
+    sql: ${TABLE}.billing_account_status ;;
+  }
+
+  dimension_group: billing_account_start_date {
+    type: time
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.billing_account_start_date ;;
+  }
+
+  dimension_group: billing_account_end_date {
+    type: time
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.billing_account_end_date ;;
+  }
+
+  dimension: billing_account_budget {
+    type: string
+    sql: ${TABLE}.billing_account_budget ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [client_name]
