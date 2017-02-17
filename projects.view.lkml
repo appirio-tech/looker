@@ -95,6 +95,11 @@ view: connect_project {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: raw_status {
+    type: string
+    sql: ${TABLE}.status;;
+  }
+
   dimension: status {
     case: {
       when: {
@@ -161,4 +166,15 @@ view: connect_project {
     type: count
     drill_fields: [directprojectid, name, project_members.count]
   }
+
+  measure: submitted_count {   # count of submitted projects
+    type: sum
+    # drill_fields: [directprojectid, name, project_members.count]
+    # sql: ${TABLE}.id ;;
+    filters: {
+      field: raw_status
+      value: "in_review, reviewed, active, completed, cancelled, paused"
+    }
+  }
+
 }
