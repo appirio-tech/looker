@@ -48,6 +48,7 @@ view: client_project_dim {
   }
 
   dimension: client_project_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.client_project_id ;;
   }
