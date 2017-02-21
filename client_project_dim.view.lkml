@@ -129,8 +129,9 @@ view: client_project_dim {
     sql: ${TABLE}.billing_account_end_date ;;
   }
 
-  dimension: billing_account_budget {
-    type: string
+  measure: billing_account_budget {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.billing_account_budget ;;
   }
 
