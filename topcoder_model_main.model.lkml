@@ -122,6 +122,13 @@ explore: cost_transaction {
     sql_on: ${cost_transaction.direct_project_id} = ${connect_project.directprojectid} ;;
     relationship: many_to_one
   }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${cost_transaction.billing_project_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: consulting_time_and_material {
