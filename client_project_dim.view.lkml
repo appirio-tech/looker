@@ -111,7 +111,8 @@ view: client_project_dim {
         ${TABLE}.client_name = 'Amazon Web Services' OR
         ${TABLE}.client_name = 'BestDoctors' OR
         ${TABLE}.client_name = 'Harley-Davidson' OR
-        ${TABLE}.client_name = 'HeroX' ;;
+        ${TABLE}.client_name = 'HeroX' OR
+        ${TABLE}.client_name = 'IBM';;
         label: "Self service"
       }
       when: {
@@ -124,7 +125,6 @@ view: client_project_dim {
                   ${TABLE}.client_name = 'General Electric' OR
                   ${TABLE}.client_name = 'Harvard Business School' OR
                   ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
-                  ${TABLE}.client_name = 'IBM' OR
                   ${TABLE}.client_name = 'John Hancock Financial Services';;
         label: "Powered By"
       }
