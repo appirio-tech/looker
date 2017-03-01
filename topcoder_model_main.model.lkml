@@ -423,7 +423,8 @@ explore: payment {
 
 explore: user_payment {}
 
-explore: client_project_dim {}
+explore: client_project_dim {
+}
 
 #- explore: client_user_stats
 
