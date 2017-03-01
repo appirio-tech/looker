@@ -104,6 +104,34 @@ view: client_project_dim {
     sql: ${TABLE}.billing_account_status ;;
   }
 
+  dimension: customer_segment {
+    case: {
+      when: {
+        sql: ${TABLE}.client_name = 'XPrize' OR
+        ${TABLE}.client_name = 'Amazon Web Services' OR
+        ${TABLE}.client_name = 'BestDoctors' OR
+        ${TABLE}.client_name = 'Harley-Davidson' OR
+        ${TABLE}.client_name = 'HeroX' OR
+        ${TABLE}.client_name = 'IBM';;
+        label: "Self service"
+      }
+      when: {
+        sql: ${TABLE}.client_name = 'Tallan, Inc.';;
+        label: "Self service partner"
+      }
+      when: {
+        sql: ${TABLE}.client_name = 'Wipro Limited - WT01-Waypoint' OR
+                  ${TABLE}.client_name = 'Booz Allen Hamilton Holding Corporation' OR
+                  ${TABLE}.client_name = 'General Electric' OR
+                  ${TABLE}.client_name = 'Harvard Business School' OR
+                  ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
+                  ${TABLE}.client_name = 'John Hancock Financial Services';;
+        label: "Powered By"
+      }
+      else: "Unclassified"
+    }
+  }
+
   dimension_group: billing_account_start_date {
     type: time
     timeframes: [
@@ -141,4 +169,13 @@ view: client_project_dim {
     type: count
     drill_fields: [client_name]
   }
+
+##  measure: self_service {
+##    type: string
+##    description: "Self-service customers."
+##    filters: {
+##      field: client_name
+##      value: "XPrize, BestDoctors, Harley-Davidson, HeroX, Tallan"
+ ##   }
+##  }
 }
