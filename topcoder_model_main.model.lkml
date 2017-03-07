@@ -36,84 +36,6 @@ explore: challenge_volume {
   }
 }
 
-explore: member_payments {
-  join: challenge {
-    type: left_outer
-    sql_on: ${member_payments.reference_id} = ${challenge.project_id} ;;
-    relationship: many_to_one
-  }
-
-  join: client_project_dim {
-    type: left_outer
-    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
-    relationship: many_to_one
-  }
-
-  join: direct_project_dim {
-    type: left_outer
-    sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
-    relationship: many_to_one
-  }
-
-  join: connect_project {
-    type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
-    relationship: many_to_one
-  }
-
-  join: copilot {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.copilot_id} = ${copilot.coder_id} ;;
-    relationship: many_to_one
-  }
-
-  join: creator {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id} ;;
-    relationship: many_to_one
-  }
-
-  join: manager {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id} ;;
-    relationship: many_to_one
-  }
-
-  join: launcher {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
-    relationship: many_to_one
-  }
-
-  join: contest_project_xref {
-    type: left_outer
-    sql_on: ${challenge.project_id} = ${contest_project_xref.project_id} ;;
-    relationship: many_to_one
-  }
-
-  join: contest {
-    type: left_outer
-    sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id} ;;
-    relationship: many_to_one
-  }
-
-  join: event {
-    type: left_outer
-    sql_on: ${contest.event_id} = ${event.event_id} ;;
-    relationship: many_to_one
-  }
-
-  join: payee {
-    from: user
-    type: inner
-    sql_on: ${member_payments.user_id} = ${payee.coder_id} ;;
-    relationship: many_to_one
-  }
-}
 
 # Table Views
 explore: cost_transaction {
@@ -401,24 +323,48 @@ explore: design_project_result {
 }
 
 explore: payment {
-  join: created_date {
-    from: calendar
-    type: inner
-    sql_on: ${payment.created_calendar_id} = ${created_date.calendar_id} ;;
-    relationship: many_to_one
-  }
-
   join: user_payment {
     type: inner
     sql_on: ${payment.payment_id} = ${user_payment.payment_id} ;;
     relationship: one_to_many
   }
 
-  join: user {
+  join: payee {
+    from: user
     type: inner
-    sql_on: ${user_payment.user_id} = ${user.coder_id} ;;
+    sql_on: ${user_payment.user_id} = ${payee.coder_id} ;;
     relationship: many_to_many
   }
+
+  join: payment_create_date {
+    from: calendar
+    type: inner
+    sql_on: ${user_payment.due_calendar_id} = ${payment_create_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
+  join: payment_modify_date {
+    from: calendar
+    type: inner
+    sql_on: ${payment.modified_calendar_id} = ${payment_modify_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
+
+  join: payment_due_date {
+    from: calendar
+    type: inner
+    sql_on: ${user_payment.due_calendar_id} = ${payment_due_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
+  join: payment_paid_date {
+    from: calendar
+    type: inner
+    sql_on: ${user_payment.paid_calendar_id} = ${payment_paid_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: user_payment {}
