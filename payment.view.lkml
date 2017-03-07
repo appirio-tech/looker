@@ -1,5 +1,5 @@
 view: payment {
-  sql_table_name: topcoder_dw.payment ;;
+  sql_table_name: tcs_dw.payment ;;
 
   dimension: payment_id {
     primary_key: yes

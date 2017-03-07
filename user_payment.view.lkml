@@ -1,6 +1,12 @@
 view: user_payment {
   sql_table_name: tcs_dw.user_payment ;;
 
+  dimension: user_payment_id {
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${TABLE}.payment_id, ${TABLE}.user_id) ;;
+  }
+
   dimension: payment_id {
     type: number
     # hidden: true
