@@ -9,6 +9,9 @@ include: "*.dashboard"
 # sets the week start day to Sunday
 week_start_day: sunday
 
+# filters will NOT be case sensitive
+case_sensitive: no
+
 # Derived Views
 explore: challenge_stats {}
 
