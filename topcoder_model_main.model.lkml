@@ -14,9 +14,16 @@ case_sensitive: no
 
 # Derived Views
 explore: challenge_stats {}
+explore: non_earning_dev_design_since_2016_01_01 {}
+
+explore: round {}
+explore: round_division {}
+explore: room {}
+explore: room_result {}
+
+
 
 explore: copilot {}
-
 explore: challenge_type {}
 
 explore: challenge_volume {
