@@ -16,10 +16,21 @@ case_sensitive: no
 explore: challenge_stats {}
 explore: non_earning_dev_design_since_2016_01_01 {}
 
-explore: round {}
+explore: round {
+  join: data_science_contest {
+    type: inner
+    sql_on: ${round.contest_id} = ${data_science_contest.contest_id} ;;
+    relationship: one_to_many
+
+  }
+
+}
+
+
 explore: round_division {}
 explore: room {}
 explore: room_result {}
+explore: data_science_contest {}
 
 
 
