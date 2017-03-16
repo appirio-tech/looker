@@ -122,6 +122,15 @@ view: design_project_result {
     sql: SUM(${valid_submission_ind}) ;;
   }
 
+  measure: count_failed_submissions {
+    type: number
+    sql: COUNT(CASE WHEN ${valid_submission_ind} = 0
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
   measure: count_first_place_wins {
     type: number
     sql: COUNT(CASE WHEN ${placement} = 1
@@ -152,6 +161,15 @@ view: design_project_result {
   measure: count_non_first_place_wins {
     type: number
     sql: COUNT(CASE WHEN ${placement} > 1
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_checkpoint_submissions {
+    type: number
+    sql: COUNT(CASE WHEN ${is_checkpoint} = 1
       THEN 1
       ELSE NULL
       END)
