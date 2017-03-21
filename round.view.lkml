@@ -34,9 +34,9 @@ view: round {
     sql: ${TABLE}.invitational ;;
   }
 
-  dimension: money_paid {
-    type: number
-    value_format_name: id
+  measure: money_paid {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.money_paid ;;
   }
 

@@ -1,33 +1,39 @@
 view: round_division {
   sql_table_name: topcoder_dw.round_division ;;
 
-  dimension: average_points {
-    type: number
+  dimension: round_division_id {
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${TABLE}.round_id, ${TABLE}.division_id) ;;
+  }
+
+  measure: average_points {
+    type: sum
     sql: ${TABLE}.average_points ;;
   }
 
-  dimension: challenge_attempts_made {
-    type: number
+  measure: challenge_attempts_made {
+    type: sum
     sql: ${TABLE}.challenge_attempts_made ;;
   }
 
-  dimension: challenge_attempts_received {
-    type: number
+  measure: challenge_attempts_received {
+    type: sum
     sql: ${TABLE}.challenge_attempts_received ;;
   }
 
-  dimension: challenges_made_failed {
-    type: number
+  measure: challenges_made_failed {
+    type: sum
     sql: ${TABLE}.challenges_made_failed ;;
   }
 
-  dimension: challenges_made_successful {
-    type: number
+  measure: challenges_made_successful {
+    type: sum
     sql: ${TABLE}.challenges_made_successful ;;
   }
 
-  dimension: defense_points {
-    type: number
+  measure: defense_points {
+    type: sum
     sql: ${TABLE}.defense_points ;;
   }
 
@@ -36,48 +42,48 @@ view: round_division {
     sql: ${TABLE}.division_id ;;
   }
 
-  dimension: num_coders {
-    type: number
+  measure: num_coders {
+    type: sum
     sql: ${TABLE}.num_coders ;;
   }
 
-  dimension: point_standard_deviation {
-    type: number
+  measure: point_standard_deviation {
+    type: sum
     sql: ${TABLE}.point_standard_deviation ;;
   }
 
-  dimension: problems_correct {
-    type: number
+  measure: problems_correct {
+    type: sum
     sql: ${TABLE}.problems_correct ;;
   }
 
-  dimension: problems_failed_by_challenge {
-    type: number
+  measure: problems_failed_by_challenge {
+    type: sum
     sql: ${TABLE}.problems_failed_by_challenge ;;
   }
 
-  dimension: problems_failed_by_system_test {
-    type: number
+  measure: problems_failed_by_system_test {
+    type: sum
     sql: ${TABLE}.problems_failed_by_system_test ;;
   }
 
-  dimension: problems_left_open {
-    type: number
+  measure: problems_left_open {
+    type: sum
     sql: ${TABLE}.problems_left_open ;;
   }
 
-  dimension: problems_opened {
-    type: number
+  measure: problems_opened {
+    type: sum
     sql: ${TABLE}.problems_opened ;;
   }
 
-  dimension: problems_presented {
-    type: number
+  measure: problems_presented {
+    type: sum
     sql: ${TABLE}.problems_presented ;;
   }
 
-  dimension: problems_submitted {
-    type: number
+  measure: problems_submitted {
+    type: sum
     sql: ${TABLE}.problems_submitted ;;
   }
 

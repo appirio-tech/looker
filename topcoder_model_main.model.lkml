@@ -21,9 +21,18 @@ explore: round {
     type: inner
     sql_on: ${round.contest_id} = ${data_science_contest.contest_id} ;;
     relationship: one_to_many
-
   }
-
+  join: round_division {
+    type: inner
+    sql_on: ${round.round_id} = ${round_division.round_id} ;;
+    relationship: one_to_many
+  }
+  join: round_date {
+    from: calendar
+    type: inner
+    sql_on: ${round.calendar_id} = ${round_date.calendar_id} ;;
+    relationship: many_to_many
+  }
 }
 
 
