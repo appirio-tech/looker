@@ -113,7 +113,8 @@ view: client_project_dim {
         ${TABLE}.client_name = 'Harley-Davidson' OR
         ${TABLE}.client_name = 'HeroX' OR
         ${TABLE}.client_name = 'IBM' OR
-        ${TABLE}.client_name = 'Land O''Lakes, Inc.';;
+        ${TABLE}.client_name = 'Land O''Lakes, Inc.' OR
+        ${TABLE}.client_name = 'Hubs' OR;;
         label: "Self service"
       }
       when: {
