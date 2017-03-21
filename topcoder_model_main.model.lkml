@@ -14,9 +14,36 @@ case_sensitive: no
 
 # Derived Views
 explore: challenge_stats {}
+explore: non_earning_dev_design_since_2016_01_01 {}
+
+explore: round {
+  join: data_science_contest {
+    type: inner
+    sql_on: ${round.contest_id} = ${data_science_contest.contest_id} ;;
+    relationship: one_to_many
+  }
+  join: round_division {
+    type: inner
+    sql_on: ${round.round_id} = ${round_division.round_id} ;;
+    relationship: one_to_many
+  }
+  join: round_date {
+    from: calendar
+    type: inner
+    sql_on: ${round.calendar_id} = ${round_date.calendar_id} ;;
+    relationship: many_to_many
+  }
+}
+
+
+explore: round_division {}
+explore: room {}
+explore: room_result {}
+explore: data_science_contest {}
+
+
 
 explore: copilot {}
-
 explore: challenge_type {}
 
 explore: challenge_volume {

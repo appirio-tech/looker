@@ -10,6 +10,7 @@ view: contest {
   dimension_group: contest_end_timestamp {
     type: time
     timeframes: [
+      raw,
       time,
       date,
       week,
@@ -28,6 +29,7 @@ view: contest {
   dimension_group: contest_start_timestamp {
     type: time
     timeframes: [
+      raw,
       time,
       date,
       week,
@@ -50,7 +52,7 @@ view: contest {
 
   dimension: event_id {
     type: number
-    # hidden: true
+    # hidden: yes
     sql: ${TABLE}.event_id ;;
   }
 
