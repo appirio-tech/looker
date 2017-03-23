@@ -374,6 +374,7 @@ view: challenge {
   measure: total_prize {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.total_prize ;;
   }
 
@@ -405,35 +406,41 @@ view: challenge {
   measure: estimated_member_payments {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.estimated_copilot_cost + ${TABLE}.estimated_reliability_cost + ${TABLE}.estimated_review_cost + ${TABLE}.total_prize ;;
   }
 
   measure: actual_total_prize {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.actual_total_prize ;;
   }
 
   measure: average_actual_total_prize {
     type: average
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.actual_total_prize ;;
   }
 
   measure: admin_fee {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.admin_fee ;;
   }
 
   measure: average_admin_fee {
     type: average
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.admin_fee ;;
   }
 
   measure: avg_final_score {
     type: average
+    drill_fields: [detail*]
     sql: ${TABLE}.avg_final_score ;;
   }
 
@@ -445,38 +452,41 @@ view: challenge {
   measure: reliability_cost {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.reliability_cost ;;
   }
 
   measure: average_reliability_cost {
     type: average
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.reliability_cost ;;
   }
 
   measure: review_cost {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.review_cost ;;
   }
 
   measure: average_review_cost {
     type: average
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.review_cost ;;
   }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      client_project_id,
-      review_phase_name,
-      project.component_name,
-      project.review_phase_name,
-      project.project_category_name,
-      project.client_project_id,
-      project.count,
-      project_result.count
+      project_id,
+      challenge_name,
+      challenge_category_name,
+      total_prize,
+      actual_total_prize,
+      projected_end_date
+
     ]
   }
 }
