@@ -366,6 +366,13 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: payee_country {
+    from: country
+    type: inner
+    sql_on: ${payee_country.country_code} = ${payee.country_code} ;;
+    relationship: many_to_many
+  }
+
   join: payment_create_date {
     from: calendar
     type: inner
