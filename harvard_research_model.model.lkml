@@ -12,9 +12,9 @@ week_start_day: sunday
 explore: user {
   fields: [
     ALL_FIELDS*,
-    -email,
-    -first_name,
-    -last_name
+    -user.email,
+    -user.first_name,
+    -user.last_name
   ]
 
   join: country {
