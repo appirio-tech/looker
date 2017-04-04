@@ -108,15 +108,17 @@ view: client_project_dim {
     case: {
       when: {
         sql: ${TABLE}.client_name = 'XPrize' OR
-        ${TABLE}.client_name = 'Amazon Web Services' OR
-        ${TABLE}.client_name = 'BestDoctors' OR
-        ${TABLE}.client_name = 'Harley-Davidson' OR
-        ${TABLE}.client_name = 'HeroX' OR
-        ${TABLE}.client_name = 'IBM' OR
-        ${TABLE}.client_name = 'Land O''Lakes, Inc.' OR
-        ${TABLE}.client_name = 'Hubs' OR
-        ${TABLE}.client_name = 'SOLEPRO' OR
-        ${TABLE}.client_name = 'Mesh01';;
+          ${TABLE}.client_name = 'Amazon Web Services' OR
+          ${TABLE}.client_name = 'BestDoctors' OR
+          ${TABLE}.client_name = 'Harley-Davidson' OR
+          ${TABLE}.client_name = 'HeroX' OR
+          ${TABLE}.client_name = 'IBM' OR
+          ${TABLE}.client_name = 'Land O''Lakes, Inc.' OR
+          ${TABLE}.client_name = 'Hubs' OR
+          ${TABLE}.client_name = 'SOLEPRO' OR
+          ${TABLE}.client_name = 'Mesh01' OR
+          ${TABLE}.client_name = 'Toosent' OR
+          ${TABLE}.client_name = 'Nyrasta' ;;
         label: "Self service"
       }
       when: {
@@ -124,12 +126,12 @@ view: client_project_dim {
         label: "Self service partner"
       }
       when: {
-        sql: ${TABLE}.client_name = 'Wipro Limited - WT01-Waypoint' OR
-                  ${TABLE}.client_name = 'Booz Allen Hamilton Holding Corporation' OR
-                  ${TABLE}.client_name = 'General Electric' OR
-                  ${TABLE}.client_name = 'Harvard Business School' OR
-                  ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
-                  ${TABLE}.client_name = 'John Hancock Financial Services';;
+        sql: ${TABLE}.client_name = 'Wipro Limited' OR
+              ${TABLE}.client_name = 'Booz Allen Hamilton Holding Corporation' OR
+              ${TABLE}.client_name = 'General Electric' OR
+              ${TABLE}.client_name = 'Harvard Business School' OR
+              ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
+              ${TABLE}.client_name = 'John Hancock Financial Services';;
         label: "Powered By"
       }
       else: "Unclassified"
