@@ -9,6 +9,21 @@ include: "*.dashboard"
 # sets the week start day to Sunday
 week_start_day: sunday
 
+explore: user {
+  fields: [
+    ALL_FIELDS*,
+    -email,
+    -first_name,
+    -last_name
+  ]
+
+  join: country {
+    type: left_outer
+    sql_on: ${user.comp_country_code} = ${country.country_code} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: challenge {
   fields: [
     ALL_FIELDS*,
@@ -258,5 +273,17 @@ explore: round {
 
 explore: round_division {}
 explore: room {}
-explore: room_result {}
+
+
+explore: room_result {
+  join: submitter {
+    from: user
+    type: inner
+    sql_on: ${room_result.coder_id} = ${submitter.coder_id} ;;
+    relationship: many_to_one
+  }
+
+}
+
+
 explore: data_science_contest {}
