@@ -118,7 +118,9 @@ view: client_project_dim {
           ${TABLE}.client_name = 'SOLEPRO' OR
           ${TABLE}.client_name = 'Mesh01' OR
           ${TABLE}.client_name = 'Toosent' OR
-          ${TABLE}.client_name = 'Nyrasta' ;;
+          ${TABLE}.client_name = 'Nyrasta' OR
+          ${TABLE}.client_name = 'Records and Data Management, Inc.' OR
+          ${TABLE}.client_name = 'Visionware Solutions';;
         label: "Self service"
       }
       when: {
