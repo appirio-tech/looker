@@ -162,6 +162,12 @@ view: connect_project {
     sql: ${TABLE}.utm ;;
   }
 
+  dimension: product {
+    type: string
+    sql: json_extract_path_text(regexp_replace(${TABLE}.details,'\\\\.','')), 'products') ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [directprojectid, id, name, project_members.count]

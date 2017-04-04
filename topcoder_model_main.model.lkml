@@ -14,6 +14,7 @@ case_sensitive: no
 
 # Derived Views
 explore: challenge_stats {}
+explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
 
 explore: round {
@@ -366,6 +367,13 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: payee_country {
+    from: country
+    type: inner
+    sql_on: ${payee_country.country_code} = ${payee.country_code} ;;
+    relationship: many_to_many
+  }
+
   join: payment_create_date {
     from: calendar
     type: inner
@@ -517,45 +525,45 @@ explore: jira_issue {}
 
 #- explore: monthly_contest_stats
 #- explore: participation
-explore: participation_metrics_report_copilot {
-  join: user {
-    type: inner
-    sql_on: ${participation_metrics_report_copilot.copilot_id} = ${user.coder_id} ;;
-    relationship: one_to_one
-  }
+#explore: participation_metrics_report_copilot {
+#  join: user {
+#    type: inner
+#    sql_on: ${participation_metrics_report_copilot.copilot_id} = ${user.coder_id} ;;
+#    relationship: one_to_one
+#  }
+#
+#  join: challenge {
+#    type: left_outer
+#    sql_on: ${challenge.project_id} = ${participation_metrics_report_copilot.contest_id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: challenge {
-    type: left_outer
-    sql_on: ${challenge.project_id} = ${participation_metrics_report_copilot.contest_id} ;;
-    relationship: many_to_one
-  }
+#  join: client_project_dim {
+#    type: left_outer
+#    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+#    relationship: many_to_one
+#  }
+#}
 
-  join: client_project_dim {
-    type: left_outer
-    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
-    relationship: many_to_one
-  }
-}
-
-explore: participation_metrics_report_member {
-  join: user {
-    type: inner
-    sql_on: ${participation_metrics_report_member.registrant_id} = ${user.coder_id} ;;
-    relationship: one_to_one
-  }
-
-  join: challenge {
-    type: left_outer
-    sql_on: ${challenge.project_id} = ${participation_metrics_report_member.contest_id} ;;
-    relationship: many_to_one
-  }
-
-  join: client_project_dim {
-    type: left_outer
-    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
-    relationship: many_to_one
-  }
-}
+#explore: participation_metrics_report_member {
+#  join: user {
+#    type: inner
+#    sql_on: ${participation_metrics_report_member.registrant_id} = ${user.coder_id} ;;
+#    relationship: one_to_one
+#  }
+#
+#  join: challenge {
+#    type: left_outer
+#    sql_on: ${challenge.project_id} = ${participation_metrics_report_member.contest_id} ;;
+#    relationship: many_to_one
+#  }
+#
+#  join: client_project_dim {
+#    type: left_outer
+#    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+#    relationship: many_to_one
+#  }
+#}
 
 explore: challenge_platform {
   join: challenge {
