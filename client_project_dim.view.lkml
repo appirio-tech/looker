@@ -133,7 +133,8 @@ view: client_project_dim {
               ${TABLE}.client_name = 'General Electric' OR
               ${TABLE}.client_name = 'Harvard Business School' OR
               ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
-              ${TABLE}.client_name = 'John Hancock Financial Services';;
+              ${TABLE}.client_name = 'John Hancock Financial Services' OR
+              ${TABLE}.client_name = 'Topcoder' ;;
         label: "Powered By"
       }
       else: "Unclassified"
