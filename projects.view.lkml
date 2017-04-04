@@ -164,7 +164,7 @@ view: connect_project {
 
   measure: count {
     type: count
-    drill_fields: [directprojectid, name, project_members.count]
+    drill_fields: [directprojectid, id, name, project_members.count]
   }
 
   measure: submitted_count {
