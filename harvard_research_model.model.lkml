@@ -276,6 +276,13 @@ explore: room {}
 
 
 explore: room_result {
+  fields: [
+    ALL_FIELDS*,
+    -submitter.email,
+    -submitter.first_name,
+    -submitter.last_name
+  ]
+
   join: submitter {
     from: user
     type: inner
