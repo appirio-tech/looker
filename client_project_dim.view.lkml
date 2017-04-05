@@ -120,7 +120,8 @@ view: client_project_dim {
           ${TABLE}.client_name = 'Toosent' OR
           ${TABLE}.client_name = 'Nyrasta' OR
           ${TABLE}.client_name = 'Records and Data Management, Inc.' OR
-          ${TABLE}.client_name = 'Visionware Solutions';;
+          ${TABLE}.client_name = 'Visionware Solutions' OR
+          ${TABLE}.client_name = 'Harvard Business School' ;;
         label: "Self service"
       }
       when: {
@@ -131,7 +132,6 @@ view: client_project_dim {
         sql: ${TABLE}.client_name = 'Wipro Limited' OR
               ${TABLE}.client_name = 'Booz Allen Hamilton Holding Corporation' OR
               ${TABLE}.client_name = 'General Electric' OR
-              ${TABLE}.client_name = 'Harvard Business School' OR
               ${TABLE}.client_name = 'Hewlett Packard Enterprise Company (HPE)' OR
               ${TABLE}.client_name = 'John Hancock Financial Services' OR
               ${TABLE}.client_name = 'Topcoder' ;;
