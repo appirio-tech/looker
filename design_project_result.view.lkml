@@ -117,14 +117,42 @@ view: design_project_result {
     sql: COUNT(${project_id}) ;;
   }
 
+  measure: count_register_no_submission {
+    type: number
+    sql: COUNT(CASE WHEN ${submit_ind} = 0
+          THEN 1
+          ELSE NULL
+          END)
+          ;;
+
+    }
   measure: count_valid_submissions {
     type: number
     sql: SUM(${valid_submission_ind}) ;;
   }
 
+  measure: count_valid_checkpoint_submissions {
+    type: number
+    sql: COUNT(CASE WHEN (${valid_submission_ind} = 1 AND ${is_checkpoint} = 1)
+    THEN 1
+    ELSE NULL
+    END)
+    ;;
+
+  }
+
   measure: count_failed_submissions {
     type: number
     sql: COUNT(CASE WHEN ${valid_submission_ind} = 0
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_failed_checkpoint_submissions {
+    type: number
+    sql: COUNT(CASE WHEN (${valid_submission_ind} = 0 AND ${is_checkpoint} = 1)
       THEN 1
       ELSE NULL
       END)
@@ -158,9 +186,63 @@ view: design_project_result {
        ;;
   }
 
-  measure: count_non_first_place_wins {
+  measure: count_fourth_place_wins {
     type: number
-    sql: COUNT(CASE WHEN ${placement} > 1
+    sql: COUNT(CASE WHEN ${placement} = 4
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_fifth_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 5
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_sixth_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 6
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_seventh_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 7
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_eigth_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 8
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_ninth_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 9
+      THEN 1
+      ELSE NULL
+      END)
+       ;;
+  }
+
+  measure: count_tenth_place_wins {
+    type: number
+    sql: COUNT(CASE WHEN ${placement} = 10
       THEN 1
       ELSE NULL
       END)
