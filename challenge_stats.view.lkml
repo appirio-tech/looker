@@ -288,6 +288,7 @@ WHERE p.project_id = pr.project_id
 AND   p.tc_direct_project_id = direct_project.direct_project_id
 AND   direct_project.billing_project_id = client_project.billing_project_id
  ;;
+
   }
 
   measure: count {

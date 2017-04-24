@@ -12,6 +12,10 @@ view: challenge_volume {
         and line_item_category != 'Contest Fee'
       group by 1, 2, 3, 4, 5
        ;;
+    sortkeys: ["challenge_category_name"]
+    distribution: "challenge_category_name"
+    persist_for: "8 hours"
+
   }
 
   dimension: challenge_id {
