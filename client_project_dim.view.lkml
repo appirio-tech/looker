@@ -125,7 +125,8 @@ view: client_project_dim {
           ${TABLE}.client_name = 'CrowdReason' OR
           ${TABLE}.client_name = 'Modultrade' OR
           ${TABLE}.client_name = 'Eager Properties' OR
-          ${TABLE}.client_name = 'Emnovate' ;;
+          ${TABLE}.client_name = 'Emnovate' OR
+          ${TABLE}.client_name = 'Harvard Business School';;
         label: "Self service"
       }
       when: {
