@@ -290,6 +290,24 @@ explore: room_result {
     relationship: many_to_one
   }
 
+  join: country {
+    type: left_outer
+    sql_on: ${submitter.comp_country_code} = ${country.country_code} ;;
+    relationship: many_to_one
+  }
+
+  join: room {
+    type: inner
+    sql_on: ${room_result.room_id} = ${room.room_id} ;;
+    relationship: many_to_one
+  }
+
+  join: round {
+    type: inner
+    sql_on: ${room_result.round_id} = ${round.round_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 
