@@ -121,7 +121,11 @@ view: client_project_dim {
           ${TABLE}.client_name = 'Nyrasta' OR
           ${TABLE}.client_name = 'Records and Data Management, Inc.' OR
           ${TABLE}.client_name = 'Visionware Solutions' OR
-          ${TABLE}.client_name = 'Harvard Business School' ;;
+          ${TABLE}.client_name = 'Q2i' OR
+          ${TABLE}.client_name = 'CrowdReason' OR
+          ${TABLE}.client_name = 'Modultrade' OR
+          ${TABLE}.client_name = 'Eager Properties' OR
+          ${TABLE}.client_name = 'Emnovate' ;;
         label: "Self service"
       }
       when: {
