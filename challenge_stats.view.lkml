@@ -110,7 +110,7 @@ view: challenge_stats {
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS submitter_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS submitter_handle,
+       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        pr.raw_score,
@@ -254,7 +254,7 @@ SELECT p.project_id,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS submitter_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS submitter_handle,
+       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        null AS raw_score,
@@ -928,9 +928,14 @@ AND   direct_project.billing_project_id = client_project.billing_project_id
     sql: ${TABLE}.rating_order ;;
   }
 
+  measure: count_distinct_registrant {
+    type: count_distinct
+    sql: ${TABLE}.registrant_handle ;;
+  }
+
   measure: count_distinct_submitter {
     type: count_distinct
-    sql: ${TABLE}.submitter_handle ;;
+    sql: DECODE(${submit_ind},1, ${TABLE}.registrant_handle,null) ;;
   }
 
   set: detail {
