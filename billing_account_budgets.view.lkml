@@ -17,7 +17,7 @@ WHERE (ct.contest_status is null OR ct.contest_status = 'Completed')
 group by 1,2,3,4,5,6,7,8
        ;;
     sortkeys: ["customer_name", "billing_account_name", "billing_account_id"]
-    distribution: "All"
+    distribution: "customer_name"
     persist_for: "8 hours"
   }
 
