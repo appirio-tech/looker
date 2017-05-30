@@ -109,7 +109,7 @@ view: challenge_stats {
        p.estimated_review_cost,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
-       pr.user_id AS submitter_id,
+       pr.user_id AS registrant_id,
        (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
@@ -253,7 +253,7 @@ SELECT p.project_id,
        p.estimated_review_cost,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
-       pr.user_id AS submitter_id,
+       pr.user_id AS registrant_id,
        (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
@@ -768,14 +768,14 @@ AND   direct_project.billing_project_id = client_project.billing_project_id
     sql: ${TABLE}.estimated_admin_fee ;;
   }
 
-  dimension: submitter_id {
+  dimension: registrant_id {
     type: number
-    sql: ${TABLE}.submitter_id ;;
+    sql: ${TABLE}.registrant_id ;;
   }
 
-  dimension: submitter_handle {
+  dimension: registrant_handle {
     type: string
-    sql: ${TABLE}.submitter_handle ;;
+    sql: ${TABLE}.registrant_handle ;;
   }
 
   dimension: submit_ind {
@@ -1014,8 +1014,8 @@ AND   direct_project.billing_project_id = client_project.billing_project_id
       estimated_review_cost,
       estimated_copilot_cost,
       estimated_admin_fee,
-      submitter_id,
-      submitter_handle,
+      registrant_id,
+      registrant_handle,
       submit_ind,
       valid_submission_ind,
       raw_score,
