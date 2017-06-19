@@ -135,14 +135,17 @@ view: challenge_stats {
        pr.old_rating_id,
        pr.new_rating_id,
        pr.num_ratings,
-       pr.rating_order
+       pr.rating_order,
+       c.photo_url
 FROM tcs_dw.project p,
      tcs_dw.project_result pr,
      tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project
+     tcs_dw.client_project_dim client_project,
+     tcs_dw.coder c
 WHERE p.project_id = pr.project_id
 AND   p.tc_direct_project_id = direct_project.direct_project_id
 AND   direct_project.billing_project_id = client_project.billing_project_id
+AND   pr.user_id = c.coder_id
 UNION
 SELECT p.project_id,
        p.component_id,
@@ -279,14 +282,17 @@ SELECT p.project_id,
        null AS old_rating_id,
        null AS new_rating_id,
        null AS num_ratings,
-       null AS rating_order
+       null AS rating_order,
+       c.photo_url
 FROM tcs_dw.project p,
      tcs_dw.design_project_result pr,
      tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project
+     tcs_dw.client_project_dim client_project,
+     tcs_dw.coder c
 WHERE p.project_id = pr.project_id
 AND   p.tc_direct_project_id = direct_project.direct_project_id
 AND   direct_project.billing_project_id = client_project.billing_project_id
+AND   pr.user_id = c.coder_id
  ;;
 
   }
@@ -896,6 +902,11 @@ AND   direct_project.billing_project_id = client_project.billing_project_id
   dimension: reliable_submission_ind {
     type: number
     sql: ${TABLE}.reliable_submission_ind ;;
+  }
+
+  dimension: photo_url {
+    type: string
+    sql: ${TABLE}.photo_url ;;
   }
 
   measure: num_appeals {

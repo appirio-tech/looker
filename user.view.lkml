@@ -231,6 +231,11 @@ view: user {
     sql: ${TABLE}.zip ;;
   }
 
+  dimension: photo_url {
+    type: string
+    sql: ${TABLE}.photo_url ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [
