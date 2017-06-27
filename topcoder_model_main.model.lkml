@@ -509,7 +509,7 @@ explore: event {
 
   join: registrant {
     from: user
-    type: inner
+    type: left_outer
     sql_on: ${event_registration.user_id} = ${registrant.coder_id} ;;
     relationship: many_to_many
   }
