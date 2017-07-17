@@ -47,6 +47,21 @@ explore: data_science_contest {}
 explore: copilot {}
 explore: challenge_type {}
 
+explore: group_membership{
+  join: group {
+    type: inner
+    sql_on: ${group.id} = ${group_membership.group_id} ;;
+    relationship: one_to_many
+  }
+
+  join: user {
+    type: inner
+    sql_on: ${group_membership.member_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+}
+
 explore: challenge_volume {
   join: client_project_dim {
     type: left_outer
