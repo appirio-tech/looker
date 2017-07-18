@@ -74,6 +74,11 @@ view: connect_project {
      sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
   }
 
+  dimension: cancelReason {
+    type: string
+    sql: ${TABLE}.cancelReason ;;
+  }
+
   measure: estimatedprice {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
