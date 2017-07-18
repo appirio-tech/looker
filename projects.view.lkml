@@ -70,9 +70,14 @@ view: connect_project {
     sql: ${TABLE}.details ;;
   }
 
-#  dimension: refcode {
-#    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
-#  }
+  dimension: refcode {
+    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
+  }
+
+  dimension: cancelReason {
+    type: string
+    sql: ${TABLE}.cancelReason ;;
+  }
 
   measure: estimatedprice {
     type: sum
