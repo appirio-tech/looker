@@ -71,7 +71,9 @@ view: connect_project {
   }
 
   dimension: refcode {
+
     sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
+
   }
 
   dimension: cancelReason {
