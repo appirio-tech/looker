@@ -126,6 +126,14 @@ explore: country {}
 
 explore: calendar {}
 
+explore: challenge_groups {
+  join: group {
+    type: inner
+    sql_on: ${group.name} = ${challenge_groups.group_id} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: connect_project {
   join: direct_project_dim {
     type: left_outer
@@ -232,6 +240,13 @@ explore: challenge {
     sql_on: ${contest.event_id} = ${event.event_id} ;;
     relationship: many_to_one
   }
+
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: project_result {
@@ -403,7 +418,6 @@ explore: payment {
     relationship: many_to_one
   }
 
-
   join: payment_due_date {
     from: calendar
     type: inner
@@ -415,6 +429,12 @@ explore: payment {
     from: calendar
     type: inner
     sql_on: ${user_payment.paid_calendar_id} = ${payment_paid_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${payment.reference_id} = ${challenge.project_id} ;;
     relationship: many_to_one
   }
 
