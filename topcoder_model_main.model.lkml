@@ -13,7 +13,13 @@ week_start_day: sunday
 case_sensitive: no
 
 # Derived Views
-explore: challenge_stats {}
+explore: challenge_stats {
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge_stats.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+}
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
 
@@ -95,6 +101,12 @@ explore: cost_transaction {
     type: left_outer
     sql_on: ${client_project_dim.billing_account_id} = ${cost_transaction.billing_project_id} ;;
     relationship: many_to_one
+  }
+
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${cost_transaction.contest_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
   }
 
 }
