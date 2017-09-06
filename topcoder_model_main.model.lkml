@@ -57,13 +57,13 @@ explore: group_membership{
   join: group {
     type: inner
     sql_on: ${group.id} = ${group_membership.group_id} ;;
-    relationship: one_to_many
+    relationship: many_to_many
   }
 
   join: user {
     type: inner
     sql_on: ${group_membership.member_id} = ${user.coder_id} ;;
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
 }
