@@ -136,7 +136,8 @@ view: challenge_stats {
        pr.new_rating_id,
        pr.num_ratings,
        pr.rating_order,
-       c.photo_url
+       c.photo_url,
+       p.task_ind
 FROM tcs_dw.project p,
      tcs_dw.project_result pr,
      tcs_dw.direct_project_dim direct_project,
@@ -283,7 +284,8 @@ SELECT p.project_id,
        null AS new_rating_id,
        null AS num_ratings,
        null AS rating_order,
-       c.photo_url
+       c.photo_url,
+       p.task_ind
 FROM tcs_dw.project p,
      tcs_dw.design_project_result pr,
      tcs_dw.direct_project_dim direct_project,
@@ -295,6 +297,14 @@ AND   direct_project.billing_project_id = client_project.billing_project_id
 AND   pr.user_id = c.coder_id
  ;;
 
+  }
+
+  #Added on 6/9. Task #29
+  dimension: task_ind {
+    label: "IsTask?"
+    description: "Whether challenge consist of a task or not."
+    type: number
+    sql: ${TABLE}.task_ind ;;
   }
 
   measure: count {
