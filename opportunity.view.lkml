@@ -309,19 +309,7 @@ view: opportunity {
     sql: ${TABLE}.close_month ;;
   }
 
-  dimension: close_month_in_quarter {
-    type: number
-    sql: ${TABLE}.close_month_in_quarter ;;
-  }
-
-  dimension: close_quarter_numeric {
-    type: number
-    sql: ${TABLE}.close_quarter_numeric ;;
-  }
-
-
-
-  dimension: closed {
+    dimension: closed {
     type: yesno
     sql: ${TABLE}.closed ;;
   }
