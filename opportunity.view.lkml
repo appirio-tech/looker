@@ -314,22 +314,12 @@ view: opportunity {
     sql: ${TABLE}.close_month_in_quarter ;;
   }
 
-  dimension: closed_quarter{
-    alias: [close_quarter]
-    type: string
-    sql: ${TABLE}.close_quarter ;;
-  }
-
   dimension: close_quarter_numeric {
     type: number
     sql: ${TABLE}.close_quarter_numeric ;;
   }
 
-  dimension: closed_week {
-    alias: [close_week]
-    type: number
-    sql: ${TABLE}.close_week ;;
-  }
+
 
   dimension: closed {
     type: yesno
