@@ -84,11 +84,13 @@ view: opportunity {
 
   dimension: amount {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount ;;
   }
 
   dimension: amount_constant_ {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}."amount_constant_$" ;;
   }
 
@@ -104,26 +106,31 @@ view: opportunity {
 
   dimension: amount_lost_usd {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_lost_usd ;;
   }
 
   dimension: amount_usd {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_usd ;;
   }
 
   dimension: amount_won_usd {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_won_usd ;;
   }
 
   dimension: as_sold_margin {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.as_sold_margin ;;
   }
 
   dimension: as_sold_profit {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.as_sold_profit ;;
   }
 
@@ -139,6 +146,7 @@ view: opportunity {
 
   dimension: asm_costs {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.asm_costs ;;
   }
 
@@ -149,36 +157,43 @@ view: opportunity {
 
   dimension: avg_bill_rate__us_strategy {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate__us_strategy ;;
   }
 
   dimension: avg_bill_rate_emea {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_emea ;;
   }
 
   dimension: avg_bill_rate_jaipur {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_jaipur ;;
   }
 
   dimension: avg_bill_rate_japan {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_japan ;;
   }
 
   dimension: avg_bill_rate_us {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_us ;;
   }
 
   dimension: avg_bill_rate_us_indianapolis {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_us_indianapolis ;;
   }
 
   dimension: avg_offshore_services_hourly_rate {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_offshore_services_hourly_rate ;;
   }
 
@@ -189,6 +204,7 @@ view: opportunity {
 
   dimension: avg_onshore_services_hourly_rate {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.avg_onshore_services_hourly_rate ;;
   }
 
@@ -214,6 +230,7 @@ view: opportunity {
 
   dimension: billings_adjustment {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.billings_adjustment ;;
   }
 
@@ -389,36 +406,43 @@ view: opportunity {
 
   dimension: cost_adjustment {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_adjustment ;;
   }
 
   dimension: cost_rate_emea {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_emea ;;
   }
 
   dimension: cost_rate_jaipur {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_jaipur ;;
   }
 
   dimension: cost_rate_japan {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_japan ;;
   }
 
   dimension: cost_rate_us {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_us ;;
   }
 
   dimension: cost_rate_us_indianapolis {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_us_indianapolis ;;
   }
 
   dimension: cost_rate_us_strategy {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cost_rate_us_strategy ;;
   }
 
@@ -894,6 +918,7 @@ view: opportunity {
 
   dimension: outcome_amount {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.outcome_amount ;;
   }
 
@@ -919,26 +944,31 @@ view: opportunity {
 
   dimension: partner_opportunity_amount {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.partner_opportunity_amount ;;
   }
 
   dimension: percentage_covered_by_resource_requests {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.percentage_covered_by_resource_requests ;;
   }
 
   dimension: percentage_effort_offshore {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.percentage_effort_offshore ;;
   }
 
   dimension: percentage_hours_jaipur {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.percentage_hours_jaipur ;;
   }
 
   dimension: percentage_pre_pay {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.percentage_pre_pay ;;
   }
 
@@ -964,6 +994,7 @@ view: opportunity {
 
   dimension: probability_percentage {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.probability_percentage ;;
   }
 
@@ -1004,6 +1035,7 @@ view: opportunity {
 
   dimension: renewal_increase_percent {
     type: number
+    value_format: "0.##"
     sql: ${TABLE}.renewal_increase_percent ;;
   }
 
@@ -1044,6 +1076,7 @@ view: opportunity {
 
   dimension: self_service_amount_converted {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.self_service_amount_converted ;;
   }
 
@@ -1109,6 +1142,7 @@ view: opportunity {
 
   dimension: subscription_amount_converted {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.subscription_amount_converted ;;
   }
 
@@ -1144,6 +1178,7 @@ view: opportunity {
 
   dimension: topcoder_billing_amount {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.topcoder_billing_amount ;;
   }
 
@@ -1159,6 +1194,7 @@ view: opportunity {
 
   dimension: total_community_challenge_fees {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_community_challenge_fees ;;
   }
 
@@ -1169,6 +1205,7 @@ view: opportunity {
 
   dimension: total_community_challenge_memberpayments {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_community_challenge_memberpayments ;;
   }
 
@@ -1179,6 +1216,7 @@ view: opportunity {
 
   dimension: total_community_expert_services {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_community_expert_services ;;
   }
 
@@ -1189,6 +1227,7 @@ view: opportunity {
 
   dimension: total_community_license {
     type: number
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_community_license ;;
   }
 
