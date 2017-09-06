@@ -48,6 +48,7 @@ explore: room {}
 explore: room_result {}
 explore: data_science_contest {}
 
+explore: opportunity {}
 
 
 explore: copilot {}
