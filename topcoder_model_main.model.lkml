@@ -13,7 +13,13 @@ week_start_day: sunday
 case_sensitive: no
 
 # Derived Views
-explore: challenge_stats {}
+explore: challenge_stats {
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge_stats.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+}
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
 
@@ -51,13 +57,13 @@ explore: group_membership{
   join: group {
     type: inner
     sql_on: ${group.id} = ${group_membership.group_id} ;;
-    relationship: one_to_many
+    relationship: many_to_many
   }
 
   join: user {
     type: inner
     sql_on: ${group_membership.member_id} = ${user.coder_id} ;;
-    relationship: many_to_one
+    relationship: many_to_many
   }
 
 }
@@ -97,6 +103,12 @@ explore: cost_transaction {
     relationship: many_to_one
   }
 
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${cost_transaction.contest_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: consulting_time_and_material {
@@ -125,6 +137,14 @@ explore: user {
 explore: country {}
 
 explore: calendar {}
+
+explore: challenge_groups {
+  join: group {
+    type: inner
+    sql_on: ${group.name} = ${challenge_groups.group_id} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: connect_project {
   join: direct_project_dim {
@@ -232,6 +252,13 @@ explore: challenge {
     sql_on: ${contest.event_id} = ${event.event_id} ;;
     relationship: many_to_one
   }
+
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: project_result {
@@ -403,7 +430,6 @@ explore: payment {
     relationship: many_to_one
   }
 
-
   join: payment_due_date {
     from: calendar
     type: inner
@@ -415,6 +441,12 @@ explore: payment {
     from: calendar
     type: inner
     sql_on: ${user_payment.paid_calendar_id} = ${payment_paid_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${payment.reference_id} = ${challenge.project_id} ;;
     relationship: many_to_one
   }
 

@@ -313,6 +313,7 @@ AND   pr.user_id = c.coder_id
   }
 
   dimension: project_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.project_id ;;
   }
