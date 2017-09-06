@@ -84,13 +84,13 @@ view: opportunity {
 
   dimension: amount {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.amount ;;
   }
 
   dimension: amount_constant_ {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}."amount_constant_$" ;;
   }
 
@@ -124,13 +124,13 @@ view: opportunity {
 
   dimension: as_sold_margin {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.as_sold_margin ;;
   }
 
   dimension: as_sold_profit {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.as_sold_profit ;;
   }
 
@@ -146,7 +146,7 @@ view: opportunity {
 
   dimension: asm_costs {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.asm_costs ;;
   }
 
@@ -163,19 +163,19 @@ view: opportunity {
 
   dimension: avg_bill_rate_emea {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_emea ;;
   }
 
   dimension: avg_bill_rate_jaipur {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_jaipur ;;
   }
 
   dimension: avg_bill_rate_japan {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_japan ;;
   }
 
@@ -193,7 +193,7 @@ view: opportunity {
 
   dimension: avg_offshore_services_hourly_rate {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_offshore_services_hourly_rate ;;
   }
 
@@ -204,7 +204,7 @@ view: opportunity {
 
   dimension: avg_onshore_services_hourly_rate {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_onshore_services_hourly_rate ;;
   }
 
@@ -412,19 +412,19 @@ view: opportunity {
 
   dimension: cost_rate_emea {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_emea ;;
   }
 
   dimension: cost_rate_jaipur {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_jaipur ;;
   }
 
   dimension: cost_rate_japan {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_japan ;;
   }
 
@@ -1076,7 +1076,7 @@ view: opportunity {
 
   dimension: self_service_amount_converted {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.self_service_amount_converted ;;
   }
 
@@ -1142,7 +1142,7 @@ view: opportunity {
 
   dimension: subscription_amount_converted {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.subscription_amount_converted ;;
   }
 
@@ -1194,7 +1194,7 @@ view: opportunity {
 
   dimension: total_community_challenge_fees {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.total_community_challenge_fees ;;
   }
 
@@ -1205,7 +1205,7 @@ view: opportunity {
 
   dimension: total_community_challenge_memberpayments {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.total_community_challenge_memberpayments ;;
   }
 
@@ -1216,7 +1216,7 @@ view: opportunity {
 
   dimension: total_community_expert_services {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.total_community_expert_services ;;
   }
 
@@ -1227,7 +1227,7 @@ view: opportunity {
 
   dimension: total_community_license {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.total_community_license ;;
   }
 
