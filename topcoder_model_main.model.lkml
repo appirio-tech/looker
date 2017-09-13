@@ -48,6 +48,14 @@ explore: room {}
 explore: room_result {}
 explore: data_science_contest {}
 
+explore: opportunity {
+  join: connect_project {
+    type: left_outer
+    sql_on: ${opportunity.connect_project_id} = ${connect_project.id} ;;
+    relationship: one_to_one
+  }
+
+}
 
 
 explore: copilot {}
