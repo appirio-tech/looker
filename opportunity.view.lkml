@@ -106,19 +106,19 @@ view: opportunity {
 
   dimension: amount_lost_usd {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.amount_lost_usd ;;
   }
 
   dimension: amount_usd {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.amount_usd ;;
   }
 
   dimension: amount_won_usd {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.amount_won_usd ;;
   }
 
@@ -157,7 +157,7 @@ view: opportunity {
 
   dimension: avg_bill_rate__us_strategy {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate__us_strategy ;;
   }
 
@@ -181,13 +181,13 @@ view: opportunity {
 
   dimension: avg_bill_rate_us {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_us ;;
   }
 
   dimension: avg_bill_rate_us_indianapolis {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.avg_bill_rate_us_indianapolis ;;
   }
 
@@ -230,7 +230,7 @@ view: opportunity {
 
   dimension: billings_adjustment {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.billings_adjustment ;;
   }
 
@@ -386,7 +386,7 @@ view: opportunity {
 
   dimension: cost_adjustment {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_adjustment ;;
   }
 
@@ -410,19 +410,19 @@ view: opportunity {
 
   dimension: cost_rate_us {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_us ;;
   }
 
   dimension: cost_rate_us_indianapolis {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_us_indianapolis ;;
   }
 
   dimension: cost_rate_us_strategy {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.cost_rate_us_strategy ;;
   }
 
@@ -898,7 +898,7 @@ view: opportunity {
 
   dimension: outcome_amount {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.outcome_amount ;;
   }
 
@@ -924,7 +924,7 @@ view: opportunity {
 
   dimension: partner_opportunity_amount {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.partner_opportunity_amount ;;
   }
 
@@ -1158,7 +1158,7 @@ view: opportunity {
 
   dimension: topcoder_billing_amount {
     type: number
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.topcoder_billing_amount ;;
   }
 
