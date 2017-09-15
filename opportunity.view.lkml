@@ -3,6 +3,7 @@ view: opportunity {
 
   dimension: opportunity_id {
     primary_key: yes
+    view_label: "Transaction ID"
     type: string
     sql: ${TABLE}.opportunity_id ;;
   }
@@ -83,6 +84,7 @@ view: opportunity {
   }
 
   dimension: amount {
+    view_label: "Transaction Revenue"
     type: number
     value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.amount ;;
@@ -95,6 +97,7 @@ view: opportunity {
   }
 
   dimension: amount_currency {
+    view_label: "Transaction Revenue Currency"
     type: string
     sql: ${TABLE}.amount_currency ;;
   }
@@ -637,6 +640,7 @@ view: opportunity {
   }
 
   dimension: google_analytics_client_id {
+    view_label: "GA Client ID"
     type: string
     sql: ${TABLE}.google_analytics_client_id ;;
   }
@@ -984,6 +988,7 @@ view: opportunity {
   }
 
   dimension: product_list {
+    view_label: "Item Name"
     type: string
     sql: ${TABLE}.product_list ;;
   }
@@ -1173,12 +1178,14 @@ view: opportunity {
   }
 
   dimension: total_community_challenge_fees {
+    view_label: "Item Price"
     type: number
     value_format: "#,##0.00;(#,##0.00)"
     sql: ${TABLE}.total_community_challenge_fees ;;
   }
 
   dimension: total_community_challenge_fees_currency {
+    view_label: "Item Price Currency"
     type: string
     sql: ${TABLE}.total_community_challenge_fees_currency ;;
   }
