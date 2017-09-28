@@ -477,6 +477,19 @@ view: challenge {
     sql: ${TABLE}.review_cost ;;
   }
 
+  measure: average_submissions {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${num_submissions}/${count} ;;
+  }
+
+  measure: average_registrants {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${num_registrations}/${count} ;;
+  }
+
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
