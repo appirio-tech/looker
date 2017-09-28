@@ -312,7 +312,7 @@ view: opportunity {
     sql: ${TABLE}.close_month ;;
   }
 
-    dimension: closed {
+  dimension: closed {
     type: yesno
     sql: ${TABLE}.closed ;;
   }
@@ -634,15 +634,15 @@ view: opportunity {
     sql: ${TABLE}.forecast_category ;;
   }
 
-  dimension: google_analytics_click_id {
+  dimension: ga_click_id  {
     type: string
-    sql: ${TABLE}.google_analytics_click_id ;;
+    sql: ${TABLE}.ga_click_id;;
   }
 
-  dimension: google_analytics_client_id {
+  dimension: ga_client_id {
     view_label: "GA Client ID"
-    type: string
-    sql: ${TABLE}.google_analytics_client_id ;;
+    type: number
+    sql: ${TABLE}.ga_client_id ;;
   }
 
   dimension: has_resource_request_dnu {
