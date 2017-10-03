@@ -479,13 +479,13 @@ view: challenge {
 
   measure: average_submissions {
     type: number
-    value_format: "$#,##0.00"
+    value_format: "#,##0.0"
     sql: ${num_submissions}/${count} ;;
   }
 
   measure: average_registrants {
     type: number
-    value_format: "$#,##0.00"
+    value_format: "#,##0.0"
     sql: ${num_registrations}/${count} ;;
   }
 
