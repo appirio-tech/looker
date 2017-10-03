@@ -90,10 +90,15 @@ view: opportunity {
     sql: ${TABLE}.amount ;;
   }
 
-  dimension: amount_constant_ {
+  dimension: amount_converted {
     type: number
     value_format: "#,##0.00;(#,##0.00)"
-    sql: ${TABLE}."amount_constant_$" ;;
+    sql: ${TABLE}.amount_converted ;;
+  }
+
+  dimension: amount_converted_currency {
+    type: string
+    sql: ${TABLE}.amount_converted_currency ;;
   }
 
   dimension: amount_currency {
@@ -640,7 +645,7 @@ view: opportunity {
   }
 
   dimension: ga_client_id {
-    view_label: "GA Client ID"
+    view_label: "Google Analytics Client ID"
     type: number
     sql: ${TABLE}.ga_client_id ;;
   }
