@@ -647,7 +647,7 @@ view: opportunity {
   dimension: ga_client_id {
     view_label: "Google Analytics Client ID"
     type: number
-    sql: ${TABLE}.ga_client_id::decimal(22,10) ;;
+    sql: ${TABLE}.ga_client_id::decimal(28,16) ;;
   }
 
   dimension: has_resource_request_dnu {
