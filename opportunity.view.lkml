@@ -647,7 +647,7 @@ view: opportunity {
   dimension: ga_client_id {
     view_label: "Google Analytics Client ID"
     type: number
-    value_format: "############.##########"
+    value_format: "#.0000000000"
     sql: ${TABLE}.ga_client_id ;;
   }
 
