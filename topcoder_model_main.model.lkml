@@ -458,6 +458,12 @@ explore: payment {
     relationship: many_to_one
   }
 
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: many_to_many
+  }
+
 }
 
 explore: user_payment {}

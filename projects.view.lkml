@@ -71,12 +71,13 @@ view: connect_project {
   }
 
 #Added on 7/18 for connect project
-  dimension: refcode {
-    label: "Ref Code"
-    description: "Promo code applied to project"
-    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
+#  dimension: refcode {
+#    label: "Ref Code"
+#    description: "Promo code applied to project"
+#    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
 
-  }
+#  }
+
 #Added on 7/18 for connect project
   dimension: cancelReason {
     label: "Cancel Reason"
