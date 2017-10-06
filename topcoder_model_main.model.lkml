@@ -464,6 +464,18 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: direct_project_dim {
+    type: left_outer
+    sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
+    relationship: many_to_one
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: user_payment {}
