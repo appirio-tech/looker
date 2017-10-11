@@ -427,7 +427,7 @@ explore: payment {
   join: payment_create_date {
     from: calendar
     type: inner
-    sql_on: ${user_payment.due_calendar_id} = ${payment_create_date.calendar_id} ;;
+    sql_on: ${payment.created_calendar_id} = ${payment_create_date.calendar_id} ;;
     relationship: many_to_one
   }
 
