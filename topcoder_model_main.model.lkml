@@ -47,7 +47,7 @@ explore: round_division {}
 explore: room {}
 explore: room_result {}
 explore: data_science_contest {}
-explore: leads {}
+
 
 explore: opportunity {
   join: connect_project {
