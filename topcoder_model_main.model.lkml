@@ -427,7 +427,7 @@ explore: payment {
   join: payment_create_date {
     from: calendar
     type: inner
-    sql_on: ${user_payment.due_calendar_id} = ${payment_create_date.calendar_id} ;;
+    sql_on: ${payment.created_calendar_id} = ${payment_create_date.calendar_id} ;;
     relationship: many_to_one
   }
 
@@ -462,6 +462,18 @@ explore: payment {
     type: left_outer
     sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: many_to_many
+  }
+
+  join: direct_project_dim {
+    type: left_outer
+    sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
+    relationship: many_to_one
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+    relationship: many_to_one
   }
 
 }

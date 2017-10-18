@@ -236,6 +236,16 @@ view: user {
     sql: ${TABLE}.photo_url ;;
   }
 
+  dimension: photo_url_full {
+    type: string
+    sql: 'https://www.topcoder.com' || ${TABLE}.photo_url ;;
+  }
+
+  dimension: avatar {
+    sql: ${photo_url_full};;
+    html: <img src="{{ value }}" width="150" height="150"/> ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [
