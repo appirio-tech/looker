@@ -19,6 +19,11 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+  join: user {
+    type: inner
+    sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
