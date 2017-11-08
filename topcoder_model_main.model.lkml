@@ -177,7 +177,7 @@ explore: connect_project {
   join: connect_project_members {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_project_members.projectid} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 
   join: connect_project_member_user {

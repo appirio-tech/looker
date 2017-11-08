@@ -160,6 +160,7 @@ view: challenge {
 
   measure: fulfillment {
     type: average
+    value_format: "#,##0.00"
     sql: ${TABLE}.fulfillment ;;
   }
 
