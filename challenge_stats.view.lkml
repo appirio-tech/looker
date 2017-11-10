@@ -38,34 +38,6 @@ view: challenge_stats {
        p.suspended_ind,
        p.project_category_id,
        p.project_category_name,
-       CASE
-          WHEN p.project_category_name = 'First2Finish' THEN 'Develop'
-          WHEN p.project_category_name = 'Code' THEN 'Develop'
-          WHEN p.project_category_name = 'Assembly Competition' THEN 'Develop'
-          WHEN p.project_category_name = 'UI Prototype Competition' THEN 'Design'
-          WHEN p.project_category_name = 'Web Design' THEN 'Design'
-          WHEN p.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
-          WHEN p.project_category_name = 'Bug Hunt' THEN 'Develop'
-          WHEN p.project_category_name = 'Design First2Finish' THEN 'Design'
-          WHEN p.project_category_name = 'Wireframes' THEN 'Design'
-          WHEN p.project_category_name = 'Architecture' THEN 'Develop'
-          WHEN p.project_category_name = 'Print/Presentation' THEN 'Design'
-          WHEN p.project_category_name = 'Copilot Posting' THEN 'Develop'
-          WHEN p.project_category_name = 'Idea Generation' THEN 'Develop'
-          WHEN p.project_category_name = 'Logo Design' THEN 'Develop'
-          WHEN p.project_category_name = 'Application Front-End Design' THEN 'Design'
-          WHEN p.project_category_name = 'Banners/Icons' THEN 'Design'
-          WHEN p.project_category_name = 'Test Scenarios' THEN 'Develop'
-          WHEN p.project_category_name = 'Content Creation' THEN 'Design'
-          WHEN p.project_category_name = 'Test Suites' THEN 'Design'
-          WHEN p.project_category_name = 'Specification' THEN 'Design'
-          WHEN p.project_category_name = 'Marathon Match' THEN 'Data Science'
-          WHEN p.project_category_name = 'Conceptualization' THEN 'Develop'
-          WHEN p.project_category_name = 'Studio Other' THEN 'Design'
-          WHEN p.project_category_name = 'Design' THEN 'Design'
-          WHEN p.project_category_name = 'Development' THEN 'Develop'
-          ELSE 'Other'
-       END AS Track,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
        direct_project.billing_project_id AS billing_account_id,
@@ -169,7 +141,6 @@ SELECT p.project_id,
           WHEN p.status_desc = 'Cancelled - Zero Submissions' THEN 'Cancelled'
           ELSE 'Cancelled-Client Request'
        END AS Fulfilled,
-
        p.level_id,
        p.rating_date,
        p.viewable_category_ind,
@@ -181,34 +152,6 @@ SELECT p.project_id,
        p.suspended_ind,
        p.project_category_id,
        p.project_category_name,
-       CASE
-          WHEN p.project_category_name = 'First2Finish' THEN 'Develop'
-          WHEN p.project_category_name = 'Code' THEN 'Develop'
-          WHEN p.project_category_name = 'Assembly Competition' THEN 'Develop'
-          WHEN p.project_category_name = 'UI Prototype Competition' THEN 'Design'
-          WHEN p.project_category_name = 'Web Design' THEN 'Design'
-          WHEN p.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
-          WHEN p.project_category_name = 'Bug Hunt' THEN 'Develop'
-          WHEN p.project_category_name = 'Design First2Finish' THEN 'Design'
-          WHEN p.project_category_name = 'Wireframes' THEN 'Design'
-          WHEN p.project_category_name = 'Architecture' THEN 'Develop'
-          WHEN p.project_category_name = 'Print/Presentation' THEN 'Design'
-          WHEN p.project_category_name = 'Copilot Posting' THEN 'Develop'
-          WHEN p.project_category_name = 'Idea Generation' THEN 'Develop'
-          WHEN p.project_category_name = 'Logo Design' THEN 'Develop'
-          WHEN p.project_category_name = 'Application Front-End Design' THEN 'Design'
-          WHEN p.project_category_name = 'Banners/Icons' THEN 'Design'
-          WHEN p.project_category_name = 'Test Scenarios' THEN 'Develop'
-          WHEN p.project_category_name = 'Content Creation' THEN 'Design'
-          WHEN p.project_category_name = 'Test Suites' THEN 'Design'
-          WHEN p.project_category_name = 'Specification' THEN 'Design'
-          WHEN p.project_category_name = 'Marathon Match' THEN 'Data Science'
-          WHEN p.project_category_name = 'Conceptualization' THEN 'Develop'
-          WHEN p.project_category_name = 'Studio Other' THEN 'Design'
-          WHEN p.project_category_name = 'Design' THEN 'Design'
-          WHEN p.project_category_name = 'Development' THEN 'Develop'
-          ELSE 'Other'
-       END AS Track,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
        direct_project.billing_project_id AS billing_account_id,
@@ -287,9 +230,9 @@ FROM tcs_dw.project p LEFT OUTER JOIN
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
  ;;
-#    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name"]
-#    distribution: "billing_account_name"
-#    persist_for: "8 hours"
+    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name"]
+    distribution: "billing_account_name"
+    persist_for: "8 hours"
   }
 
   #Added on 6/9. Task #29
@@ -432,7 +375,109 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: Track {
     type: string
-    sql: ${TABLE}.track ;;
+    case: {
+      when: {
+        sql: ${TABLE}.project_category_name = 'First2Finish' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Code' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Assembly Competition' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'UI Prototype Competition' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Web Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Bug Hunt' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design First2Finish' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Wireframes' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Architecture' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Print/Presentation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Copilot Posting' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Idea Generation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Logo Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Application Front-End Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Banners/Icons' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Scenarios' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Content Creation' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Suites' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Specification' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Marathon Match' ;;
+        label: "Data Science"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Conceptualization' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Studio Other' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Development' ;;
+        label: "Develop"
+      }
+      else: "Other"
+    }
   }
 
   dimension: level_id {
