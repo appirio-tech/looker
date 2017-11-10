@@ -138,15 +138,10 @@ view: challenge_stats {
        pr.rating_order,
        c.photo_url,
        p.task_ind
-FROM tcs_dw.project p,
-     tcs_dw.project_result pr,
-     tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project,
-     tcs_dw.coder c
-WHERE p.project_id = pr.project_id
-AND   p.tc_direct_project_id = direct_project.direct_project_id
-AND   direct_project.billing_project_id = client_project.billing_project_id
-AND   pr.user_id = c.coder_id
+FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
+     LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
 UNION
 SELECT p.project_id,
        p.component_id,
@@ -286,17 +281,15 @@ SELECT p.project_id,
        null AS rating_order,
        c.photo_url,
        p.task_ind
-FROM tcs_dw.project p,
-     tcs_dw.design_project_result pr,
-     tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project,
-     tcs_dw.coder c
-WHERE p.project_id = pr.project_id
-AND   p.tc_direct_project_id = direct_project.direct_project_id
-AND   direct_project.billing_project_id = client_project.billing_project_id
-AND   pr.user_id = c.coder_id
+FROM tcs_dw.project p LEFT OUTER JOIN
+     tcs_dw.design_project_result pr ON p.project_id = pr.project_id
+     LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
  ;;
-
+#    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name"]
+#    distribution: "billing_account_name"
+#    persist_for: "8 hours"
   }
 
   #Added on 6/9. Task #29
