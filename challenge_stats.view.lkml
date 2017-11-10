@@ -32,7 +32,7 @@ view: challenge_stats {
        p.viewable_category_ind,
        p.num_submissions_passed_review,
        p.winner_id,
-       (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
+       winner.handle AS winner_handle,
        p.stage_id,
        p.digital_run_ind,
        p.suspended_ind,
@@ -58,13 +58,13 @@ view: challenge_stats {
        p.checkpoint_start_date,
        p.checkpoint_end_date,
        p.challenge_manager AS challenge_manager_id,
-       (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
+       challenge_manager.handle AS challenge_manager,
        p.challenge_creator AS challenge_creator_id,
-       (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
+       challenge_creator.handle AS challenge_creator,
        p.copilot AS copilot_id,
-       (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
+       challenge_copilot.handle AS challenge_copilot,
        p.challenge_launcher AS challenge_launcher_id,
-       (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
+       challenge_launcher.handle AS challenge_launcher,
        p.registration_end_date,
        p.scheduled_end_date,
        p.checkpoint_prize_amount,
@@ -82,7 +82,7 @@ view: challenge_stats {
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS registrant_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
+       challenge_registrant.handle AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        pr.raw_score,
@@ -114,6 +114,12 @@ FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id =
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+     LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_creator ON p.challenge_creator = challenge_creator.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
 UNION
 SELECT p.project_id,
        p.component_id,
@@ -146,7 +152,7 @@ SELECT p.project_id,
        p.viewable_category_ind,
        p.num_submissions_passed_review,
        p.winner_id,
-       (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
+       winner.handle AS winner_handle,
        p.stage_id,
        p.digital_run_ind,
        p.suspended_ind,
@@ -172,13 +178,13 @@ SELECT p.project_id,
        p.checkpoint_start_date,
        p.checkpoint_end_date,
        p.challenge_manager AS challenge_manager_id,
-       (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
+       challenge_manager.handle AS challenge_manager,
        p.challenge_creator AS challenge_creator_id,
-       (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
+       challenge_creator.handle AS challenge_creator,
        p.copilot AS copilot_id,
-       (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
+       challenge_copilot.handle AS challenge_copilot,
        p.challenge_launcher AS challenge_launcher_id,
-       (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
+       challenge_launcher.handle AS challenge_launcher,
        p.registration_end_date,
        p.scheduled_end_date,
        p.checkpoint_prize_amount,
@@ -196,7 +202,7 @@ SELECT p.project_id,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS registrant_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
+       challenge_registrant.handle AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        null AS raw_score,
@@ -229,8 +235,15 @@ FROM tcs_dw.project p LEFT OUTER JOIN
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+     LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_creator ON p.challenge_creator = challenge_creator.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
+
  ;;
-    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name"]
+    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date"]
     distribution: "billing_account_name"
     persist_for: "8 hours"
   }
