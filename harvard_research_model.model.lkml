@@ -312,3 +312,5 @@ explore: room_result {
 
 
 explore: data_science_contest {}
+
+explore: auth_refresh_log {}
