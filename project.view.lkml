@@ -253,6 +253,113 @@ view: challenge {
     sql: ${TABLE}.project_category_name ;;
   }
 
+  dimension: track {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.project_category_name = 'First2Finish' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Code' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Assembly Competition' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'UI Prototype Competition' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Web Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Bug Hunt' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design First2Finish' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Wireframes' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Architecture' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Print/Presentation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Copilot Posting' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Idea Generation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Logo Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Application Front-End Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Banners/Icons' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Scenarios' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Content Creation' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Suites' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Specification' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Marathon Match' ;;
+        label: "Data Science"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Conceptualization' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Studio Other' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Development' ;;
+        label: "Develop"
+      }
+      else: "Other"
+    }
+  }
+
   dimension: project_id {
     primary_key: yes
     type: number
