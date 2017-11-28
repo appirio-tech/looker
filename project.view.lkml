@@ -255,109 +255,34 @@ view: challenge {
 
   dimension: track {
     type: string
-    case: {
-      when: {
-        sql: ${TABLE}.project_category_name = 'First2Finish' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Code' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Assembly Competition' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'UI Prototype Competition' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Web Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Bug Hunt' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Design First2Finish' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Wireframes' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Architecture' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Print/Presentation' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Copilot Posting' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Idea Generation' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Logo Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Application Front-End Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Banners/Icons' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Test Scenarios' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Content Creation' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Test Suites' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Specification' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Marathon Match' ;;
-        label: "Data Science"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Conceptualization' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Studio Other' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Design' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Development' ;;
-        label: "Develop"
-      }
-      else: "Other"
-    }
+    sql: CASE
+                   WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Code' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Assembly Competition' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'UI Prototype Competition' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Web Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Design First2Finish' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Wireframes' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Architecture' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Print/Presentation' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Copilot Posting' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Idea Generation' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Logo Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Application Front-End Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Banners/Icons' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Test Scenarios' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Content Creation' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Test Suites' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Specification' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Marathon Match' THEN 'Data Science'
+                   WHEN ${TABLE}.project_category_name = 'Conceptualization' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Studio Other' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Design' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Development' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Bug Hunt' THEN 'Develop'
+                   ELSE 'Other'
+            END ;;
   }
 
   dimension: project_id {
