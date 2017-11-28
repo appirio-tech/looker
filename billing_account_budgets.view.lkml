@@ -50,11 +50,11 @@ group by 1,2,3,4,5,6,7,8
     sql: ${TABLE}.billing_account_status ;;
   }
 
-  dimension: contest_status {
-    description: ""
-    type: string
-    sql: ${TABLE}.contest_status ;;
-  }
+#  dimension: contest_status {
+#    description: ""
+#    type: string
+#    sql: ${TABLE}.contest_status ;;
+#  }
 
   dimension_group: billing_account_start_date {
     type: time
