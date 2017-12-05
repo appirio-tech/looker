@@ -20,7 +20,7 @@ explore: challenge_stats {
     relationship: one_to_many
   }
   join: user {
-    type: inner
+    type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
@@ -122,6 +122,11 @@ explore: cost_transaction {
   join: challenge_groups {
     type: left_outer
     sql_on: ${cost_transaction.contest_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+  join: challenge {
+    type: left_outer
+    sql_on: ${cost_transaction.contest_id} = ${challenge.project_id} ;;
     relationship: one_to_many
   }
 
