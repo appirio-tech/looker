@@ -235,6 +235,13 @@ explore: challenge {
     relationship: many_to_one
   }
 
+  join: copilot_country {
+    from: country
+    type: left_outer
+    sql_on: ${copilot.country_code} = ${copilot_country.country_code} ;;
+    relationship: many_to_one
+  }
+
   join: creator {
     from: user
     type: left_outer

@@ -26,6 +26,7 @@ view: client_project_dim {
 
   dimension: client_id {
     type: number
+    drill_fields: [client_name, billing_account_name]
     sql: ${TABLE}.client_id ;;
   }
 

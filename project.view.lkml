@@ -94,6 +94,7 @@ view: challenge {
   measure: contest_prizes_total {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.contest_prizes_total ;;
   }
 
@@ -120,6 +121,7 @@ view: challenge {
 
   measure: duration {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.duration ;;
   }
 
@@ -161,6 +163,7 @@ view: challenge {
   measure: fulfillment {
     type: average
     value_format: "#,##0.00"
+    drill_fields: [detail*]
     sql: ${TABLE}.fulfillment ;;
   }
 
@@ -171,6 +174,7 @@ view: challenge {
 
   dimension: task_ind {
     type: number
+    drill_fields: [detail*]
     sql: NVL(${TABLE}.task_ind, 0) ;;
   }
 
@@ -193,31 +197,37 @@ view: challenge {
 
   measure: num_checkpoint_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_checkpoint_submissions ;;
   }
 
   measure: num_registrations {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_registrations ;;
   }
 
   measure: num_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_submissions ;;
   }
 
   measure: num_submissions_passed_review {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_submissions_passed_review ;;
   }
 
   measure: num_valid_checkpoint_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_valid_checkpoint_submissions ;;
   }
 
   measure: num_valid_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_valid_submissions ;;
   }
 
@@ -368,6 +378,7 @@ view: challenge {
 
   dimension: status_desc {
     type: string
+    drill_fields: [detail*]
     sql: ${TABLE}.status_desc ;;
   }
 
@@ -513,12 +524,14 @@ view: challenge {
   measure: average_submissions {
     type: number
     value_format: "#,##0.0"
+    drill_fields: [detail*]
     sql: ${num_submissions}/${count} ;;
   }
 
   measure: average_registrants {
     type: number
     value_format: "#,##0.0"
+    drill_fields: [detail*]
     sql: ${num_registrations}/${count} ;;
   }
 
@@ -528,10 +541,15 @@ view: challenge {
     fields: [
       project_id,
       challenge_name,
+      track,
       challenge_category_name,
       total_prize,
       actual_total_prize,
-      projected_end_date
+      projected_end_date,
+      posting_date,
+      contest_prizes_total,
+      status_desc,
+      task_ind
 
     ]
   }
