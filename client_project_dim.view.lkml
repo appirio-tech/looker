@@ -185,6 +185,16 @@ view: client_project_dim {
     drill_fields: [client_name]
   }
 
+  measure: count_client {
+    type: count_distinct
+    sql: ${TABLE}.client_id ;;
+  }
+
+  measure: count_billing_account {
+    type: count_distinct
+    sql: ${TABLE}.billing_account_id ;;
+  }
+
 ##  measure: self_service {
 ##    type: string
 ##    description: "Self-service customers."
