@@ -26,6 +26,7 @@ view: client_project_dim {
 
   dimension: client_id {
     type: number
+    drill_fields: [client_name, billing_account_name]
     sql: ${TABLE}.client_id ;;
   }
 
@@ -182,6 +183,16 @@ view: client_project_dim {
   measure: count {
     type: count
     drill_fields: [client_name]
+  }
+
+  measure: count_client {
+    type: count_distinct
+    sql: ${TABLE}.client_id ;;
+  }
+
+  measure: count_billing_account {
+    type: count_distinct
+    sql: ${TABLE}.billing_account_id ;;
   }
 
 ##  measure: self_service {

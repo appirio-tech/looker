@@ -98,6 +98,7 @@ view: challenge {
   measure: contest_prizes_total {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
     sql: ${TABLE}.contest_prizes_total ;;
   }
 
@@ -124,6 +125,7 @@ view: challenge {
 
   measure: duration {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.duration ;;
   }
 
@@ -164,6 +166,8 @@ view: challenge {
 
   measure: fulfillment {
     type: average
+    value_format: "#,##0.00"
+    drill_fields: [detail*]
     sql: ${TABLE}.fulfillment ;;
   }
 
@@ -174,6 +178,7 @@ view: challenge {
 
   dimension: task_ind {
     type: number
+    drill_fields: [detail*]
     sql: NVL(${TABLE}.task_ind, 0) ;;
   }
 
@@ -196,31 +201,37 @@ view: challenge {
 
   measure: num_checkpoint_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_checkpoint_submissions ;;
   }
 
   measure: num_registrations {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_registrations ;;
   }
 
   measure: num_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_submissions ;;
   }
 
   measure: num_submissions_passed_review {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_submissions_passed_review ;;
   }
 
   measure: num_valid_checkpoint_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_valid_checkpoint_submissions ;;
   }
 
   measure: num_valid_submissions {
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.num_valid_submissions ;;
   }
 
@@ -254,6 +265,38 @@ view: challenge {
   dimension: challenge_category_name {
     type: string
     sql: ${TABLE}.project_category_name ;;
+  }
+
+  dimension: track {
+    type: string
+    sql: CASE
+                   WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Code' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Assembly Competition' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'UI Prototype Competition' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Web Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Design First2Finish' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Wireframes' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Architecture' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Print/Presentation' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Copilot Posting' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Idea Generation' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Logo Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Application Front-End Design' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Banners/Icons' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Test Scenarios' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Content Creation' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Test Suites' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Specification' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Marathon Match' THEN 'Data Science'
+                   WHEN ${TABLE}.project_category_name = 'Conceptualization' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Studio Other' THEN 'Design'
+                   WHEN ${TABLE}.project_category_name = 'Design' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Development' THEN 'Develop'
+                   WHEN ${TABLE}.project_category_name = 'Bug Hunt' THEN 'Develop'
+                   ELSE 'Other'
+            END ;;
   }
 
   dimension: project_id {
@@ -339,6 +382,7 @@ view: challenge {
 
   dimension: status_desc {
     type: string
+    drill_fields: [detail*]
     sql: ${TABLE}.status_desc ;;
   }
 
@@ -484,12 +528,14 @@ view: challenge {
   measure: average_submissions {
     type: number
     value_format: "#,##0.0"
+    drill_fields: [detail*]
     sql: ${num_submissions}/${count} ;;
   }
 
   measure: average_registrants {
     type: number
     value_format: "#,##0.0"
+    drill_fields: [detail*]
     sql: ${num_registrations}/${count} ;;
   }
 
@@ -499,10 +545,15 @@ view: challenge {
     fields: [
       project_id,
       challenge_name,
+      track,
       challenge_category_name,
       total_prize,
       actual_total_prize,
-      projected_end_date
+      projected_end_date,
+      posting_date,
+      contest_prizes_total,
+      status_desc,
+      task_ind
 
     ]
   }

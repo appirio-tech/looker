@@ -20,7 +20,7 @@ explore: challenge_stats {
     relationship: one_to_many
   }
   join: user {
-    type: inner
+    type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
@@ -70,6 +70,7 @@ explore: opportunity {
 
 }
 
+explore: auth_refresh_log {}
 
 explore: copilot {}
 explore: challenge_type {}
@@ -129,6 +130,11 @@ explore: cost_transaction {
     sql_on: ${cost_transaction.contest_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+  join: challenge {
+    type: left_outer
+    sql_on: ${cost_transaction.contest_id} = ${challenge.project_id} ;;
+    relationship: one_to_many
+  }
 
 }
 
@@ -183,7 +189,7 @@ explore: connect_project {
   join: connect_project_members {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_project_members.projectid} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 
   join: connect_project_member_user {
@@ -232,6 +238,13 @@ explore: challenge {
     from: user
     type: left_outer
     sql_on: ${challenge.copilot_id} = ${copilot.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: copilot_country {
+    from: country
+    type: left_outer
+    sql_on: ${copilot.country_code} = ${copilot_country.country_code} ;;
     relationship: many_to_one
   }
 

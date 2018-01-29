@@ -249,15 +249,14 @@ view: user {
   measure: count {
     type: count
     drill_fields: [
-      coder_id,
-      first_name,
-      last_name,
-      middle_name,
-      handle,
+      country_code,
+      zip,
+      reg_source,
       utm_campaign,
       utm_medium,
       utm_source,
-      status
+      status,
+      coder_type_id
     ]
   }
 }

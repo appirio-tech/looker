@@ -12,9 +12,9 @@ week_start_day: sunday
 explore: user {
   fields: [
     ALL_FIELDS*,
-    -user.email,
-    -user.first_name,
-    -user.last_name
+    user.email,
+    user.first_name,
+    user.last_name
   ]
 
   join: country {
@@ -312,3 +312,5 @@ explore: room_result {
 
 
 explore: data_science_contest {}
+
+explore: auth_refresh_log {}

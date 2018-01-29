@@ -7,6 +7,7 @@ view: direct_project_dim {
   }
 
   dimension: direct_project_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.direct_project_id ;;
   }
@@ -62,5 +63,10 @@ view: direct_project_dim {
   measure: count {
     type: count
     drill_fields: [name]
+  }
+
+  measure: count_project {
+    type: count_distinct
+    sql: ${TABLE}.direct_project_id ;;
   }
 }

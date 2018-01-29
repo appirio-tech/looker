@@ -32,40 +32,12 @@ view: challenge_stats {
        p.viewable_category_ind,
        p.num_submissions_passed_review,
        p.winner_id,
-       (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
+       winner.handle AS winner_handle,
        p.stage_id,
        p.digital_run_ind,
        p.suspended_ind,
        p.project_category_id,
        p.project_category_name,
-       CASE
-          WHEN p.project_category_name = 'First2Finish' THEN 'Develop'
-          WHEN p.project_category_name = 'Code' THEN 'Develop'
-          WHEN p.project_category_name = 'Assembly Competition' THEN 'Develop'
-          WHEN p.project_category_name = 'UI Prototype Competition' THEN 'Design'
-          WHEN p.project_category_name = 'Web Design' THEN 'Design'
-          WHEN p.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
-          WHEN p.project_category_name = 'Bug Hunt' THEN 'Develop'
-          WHEN p.project_category_name = 'Design First2Finish' THEN 'Design'
-          WHEN p.project_category_name = 'Wireframes' THEN 'Design'
-          WHEN p.project_category_name = 'Architecture' THEN 'Develop'
-          WHEN p.project_category_name = 'Print/Presentation' THEN 'Design'
-          WHEN p.project_category_name = 'Copilot Posting' THEN 'Develop'
-          WHEN p.project_category_name = 'Idea Generation' THEN 'Develop'
-          WHEN p.project_category_name = 'Logo Design' THEN 'Develop'
-          WHEN p.project_category_name = 'Application Front-End Design' THEN 'Design'
-          WHEN p.project_category_name = 'Banners/Icons' THEN 'Design'
-          WHEN p.project_category_name = 'Test Scenarios' THEN 'Develop'
-          WHEN p.project_category_name = 'Content Creation' THEN 'Design'
-          WHEN p.project_category_name = 'Test Suites' THEN 'Design'
-          WHEN p.project_category_name = 'Specification' THEN 'Design'
-          WHEN p.project_category_name = 'Marathon Match' THEN 'Data Science'
-          WHEN p.project_category_name = 'Conceptualization' THEN 'Develop'
-          WHEN p.project_category_name = 'Studio Other' THEN 'Design'
-          WHEN p.project_category_name = 'Design' THEN 'Design'
-          WHEN p.project_category_name = 'Development' THEN 'Develop'
-          ELSE 'Other'
-       END AS Track,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
        direct_project.billing_project_id AS billing_account_id,
@@ -86,13 +58,13 @@ view: challenge_stats {
        p.checkpoint_start_date,
        p.checkpoint_end_date,
        p.challenge_manager AS challenge_manager_id,
-       (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
+       challenge_manager.handle AS challenge_manager,
        p.challenge_creator AS challenge_creator_id,
-       (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
+       challenge_creator.handle AS challenge_creator,
        p.copilot AS copilot_id,
-       (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
+       challenge_copilot.handle AS challenge_copilot,
        p.challenge_launcher AS challenge_launcher_id,
-       (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
+       challenge_launcher.handle AS challenge_launcher,
        p.registration_end_date,
        p.scheduled_end_date,
        p.checkpoint_prize_amount,
@@ -110,7 +82,7 @@ view: challenge_stats {
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS registrant_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
+       challenge_registrant.handle AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        pr.raw_score,
@@ -138,15 +110,16 @@ view: challenge_stats {
        pr.rating_order,
        c.photo_url,
        p.task_ind
-FROM tcs_dw.project p,
-     tcs_dw.project_result pr,
-     tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project,
-     tcs_dw.coder c
-WHERE p.project_id = pr.project_id
-AND   p.tc_direct_project_id = direct_project.direct_project_id
-AND   direct_project.billing_project_id = client_project.billing_project_id
-AND   pr.user_id = c.coder_id
+FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
+     LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+     LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_creator ON p.challenge_creator = challenge_creator.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
 UNION
 SELECT p.project_id,
        p.component_id,
@@ -174,46 +147,17 @@ SELECT p.project_id,
           WHEN p.status_desc = 'Cancelled - Zero Submissions' THEN 'Cancelled'
           ELSE 'Cancelled-Client Request'
        END AS Fulfilled,
-
        p.level_id,
        p.rating_date,
        p.viewable_category_ind,
        p.num_submissions_passed_review,
        p.winner_id,
-       (select max(handle) from coder where p.winner_id = coder.coder_id) AS winner_handle,
+       winner.handle AS winner_handle,
        p.stage_id,
        p.digital_run_ind,
        p.suspended_ind,
        p.project_category_id,
        p.project_category_name,
-       CASE
-          WHEN p.project_category_name = 'First2Finish' THEN 'Develop'
-          WHEN p.project_category_name = 'Code' THEN 'Develop'
-          WHEN p.project_category_name = 'Assembly Competition' THEN 'Develop'
-          WHEN p.project_category_name = 'UI Prototype Competition' THEN 'Design'
-          WHEN p.project_category_name = 'Web Design' THEN 'Design'
-          WHEN p.project_category_name = 'Widget or Mobile Screen Design' THEN 'Design'
-          WHEN p.project_category_name = 'Bug Hunt' THEN 'Develop'
-          WHEN p.project_category_name = 'Design First2Finish' THEN 'Design'
-          WHEN p.project_category_name = 'Wireframes' THEN 'Design'
-          WHEN p.project_category_name = 'Architecture' THEN 'Develop'
-          WHEN p.project_category_name = 'Print/Presentation' THEN 'Design'
-          WHEN p.project_category_name = 'Copilot Posting' THEN 'Develop'
-          WHEN p.project_category_name = 'Idea Generation' THEN 'Develop'
-          WHEN p.project_category_name = 'Logo Design' THEN 'Develop'
-          WHEN p.project_category_name = 'Application Front-End Design' THEN 'Design'
-          WHEN p.project_category_name = 'Banners/Icons' THEN 'Design'
-          WHEN p.project_category_name = 'Test Scenarios' THEN 'Develop'
-          WHEN p.project_category_name = 'Content Creation' THEN 'Design'
-          WHEN p.project_category_name = 'Test Suites' THEN 'Design'
-          WHEN p.project_category_name = 'Specification' THEN 'Design'
-          WHEN p.project_category_name = 'Marathon Match' THEN 'Data Science'
-          WHEN p.project_category_name = 'Conceptualization' THEN 'Develop'
-          WHEN p.project_category_name = 'Studio Other' THEN 'Design'
-          WHEN p.project_category_name = 'Design' THEN 'Design'
-          WHEN p.project_category_name = 'Development' THEN 'Develop'
-          ELSE 'Other'
-       END AS Track,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
        direct_project.billing_project_id AS billing_account_id,
@@ -234,13 +178,13 @@ SELECT p.project_id,
        p.checkpoint_start_date,
        p.checkpoint_end_date,
        p.challenge_manager AS challenge_manager_id,
-       (select max(handle) from coder where p.challenge_manager = coder.coder_id) AS challenge_manager,
+       challenge_manager.handle AS challenge_manager,
        p.challenge_creator AS challenge_creator_id,
-       (select max(handle) from coder where p.challenge_creator = coder.coder_id) AS challenge_creator,
+       challenge_creator.handle AS challenge_creator,
        p.copilot AS copilot_id,
-       (select max(handle) from coder where p.copilot = coder.coder_id) AS challenge_copilot,
+       challenge_copilot.handle AS challenge_copilot,
        p.challenge_launcher AS challenge_launcher_id,
-       (select max(handle) from coder c1 where p.challenge_launcher = c1.coder_id) AS challenge_launcher,
+       challenge_launcher.handle AS challenge_launcher,
        p.registration_end_date,
        p.scheduled_end_date,
        p.checkpoint_prize_amount,
@@ -258,7 +202,7 @@ SELECT p.project_id,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
        pr.user_id AS registrant_id,
-       (select max(handle) from coder where pr.user_id = coder.coder_id) AS registrant_handle,
+       challenge_registrant.handle AS registrant_handle,
        pr.submit_ind,
        pr.valid_submission_ind,
        null AS raw_score,
@@ -286,17 +230,22 @@ SELECT p.project_id,
        null AS rating_order,
        c.photo_url,
        p.task_ind
-FROM tcs_dw.project p,
-     tcs_dw.design_project_result pr,
-     tcs_dw.direct_project_dim direct_project,
-     tcs_dw.client_project_dim client_project,
-     tcs_dw.coder c
-WHERE p.project_id = pr.project_id
-AND   p.tc_direct_project_id = direct_project.direct_project_id
-AND   direct_project.billing_project_id = client_project.billing_project_id
-AND   pr.user_id = c.coder_id
- ;;
+FROM tcs_dw.project p LEFT OUTER JOIN
+     tcs_dw.design_project_result pr ON p.project_id = pr.project_id
+     LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+     LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_creator ON p.challenge_creator = challenge_creator.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
+     LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
 
+ ;;
+    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date"]
+    distribution: "billing_account_name"
+    persist_for: "8 hours"
   }
 
   #Added on 6/9. Task #29
@@ -439,7 +388,109 @@ AND   pr.user_id = c.coder_id
 
   dimension: Track {
     type: string
-    sql: ${TABLE}.track ;;
+    case: {
+      when: {
+        sql: ${TABLE}.project_category_name = 'First2Finish' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Code' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Assembly Competition' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'UI Prototype Competition' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Web Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Bug Hunt' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design First2Finish' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Wireframes' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Architecture' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Print/Presentation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Copilot Posting' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Idea Generation' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Logo Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Application Front-End Design' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Banners/Icons' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Scenarios' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Content Creation' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Test Suites' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Specification' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Marathon Match' ;;
+        label: "Data Science"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Conceptualization' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Studio Other' ;;
+        label: "Design"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Design' ;;
+        label: "Develop"
+      }
+      when: {
+        sql: ${TABLE}.project_category_name = 'Development' ;;
+        label: "Develop"
+      }
+      else: "Other"
+    }
   }
 
   dimension: level_id {
