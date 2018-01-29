@@ -2,21 +2,25 @@ view: challenge {
   sql_table_name: tcs_dw.project ;;
 
   dimension: client_project_id {
+    description: "Project's unique identifier."
     type: number
     sql: ${TABLE}.client_project_id ;;
   }
 
   dimension: parent_category_desc {
+    description: "Type of technology."
     type: string
     sql: ${TABLE}.category_desc ;;
   }
 
   dimension: parent_category_id {
+    description: "Technology's unique identifier."
     type: number
     sql: ${TABLE}.category_id ;;
   }
 
   dimension: challenge_creator_id {
+    description: "Community member's unique identifier who created the challenge."
     type: number
     sql: ${TABLE}.challenge_creator ;;
   }

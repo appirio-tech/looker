@@ -61,4 +61,5 @@ view: submission_review {
     type: count
     drill_fields: []
   }
-}
+
+ }
