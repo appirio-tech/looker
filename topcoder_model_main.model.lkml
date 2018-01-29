@@ -24,6 +24,12 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: challenge_technology {
+    type: inner
+    sql_on: ${challenge_stats.project_id} = ${challenge_technology.project_id} ;;
+    relationship: one_to_many
+  }
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
@@ -340,6 +346,7 @@ explore: project_result {
     sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
     relationship: many_to_one
   }
+
 }
 
 explore: design_project_result {
@@ -599,6 +606,7 @@ explore: event {
     sql_on: ${registrant.comp_country_code} = ${country.country_code} ;;
     relationship: many_to_one
   }
+
 }
 
 explore: jira_issue {}
@@ -794,6 +802,7 @@ explore: challenge_technology {
     sql_on: ${submitter.comp_country_code} = ${submitter_country.country_code} ;;
     relationship: many_to_one
   }
+
 }
 
 #- explore: review_resp
