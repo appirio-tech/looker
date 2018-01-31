@@ -24,9 +24,8 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
-
   join: challenge_technology {
-    type: inner
+    type: left_outer
     sql_on: ${challenge_stats.project_id} = ${challenge_technology.project_id} ;;
     relationship: one_to_many
   }
@@ -483,6 +482,12 @@ explore: payment {
     type: left_outer
     sql_on: ${payment.reference_id} = ${challenge.project_id} ;;
     relationship: many_to_one
+  }
+
+  join: challenge_technology {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_technology.project_id} ;;
+    relationship: one_to_many
   }
 
   join: challenge_groups {
