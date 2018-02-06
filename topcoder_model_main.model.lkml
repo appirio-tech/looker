@@ -903,6 +903,12 @@ explore: submission_review {
     sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
 }
 
 explore: subjective_response {}
