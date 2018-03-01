@@ -52,6 +52,9 @@ explore: round {
   }
 }
 
+explore: participant_funnel_monthly {}
+
+
 
 explore: round_division {}
 explore: room {}
@@ -158,6 +161,12 @@ explore: user {
     sql_on: ${user.comp_country_code} = ${country.country_code} ;;
     relationship: many_to_one
   }
+#  join: copilot_user {
+#    from:  copilot
+#    type:  left_outer
+#    sql_on: ${user.handle} = ${copilot_user.handle} ;;
+#    relationship: one_to_one
+#  }
 }
 
 explore: country {}
@@ -211,6 +220,8 @@ explore: connect_project {
     relationship: many_to_one
   }
 }
+
+#explore:  member_aggregated_skills {}
 
 explore: connect_project_members {}
 

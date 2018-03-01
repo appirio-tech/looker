@@ -246,6 +246,21 @@ view: user {
     html: <img src="{{ value }}" width="150" height="150"/> ;;
   }
 
+#  dimension: is_copilot {
+#    type:  string
+#    case: {
+#      when: {
+#        sql: $ ${copilot_user.handle} is null ;;
+#        label: "0"
+#      }
+#      when: {
+#        sql: ${copilot_user.handle} is not null ;;
+#        label: "1"
+#      }
+#      else: "0"
+#    }
+#  }
+
   measure: count {
     type: count
     drill_fields: [
