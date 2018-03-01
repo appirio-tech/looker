@@ -100,6 +100,11 @@ view: connect_project {
   dimension: id {
     type: number
     sql: ${TABLE}.id ;;
+    link: {
+      label: "project_url"
+      url: "https://connect.topcoder.com/projects/{{ value }}"
+      icon_url: "https://www.topcoder.com/wp-content/media/2017/03/Topcoder-Connect-Logo.png"
+    }
   }
 
   dimension: name {
@@ -188,7 +193,6 @@ view: connect_project {
     type: number
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'budget') ;;
   }
-
 
   measure: count {
     type: count
