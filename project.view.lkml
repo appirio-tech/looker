@@ -252,7 +252,10 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      day_of_week,
+      day_of_month,
+      hour_of_day
     ]
     sql: ${TABLE}.posting_date ;;
   }
