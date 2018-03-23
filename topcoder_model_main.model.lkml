@@ -1012,3 +1012,6 @@ explore: algo_rating {
 }
 
 explore: subscription {}
+
+# Added 23rd March - 2018
+explore: member_participation {}
