@@ -184,6 +184,11 @@ view: connect_project {
     sql: json_extract_array_element_text(json_extract_path_text((regexp_replace(${TABLE}.details,'\\\\.','')), 'products'), 0) ;;
   }
 
+  dimension: notes {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'notes') ;;
+    }
+
   dimension: primary_target {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'primaryTarget') ;;
