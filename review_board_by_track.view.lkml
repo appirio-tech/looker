@@ -1,6 +1,6 @@
 view: review_board_by_track {
   # # You can specify the table name if it's different from the view name:
-  sql_table_name: tcdw.review_board_by_track ;;
+  sql_table_name: tcs_dw.review_board_by_track ;;
 
   measure: count {
     type: count
