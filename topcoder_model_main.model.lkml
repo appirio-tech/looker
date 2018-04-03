@@ -1015,3 +1015,12 @@ explore: subscription {}
 
 # Added 23rd March - 2018
 explore: member_participation {}
+
+#Added 3rd April - 2018
+explore: review_board_by_track {
+  join: user {
+    type:inner
+    sql_on: ${user.coder_id} = ${review_board_by_track.user_id} ;;
+    relationship: many_to_one
+  }
+}
