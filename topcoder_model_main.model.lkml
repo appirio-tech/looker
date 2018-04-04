@@ -24,12 +24,6 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
-  # Added On 4th Apr to pull country of registrant
-  join: country {
-    type: left_outer
-    sql_on: ${user.comp_country_code} = ${country.country_code} ;;
-    relationship: many_to_one
-  }
 
   join: challenge_technology {
     type: left_outer
