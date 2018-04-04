@@ -30,6 +30,13 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.project_id} = ${challenge_technology.project_id} ;;
     relationship: one_to_many
   }
+
+  join: country {
+    type: inner
+    sql_on: ${user.comp_country_code} = ${country.country_code} ;;
+    relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
