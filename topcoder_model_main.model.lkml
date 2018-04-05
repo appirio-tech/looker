@@ -13,7 +13,7 @@ week_start_day: sunday
 case_sensitive: no
 
 #Temp View
-explore: challenge_jira_combined {}
+explore: ZZZ_challenge_jira_combined {}
 
 # Derived Views
 explore: challenge_stats {

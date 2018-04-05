@@ -1,36 +1,41 @@
-view: challenge_jira_combined {
+view: ZZZ_challenge_jira_combined {
   derived_table: {
     sql: SELECT
-        TO_CHAR(DATE_TRUNC('month', jira_issue.resolution_date ), 'YYYY-MM') AS "Month",
-        COUNT(*) AS "Count"
+        jira_issue.resolution_date,jira_issue_id
       FROM tcs_dw.jira_issue  AS jira_issue
 
-      WHERE (jira_issue.payment_status ILIKE 'Paid') AND ((((jira_issue.resolution_date ) >= (TIMESTAMP '2016-11-01') AND (jira_issue.resolution_date ) < (TIMESTAMP '2018-03-31'))))
-      GROUP BY DATE_TRUNC('month', jira_issue.resolution_date )
+      WHERE (jira_issue.payment_status ILIKE 'Paid')
 
       UNION
 
       SELECT
-        TO_CHAR(DATE_TRUNC('month', challenge.posting_date ), 'YYYY-MM') AS "challenge.posting_month",
-        COUNT(*) AS "challenge.count"
+       challenge.posting_date,
+       project_id
+
       FROM tcs_dw.project  AS challenge
 
-      WHERE ((((challenge.posting_date ) >= (TIMESTAMP '2016-11-01') AND (challenge.posting_date ) < (TIMESTAMP '2018-03-31')))) AND (challenge.status_desc NOT ILIKE 'Deleted' AND challenge.status_desc NOT ILIKE 'Draft' AND challenge.status_desc NOT ILIKE 'Inactive' OR challenge.status_desc IS NULL)
-      GROUP BY DATE_TRUNC('month', challenge.posting_date )
+      WHERE  (challenge.status_desc NOT ILIKE 'Deleted' AND challenge.status_desc NOT ILIKE 'Draft' AND challenge.status_desc NOT ILIKE 'Inactive' OR challenge.status_desc IS NULL)
        ;;
   }
 
-  dimension: month {
-    type: string
-    sql: ${TABLE}.month ;;
+ dimension_group: jira_issue.resolution_date {
+  label: "Challenge Posting Date"
+  type: time
+  timeframes: [
+    time,
+    date,
+    week,
+    month,
+    year,
+    quarter
+  ]
+  sql: ${TABLE}.resolution_date ;;
   }
 
-  measure: count {
-    type: number
-    sql: ${TABLE}.count ;;
-  }
+ measure: count {       # Create a measure called "name_count"
+  type: count      # Declare that "name_count" has a type of count_distinct
+  # Tell Looker that when a user clicks on one of these counts
+}                           #   it should list the "name" of the underlying records
 
-  set: detail {
-    fields: [month, count]
-  }
+
 }
