@@ -25,7 +25,7 @@ view: challenge_jira_combined {
     sql: ${TABLE}.month ;;
   }
 
-  dimension: count {
+  measure: count {
     type: number
     sql: ${TABLE}.count ;;
   }
