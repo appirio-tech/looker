@@ -12,8 +12,7 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
-#Temp View
-explore: ZZZ_challenge_jira_combined {}
+
 
 # Derived Views
 explore: challenge_stats {
