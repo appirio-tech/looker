@@ -93,6 +93,11 @@ view: challenge {
   dimension: challenge_name {
     type: string
     sql: ${TABLE}.component_name ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   measure: contest_prizes_total {
