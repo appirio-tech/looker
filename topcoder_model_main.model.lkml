@@ -12,6 +12,8 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
+
+
 # Derived Views
 explore: challenge_stats {
   join: challenge_groups {
@@ -24,11 +26,19 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+
   join: challenge_technology {
     type: left_outer
     sql_on: ${challenge_stats.project_id} = ${challenge_technology.project_id} ;;
     relationship: one_to_many
   }
+
+  join: country {
+    type: inner
+    sql_on: ${user.comp_country_code} = ${country.country_code} ;;
+    relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
@@ -1020,3 +1030,12 @@ explore: subscription {}
 
 # Added 23rd March - 2018
 explore: member_participation {}
+
+#Added 3rd April - 2018
+explore: review_board_by_track {
+  join: user {
+    type:inner
+    sql_on: ${user.coder_id} = ${review_board_by_track.user_id} ;;
+    relationship: many_to_one
+  }
+}
