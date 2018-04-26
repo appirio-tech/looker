@@ -312,6 +312,11 @@ view: challenge {
     type: number
     # hidden: true
     sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   dimension_group: rating {
