@@ -14,9 +14,20 @@ view: challenge_technology {
 
   dimension: project_id {
     type: number
-    # hidden: true
+    hidden: yes
     sql: ${TABLE}.project_id ;;
   }
+
+  dimension: challenge_id {
+    type: number
+    sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ project_technology.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+  }
+
 
   measure: count {
     type: count

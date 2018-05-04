@@ -263,6 +263,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: project_id {
     primary_key: yes
+    description: "Challenge ID Alias"
+    type: number
+    hidden: yes
+    sql: ${TABLE}.project_id ;;
+  }
+
+  dimension: challenge_id {
     type: number
     sql: ${TABLE}.project_id ;;
   }
@@ -274,6 +281,12 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: component_name {
     type: string
+    label: "Challenge Name"
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge_stats.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
     sql: ${TABLE}.component_name ;;
   }
 
