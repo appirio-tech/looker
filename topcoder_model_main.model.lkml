@@ -792,6 +792,12 @@ explore: challenge_technology {
     relationship: many_to_one
   }
 
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: many_to_many
+  }
+
   join: client_project_dim {
     type: left_outer
     sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
