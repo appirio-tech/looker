@@ -536,6 +536,20 @@ view: challenge {
     sql: ${TABLE}.admin_fee ;;
   }
 
+  measure: max_admin_fee {
+    type: max
+    value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
+    sql: ${TABLE}.admin_fee ;;
+  }
+
+  measure: min_admin_fee {
+    type: min
+    value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
+    sql: ${TABLE}.admin_fee ;;
+  }
+
   measure: avg_final_score {
     type: average
     drill_fields: [detail*]
