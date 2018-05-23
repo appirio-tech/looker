@@ -248,6 +248,14 @@ view: challenge {
   #    type: number
   #    sql: ${TABLE}.phase_id
 
+ measure: max_posting_date {
+    type: date
+    label: "Max Posting Date"
+    description: "Maximum Posting Date for a group of challenges. Useful to determine when the latest challenge was posted"
+    drill_fields: [detail*]
+    sql: MAX(${TABLE}.posting_date) ;;
+
+ }
   dimension_group: posting {
     description: "Start of registration. If challenge is draft, then uses scheduled start date."
     type: time
@@ -430,6 +438,12 @@ view: challenge {
   dimension: tc_direct_project_id {
     type: number
     sql: ${TABLE}.tc_direct_project_id ;;
+    link: {
+      label: "Direct Project Link"
+      url: "https://www.topcoder.com/direct/projectOverview.action?formData.projectId={{ challenge.tc_direct_project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+
   }
 
   measure: total_prize {
@@ -474,6 +488,22 @@ view: challenge {
   measure: actual_total_prize {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
+    sql: ${TABLE}.actual_total_prize ;;
+  }
+
+  measure: min_actual_total_prize {
+    type: min
+    value_format: "$#,##0.00;($#,##0.00)"
+    description: "Minimum Actual prize for a challenge"
+    drill_fields: [detail*]
+    sql: ${TABLE}.actual_total_prize ;;
+  }
+
+  measure: max_actual_total_prize {
+    type: max
+    value_format: "$#,##0.00;($#,##0.00)"
+    description: "Maximum Actual prize for a challenge"
     drill_fields: [detail*]
     sql: ${TABLE}.actual_total_prize ;;
   }
