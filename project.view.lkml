@@ -254,6 +254,13 @@ view: challenge {
     description: "Maximum Posting Date for a group of challenges. Useful to determine when the latest challenge was posted"
     drill_fields: [detail*]
     sql: MAX(${TABLE}.posting_date) ;;
+  }
+  measure: max_complete_date {
+    type: date
+    label: "Max Complete Date"
+    description: "Maximum Completion Date for a group of challenges. Useful to determine when the latest challenge was completed"
+    drill_fields: [detail*]
+    sql: MAX(${TABLE}.complete_date) ;;
 
  }
   dimension_group: posting {
