@@ -536,18 +536,25 @@ view: challenge {
     sql: ${TABLE}.admin_fee ;;
   }
 
-  measure: max_admin_fee {
+  measure: average_total_prize {
+    type: average
+    value_format: "$#,##0.00;($#,##0.00)"
+    drill_fields: [detail*]
+    sql: ${TABLE}.total_prize ;;
+  }
+
+  measure: max_total_prize {
     type: max
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
-    sql: ${TABLE}.admin_fee ;;
+    sql: ${TABLE}.total_prize ;;
   }
 
-  measure: min_admin_fee {
+  measure: min_total_prize {
     type: min
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
-    sql: ${TABLE}.admin_fee ;;
+    sql: ${TABLE}.total_prize ;;
   }
 
   measure: avg_final_score {
