@@ -557,6 +557,13 @@ view: challenge {
     sql: ${TABLE}.total_prize ;;
   }
 
+  dimension: Is_zero_total_prize {
+  type: string
+    sql: CASE WHEN ${TABLE}.total_prize = 0 THEN 'Yes'
+              ELSE 'No'
+         END ;;
+  }
+
   measure: avg_final_score {
     type: average
     drill_fields: [detail*]
