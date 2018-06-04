@@ -179,6 +179,91 @@ view: connect_project {
     sql: ${TABLE}.utm ;;
   }
 
+  dimension: onsite_efforts {
+    type: number
+    description: "Used by Topgear team, Onsite hours allocated to the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'onsite_efforts') ;;
+  }
+
+  dimension: offshore_efforts {
+    type: number
+    description: "Used by Topgear team, Offshore hours allocated to the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'offshore_efforts') ;;
+  }
+
+
+  dimension: wbs_code {
+    type: string
+    description: "Used by Topgear team, WBS code of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
+  }
+
+  dimension: cost_center {
+    type: string
+    description: "Used by Topgear team, cost center allocated to the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'cost_center') ;;
+  }
+
+  dimension: project_code {
+    type: string
+    description: "Used by Topgear team, Unique identifier of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'project_code') ;;
+  }
+
+  dimension: group_customer_name {
+    type: string
+    description: "Used by Topgear team, Customer group name to which project belongs"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'group_customer_name') ;;
+  }
+
+  dimension: du {
+    type: string
+    description: "Used by Topgear team, Division unit of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'du') ;;
+  }
+
+  dimension: customer_project {
+    type: string
+    description: "Used by Topgear team, Customer name of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'customer_project') ;;
+  }
+
+  dimension: part_of_ng3 {
+    type: string
+    description: "Used by Topgear team"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'part_of_ng3') ;;
+  }
+
+  dimension_group: planned_end_date {
+    type: time
+    description: "Used by Topgear team, planned end date for a project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql:DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_end_date') AS BigInt),
+         '1970-01-01 00:00:00');;
+  }
+
+  dimension_group: planned_start_date {
+    type: time
+    description: "Used by Topgear team, planned start date for a project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql:DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
+      '1970-01-01 00:00:00');;
+  }
+
   dimension: product {
     type: string
     sql: json_extract_array_element_text(json_extract_path_text((regexp_replace(${TABLE}.details,'\\\\.','')), 'products'), 0) ;;
