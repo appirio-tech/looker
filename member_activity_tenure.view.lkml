@@ -1,27 +1,42 @@
 view: member_activity_tenure {
   derived_table: {
-    sql: (SELECT
-  "user".handle  AS "user.handle",
-  MAX(DATE(challenge_stats.registration_end_date )) AS "Max Registration Date"
-FROM looker_pdt.LR$QHASPUTBIADG08H05IT0G_challenge_stats AS challenge_stats
-INNER JOIN tcs_dw.coder  AS "user" ON challenge_stats.registrant_id = ("user".coder_id)
---WHERE (("user".handle) ILIKE 'asmn')
-GROUP BY 1) as a
-LEFT JOIN (SELECT
-payee.handle  AS "payee.handle",
-  MIN(DATE(payment_paid_date.date )) AS "First Payment date",
-  COALESCE(COALESCE(CAST( ( SUM(DISTINCT (CAST(FLOOR(COALESCE(user_payment.total_amount ,0)*(1000000*1.0)) AS DECIMAL(38,0))) + CAST(STRTOL(LEFT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))* 1.0e8 + CAST(STRTOL(RIGHT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0)) ) - SUM(DISTINCT CAST(STRTOL(LEFT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))* 1.0e8 + CAST(STRTOL(RIGHT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))) )  AS DOUBLE PRECISION) / CAST((1000000*1.0) AS DOUBLE PRECISION), 0), 0) AS "total payment"
-  FROM tcs_dw.payment  AS payment
-INNER JOIN tcs_dw.user_payment  AS user_payment ON payment.payment_id = user_payment.payment_id
-INNER JOIN tcs_dw.coder  AS payee ON user_payment.user_id = payee.coder_id
-INNER JOIN topcoder_dw.calendar  AS payment_paid_date ON user_payment.paid_calendar_id = payment_paid_date.calendar_id
+    sql: SELECT *
+    FROM
+(SELECT
+  --p.project_id,
+  max(p.registration_end_date) AS LATEST_REG_DATE,
+  pr.user_id AS REG_USER_ID,
+  challenge_registrant.handle AS REG_HANDLE
+  FROM tcs_dw.project p INNER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
+  INNER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+  INNER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
+  --WHERE challenge_registrant.handle = 'asmn'
+  group by 2,3) AS A
 
---WHERE (payee.handle ILIKE 'asmn')
-  GROUP BY 1) as b
-on a."user.handle"=b."payee.handle" ;;
+LEFT JOIN
+(SELECT
+        --p.reference_id,
+        up.user_id AS PAYEE_ID ,
+        payee.handle AS PAYEE_HANDLE,
+        MIN(paid_date.date) AS FIRST_PAID_DATE,
+        sum(up.net_amount) AS AMOUNT
+    FROM
+    tcs_dw.user_payment up,
+    tcs_dw.calendar paid_date,
+    tcs_dw.coder payee,
+    tcs_dw.payment p
+    WHERE p.payment_id = up.payment_id
+      AND up.paid_calendar_id = paid_date.calendar_id
+      AND up.user_id = payee.coder_id
+      --AND payee.handle = 'asmn'
+      group by 1,2) AS B
+
+ON A.reg_user_id = B.payee_id
+--AND A.project_id = B.reference_id
+        ;;
   }
 
-  dimension_group: Max_Registration_Date {
+  dimension_group: latest_reg_date {
     type: time
     timeframes: [
       time,
@@ -31,25 +46,22 @@ on a."user.handle"=b."payee.handle" ;;
       year,
       quarter
     ]
-    sql: ${TABLE}.max_registration_date ;;
+    sql: ${TABLE}.latest_reg_date ;;
+    }
+
+  dimension: reg_user_id {
+   type: number
+    sql: ${TABLE}.reg_user_id ;;
   }
 
-  dimension_group: first_payment_date {
-    type: time
-    timeframes: [
-      time,
-      date,
-      week,
-      month,
-      year,
-      quarter
-    ]
-    sql: ${TABLE}.first_payment_date ;;
+  dimension: payee_id {
+    type: number
+    sql: ${TABLE}.payee_id ;;
   }
 
-  dimension: user_handle {
+  dimension: reg_handle {
     type: string
-    sql: ${TABLE}.user_handle ;;
+    sql: ${TABLE}.reg_handle ;;
   }
 
   dimension: payee_handle {
@@ -57,10 +69,24 @@ on a."user.handle"=b."payee.handle" ;;
     sql: ${TABLE}.payee_handle ;;
   }
 
-  dimension:  Total_payment {
-    type: number
-    sql:  ${TABLE}.total_payment ;;
+    dimension_group: first_paid_date {
+    type: time
+    description: "First paid date can be after latest registration date in case of Royalty payments, coder referral payment etc."
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      year,
+      quarter
+    ]
+    sql: ${TABLE}.first_paid_date ;;
   }
 
+ measure: amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.amount ;;
+  }
 
 }
