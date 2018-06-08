@@ -152,6 +152,14 @@ view: challenge {
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
+  # Added on 7th June, 2018
+  measure: effort_hours_estimate {
+    type: sum
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate efforts on a challenge"
+    sql: ${TABLE}.effort_hours_estimate ;;
+  }
+
   measure: estimated_review_cost {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
