@@ -88,7 +88,7 @@ ON A.registration_user_id = B.payee_id
 
   dimension: Compete_tenure_Days{
   type: number
-  description: "Compete tenure in days"
+  description: "Compete tenure in days (Latest Registration date - First Paid date)"
    sql: ${TABLE}.Compete_tenure_days  ;;
 
  }
