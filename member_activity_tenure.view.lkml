@@ -1,12 +1,13 @@
 view: member_activity_tenure {
   derived_table: {
-    sql: SELECT *
+    sql: SELECT *,
+    ABS(DATEDIFF(DAY,A.LATEST_REGISTRATION,B.FIRST_PAID)) AS Compete_tenure_Days
     FROM
 (SELECT
   --p.project_id,
-  max(p.registration_end_date) AS LATEST_REG_DATE,
-  pr.user_id AS REG_USER_ID,
-  challenge_registrant.handle AS REG_HANDLE
+  max(p.registration_end_date) AS LATEST_REGISTRATION,
+  pr.user_id AS REGISTRATION_USER_ID,
+  challenge_registrant.handle AS HANDLE
   FROM tcs_dw.project p INNER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
   INNER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
   INNER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
@@ -18,8 +19,8 @@ LEFT JOIN
         --p.reference_id,
         up.user_id AS PAYEE_ID ,
         payee.handle AS PAYEE_HANDLE,
-        MIN(paid_date.date) AS FIRST_PAID_DATE,
-        sum(up.net_amount) AS AMOUNT
+        MIN(paid_date.date) AS FIRST_PAID,
+        sum(up.net_amount) AS PRIZE_MONEY
     FROM
     tcs_dw.user_payment up,
     tcs_dw.calendar paid_date,
@@ -29,15 +30,16 @@ LEFT JOIN
       AND up.paid_calendar_id = paid_date.calendar_id
       AND up.user_id = payee.coder_id
       --AND payee.handle = 'asmn'
-      group by 1,2) AS B
+     group by 1,2) AS B
 
-ON A.reg_user_id = B.payee_id
+ON A.registration_user_id = B.payee_id
 --AND A.project_id = B.reference_id
-        ;;
+    ;;
   }
 
-  dimension_group: latest_reg_date {
+  dimension_group: latest_registration {
     type: time
+    description: "Last registration by member"
     timeframes: [
       time,
       date,
@@ -46,30 +48,20 @@ ON A.reg_user_id = B.payee_id
       year,
       quarter
     ]
-    sql: ${TABLE}.latest_reg_date ;;
+    sql: ${TABLE}.latest_registration ;;
     }
 
-  dimension: reg_user_id {
+  dimension: registration_user_id {
    type: number
-    sql: ${TABLE}.reg_user_id ;;
+    sql: ${TABLE}.registration_user_id ;;
   }
 
-  dimension: payee_id {
-    type: number
-    sql: ${TABLE}.payee_id ;;
-  }
-
-  dimension: reg_handle {
+  dimension: handle {
     type: string
-    sql: ${TABLE}.reg_handle ;;
+    sql: ${TABLE}.handle ;;
   }
 
-  dimension: payee_handle {
-    type: string
-    sql: ${TABLE}.payee_handle ;;
-  }
-
-    dimension_group: first_paid_date {
+  dimension_group: first_paid {
     type: time
     description: "First paid date can be after latest registration date in case of Royalty payments, coder referral payment etc."
     timeframes: [
@@ -80,13 +72,37 @@ ON A.reg_user_id = B.payee_id
       year,
       quarter
     ]
-    sql: ${TABLE}.first_paid_date ;;
+    sql: ${TABLE}.first_paid ;;
   }
 
- measure: amount {
+ measure: prize_money {
     type: sum
+    description:"Sum of prize money won"
     value_format: "$#,##0.00;($#,##0.00)"
-    sql: ${TABLE}.amount ;;
+    sql: ${TABLE}.prize_money ;;
   }
+
+  measure: count {
+    type: count
+  }
+
+  dimension: Compete_tenure_Days{
+  type: number
+  description: "Compete tenure in days"
+   sql: ${TABLE}.Compete_tenure_days  ;;
+
+ }
+  dimension: Compete_tenure_Months {
+    type: number
+    description: "Approximate calculation by dividing Compete tenure in days by 30"
+    sql:  (${TABLE}.Compete_tenure_days / 30);;
+  }
+
+  dimension: Compete_tenure_year {
+   type: number
+   description: "Approximate calculation by dividing Compete tenure in days by 365"
+   sql:  (${TABLE}.Compete_tenure_days / 365);;
+  }
+
 
 }
