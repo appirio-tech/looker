@@ -480,6 +480,17 @@ view: challenge {
     sql: ${TABLE}.winner_id ;;
   }
 
+  measure: review_process_duration {
+    type: sum
+    sql: (${complete_date} - ${submitby_date}) ;;
+  }
+
+  measure: effort_hours_estimate {
+    type: sum
+    sql: ${TABLE}.effort_hours_estimate ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
