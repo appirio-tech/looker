@@ -13,6 +13,8 @@ week_start_day: sunday
 case_sensitive: no
 
 
+explore: member_activity_tenure {}
+
 
 # Derived Views
 explore: challenge_stats {

@@ -1,28 +1,45 @@
 view: member_activity_tenure {
   derived_table: {
-    sql: (SELECT
-  "user".handle  AS "user.handle",
-  MAX(DATE(challenge_stats.registration_end_date )) AS "Max Registration Date"
-FROM looker_pdt.LR$QHASPUTBIADG08H05IT0G_challenge_stats AS challenge_stats
-INNER JOIN tcs_dw.coder  AS "user" ON challenge_stats.registrant_id = ("user".coder_id)
---WHERE (("user".handle) ILIKE 'asmn')
-GROUP BY 1) as a
-LEFT JOIN (SELECT
-payee.handle  AS "payee.handle",
-  MIN(DATE(payment_paid_date.date )) AS "First Payment date",
-  COALESCE(COALESCE(CAST( ( SUM(DISTINCT (CAST(FLOOR(COALESCE(user_payment.total_amount ,0)*(1000000*1.0)) AS DECIMAL(38,0))) + CAST(STRTOL(LEFT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))* 1.0e8 + CAST(STRTOL(RIGHT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0)) ) - SUM(DISTINCT CAST(STRTOL(LEFT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))* 1.0e8 + CAST(STRTOL(RIGHT(MD5(CONVERT(VARCHAR,CONCAT(user_payment.payment_id, user_payment.user_id) )),15),16) AS DECIMAL(38,0))) )  AS DOUBLE PRECISION) / CAST((1000000*1.0) AS DOUBLE PRECISION), 0), 0) AS "total payment"
-  FROM tcs_dw.payment  AS payment
-INNER JOIN tcs_dw.user_payment  AS user_payment ON payment.payment_id = user_payment.payment_id
-INNER JOIN tcs_dw.coder  AS payee ON user_payment.user_id = payee.coder_id
-INNER JOIN topcoder_dw.calendar  AS payment_paid_date ON user_payment.paid_calendar_id = payment_paid_date.calendar_id
+    sql: SELECT *,
+    ABS(DATEDIFF(DAY,A.LATEST_REGISTRATION,B.FIRST_PAID)) AS Compete_tenure_Days
+    FROM
+(SELECT
+  --p.project_id,
+  max(p.registration_end_date) AS LATEST_REGISTRATION,
+  pr.user_id AS REGISTRATION_USER_ID,
+  challenge_registrant.handle AS HANDLE
+  FROM tcs_dw.project p INNER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
+  INNER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
+  INNER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
+  --WHERE challenge_registrant.handle = 'asmn'
+  group by 2,3) AS A
 
---WHERE (payee.handle ILIKE 'asmn')
-  GROUP BY 1) as b
-on a."user.handle"=b."payee.handle" ;;
+LEFT JOIN
+(SELECT
+        --p.reference_id,
+        up.user_id AS PAYEE_ID ,
+        payee.handle AS PAYEE_HANDLE,
+        MIN(paid_date.date) AS FIRST_PAID,
+        sum(up.net_amount) AS PRIZE_MONEY
+    FROM
+    tcs_dw.user_payment up,
+    tcs_dw.calendar paid_date,
+    tcs_dw.coder payee,
+    tcs_dw.payment p
+    WHERE p.payment_id = up.payment_id
+      AND up.paid_calendar_id = paid_date.calendar_id
+      AND up.user_id = payee.coder_id
+      --AND payee.handle = 'asmn'
+     group by 1,2) AS B
+
+ON A.registration_user_id = B.payee_id
+--AND A.project_id = B.reference_id
+    ;;
   }
 
-  dimension_group: Max_Registration_Date {
+  dimension_group: latest_registration {
     type: time
+    description: "Last registration by member"
     timeframes: [
       time,
       date,
@@ -31,11 +48,22 @@ on a."user.handle"=b."payee.handle" ;;
       year,
       quarter
     ]
-    sql: ${TABLE}.max_registration_date ;;
+    sql: ${TABLE}.latest_registration ;;
+    }
+
+  dimension: registration_user_id {
+   type: number
+    sql: ${TABLE}.registration_user_id ;;
   }
 
-  dimension_group: first_payment_date {
+  dimension: handle {
+    type: string
+    sql: ${TABLE}.handle ;;
+  }
+
+  dimension_group: first_paid {
     type: time
+    description: "First paid date can be after latest registration date in case of Royalty payments, coder referral payment etc."
     timeframes: [
       time,
       date,
@@ -44,22 +72,36 @@ on a."user.handle"=b."payee.handle" ;;
       year,
       quarter
     ]
-    sql: ${TABLE}.first_payment_date ;;
+    sql: ${TABLE}.first_paid ;;
   }
 
-  dimension: user_handle {
-    type: string
-    sql: ${TABLE}.user_handle ;;
+ measure: prize_money {
+    type: sum
+    description:"Sum of prize money won"
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.prize_money ;;
   }
 
-  dimension: payee_handle {
-    type: string
-    sql: ${TABLE}.payee_handle ;;
+  measure: count {
+    type: count
   }
 
-  dimension:  Total_payment {
+  dimension: Compete_tenure_Days{
+  type: number
+  description: "Compete tenure in days (Latest Registration date - First Paid date)"
+   sql: ${TABLE}.Compete_tenure_days  ;;
+
+ }
+  dimension: Compete_tenure_Months {
     type: number
-    sql:  ${TABLE}.total_payment ;;
+    description: "Approximate calculation by dividing Compete tenure in days by 30"
+    sql:  (${TABLE}.Compete_tenure_days / 30);;
+  }
+
+  dimension: Compete_tenure_year {
+   type: number
+   description: "Approximate calculation by dividing Compete tenure in days by 365"
+   sql:  (${TABLE}.Compete_tenure_days / 365);;
   }
 
 

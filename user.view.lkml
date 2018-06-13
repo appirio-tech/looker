@@ -16,16 +16,20 @@ view: user {
   dimension: activation_code {
     type: string
     sql: ${TABLE}.activation_code ;;
+    hidden: yes
   }
 
   dimension: address1 {
     type: string
     sql: ${TABLE}.address1 ;;
+    hidden: yes
+
   }
 
   dimension: address2 {
     type: string
     sql: ${TABLE}.address2 ;;
+    hidden: yes
   }
 
   dimension: city {
@@ -36,6 +40,7 @@ view: user {
   dimension: coder_type_id {
     type: number
     sql: ${TABLE}.coder_type_id ;;
+    hidden: yes
   }
 
   dimension: comp_country_code {
@@ -72,6 +77,7 @@ view: user {
   dimension: editor_id {
     type: number
     sql: ${TABLE}.editor_id ;;
+    hidden: yes
   }
 
   dimension: email {
@@ -82,6 +88,7 @@ view: user {
   dimension: employer_search {
     type: string
     sql: ${TABLE}.employer_search ;;
+    hidden: yes
   }
 
   dimension: first_name {
@@ -107,6 +114,7 @@ view: user {
   dimension: image {
     type: number
     sql: ${TABLE}.image ;;
+    hidden: yes
   }
 
   dimension: language_id {
@@ -179,11 +187,13 @@ view: user {
   dimension: notify {
     type: string
     sql: ${TABLE}.notify ;;
+    hidden: yes
   }
 
   dimension: notify_inquiry {
     type: string
     sql: ${TABLE}.notify_inquiry ;;
+    hidden: yes
   }
 
   dimension: reg_source {
@@ -194,6 +204,7 @@ view: user {
   dimension: relocate {
     type: string
     sql: ${TABLE}.relocate ;;
+    hidden: yes
   }
 
   dimension: state_code {
@@ -234,16 +245,19 @@ view: user {
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photo_url ;;
+    hidden: yes
   }
 
   dimension: photo_url_full {
     type: string
     sql: 'https://www.topcoder.com' || ${TABLE}.photo_url ;;
+    hidden: yes
   }
 
   dimension: avatar {
     sql: ${photo_url_full};;
     html: <img src="{{ value }}" width="150" height="150"/> ;;
+    hidden: yes
   }
 
 #  dimension: is_copilot {
