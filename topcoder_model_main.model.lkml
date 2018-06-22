@@ -47,6 +47,12 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  join: submission_review {
+    type: left_outer
+    sql_on: ${challenge_stats.project_id} = ${submission_review.project_id} ;;
+    relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
