@@ -53,6 +53,13 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  join: reviewer {
+    from: user
+    type: inner
+    sql_on: ${submission_review.reviewer_id} = ${reviewer.coder_id} ;;
+    relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
