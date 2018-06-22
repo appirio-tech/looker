@@ -16,6 +16,7 @@ view: challenge {
   dimension: parent_category_id {
     description: "Technology's unique identifier."
     type: number
+    hidden: yes
     sql: ${TABLE}.category_id ;;
   }
 
@@ -290,6 +291,7 @@ view: challenge {
 
   dimension: challenge_category_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.project_category_id ;;
   }
 
