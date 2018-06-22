@@ -55,7 +55,7 @@ explore: challenge_stats {
 
   join: reviewer {
     from: user
-    type: inner
+    type: left_outer
     sql_on: ${submission_review.reviewer_id} = ${reviewer.coder_id} ;;
     relationship: many_to_one
   }
