@@ -72,6 +72,7 @@ view: challenge_stats {
        p.dr_points,
        p.reliability_cost,
        p.review_cost,
+       p.effort_hours_estimate,
        p.forum_id,
        p.submission_viewable,
        p.is_private,
@@ -829,6 +830,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.estimated_reliability_cost ;;
+  }
+
+  measure: effort_hours_estimate {
+    type: sum
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate efforts on a challenge"
+    sql: ${TABLE}.effort_hours_estimate ;;
   }
 
   measure: estimated_review_cost {
