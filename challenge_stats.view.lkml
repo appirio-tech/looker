@@ -72,7 +72,6 @@ view: challenge_stats {
        p.dr_points,
        p.reliability_cost,
        p.review_cost,
-       p.effort_hours_estimate,
        p.forum_id,
        p.submission_viewable,
        p.is_private,
@@ -110,7 +109,8 @@ view: challenge_stats {
        pr.num_ratings,
        pr.rating_order,
        c.photo_url,
-       p.task_ind
+       p.task_ind,
+       p.effort_hours_estimate
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
@@ -230,7 +230,8 @@ SELECT p.project_id,
        null AS num_ratings,
        null AS rating_order,
        c.photo_url,
-       p.task_ind
+       p.task_ind,
+       p.effort_hours_estimate
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
