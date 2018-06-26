@@ -833,8 +833,8 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
-  measure: effort_hours_estimate {
-    type: sum
+  dimension: effort_hours_estimate {
+    type: number
     value_format: "#,##0.00"
     description: "Topgear field to estimate efforts on a challenge"
     sql: ${TABLE}.effort_hours_estimate ;;
