@@ -223,7 +223,7 @@ explore: calendar {}
 explore: challenge_groups {
   join: group {
     type: inner
-    sql_on: ${group.name} = ${challenge_groups.group_id} ;;
+    sql_on: ${group.id} = ${challenge_groups.group_id} ;;
     relationship: many_to_one
   }
 }
