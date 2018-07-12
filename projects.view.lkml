@@ -234,8 +234,9 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'part_of_ng3') ;;
   }
 
-  dimension_group: planned_end_date {
+  dimension_group: planned_end_date_1 {
     type: time
+    hidden: yes
     description: "Used by Topgear team, planned end date for a project"
     timeframes: [
       time,
@@ -246,11 +247,12 @@ view: connect_project {
       year
     ]
     sql:DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_end_date') AS BigInt),
-         '1970-01-01 00:00:00');;
+      '1970-01-01 00:00:00');;
   }
 
-  dimension_group: planned_start_date {
+  dimension_group: planned_start_date_1 {
     type: time
+    hidden: yes
     description: "Used by Topgear team, planned start date for a project"
     timeframes: [
       time,
@@ -260,8 +262,31 @@ view: connect_project {
       quarter,
       year
     ]
-    sql:DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
-      '1970-01-01 00:00:00');;
+    sql:CASE WHEN ${TABLE}.planned_start_date = ' ' THEN '1970-01-01' ELSE DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
+      '1970-01-01 00:00:00') END;;
+  }
+
+  dimension: planned_start_date_test {
+    type: string
+    hidden: yes
+    description: "Used by Topgear team, planned start date for a project"
+    sql:CASE WHEN (json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date')) = ' '
+        THEN '1970-01-01 00:00:00'
+           ELSE DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
+          '1970-01-01 00:00:00') END;;
+  }
+
+  dimension: planned_start_date {
+    type: string
+    description: "Used by Topgear team, planned start date for a project"
+    sql:json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date');;
+  }
+
+
+  dimension: planned_end_date {
+    type: string
+    description: "Used by Topgear team, planned end date for a project"
+    sql:json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_end_date');;
   }
 
   dimension: product {

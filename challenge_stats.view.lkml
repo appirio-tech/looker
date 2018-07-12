@@ -109,7 +109,8 @@ view: challenge_stats {
        pr.num_ratings,
        pr.rating_order,
        c.photo_url,
-       p.task_ind
+       p.task_ind,
+       p.effort_hours_estimate
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
@@ -229,7 +230,8 @@ SELECT p.project_id,
        null AS num_ratings,
        null AS rating_order,
        c.photo_url,
-       p.task_ind
+       p.task_ind,
+       p.effort_hours_estimate
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
@@ -272,6 +274,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   dimension: challenge_id {
     type: number
     sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge_stats.challenge_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   dimension: component_id {
@@ -829,6 +836,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.estimated_reliability_cost ;;
+  }
+
+  dimension: effort_hours_estimate {
+    type: number
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate efforts on a challenge"
+    sql: ${TABLE}.effort_hours_estimate ;;
   }
 
   measure: estimated_review_cost {
