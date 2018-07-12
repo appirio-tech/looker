@@ -493,11 +493,6 @@ view: challenge {
     sql: (${complete_date} - ${submitby_date}) ;;
   }
 
-  measure: effort_hours_estimate {
-    type: sum
-    sql: ${TABLE}.effort_hours_estimate ;;
-  }
-
 
   measure: count {
     type: count
