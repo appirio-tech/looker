@@ -7,7 +7,7 @@ view: leaderboard_blockchain {
         challenge_stats.winner_id  AS "challenge_stats.winner_id",
         challenge_stats.photo_url  AS "challenge_stats.photo_url",
         COUNT(DISTINCT challenge_stats.project_id ) AS "challenge_stats.count",
-        SUM(CASE WHEN challenge_stats.placed between 1 and 3 THEN 500 WHEN challenge_stats.placed between 4 and 10 THEN 350 ELSE 100 END)
+        SUM(CASE WHEN challenge_stats.placed between 1 and 3 THEN 500 WHEN challenge_stats.placed between 4 and 10 THEN 350 ELSE 100 END) AS "challenge_stats.points"
       FROM looker_pdt.LR$QHY53IIP7DTWBXYUSV84D_challenge_stats AS challenge_stats
       LEFT JOIN looker_pdt.LR$QHFX5NFZM40OH5AU6AB4C_challenge_groups AS challenge_groups ON challenge_stats.project_id = challenge_groups.challenge_id
       LEFT JOIN tcs_dw.project_technology  AS challenge_technology ON challenge_stats.project_id = challenge_technology.project_id
