@@ -932,6 +932,20 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.review_complete_timestamp ;;
   }
 
+  measure: tco_points {
+    type: sum
+    description: "TCO Points computed for Blockchain / QA technology products. 1st - 3rd 500 points, 4th to 10th 350 points, 11+ 100 points"
+    value_format: "#,##0"
+    label: "TCO Points"
+    sql: CASE
+                   WHEN ${TABLE}.placed <= 3 THEN 500
+                   WHEN ${TABLE}.placed <= 10 THEN 350
+                   WHEN ${TABLE}.placed <= 1000 THEN 100
+                   ELSE 0
+            END ;;
+  }
+
+
   measure: payment {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
