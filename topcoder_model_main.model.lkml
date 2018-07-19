@@ -4,7 +4,7 @@ connection: "prod_-_topcoder_redshift"
 include: "*.view"
 
 # include all the dashboards
-include: "*.dashboard"
+#include: "*.dashboard"
 
 # sets the week start day to Sunday
 week_start_day: sunday
@@ -14,7 +14,6 @@ case_sensitive: no
 
 
 explore: member_activity_tenure {}
-explore: leaderboard_blockchain {}
 
 # Derived Views
 explore: challenge_stats {

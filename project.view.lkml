@@ -161,6 +161,13 @@ view: challenge {
     sql: ${TABLE}.effort_hours_estimate ;;
   }
 
+  measure: effort_days_estimate {
+    type: sum
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate efforts on a challenge.  Calculated as # of days."
+    sql: ${TABLE}.effort_hours_estimate/24 ;;
+  }
+
   measure: estimated_review_cost {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
