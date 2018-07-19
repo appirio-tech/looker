@@ -339,10 +339,21 @@ view: challenge {
             END ;;
   }
 
+  dimension: challenge_id {
+    type: number
+    sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+  }
+
   dimension: project_id {
     primary_key: yes
     type: number
     # hidden: true
+    description: "Challenge ID Alias"
     sql: ${TABLE}.project_id ;;
     link: {
       label: "Challenge Link"
