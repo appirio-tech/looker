@@ -435,6 +435,16 @@ view: challenge {
     sql: ${TABLE}.status_desc ;;
   }
 
+  dimension: status_buckets {
+  type: string
+  sql: CASE
+  WHEN ${TABLE}.status_desc like 'Cancelled%' THEN 'Cancelled'
+  WHEN ${TABLE}.status_desc = 'Completed' THEN 'Completed'
+  WHEN ${TABLE}.status_desc = 'Active' THEN 'Active'
+  WHEN ${TABLE}.status_desc = 'Draft' THEN 'Draft'
+  ELSE null END;;
+  }
+
   dimension: status_id {
     type: number
     sql: ${TABLE}.status_id ;;

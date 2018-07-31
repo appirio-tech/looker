@@ -1052,6 +1052,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: DECODE(${submit_ind},1, ${TABLE}.registrant_handle,null) ;;
   }
 
+  measure: count_distinct_winner {
+    type: count_distinct
+    sql: ${TABLE}.winner_handle ;;
+  }
+
   set: detail {
     fields: [
       project_id,
