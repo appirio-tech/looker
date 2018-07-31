@@ -14,7 +14,6 @@ case_sensitive: no
 
 
 explore: member_activity_tenure {}
-explore: leaderboard_blockchain {}
 
 # Derived Views
 explore: challenge_stats {
