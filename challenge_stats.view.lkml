@@ -939,16 +939,111 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.review_complete_timestamp ;;
   }
 
-  measure: tco_points {
+  measure: Blockchain_tco_points {
     type: sum
-    description: "TCO Points computed for Blockchain / QA technology products. 1st - 3rd 500 points, 4th to 10th 350 points, 11+ 100 points"
+    description: "TCO Points computed for Blockchain / Cognitive technology products. 1st - 3rd 500 points, 4th to 10th 350 points, 11+ 100 points"
     value_format: "#,##0"
-    label: "TCO Points"
+    label: "TCO Points - Blockchain/Cognitive"
     sql: CASE
                    WHEN ${TABLE}.placed <= 3 THEN 500
                    WHEN ${TABLE}.placed <= 10 THEN 350
                    WHEN ${TABLE}.placed <= 1000 THEN 100
                    ELSE 0
+            END ;;
+  }
+
+  measure: Dev_tco_points {
+    type: sum
+    description: "TCO Points computed for the standard dev, QA and design tracks"
+    value_format: "#,##0"
+    label: "TCO Points - Dev/Design/QA"
+    sql: CASE
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.actual_total_prize*1
+
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.70
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.30
+
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.65
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.25
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.10
+
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.60
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.22
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.08
+
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.56
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.20
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.08
+                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.06
+                   ELSE 0
+            END ;;
+  }
+
+  measure: tco_points_mm {
+    type: sum
+    description: "TCO Points computed for the marathon match"
+    value_format: "#,##0"
+    label: "TCO Points - Marathon Match"
+    sql: CASE
+                   WHEN ${TABLE}.placed = 1 THEN 100
+                   WHEN ${TABLE}.placed = 2 THEN 75
+                   WHEN ${TABLE}.placed = 3 THEN 60
+                   WHEN ${TABLE}.placed = 4 THEN 50
+                   WHEN ${TABLE}.placed = 5 THEN 45
+                   WHEN ${TABLE}.placed = 6 THEN 40
+                   WHEN ${TABLE}.placed = 7 THEN 36
+                   WHEN ${TABLE}.placed = 8 THEN 32
+                   WHEN ${TABLE}.placed = 9 THEN 29
+                   WHEN ${TABLE}.placed = 10 THEN 26
+                   WHEN ${TABLE}.placed = 11 THEN 24
+                   WHEN ${TABLE}.placed = 12 THEN 22
+                   WHEN ${TABLE}.placed = 13 THEN 20
+                   WHEN ${TABLE}.placed = 14 THEN 18
+                   WHEN ${TABLE}.placed = 15 THEN 16
+                   WHEN ${TABLE}.placed = 16 THEN 15
+                   WHEN ${TABLE}.placed = 17 THEN 14
+                   WHEN ${TABLE}.placed = 18 THEN 13
+                   WHEN ${TABLE}.placed = 19 THEN 12
+                   WHEN ${TABLE}.placed = 20 THEN 11
+                   WHEN ${TABLE}.placed = 21 THEN 10
+                   WHEN ${TABLE}.placed = 22 THEN 9
+                   WHEN ${TABLE}.placed = 23 THEN 8
+                   WHEN ${TABLE}.placed = 24 THEN 7
+                   WHEN ${TABLE}.placed = 25 THEN 6
+                   WHEN ${TABLE}.placed = 26 THEN 5
+                   WHEN ${TABLE}.placed = 27 THEN 4
+                   WHEN ${TABLE}.placed = 28 THEN 3
+                   WHEN ${TABLE}.placed = 29 THEN 2
+                   WHEN ${TABLE}.placed >= 30 and  ${TABLE}.placed <= 50 THEN 1
+                   ELSE 0
+            END ;;
+  }
+
+  measure: tco_points_algorithm {
+    type: sum
+    description: "TCO Points computed for the Algorithm track"
+    value_format: "#,##0"
+    label: "TCO Points - Algorithm"
+    sql: CASE
+                   WHEN ${TABLE}.placed = 1 THEN 5
+                   WHEN ${TABLE}.placed <= 10 and ${TABLE}.placed >= 2 THEN 4
+                   WHEN ${TABLE}.placed <= 25 and ${TABLE}.placed >= 11 THEN 3
+                   WHEN ${TABLE}.placed > 25 and ${TABLE}.final_score > 0 THEN 2
+                   ELSE 0
+            END ;;
+  }
+
+
+  measure: tco_points_F2F {
+    type: sum
+    description: "TCO Points computed for the F2F track"
+    value_format: "#,##0"
+    label: "TCO Points - F2F"
+    sql: CASE
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.actual_total_prize >= 1200 THEN 800
+                   ELSE Floor((2*${TABLE}.actual_total_prize)/3)
             END ;;
   }
 
