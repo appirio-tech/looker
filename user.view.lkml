@@ -245,7 +245,6 @@ view: user {
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photo_url ;;
-    hidden: yes
   }
 
   dimension: photo_url_full {
