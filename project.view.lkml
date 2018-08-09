@@ -537,7 +537,21 @@ view: challenge {
   ELSE 0 END ;;
   }
 
+  measure: count_draft {
+    type: sum
+    sql: CASE
+        WHEN ${TABLE}.status_desc = 'Draft'
+        THEN 1
+        ELSE 0 END ;;
+  }
 
+  measure: count_scheduled {
+    type: sum
+    sql: CASE
+        WHEN ${TABLE}.status_desc = 'Active' AND ${TABLE}.posting_date>getdate()
+        THEN 1
+        ELSE 0 END ;;
+  }
 
   measure: estimated_member_payments {
     type: sum
