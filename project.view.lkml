@@ -529,6 +529,16 @@ view: challenge {
     drill_fields: [detail*]
   }
 
+ measure: count_launched {
+    type: sum
+    sql: CASE
+  WHEN ${TABLE}.status_desc = 'Completed' OR ${TABLE}.status_desc = 'Active'
+  THEN 1
+  ELSE 0 END ;;
+  }
+
+
+
   measure: estimated_member_payments {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
