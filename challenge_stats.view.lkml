@@ -297,6 +297,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.component_name ;;
   }
 
+  dimension: challenge_url {
+    type: string
+    sql: 'https://www.topcoder.com/challenges/' || ${TABLE}.project_id ;;
+  }
+
   measure: num_registrations {
     type: sum
     sql: ${TABLE}.num_registrations ;;
