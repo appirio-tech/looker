@@ -101,6 +101,11 @@ view: challenge {
     }
   }
 
+  dimension: Challenge_url {
+    type: string
+    sql: 'https://www.topcoder.com/challenges/' || ${TABLE}.project_id ;;
+  }
+
   measure: contest_prizes_total {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
