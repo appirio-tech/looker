@@ -1073,5 +1073,18 @@ explore: review_board_by_track {
 }
 
 # Added 17th August - 2018
-explore: client_terms_mapping {}
-explore: terms_of_use {}
+explore: client_terms_mapping {
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${client_terms_mapping.billing_account_id} ;;
+    relationship: many_to_one
+  }
+
+  join: terms_of_use {
+    type: left_outer
+    sql_on: ${terms_of_use.terms_of_use_id} = ${client_terms_mapping.terms_of_use_id} ;;
+    relationship: many_to_one
+  }
+
+}

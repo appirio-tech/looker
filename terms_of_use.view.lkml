@@ -3,6 +3,7 @@ view: terms_of_use {
 
   dimension: terms_of_use_id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.terms_of_use_id ;;
   }
@@ -41,12 +42,14 @@ view: terms_of_use {
   }
 
   dimension: terms_of_use_agreeability_type_desc {
+    label: "Agreeability Type"
     type: string
     sql: ${TABLE}.terms_of_use_agreeability_type_desc ;;
   }
 
   dimension: terms_of_use_agreeability_type_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.terms_of_use_agreeability_type_id ;;
   }
 
@@ -57,6 +60,7 @@ view: terms_of_use {
 
   dimension: terms_of_use_type_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.terms_of_use_type_id ;;
   }
 

@@ -3,6 +3,7 @@ view: client_terms_mapping {
 
   dimension: client_terms_mapping_id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.client_terms_mapping_id ;;
   }
@@ -47,12 +48,13 @@ view: client_terms_mapping {
 
   dimension: resource_role_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.resource_role_id ;;
   }
 
   dimension: terms_of_use_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.terms_of_use_id ;;
   }
 

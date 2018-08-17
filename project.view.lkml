@@ -14,7 +14,7 @@ view: challenge {
   }
 
   dimension: confidentiality_type {
-    description: "Contains 2 values: Public (No NDA) and Standard CCA (Generic NDA), Client_terms_mapping table overwrites if it is Public"
+    description: "Contains 2 values: Public (No NDA) and Standard CCA (Generic NDA), If there are any specific billing agreements they will override this field"
     type: string
     sql: ${TABLE}.confidentiality_type ;;
   }
