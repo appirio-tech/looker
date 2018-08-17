@@ -1081,6 +1081,12 @@ explore: client_terms_mapping {
     relationship: many_to_one
   }
 
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge.client_project_id} = ${client_project_dim.client_project_id} ;;
+    relationship: many_to_one
+  }
+
   join: terms_of_use {
     type: left_outer
     sql_on: ${terms_of_use.terms_of_use_id} = ${client_terms_mapping.terms_of_use_id} ;;

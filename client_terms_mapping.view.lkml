@@ -48,13 +48,13 @@ view: client_terms_mapping {
 
   dimension: resource_role_id {
     type: number
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.resource_role_id ;;
   }
 
   dimension: terms_of_use_id {
     type: number
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.terms_of_use_id ;;
   }
 

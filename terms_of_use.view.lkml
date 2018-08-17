@@ -3,7 +3,7 @@ view: terms_of_use {
 
   dimension: terms_of_use_id {
     primary_key: yes
-    hidden: yes
+    hidden: no
     type: number
     sql: ${TABLE}.terms_of_use_id ;;
   }
