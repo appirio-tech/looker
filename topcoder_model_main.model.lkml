@@ -1071,3 +1071,7 @@ explore: review_board_by_track {
     relationship: many_to_one
   }
 }
+
+# Added 17th August - 2018
+explore: client_terms_mapping {}
+explore: terms_of_use {}

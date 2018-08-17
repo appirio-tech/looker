@@ -13,6 +13,12 @@ view: challenge {
     sql: ${TABLE}.category_desc ;;
   }
 
+  dimension: confidentiality_type {
+    description: "Contains 2 values: Public (No NDA) and Standard CCA (Generic NDA), Client_terms_mapping table overwrites if it is Public"
+    type: string
+    sql: ${TABLE}.confidentiality_type ;;
+  }
+
   dimension: parent_category_id {
     description: "Technology's unique identifier."
     type: number
