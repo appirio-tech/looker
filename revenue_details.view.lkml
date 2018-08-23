@@ -30,8 +30,8 @@ view: revenue_details {
     sql: ${TABLE}.opportunity ;;
   }
 
-  dimension: revenue {
-    type: number
+  measure: revenue {
+    type: sum
     sql: ${TABLE}.revenue ;;
   }
 
