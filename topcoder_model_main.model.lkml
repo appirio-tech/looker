@@ -1094,3 +1094,6 @@ explore: client_terms_mapping {
   }
 
 }
+
+# Added 23rd August - 2018
+explore: revenue_details {}
