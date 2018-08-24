@@ -1097,3 +1097,14 @@ explore: client_terms_mapping {
 
 # Added 23rd August - 2018
 explore: revenue_details {}
+
+# Added 24th August - 2018
+explore: srm_tco19 {
+
+  join: user {
+    type: left_outer
+    sql_on: ${srm_tco19.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+}
