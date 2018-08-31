@@ -88,7 +88,18 @@ explore: participant_funnel_monthly {}
 
 explore: round_division {}
 explore: room {}
-explore: room_result {}
+explore: room_result {
+  join: user {
+    type: inner
+    sql_on: ${room_result.coder_id} = ${user.coder_id} ;;
+    relationship: many_to_many
+  }
+  join: round {
+    type: left_outer
+    sql_on:  ${room_result.round_id} = ${round.round_id} ;;
+    relationship: many_to_one
+  }
+}
 explore: data_science_contest {}
 explore: leads {}
 
