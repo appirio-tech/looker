@@ -1119,3 +1119,20 @@ explore: srm_tco19 {
   }
 
 }
+
+# Added 3rd September - 2018
+explore: user_terms_of_use_xref {
+
+  join: terms_of_use {
+    type: left_outer
+    sql_on: ${user_terms_of_use_xref.terms_of_use_id} = ${terms_of_use.terms_of_use_id} ;;
+    relationship: many_to_one
+  }
+
+  join: user {
+    type:left_outer
+    sql_on: ${user.coder_id} = ${user_terms_of_use_xref.user_id} ;;
+    relationship: many_to_one
+  }
+
+}
