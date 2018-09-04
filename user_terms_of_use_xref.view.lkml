@@ -1,4 +1,4 @@
-view: user_terms_of_use_xref {
+view: user_terms_signed {
   sql_table_name: tcs_dw.user_terms_of_use_xref ;;
 
   dimension_group: create {
