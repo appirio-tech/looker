@@ -258,6 +258,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.task_ind ;;
   }
 
+  measure: count_distinct_challenge {
+    type: count_distinct
+    sql: ${TABLE}.project_id;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
