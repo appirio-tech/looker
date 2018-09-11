@@ -393,11 +393,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: review_phase_id {
     type: number
+    description: "Unique identifier for the review phase"
     sql: ${TABLE}.review_phase_id ;;
   }
 
   dimension: review_phase_name {
     type: string
+    description: "review stage in which the challenge currently is"
     sql: ${TABLE}.review_phase_name ;;
   }
 
@@ -583,6 +585,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: project_category_name {
     type: string
+    description: "Type of Challenge - Design, Code, Bug Hunt, F2F etc..."
     sql: ${TABLE}.project_category_name ;;
   }
 
@@ -887,6 +890,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: registrant_handle {
     type: string
+    description: "list the members who have registered on the challenge"
     sql: ${TABLE}.registrant_handle ;;
   }
 
@@ -902,11 +906,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   measure: raw_score {
     type: sum
+    description: "Score without any re-review appeals"
     sql: ${TABLE}.raw_score ;;
   }
 
   measure: final_score {
     type: sum
+    description: "Score after any re-review appeals"
     sql: ${TABLE}.final_score ;;
   }
 
@@ -1086,6 +1092,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: placed {
     type: number
+    description: "Rank scored by the submitter on the challenge"
     sql: ${TABLE}.placed ;;
   }
 
@@ -1096,11 +1103,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: passed_review_ind {
     type: number
+    description: "Indicator that submission has passed review"
     sql: ${TABLE}.passed_review_ind ;;
   }
 
   measure: points_awarded {
     type: sum
+    description: "Placement points awarded to the submitter based on challenge category and place secured"
     sql: ${TABLE}.points_awarded ;;
   }
 
@@ -1126,11 +1135,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   measure: num_appeals {
     type: sum
+    description: "Numbers of re-review request by submitter"
     sql: ${TABLE}.num_appeals ;;
   }
 
   measure: num_successful_appeals {
     type: sum
+    description: "Number of successful re-review request resulting in change of score "
     sql: ${TABLE}.num_successful_appeals ;;
   }
 
@@ -1156,18 +1167,27 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   measure: count_distinct_registrant {
     type: count_distinct
+    description: "Unique count of registrants "
     sql: ${TABLE}.registrant_handle ;;
   }
 
   measure: count_distinct_submitter {
     type: count_distinct
+    description: "Unique count of submitters"
     sql: DECODE(${submit_ind},1, ${TABLE}.registrant_handle,null) ;;
   }
 
   measure: count_distinct_winner {
     type: count_distinct
+    description: "Unique count of winners"
     sql: ${TABLE}.winner_handle ;;
   }
+
+# measure: Challenge_Rank {
+   # type: number
+    #description: "Ranked according to the ascending order of challenge posting date"
+    #sql: rank() over (partition by challenge_stats.registrant_handle order by challenge_stats.posting_date asc) ;;
+  #}
 
   set: detail {
     fields: [

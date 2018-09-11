@@ -1136,3 +1136,14 @@ explore: user_terms_signed {
   }
 
 }
+
+# Added 11th September - 2018
+explore: connect_project_phases {
+
+  join: connect_project {
+    type: inner
+    sql_on: ${connect_project_phases.project_id} = ${connect_project.id} ;;
+    relationship: many_to_one
+  }
+
+}

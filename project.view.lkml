@@ -34,16 +34,19 @@ view: challenge {
 
   dimension: challenge_launcher_id {
     type: number
+    description: "Community Member unique Identifier who launched the challenge"
     sql: ${TABLE}.challenge_launcher ;;
   }
 
   dimension: challenge_manager_id {
     type: number
+    description: "Community Member unique Identifier who manages the challenge"
     sql: ${TABLE}.challenge_manager ;;
   }
 
   dimension_group: checkpoint_end {
     type: time
+    description: "Every challenge has checkpoints which acts as milestones, checkpoint end date is end date for every milestone"
     timeframes: [
       time,
       date,
@@ -57,17 +60,20 @@ view: challenge {
 
   measure: checkpoint_prize_amount {
     type: sum
+    description: "Prize money for the milestone achievement"
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.checkpoint_prize_amount ;;
   }
 
   dimension: checkpoint_prize_number {
     type: number
+    description: "Every challenge has checkpoints which acts as milestones, checkpoint prize number are the prize places associated with every milestone"
     sql: ${TABLE}.checkpoint_prize_number ;;
   }
 
   dimension_group: checkpoint_start {
     type: time
+    description: "Every challenge has checkpoints which acts as milestones, checkpoint start date is start date for every milestone"
     timeframes: [
       time,
       date,
@@ -81,6 +87,7 @@ view: challenge {
 
   dimension_group: complete {
     type: time
+    description: "Challenge Completion Date"
     timeframes: [
       time,
       date,
@@ -121,6 +128,7 @@ view: challenge {
 
   dimension: copilot_id {
     type: number
+    description: "Community Member unique Identifier who copilots the challenge"
     sql: ${TABLE}.copilot ;;
   }
 
@@ -142,6 +150,7 @@ view: challenge {
 
   measure: duration {
     type: sum
+    description: "Challenge duration"
     drill_fields: [detail*]
     sql: ${TABLE}.duration ;;
   }
@@ -187,6 +196,7 @@ view: challenge {
 
   measure: first_place_prize {
     type: sum
+    description: "Prize money for the first place"
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.first_place_prize ;;
   }
@@ -205,17 +215,20 @@ view: challenge {
 
   dimension: is_private {
     type: number
+    description: "Indicates whether the challenge is open for all or specifically assigned to a particular community member"
     sql: ${TABLE}.is_private ;;
   }
 
   dimension: task_ind {
     type: number
+    description: "Indicates if a particular challenge is task, tasks are not public and do not have prize money associated with them"
     drill_fields: [detail*]
     sql: NVL(${TABLE}.task_ind, 0) ;;
   }
 
   dimension_group: last_modification {
     type: time
+    description: "Date on which the challenge is last modified"
     timeframes: [
       time,
       date,
@@ -315,11 +328,13 @@ view: challenge {
 
   dimension: challenge_category_name {
     type: string
+    description: "Type of Challenge - Design, Code, Bug Hunt, F2F etc..."
     sql: ${TABLE}.project_category_name ;;
   }
 
   dimension: track {
     type: string
+    description: "Broader category of Challenge - design, develop, data science etc.."
     sql: CASE
                    WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
                    WHEN ${TABLE}.project_category_name = 'Code' THEN 'Develop'
@@ -352,6 +367,7 @@ view: challenge {
 
   dimension: challenge_id {
     type: number
+    description: "Challenge Unique Identifier"
     sql: ${TABLE}.project_id ;;
     link: {
       label: "Challenge Link"
@@ -388,6 +404,7 @@ view: challenge {
 
   dimension_group: registration_end {
     type: time
+    description: "Last date for inviting entries for a particular challenge"
     timeframes: [
       time,
       date,
@@ -411,6 +428,7 @@ view: challenge {
 
   dimension_group: scheduled_end {
     type: time
+    description: "Date on which the challenge is scheduled to end"
     timeframes: [
       time,
       date,
@@ -444,17 +462,20 @@ view: challenge {
 
   dimension: start_date_calendar_id {
     type: number
+    description: "unique identifier for start date being tagged to the calendar table "
     sql: ${TABLE}.start_date_calendar_id ;;
   }
 
   dimension: status_desc {
     type: string
+    description: "Challenge Status like Draft, Cancelled - Client Request, Cancelled - Zero submissions etc..."
     drill_fields: [detail*]
     sql: ${TABLE}.status_desc ;;
   }
 
   dimension: status_buckets {
   type: string
+  description: "Challenge status categorised into buckets like Draft, Cancelled, Active etc..."
   sql: CASE
   WHEN ${TABLE}.status_desc like 'Cancelled%' THEN 'Cancelled'
   WHEN ${TABLE}.status_desc = 'Completed' THEN 'Completed'
@@ -470,11 +491,13 @@ view: challenge {
 
   dimension: submission_viewable {
     type: number
+    description: "indicated whether community member has made the submission on challenge or not"
     sql: ${TABLE}.submission_viewable ;;
   }
 
   dimension_group: submitby {
     type: time
+    description: "Last date by which submissions will be closed"
     timeframes: [
       time,
       date,
@@ -488,11 +511,13 @@ view: challenge {
 
   dimension: suspended_ind {
     type: number
+    description: "Indicates whether a challenge has been suspended or not"
     sql: ${TABLE}.suspended_ind ;;
   }
 
   dimension: tc_direct_project_id {
     type: number
+    description: "Direct Project (unique identifier) to which the challenge is linked to; a project can have multiple challenges "
     sql: ${TABLE}.tc_direct_project_id ;;
     link: {
       label: "Direct Project Link"
@@ -504,6 +529,7 @@ view: challenge {
 
   measure: total_prize {
     type: sum
+    description: "Total Prize money on the challenge"
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
     sql: ${TABLE}.total_prize ;;
@@ -526,22 +552,26 @@ view: challenge {
 
   dimension: winner_id {
     type: number
+    description: "First Place prize winner unique identifier for a particular challenge"
     sql: ${TABLE}.winner_id ;;
   }
 
   measure: review_process_duration {
     type: sum
+    description: "Time taken by reviewer to review the submissions"
     sql: (${complete_date} - ${submitby_date}) ;;
   }
 
 
   measure: count {
     type: count
+    description: "Total no of challenges"
     drill_fields: [detail*]
   }
 
  measure: count_launched {
     type: sum
+    description: "Total no. of challenges launched (active)"
     sql: CASE
   WHEN ${TABLE}.status_desc = 'Completed' OR ${TABLE}.status_desc = 'Active'
   THEN 1
@@ -550,6 +580,7 @@ view: challenge {
 
   measure: count_draft {
     type: sum
+    description: "Total no. of challenges in draft"
     sql: CASE
         WHEN ${TABLE}.status_desc = 'Draft'
         THEN 1
@@ -558,6 +589,7 @@ view: challenge {
 
   measure: count_scheduled {
     type: sum
+    description: "Total no. of challenges launched with posting date in future"
     sql: CASE
         WHEN ${TABLE}.status_desc = 'Active' AND ${TABLE}.posting_date>getdate()
         THEN 1
@@ -573,6 +605,7 @@ view: challenge {
 
   measure: actual_total_prize {
     type: sum
+    description: "Total prize money given"
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
     sql: ${TABLE}.actual_total_prize ;;
@@ -638,6 +671,7 @@ view: challenge {
 
   dimension: Is_zero_total_prize {
   type: string
+  description: "Indicates whether the prize money on the challenge is zero or not"
     sql: CASE WHEN ${TABLE}.total_prize = 0 THEN 'Yes'
               ELSE 'No'
          END ;;
@@ -670,6 +704,7 @@ view: challenge {
 
   measure: review_cost {
     type: sum
+    description: "Cost incurred for reviewer"
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
     sql: ${TABLE}.review_cost ;;

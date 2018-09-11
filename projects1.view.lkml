@@ -1,15 +1,10 @@
-view: connect_project {
+view: connect_project_1 {
   sql_table_name: public.projects ;;
 
-  dimension: id {
+  dimension: directprojectid {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
-    link: {
-      label: "project_url"
-      url: "https://connect.topcoder.com/projects/{{ value }}"
-      icon_url: "https://www.topcoder.com/wp-content/media/2017/03/Topcoder-Connect-Logo.png"
-    }
+    sql: ${TABLE}.directprojectid ;;
   }
 
   measure: actualprice {
@@ -29,13 +24,6 @@ view: connect_project {
     sql: ${TABLE}.bookmarks ;;
   }
 
-  dimension: cancelReason {
-    label: "Cancel Reason"
-    description: "The reason for project cancellation"
-    type: string
-    sql: ${TABLE}.cancelReason ;;
-  }
-
   dimension: challengeeligibility {
     type: string
     sql: ${TABLE}.challengeeligibility ;;
@@ -44,7 +32,6 @@ view: connect_project {
   dimension_group: createdat {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -63,7 +50,6 @@ view: connect_project {
   dimension_group: deletedat {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -84,9 +70,20 @@ view: connect_project {
     sql: ${TABLE}.details ;;
   }
 
-  dimension: directprojectid {
-    type: number
-    sql: ${TABLE}.directprojectid ;;
+#Added on 7/18 for connect project
+#  dimension: refcode {
+#    label: "Ref Code"
+#    description: "Promo code applied to project"
+#    sql: json_extract_path_text(${TABLE}.details, 'utm', 'code') ;;
+
+#  }
+
+#Added on 7/18 for connect project
+  dimension: cancelReason {
+    label: "Cancel Reason"
+    description: "The reason for project cancellation"
+    type: string
+    sql: ${TABLE}.cancelReason ;;
   }
 
   measure: estimatedprice {
@@ -100,61 +97,24 @@ view: connect_project {
     sql: ${TABLE}.external ;;
   }
 
+  dimension: id {
+    type: number
+    sql: ${TABLE}.id ;;
+    link: {
+      label: "project_url"
+      url: "https://connect.topcoder.com/projects/{{ value }}"
+      icon_url: "https://www.topcoder.com/wp-content/media/2017/03/Topcoder-Connect-Logo.png"
+    }
+  }
+
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
   }
 
-  measure: offshore_efforts {
-    type: sum
-    description: "Used by Topgear team, Offshore hours allocated to the project"
-    sql: ${TABLE}.offshore_efforts ;;
-  }
-
-  measure: onsite_efforts {
-    type: sum
-    description: "Used by Topgear team, Onsite hours allocated to the project"
-    sql: ${TABLE}.onsite_efforts ;;
-  }
-
-  dimension_group: planned_end {
-    type: time
-    description: "Used by Topgear team, planned end date for a project"
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.planned_end_date ;;
-  }
-
-  dimension_group: planned_start {
-    type: time
-    description: "Used by Topgear team, planned start date for a project"
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.planned_start_date ;;
-  }
-
-  dimension: projectfulltext {
-    type: string
-    sql: ${TABLE}.projectfulltext ;;
-  }
-
   dimension: raw_status {
     type: string
-    sql: ${TABLE}.status ;;
+    sql: ${TABLE}.status;;
   }
 
   dimension: status {
@@ -191,35 +151,14 @@ view: connect_project {
     }
   }
 
-  dimension: template_category {
-    type: string
-    sql: ${TABLE}.template_category ;;
-  }
-
-  dimension: template_id {
-    type: number
-    sql: ${TABLE}.template_id ;;
-  }
-
-  dimension: template_name {
-    type: string
-    sql: ${TABLE}.template_name ;;
-  }
-
-  dimension: terms {
-    type: string
-    sql: ${TABLE}.terms ;;
-  }
-
-  dimension: type {
-    type: string
-    sql: ${TABLE}.type ;;
-  }
+    dimension: type {
+      type: string
+      sql: ${TABLE}.type ;;
+    }
 
   dimension_group: updatedat {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -240,10 +179,18 @@ view: connect_project {
     sql: ${TABLE}.utm ;;
   }
 
-  dimension: version {
-    type: string
-    sql: ${TABLE}.version ;;
+  dimension: onsite_efforts {
+    type: number
+    description: "Used by Topgear team, Onsite hours allocated to the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'onsite_efforts') ;;
   }
+
+  dimension: offshore_efforts {
+    type: number
+    description: "Used by Topgear team, Offshore hours allocated to the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'offshore_efforts') ;;
+  }
+
 
   dimension: wbs_code {
     type: string
@@ -287,6 +234,61 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'part_of_ng3') ;;
   }
 
+  dimension_group: planned_end_date_1 {
+    type: time
+    hidden: yes
+    description: "Used by Topgear team, planned end date for a project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql:DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_end_date') AS BigInt),
+      '1970-01-01 00:00:00');;
+  }
+
+  dimension_group: planned_start_date_1 {
+    type: time
+    hidden: yes
+    description: "Used by Topgear team, planned start date for a project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql:CASE WHEN ${TABLE}.planned_start_date = ' ' THEN '1970-01-01' ELSE DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
+      '1970-01-01 00:00:00') END;;
+  }
+
+  dimension: planned_start_date_test {
+    type: string
+    hidden: yes
+    description: "Used by Topgear team, planned start date for a project"
+    sql:CASE WHEN (json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date')) = ' '
+        THEN '1970-01-01 00:00:00'
+           ELSE DATEADD(second,CAST(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date') AS BigInt),
+          '1970-01-01 00:00:00') END;;
+  }
+
+  dimension: planned_start_date {
+    type: string
+    description: "Used by Topgear team, planned start date for a project"
+    sql:json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_start_date');;
+  }
+
+
+  dimension: planned_end_date {
+    type: string
+    description: "Used by Topgear team, planned end date for a project"
+    sql:json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'planned_end_date');;
+  }
+
   dimension: product {
     type: string
     sql: json_extract_array_element_text(json_extract_path_text((regexp_replace(${TABLE}.details,'\\\\.','')), 'products'), 0) ;;
@@ -295,7 +297,7 @@ view: connect_project {
   dimension: notes {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'notes') ;;
-  }
+    }
 
   dimension: primary_target {
     type: string
@@ -305,6 +307,11 @@ view: connect_project {
   dimension: budget {
     type: number
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'budget') ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [directprojectid, id, name, project_members.count]
   }
 
   measure: submitted_count {
@@ -333,14 +340,10 @@ view: connect_project {
   }
 
   measure: activated_percentage {
-    type: number
-    value_format_name: percent_0
-    description: "Projects activated as a percent of submitted projects."
-    sql: 1.0 * ${activated_count} / NULLIF(${submitted_count}, 0)  ;;
+  type: number
+  value_format_name: percent_0
+  description: "Projects activated as a percent of submitted projects."
+  sql: 1.0 * ${activated_count} / NULLIF(${submitted_count}, 0)  ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [directprojectid, id, template_name, name, project_members.count]
-  }
 }
