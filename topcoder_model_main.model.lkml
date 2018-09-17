@@ -1147,3 +1147,26 @@ explore: connect_project_phases {
   }
 
 }
+
+# Added 17th September - 2018
+  explore: newest_submitters {
+
+    join: challenge {
+      type: left_outer
+      sql_on: ${newest_submitters.challenge_id} = ${challenge.project_id} ;;
+      relationship: many_to_one
+    }
+
+    join: challenge_groups {
+      type: left_outer
+      sql_on: ${newest_submitters.challenge_id} = ${challenge_groups.challenge_id} ;;
+      relationship: one_to_many
+    }
+
+    join: user {
+      type:left_outer
+      sql_on: ${newest_submitters.user_id} = ${user.coder_id};;
+      relationship: many_to_one
+    }
+
+  }
