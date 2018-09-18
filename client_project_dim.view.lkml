@@ -95,6 +95,18 @@ view: client_project_dim {
     sql: ${TABLE}.project_name ;;
   }
 
+  dimension: is_topgear {
+    type: string
+    description: "Identifier for Topgear Trial account"
+    case: {
+      when: {
+        sql: ${TABLE}.project_name = 'TopGear Trial' ;;
+        label: "Yes"
+      }
+      else: "No"
+    }
+  }
+
   dimension: subscription_number {
     type: string
     sql: ${TABLE}.subscription_number ;;
