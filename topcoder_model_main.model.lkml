@@ -1170,3 +1170,14 @@ explore: connect_project_phases {
     }
 
   }
+
+# Added 25th September - 2018
+explore: problem {
+
+  join: round {
+    type: left_outer
+    sql_on: ${problem.round_id} = ${round.round_id} ;;
+    relationship: many_to_one
+  }
+
+}

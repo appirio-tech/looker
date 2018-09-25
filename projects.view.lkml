@@ -251,6 +251,12 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
   }
 
+  dimension: ref_code {
+    type: string
+    description: "Marketing Reference Code"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'utm', 'code') ;;
+  }
+
   dimension: cost_center {
     type: string
     description: "Used by Topgear team, cost center allocated to the project"
