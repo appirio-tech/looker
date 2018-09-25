@@ -5,6 +5,12 @@ view: problem {
     primary_key: yes
     type: number
     sql: ${TABLE}.problem_id ;;
+
+    link: {
+      label: "Visit Problem In TC Website"
+       url: "https://community.topcoder.com/stat?c=problem_statement&pm={{ problem.problem_id._value }}&rd={{ problem.round_id._value }}&random=1"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   dimension: class_name {
