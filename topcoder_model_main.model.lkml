@@ -1202,3 +1202,23 @@ explore: non_qa_dev_challenges {
   }
 
 }
+
+  explore: non_qa_design_challenges {
+    join: challenge_groups {
+      type: left_outer
+      sql_on: ${non_qa_design_challenges.project_id} = ${challenge_groups.challenge_id} ;;
+      relationship: one_to_many
+    }
+    join: user {
+      type: left_outer
+      sql_on: ${non_qa_design_challenges.registrant_id} = ${user.coder_id} ;;
+      relationship: many_to_one
+    }
+
+    join: challenge_technology {
+      type: left_outer
+      sql_on: ${non_qa_design_challenges.project_id} = ${challenge_technology.project_id} ;;
+      relationship: one_to_many
+    }
+
+}
