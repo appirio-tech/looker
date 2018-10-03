@@ -173,6 +173,12 @@ view: challenge {
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
+  # Added on 3rd October, 2018
+  dimension: exclude_from_tco {
+    type: number
+    sql: ${TABLE}.exclude_from_tco ;;
+  }
+
   # Added on 7th June, 2018
   measure: effort_hours_estimate {
     type: sum

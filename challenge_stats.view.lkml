@@ -3,6 +3,7 @@ view: challenge_stats {
     sql: SELECT p.project_id,
        p.component_id,
        p.component_name,
+       p.exclude_from_tco,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -125,6 +126,7 @@ UNION
 SELECT p.project_id,
        p.component_id,
        p.component_name,
+       p.exclude_from_tco,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -305,6 +307,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   dimension: challenge_url {
     type: string
     sql: 'https://www.topcoder.com/challenges/' || ${TABLE}.project_id ;;
+  }
+
+  dimension: exclude_from_tco {
+    type: number
+    sql: ${TABLE}.exclude_from_tco ;;
   }
 
   measure: num_registrations {

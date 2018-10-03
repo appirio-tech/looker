@@ -3,6 +3,7 @@ view: non_qa_dev_challenges {
     sql: SELECT p.project_id,
        p.component_id,
        p.component_name,
+       p.exclude_from_tco,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -129,7 +130,12 @@ where project_technology.name in ('QA'))
       sql: ${TABLE}.task_ind ;;
     }
 
-    measure: count_distinct_challenge {
+   dimension: exclude_from_tco {
+    type: number
+    sql: ${TABLE}.exclude_from_tco ;;
+   }
+
+   measure: count_distinct_challenge {
       type: count_distinct
       sql: ${TABLE}.project_id;;
     }
