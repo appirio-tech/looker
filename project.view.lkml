@@ -174,9 +174,10 @@ view: challenge {
   }
 
   # Added on 3rd October, 2018
-  dimension: exclude_from_tco {
+  dimension: exclude_from_TCO {
     type: number
-    sql: ${TABLE}.exclude_from_tco ;;
+    description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
+    sql: ${TABLE}.exclude_from_TCO ;;
   }
 
   # Added on 7th June, 2018

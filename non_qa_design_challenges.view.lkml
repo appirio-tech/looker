@@ -3,7 +3,7 @@ view: non_qa_design_challenges {
     sql: SELECT p.project_id,
        p.component_id,
        p.component_name,
-       p.exclude_from_tco,
+       p.exclude_from_TCO,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -130,9 +130,10 @@ where project_technology.name in ('QA'))
       sql: ${TABLE}.task_ind ;;
     }
 
-   dimension: exclude_from_tco {
+   dimension: exclude_from_TCO {
     type: number
-    sql: ${TABLE}.exclude_from_tco ;;
+    description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
+    sql: ${TABLE}.exclude_from_TCO ;;
    }
 
     measure: count_distinct_challenge {

@@ -3,7 +3,7 @@ view: challenge_stats {
     sql: SELECT p.project_id,
        p.component_id,
        p.component_name,
-       p.exclude_from_tco,
+       p.exclude_from_TCO,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -126,7 +126,7 @@ UNION
 SELECT p.project_id,
        p.component_id,
        p.component_name,
-       p.exclude_from_tco,
+       p.exclude_from_TCO,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -309,9 +309,10 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: 'https://www.topcoder.com/challenges/' || ${TABLE}.project_id ;;
   }
 
-  dimension: exclude_from_tco {
+  dimension: exclude_from_TCO {
     type: number
-    sql: ${TABLE}.exclude_from_tco ;;
+    description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
+    sql: ${TABLE}.exclude_from_TCO ;;
   }
 
   measure: num_registrations {
