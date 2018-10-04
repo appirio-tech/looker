@@ -149,18 +149,7 @@ where project_technology.name in ('QA'))
       primary_key: yes
       description: "Challenge ID Alias"
       type: number
-      hidden: yes
       sql: ${TABLE}.project_id ;;
-    }
-
-    dimension: challenge_id {
-      type: number
-      sql: ${TABLE}.project_id ;;
-      link: {
-        label: "Challenge Link"
-        url: "https://www.topcoder.com/challenges/{{ challenge_stats.challenge_id._value }}"
-        icon_url: "https://looker.com/favicon.ico"
-      }
     }
 
     dimension: component_id {
