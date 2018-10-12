@@ -160,11 +160,6 @@ where project_technology.name in ('QA'))
     dimension: component_name {
       type: string
       label: "Challenge Name"
-      link: {
-        label: "Challenge Link"
-        url: "https://www.topcoder.com/challenges/{{ challenge_stats.project_id._value }}"
-        icon_url: "https://looker.com/favicon.ico"
-      }
       sql: ${TABLE}.component_name ;;
     }
 
