@@ -4,6 +4,7 @@ view: challenge_stats {
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
+       p.tco_track,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -127,6 +128,7 @@ SELECT p.project_id,
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
+       p.tco_track,
        p.num_registrations,
        p.num_submissions,
        p.num_valid_submissions,
@@ -313,6 +315,12 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: number
     description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
     sql: ${TABLE}.exclude_from_TCO ;;
+  }
+
+  dimension: tco_track {
+    type: string
+    description: "specifies challenge category like Develop, Design, QA etc. specifically for TCO leaderboard"
+    sql: ${TABLE}.tco_track ;;
   }
 
   measure: num_registrations {

@@ -143,6 +143,12 @@ view: challenge {
     sql: ${TABLE}.digital_run_ind ;;
   }
 
+  dimension: tco_track {
+    type: string
+    description: "specifies challenge category like Develop, Design, QA etc. specifically for TCO leaderboard"
+    sql: ${TABLE}.tco_track ;;
+  }
+
   measure: dr_points {
     type: sum
     sql: ${TABLE}.dr_points ;;
