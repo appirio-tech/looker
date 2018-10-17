@@ -10,7 +10,7 @@ view: member_skill {
 
   dimension: challenge {
     type: yesno
-    description: "Skill based on challenge participation"
+    description: "If the Skill source is a challenge i.e. user has participated in a challenge that required this skill"
     sql: ${TABLE}.challenge ;;
   }
 
@@ -35,11 +35,13 @@ view: member_skill {
 
   dimension: external {
     type: yesno
+    description: "Skill imported from a connected user account e.g. Stack Overflow"
     sql: ${TABLE}.external ;;
   }
 
-  dimension: hidden {
+  dimension: active {
     type: yesno
+    description: "Deactivated or removed by the user or system"
     sql: ${TABLE}.hidden ;;
   }
 
@@ -51,12 +53,13 @@ view: member_skill {
 
   dimension: score {
     type: number
+    description: "Relative strength of skil (computed by the system). A higher score denotes better expertise on the skill"
     sql: ${TABLE}.score ;;
   }
 
   dimension: skill_id {
     type: number
-    #hidden: yes
+    hidden: yes
     sql: ${TABLE}.skill_id ;;
   }
 
@@ -82,12 +85,13 @@ view: member_skill {
 
   dimension: updated_by {
     type: number
+    hidden: yes
     sql: ${TABLE}.updated_by ;;
   }
 
   dimension: user_entered {
     type: yesno
-    description: "Skill updated by user"
+    description: "Skill has been entered by user"
     sql: ${TABLE}.user_entered ;;
   }
 
