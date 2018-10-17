@@ -16,6 +16,7 @@ view: member_skill {
 
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -30,6 +31,7 @@ view: member_skill {
 
   dimension: created_by {
     type: number
+    hidden: yes
     sql: ${TABLE}.created_by ;;
   }
 
@@ -41,7 +43,7 @@ view: member_skill {
 
   dimension: active {
     type: yesno
-    description: "Deactivated or removed by the user or system"
+    description: "No implies skill has been removed by the user or system"
     sql: ${TABLE}.hidden ;;
   }
 

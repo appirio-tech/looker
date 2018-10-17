@@ -4,6 +4,7 @@ view: skill {
   dimension: skill_id {
     primary_key: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.skill_id ;;
   }
 
@@ -13,28 +14,10 @@ view: skill {
     sql: ${TABLE}.categories ;;
   }
 
-  dimension_group: created {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.created_at ;;
-  }
-
-  dimension: created_by {
-    type: number
-    sql: ${TABLE}.created_by ;;
-  }
 
   dimension: name {
     type: string
-    description: "Skill name"
+    description: "Technology / Skill Name"
     sql: ${TABLE}.name ;;
   }
 
@@ -46,6 +29,7 @@ view: skill {
 
   dimension: status {
     type: string
+    hidden: yes
     description: "shows whether the skill is approved or not"
     sql: ${TABLE}.status ;;
   }
@@ -54,25 +38,6 @@ view: skill {
     type: string
     description: "alternate name for a particular skill e.g. .NET includes .NET2.0, .NET3.0, .NET3.5 etc."
     sql: ${TABLE}.synonyms ;;
-  }
-
-  dimension_group: updated {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.updated_at ;;
-  }
-
-  dimension: updated_by {
-    type: number
-    sql: ${TABLE}.updated_by ;;
   }
 
   measure: count {
