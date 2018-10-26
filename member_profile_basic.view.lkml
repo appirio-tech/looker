@@ -75,7 +75,6 @@ view: member_profile_basic {
 
   dimension: first_name {
     type: string
-    hidden: yes
     sql: ${TABLE}.first_name ;;
   }
 
@@ -97,7 +96,6 @@ view: member_profile_basic {
 
   dimension: last_name {
     type: string
-    hidden: yes
     sql: ${TABLE}.last_name ;;
   }
 
@@ -115,7 +113,6 @@ view: member_profile_basic {
 
   dimension: photo_url {
     type: string
-    hidden: yes
     sql: ${TABLE}.photo_url ;;
   }
 
