@@ -1,0 +1,221 @@
+view: member_profile_basic {
+  derived_table:{
+    sql: SELECT basic.birth_date,
+    basic.country,
+    --basic.created_at,
+    --basic.created_by,
+    basic.current_location,
+    basic.gender,
+    basic.primary_interest_in_topcoder,
+    basic.short_bio,
+    basic.t_shirt_size,
+    --basic.updated_at,
+    --basic.updated_by,
+    --basic.user_id,
+    customer.business_email,
+    customer.business_phone,
+    customer.company_name,
+    customer.company_size,
+    --customer.created_at,
+    --customer.created_by,
+    customer.first_last_name,
+    customer.title,
+    --customer.updated_at,
+    --customer.updated_by,
+    --customer.user_id,
+    --personalization.created_at,
+    --personalization.created_by,
+    --personalization.updated_at,
+    --personalization.updated_by,
+    personalization.user_consent,
+    --personalization.user_id,
+    member.created_at,
+    member.created_by,
+    member.updated_at,
+    member.updated_by,
+    member.city,
+    member.email,
+    member.handle,
+    member.handle_lower,
+    member.competition_country_code,
+    member.home_country_code,
+    member.status,
+    member.tracks,
+    member.user_id
+    from tcs_dw.member_profile member LEFT OUTER JOIN tcs_dw.member_basic_info basic ON member.user_id = basic.user_id
+    LEFT OUTER JOIN tcs_dw.member_customer_info customer ON member.user_id = customer.user_id
+    LEFT OUTER JOIN tcs_dw.member_personalization personalization ON member.user_id = personalization.user_id
+
+    ;;
+
+    }
+
+  dimension_group: birth {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.birth_date ;;
+  }
+
+  dimension: country {
+    type: string
+    map_layer_name: countries
+    sql: ${TABLE}.country ;;
+  }
+
+  dimension_group: created {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: created_by {
+    type: number
+    sql: ${TABLE}.created_by ;;
+  }
+
+  dimension: current_location {
+    type: string
+    sql: ${TABLE}.current_location ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${TABLE}.gender ;;
+  }
+
+  dimension: primary_interest_in_topcoder {
+    type: string
+    sql: ${TABLE}.primary_interest_in_topcoder ;;
+  }
+
+  dimension: short_bio {
+    type: string
+    sql: ${TABLE}.short_bio ;;
+  }
+
+  dimension: t_shirt_size {
+    type: string
+    sql: ${TABLE}.t_shirt_size ;;
+  }
+
+  dimension_group: updated {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.updated_at ;;
+  }
+
+  dimension: updated_by {
+    type: number
+    sql: ${TABLE}.updated_by ;;
+  }
+
+  dimension: user_id {
+    type: number
+    primary_key: yes
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: business_email {
+    type: string
+    sql: ${TABLE}.business_email ;;
+  }
+
+  dimension: business_phone {
+    type: string
+    sql: ${TABLE}.business_phone ;;
+  }
+
+  dimension: company_name {
+    type: string
+    sql: ${TABLE}.company_name ;;
+  }
+
+  dimension: company_size {
+    type: string
+    sql: ${TABLE}.company_size ;;
+  }
+
+  dimension: first_last_name {
+    type: string
+    sql: ${TABLE}.first_last_name ;;
+  }
+
+  dimension: title {
+    type: string
+    sql: ${TABLE}.title ;;
+  }
+
+  dimension: user_consent {
+    type: yesno
+    sql: ${TABLE}.user_consent ;;
+  }
+
+  dimension: city {
+    type: string
+    sql: ${TABLE}.city ;;
+  }
+
+  dimension: competition_country_code {
+    type: string
+    sql: ${TABLE}.competition_country_code ;;
+  }
+
+ dimension: email {
+    type: string
+    sql: ${TABLE}.email ;;
+  }
+
+  dimension: handle {
+    type: string
+    sql: ${TABLE}.handle ;;
+  }
+
+  dimension: handle_lower {
+    type: string
+    sql: ${TABLE}.handle_lower ;;
+  }
+
+  dimension: home_country_code {
+    type: string
+    sql: ${TABLE}.home_country_code ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
+  dimension: tracks {
+    type: string
+    sql: ${TABLE}.tracks ;;
+  }
+
+  measure: count {
+    type: count
+  }
+
+}

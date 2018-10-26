@@ -19,47 +19,9 @@ explore: member_skill {
 
 # Added 24th October - 2018
 
-explore: member_profile_basic {
-  join: member_basic_info {
-    type: left_outer
-    sql_on: ${member_profile_basic.user_id} = ${member_basic_info.user_id} ;;
-    relationship: one_to_many
-  }
+explore: member_profile_basic {}
 
-  join: member_customer_info {
-    type: left_outer
-    sql_on: ${member_profile_basic.user_id} = ${member_customer_info.user_id} ;;
-    relationship: one_to_many
-  }
-
-  join: member_personalization {
-    type: left_outer
-    sql_on: ${member_profile_basic.user_id} = ${member_personalization.user_id} ;;
-    relationship: one_to_many
-  }
-
-}
-
-explore: member_profile_advanced {
-  join: member_basic_info {
-    type: left_outer
-    sql_on: ${member_profile_advanced.user_id} = ${member_basic_info.user_id} ;;
-    relationship: one_to_many
-  }
-
-  join: member_customer_info {
-    type: left_outer
-    sql_on: ${member_profile_advanced.user_id} = ${member_customer_info.user_id} ;;
-    relationship: one_to_many
-  }
-
-  join: member_personalization {
-    type: left_outer
-    sql_on: ${member_profile_advanced.user_id} = ${member_personalization.user_id} ;;
-    relationship: one_to_many
-  }
-
-}
+explore: member_profile_advanced {}
 
 explore: member_community {
   join: member_profile_basic{
