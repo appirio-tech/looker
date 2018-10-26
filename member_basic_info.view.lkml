@@ -52,11 +52,13 @@ view: member_basic_info {
 
   dimension: primary_interest_in_topcoder {
     type: string
+    description: "member's primary interest areas like Web Development, React Architect etc."
     sql: ${TABLE}.primary_interest_in_topcoder ;;
   }
 
   dimension: short_bio {
     type: string
+    description: "Short summary about the member"
     sql: ${TABLE}.short_bio ;;
   }
 
@@ -86,6 +88,7 @@ view: member_basic_info {
 
   dimension: user_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 

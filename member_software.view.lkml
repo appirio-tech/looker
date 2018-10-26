@@ -22,11 +22,13 @@ view: member_software {
 
   dimension: name {
     type: string
+    description: "Name of the software like Adobe, Bravo, Corel"
     sql: ${TABLE}.name ;;
   }
 
   dimension: software_type {
     type: string
+    description: "Type of software like Developer Tools, Graphics & Design etc."
     sql: ${TABLE}.software_type ;;
   }
 

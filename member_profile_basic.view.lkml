@@ -101,11 +101,13 @@ view: member_profile_basic {
 
   dimension: primary_interest_in_topcoder {
     type: string
+    description: "member's primary interest areas like Web Development, React Architect etc."
     sql: ${TABLE}.primary_interest_in_topcoder ;;
   }
 
   dimension: short_bio {
     type: string
+    description: "Short summary about the member"
     sql: ${TABLE}.short_bio ;;
   }
 
@@ -156,6 +158,7 @@ view: member_profile_basic {
 
   dimension: company_size {
     type: string
+    description: "size of the company a particular member owns like 1-50 or 500+ etc."
     sql: ${TABLE}.company_size ;;
   }
 
@@ -166,11 +169,13 @@ view: member_profile_basic {
 
   dimension: title {
     type: string
+    description: "primary role of a member like Android Developer, Researcher"
     sql: ${TABLE}.title ;;
   }
 
   dimension: user_consent {
     type: yesno
+    description: "Member consent to use his personal information to make his experience at Topcoder great"
     sql: ${TABLE}.user_consent ;;
   }
 
@@ -181,6 +186,7 @@ view: member_profile_basic {
 
   dimension: competition_country_code {
     type: string
+    description: "Country code for the country the member is competing in"
     sql: ${TABLE}.competition_country_code ;;
   }
 
@@ -201,16 +207,19 @@ view: member_profile_basic {
 
   dimension: home_country_code {
     type: string
+    description: "Country code for the country member belong to"
     sql: ${TABLE}.home_country_code ;;
   }
 
   dimension: status {
     type: string
+    description: "Status of the member account - Active, Inactive, Unverified etc."
     sql: ${TABLE}.status ;;
   }
 
   dimension: tracks {
     type: string
+    description: "Design, develop, data science or any of them in combination"
     sql: ${TABLE}.tracks ;;
   }
 

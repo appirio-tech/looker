@@ -3,11 +3,13 @@ view: member_community {
 
   dimension: blockchain {
     type: yesno
+    description: "'Yes' indicates that the member is a part of blockchain community"
     sql: ${TABLE}.blockchain ;;
   }
 
   dimension: cognitive {
     type: yesno
+    description: "'Yes' indicates that the member is a part of cognitive community"
     sql: ${TABLE}.cognitive ;;
   }
 
@@ -32,11 +34,13 @@ view: member_community {
 
   dimension: ios {
     type: yesno
+    description: "'Yes' indicates that the member is a part of IOS community"
     sql: ${TABLE}.ios ;;
   }
 
   dimension: predix {
     type: yesno
+    description: "'Yes' indicates that the member is a part of predix community"
     sql: ${TABLE}.predix ;;
   }
 
@@ -61,6 +65,7 @@ view: member_community {
 
   dimension: user_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 

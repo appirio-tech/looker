@@ -22,11 +22,13 @@ view: member_hobby {
 
   dimension: description {
     type: string
+    description: "Member personal interests in detail"
     sql: ${TABLE}.description ;;
   }
 
   dimension: hobby {
     type: string
+    description: "Member personal interests"
     sql: ${TABLE}.hobby ;;
   }
 

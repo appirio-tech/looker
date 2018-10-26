@@ -22,21 +22,25 @@ view: member_device {
 
   dimension: device_type {
     type: string
+    description: "Type of device member is using to compete in challenges like Laptop, Desktop, Mobile etc."
     sql: ${TABLE}.device_type ;;
   }
 
   dimension: manufacturer {
     type: string
+    description: "Manufacturer of the device that the member is using like Dell, HP, Apple etc."
     sql: ${TABLE}.manufacturer ;;
   }
 
   dimension: model {
     type: string
+    description: "Specific model of the device manufacturer that the member is using"
     sql: ${TABLE}.model ;;
   }
 
   dimension: operating_system {
     type: string
+    description: "Operating System of the device that the member is using"
     sql: ${TABLE}.operating_system ;;
   }
 
@@ -47,6 +51,7 @@ view: member_device {
 
   dimension: os_version {
     type: string
+    description: "Version of the Operating system on the device member is using"
     sql: ${TABLE}.os_version ;;
   }
 

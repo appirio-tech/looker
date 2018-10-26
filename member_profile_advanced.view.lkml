@@ -3,6 +3,7 @@ view: member_profile_advanced {
 
   dimension: address_type {
     type: string
+    description: "Address given is an office address or home address"
     sql: ${TABLE}.address_type ;;
   }
 
@@ -13,6 +14,7 @@ view: member_profile_advanced {
 
   dimension: competition_country_code {
     type: string
+    description: "Country code for the country the member is competing in"
     sql: ${TABLE}.competition_country_code ;;
   }
 
@@ -37,6 +39,7 @@ view: member_profile_advanced {
 
   dimension: description {
     type: string
+    description: "Brief description about the member"
     sql: ${TABLE}.description ;;
   }
 
@@ -81,6 +84,7 @@ view: member_profile_advanced {
 
   dimension: home_country_code {
     type: string
+    description: "Country code for the country member belong to"
     sql: ${TABLE}.home_country_code ;;
   }
 
@@ -106,6 +110,7 @@ view: member_profile_advanced {
 
   dimension: quote {
     type: string
+    description: "One line that represents member"
     sql: ${TABLE}.quote ;;
   }
 
@@ -116,6 +121,7 @@ view: member_profile_advanced {
 
   dimension: status {
     type: string
+    description: "Status of the member account - Active, Inactive, Unverified etc."
     sql: ${TABLE}.status ;;
   }
 
@@ -131,6 +137,7 @@ view: member_profile_advanced {
 
   dimension: tracks {
     type: string
+    description: "Design, develop, data science or any of them in combination"
     sql: ${TABLE}.tracks ;;
   }
 

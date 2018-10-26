@@ -22,11 +22,13 @@ view: member_service_provider {
 
   dimension: name {
     type: string
+    description: "Name of Service Provider like Airtel, ATT etc."
     sql: ${TABLE}.name ;;
   }
 
   dimension: service_provider_type {
     type: string
+    description: "Mobile Carrier/Internet Service Provider/Television/Other"
     sql: ${TABLE}.service_provider_type ;;
   }
 

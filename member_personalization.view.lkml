@@ -41,11 +41,13 @@ view: member_personalization {
 
   dimension: user_consent {
     type: yesno
+    description: "Member consent to use his personal information to make his experience at Topcoder great"
     sql: ${TABLE}.user_consent ;;
   }
 
   dimension: user_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 

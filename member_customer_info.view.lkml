@@ -18,6 +18,7 @@ view: member_customer_info {
 
   dimension: company_size {
     type: string
+    description: "size of the company a particular member owns like 1-50 or 500+ etc."
     sql: ${TABLE}.company_size ;;
   }
 
@@ -47,6 +48,7 @@ view: member_customer_info {
 
   dimension: title {
     type: string
+    description: "primary role of a member like Android Developer, Researcher"
     sql: ${TABLE}.title ;;
   }
 
@@ -71,6 +73,7 @@ view: member_customer_info {
 
   dimension: user_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 
