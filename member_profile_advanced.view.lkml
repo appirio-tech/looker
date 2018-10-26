@@ -44,7 +44,7 @@ view: member_profile_advanced {
     member.photo_url,
     member.quote,
     member.state_code,
-    member.zip
+    member.zip,
     member.street_address_1,
     member.street_address_2,
     member.city,
