@@ -803,25 +803,25 @@ where project_technology.name in ('QA'))
       value_format: "#,##0"
       label: "TCO Points - Design"
       sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.actual_total_prize*1
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.total_prize*1
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.70
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.30
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.total_prize*.70
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.total_prize*.30
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.65
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.25
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.10
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.65
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.25
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.10
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.60
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.22
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.08
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.60
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.22
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.08
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.56
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.20
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.08
-                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.06
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.56
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.20
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.08
+                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.06
                    ELSE 0
             END ;;
     }
