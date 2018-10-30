@@ -313,6 +313,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: exclude_from_TCO {
     type: number
+    hidden: yes
     description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
     sql: ${TABLE}.exclude_from_TCO ;;
   }

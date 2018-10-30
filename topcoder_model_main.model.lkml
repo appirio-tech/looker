@@ -22,9 +22,16 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+
   join: user {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${member_profile_basic.user_id} ;;
     relationship: many_to_one
   }
 
@@ -508,6 +515,12 @@ explore: payment {
     from: user
     type: inner
     sql_on: ${user_payment.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_many
+  }
+
+  join: member_profile_basic {
+    type: inner
+    sql_on: ${user_payment.user_id} = ${member_profile_basic.user_id} ;;
     relationship: many_to_many
   }
 
@@ -1194,7 +1207,11 @@ explore: non_qa_dev_challenges {
     sql_on: ${non_qa_dev_challenges.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
-
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${non_qa_dev_challenges.registrant_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
   join: challenge_technology {
     type: left_outer
     sql_on: ${non_qa_dev_challenges.project_id} = ${challenge_technology.project_id} ;;
@@ -1214,7 +1231,11 @@ explore: non_qa_dev_challenges {
       sql_on: ${non_qa_design_challenges.registrant_id} = ${user.coder_id} ;;
       relationship: many_to_one
     }
-
+    join: member_profile_basic {
+      type: left_outer
+      sql_on: ${non_qa_design_challenges.registrant_id} = ${member_profile_basic.user_id} ;;
+      relationship: many_to_one
+    }
     join: challenge_technology {
       type: left_outer
       sql_on: ${non_qa_design_challenges.project_id} = ${challenge_technology.project_id} ;;
