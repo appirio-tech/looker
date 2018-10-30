@@ -78,6 +78,13 @@ view: member_profile_advanced {
     sql: ${TABLE}.birth_date ;;
   }
 
+  dimension: age_bucket {
+    type: tier
+    tiers: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    style: relational # the default value, could be excluded
+    sql: datediff(year, ${TABLE}.birth_date, current_date) ;;
+  }
+
   dimension: country {
     type: string
     map_layer_name: countries
