@@ -991,25 +991,25 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     value_format: "#,##0"
     label: "TCO Points - Dev/Design/QA"
     sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.total_prize*1
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*1
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.total_prize*.70
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.total_prize*.30
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.70
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.30
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.65
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.25
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.total_prize*.10
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.65
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.25
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.60
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.22
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.total_prize*.08
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.60
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.22
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.56
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.20
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.08
-                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.total_prize*.06
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.56
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.20
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
+                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.06
                    ELSE 0
             END ;;
   }
