@@ -41,13 +41,13 @@ view: member_stats {
     sql: ${TABLE}.appeals_success_rate ;;
   }
 
-  dimension: avg_num_submissions {
-    type: number
+  measure: avg_num_submissions {
+    type: average
     sql: ${TABLE}.avg_num_submissions ;;
   }
 
-  dimension: avg_placement {
-    type: number
+  measure: avg_placement {
+    type: average
     sql: ${TABLE}.avg_placement ;;
   }
 
@@ -56,8 +56,8 @@ view: member_stats {
     sql: ${TABLE}.avg_rank ;;
   }
 
-  dimension: avg_score {
-    type: number
+  measure: avg_score {
+    type: average
     sql: ${TABLE}.avg_score ;;
   }
 
@@ -110,12 +110,12 @@ view: member_stats {
     sql: ${TABLE}.default_language ;;
   }
 
-  dimension: failures {
-    type: number
+  measure: failures {
+    type: sum
     sql: ${TABLE}.failures ;;
   }
 
-  dimension: fulfillment {
+  measure: fulfillment {
     type: number
     sql: ${TABLE}.fulfillment ;;
   }
@@ -178,13 +178,13 @@ view: member_stats {
     sql: ${TABLE}.num_inquiries ;;
   }
 
-  dimension: passed_review {
-    type: number
+  measure: passed_review {
+    type: sum
     sql: ${TABLE}.passed_review ;;
   }
 
-  dimension: passed_screening {
-    type: number
+  measure: passed_screening {
+    type: sum
     sql: ${TABLE}.passed_screening ;;
   }
 
