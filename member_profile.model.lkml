@@ -70,3 +70,7 @@ explore: member_subscription {
     relationship: many_to_one
   }
 }
+
+# Added 1st November - 2018
+
+explore: member_stats {}
