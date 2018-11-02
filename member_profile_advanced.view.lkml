@@ -184,6 +184,7 @@ view: member_profile_advanced {
   }
 
   dimension: first_last_name {
+    label: "Full name"
     type: string
     sql: ${TABLE}.first_last_name ;;
   }
