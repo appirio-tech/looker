@@ -36,9 +36,9 @@ view: member_stats {
     sql: ${TABLE}.appeals ;;
   }
 
-  dimension: appeals_success_rate {
+  dimension: appeal_success_rate {
     type: number
-    sql: ${TABLE}.appeals_success_rate ;;
+    sql: ${TABLE}.appeal_success_rate ;;
   }
 
   measure: avg_num_submissions {
