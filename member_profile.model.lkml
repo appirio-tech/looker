@@ -73,4 +73,20 @@ explore: member_subscription {
 
 # Added 1st November - 2018
 
-explore: member_stats {}
+explore: member_stats {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_stats.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
+
+# Added 6th November - 2018
+
+explore: member_stats_history {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_stats_history.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
