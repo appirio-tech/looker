@@ -90,3 +90,90 @@ explore: member_stats_history {
     relationship: many_to_one
   }
 }
+
+# Member Newsletter join to basic user profile using user Id
+# Added 19th Nov, 2018
+explore: member_newsletters {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_newsletters.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: one_to_one
+  }
+}
+
+# Added 20th November - 2018
+
+explore: member_profile_360 {
+  join: member_stats {
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_stats.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_stats_history {
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_stats_history.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${member_stats_history.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_many
+  }
+
+  join: member_community{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_community.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_device{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_device.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_hobby{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_hobby.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_skill{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_skill.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: skill {
+    type: left_outer
+    sql_on: ${member_skill.skill_id} = ${skill.skill_id} ;;
+    relationship: many_to_many
+  }
+
+  join: member_service_provider{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_service_provider.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_software{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_software.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_subscription{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_subscription.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_newsletters{
+    type: left_outer
+    sql_on: ${member_profile_360.user_id} = ${member_newsletters.user_id} ;;
+    relationship: one_to_many
+  }
+
+}

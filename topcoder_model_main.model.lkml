@@ -273,7 +273,7 @@ explore: connect_project {
 
   join: connect_messages {
     type: left_outer
-    sql_on: ${connect_project.id} = ${connect_messages.referenceid} ;;
+    sql_on: ${connect_project.id} = ${connect_messages.project_id} ;;
     relationship: one_to_many
   }
 
@@ -1243,3 +1243,18 @@ explore: non_qa_dev_challenges {
     }
 
 }
+
+#Added 14th November 2018
+
+explore: challenge_user_payments {
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge_user_payments.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+   }
+    join: user {
+      type: left_outer
+      sql_on: ${challenge_user_payments.user_id} = ${user.coder_id} ;;
+      relationship: many_to_one
+    }
+  }

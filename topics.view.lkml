@@ -1,4 +1,4 @@
-view: connect_messages {
+view: connect_messages_1 {
   sql_table_name: public.topics ;;
 
   dimension: discoursetopicid {
