@@ -177,3 +177,13 @@ explore: member_profile_360 {
   }
 
 }
+
+# Added 22nd November - 2018
+
+explore: membercode_businessconduct {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${membercode_businessconduct.userid} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
