@@ -175,15 +175,13 @@ explore: member_profile_360 {
     sql_on: ${member_profile_360.user_id} = ${member_newsletters.user_id} ;;
     relationship: one_to_many
   }
-
 }
 
 # Added 22nd November - 2018
-
-explore: membercode_businessconduct {
+explore: member_business_conduct_survey {
   join: member_profile_basic {
     type: left_outer
-    sql_on: ${membercode_businessconduct.userid} = ${member_profile_basic.user_id} ;;
+    sql_on: ${member_business_conduct_survey.user_id} = ${member_profile_basic.user_id} ;;
     relationship: many_to_one
   }
 }
