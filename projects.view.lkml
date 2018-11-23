@@ -281,6 +281,26 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'du') ;;
   }
 
+  # Added on 23 Nov
+
+  dimension: project_classification_code {
+    type: string
+    description: "Used by Topgear team, Project classification code of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'project_classification_code') ;;
+  }
+
+  dimension: invoice_type {
+    type: string
+    description: "Used by Topgear team, Invoice type of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'invoice_type') ;;
+  }
+
+  dimension: sow_number {
+    type: number
+    description: "Used by Topgear team, Sow number of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sow_number') ;;
+  }
+
   dimension: customer_project {
     type: string
     description: "Used by Topgear team, Customer name of the project"
