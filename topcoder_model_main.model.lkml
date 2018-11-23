@@ -280,7 +280,7 @@ explore: connect_project {
   join: message_author {
     from: user
     type: left_outer
-    sql_on: ${connect_messages.createdby} = ${message_author.coder_id} ;;
+    sql_on: ${connect_messages.created_by} = ${message_author.coder_id} ;;
     relationship: many_to_one
   }
 }
