@@ -1087,6 +1087,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.payment ;;
   }
 
+  measure: wins {
+    type: sum
+    sql: CASE WHEN (${TABLE}.placed != NULL or ${TABLE}.placed > 0) THEN 1
+         else 0
+         end;;
+  }
+
   measure: old_rating {
     type: sum
     sql: ${TABLE}.old_rating ;;
