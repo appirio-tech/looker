@@ -3,7 +3,7 @@ view: connect_messages {
 
   dimension: id {
     primary_key: yes
-    hidden: yes
+    hidden: no
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -106,19 +106,19 @@ view: connect_messages {
 
   dimension: reference {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.reference ;;
   }
 
   dimension: referenceid {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.referenceid ;;
   }
 
   dimension: tag {
     type: string
-    sql: ${TABLE}.tag ;;
+    sql: ${TABLE}."tag" ;;
   }
 
   dimension: title {

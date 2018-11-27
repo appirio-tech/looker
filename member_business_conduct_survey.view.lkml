@@ -69,16 +69,21 @@ view: member_business_conduct_survey {
 
   dimension: response_id {
     type: string
+    primary_key: yes
     description: "Response Id groups all users answers for a single survey in one sitting"
     sql: ${TABLE}.response_id ;;
   }
 
-  dimension: score {
-    type: number
-    sql: ${TABLE}.score ;;
+  measure: score {
+    type:sum
+    description: "Each correct answer score is 1"
+    sql: CASE
+   when ${TABLE}.is_answer_correct='yes' then 1
+      else 0
+      END;;
   }
 
-  dimension_group: start {
+dimension_group: start {
     type: time
     description: "Start Date of the survey"
     timeframes: [
