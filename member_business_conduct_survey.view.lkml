@@ -70,6 +70,7 @@ view: member_business_conduct_survey {
   dimension: response_id {
     type: string
     primary_key: yes
+    label: "Survey Id"
     description: "Response Id groups all users answers for a single survey in one sitting"
     sql: ${TABLE}.response_id ;;
   }
