@@ -43,6 +43,7 @@ view: member_stats {
 
   measure: avg_num_submissions {
     type: average
+    description: "Available for Marathon only"
     sql: ${TABLE}.avg_num_submissions ;;
   }
 
@@ -53,6 +54,7 @@ view: member_stats {
 
   dimension: avg_rank {
     type: number
+    description: "Available for Marathon only"
     sql: ${TABLE}.avg_rank ;;
   }
 
@@ -63,6 +65,7 @@ view: member_stats {
 
   dimension: best_rank {
     type: number
+    description: "Available for Marathon only"
     sql: ${TABLE}.best_rank ;;
   }
 
@@ -73,6 +76,7 @@ view: member_stats {
 
   dimension: competitions {
     type: number
+    description: "Avialable in SRM & Marathon"
     sql: ${TABLE}.competitions ;;
   }
 
@@ -83,6 +87,7 @@ view: member_stats {
 
   dimension: country_rank {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.country_rank ;;
   }
 
@@ -127,6 +132,7 @@ view: member_stats {
 
   dimension: maximum_rating {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.maximum_rating ;;
   }
 
@@ -137,6 +143,7 @@ view: member_stats {
 
   dimension: minimum_rating {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.minimum_rating ;;
   }
 
@@ -156,11 +163,13 @@ view: member_stats {
 
   dimension: most_recent_event_name {
     type: string
+    description: "Available in SRM, Marathon"
     sql: ${TABLE}.most_recent_event_name ;;
   }
 
   dimension_group: most_recent_submission {
     type: time
+    description: "Not Available in Code"
     timeframes: [
       raw,
       time,
@@ -190,6 +199,7 @@ view: member_stats {
 
   dimension: percentile {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.percentile ;;
   }
 
@@ -200,11 +210,13 @@ view: member_stats {
 
   dimension: rank {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.rank ;;
   }
 
   dimension: rating {
     type: number
+    description: "Available in SRM, Marathon,Assembly & UI"
     sql: ${TABLE}.rating ;;
   }
 
@@ -225,6 +237,7 @@ view: member_stats {
 
   dimension: school_rank {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.school_rank ;;
   }
 
@@ -250,11 +263,13 @@ view: member_stats {
 
   dimension: top_five_finishes {
     type: number
+    description: "Available for Marathon only"
     sql: ${TABLE}.top_five_finishes ;;
   }
 
   dimension: top_ten_finishes {
     type: number
+    description: "Available for Marathon only"
     sql: ${TABLE}.top_ten_finishes ;;
   }
 
@@ -290,6 +305,7 @@ view: member_stats {
 
   dimension: volatility {
     type: number
+    description: "Avialable in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.volatility ;;
   }
 
@@ -300,6 +316,7 @@ view: member_stats {
 
   dimension: wins {
     type: number
+    description: "Avialable for all type"
     sql: ${TABLE}.wins ;;
   }
 
