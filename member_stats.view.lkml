@@ -8,11 +8,13 @@ view: member_stats {
 
   dimension: active_country_rank {
     type: number
+    description: "Available in Assembly & UI"
     sql: ${TABLE}.active_country_rank ;;
   }
 
   dimension: active_percentile {
     type: number
+    description: "Available in Assembly & UI"
     sql: ${TABLE}.active_percentile ;;
   }
 
@@ -23,21 +25,25 @@ view: member_stats {
 
   dimension: active_rank {
     type: number
+    description: "Available in Assembly & UI"
     sql: ${TABLE}.active_rank ;;
   }
 
   dimension: active_school_rank {
     type: number
+    description: "Available in Assembly & UI"
     sql: ${TABLE}.active_school_rank ;;
   }
 
   dimension: appeals {
     type: number
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.appeals ;;
   }
 
   dimension: appeal_success_rate {
     type: number
+    description: "Available for Bug, Assembly, UI, F2F & Code"
     sql: ${TABLE}.appeal_success_rate ;;
   }
 
@@ -49,6 +55,7 @@ view: member_stats {
 
   measure: avg_placement {
     type: average
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.avg_placement ;;
   }
 
@@ -60,6 +67,7 @@ view: member_stats {
 
   measure: avg_score {
     type: average
+    description: "Available in Assembly, UI, F2F & Code"
     sql: ${TABLE}.avg_score ;;
   }
 
@@ -76,7 +84,7 @@ view: member_stats {
 
   dimension: competitions {
     type: number
-    description: "Avialable in SRM & Marathon"
+    description: "Available in SRM & Marathon"
     sql: ${TABLE}.competitions ;;
   }
 
@@ -87,7 +95,7 @@ view: member_stats {
 
   dimension: country_rank {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.country_rank ;;
   }
 
@@ -127,23 +135,25 @@ view: member_stats {
 
   dimension: max_score {
     type: number
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.max_score ;;
   }
 
   dimension: maximum_rating {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.maximum_rating ;;
   }
 
   dimension: min_score {
     type: number
+    description: "Available for Bug, Assembly, UI, F2F & Code"
     sql: ${TABLE}.min_score ;;
   }
 
   dimension: minimum_rating {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.minimum_rating ;;
   }
 
@@ -184,22 +194,25 @@ view: member_stats {
 
   dimension: num_inquiries {
     type: number
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.num_inquiries ;;
   }
 
   measure: passed_review {
     type: sum
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.passed_review ;;
   }
 
   measure: passed_screening {
     type: sum
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.passed_screening ;;
   }
 
   dimension: percentile {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.percentile ;;
   }
 
@@ -210,7 +223,7 @@ view: member_stats {
 
   dimension: rank {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.rank ;;
   }
 
@@ -222,6 +235,7 @@ view: member_stats {
 
   dimension: reliability {
     type: number
+    description: "Available in Assembly & UI"
     sql: ${TABLE}.reliability ;;
   }
 
@@ -232,17 +246,19 @@ view: member_stats {
 
   dimension: review_success_rate {
     type: number
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.review_success_rate ;;
   }
 
   dimension: school_rank {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.school_rank ;;
   }
 
   dimension: screening_success_rate {
     type: number
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.screening_success_rate ;;
   }
 
@@ -253,11 +269,13 @@ view: member_stats {
 
   dimension: submission_rate {
     type: number
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.submission_rate ;;
   }
 
   dimension: submissions {
     type: number
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.submissions ;;
   }
 
@@ -305,18 +323,19 @@ view: member_stats {
 
   dimension: volatility {
     type: number
-    description: "Avialable in SRM, Marathon, Assembly & UI"
+    description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.volatility ;;
   }
 
   dimension: win_percent {
     type: number
+    description: "Not Available in SRM & Marathon"
     sql: ${TABLE}.win_percent ;;
   }
 
   dimension: wins {
     type: number
-    description: "Avialable for all type"
+    description: "Available for all type"
     sql: ${TABLE}.wins ;;
   }
 
