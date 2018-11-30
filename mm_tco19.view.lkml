@@ -11,8 +11,8 @@ view: mm_tco19 {
     sql: ${TABLE}.handle ;;
   }
 
-  dimension: points {
-    type: number
+  measure: points {
+    type: sum
     sql: ${TABLE}.points ;;
   }
 
@@ -21,8 +21,8 @@ view: mm_tco19 {
     sql: ${TABLE}.round_id ;;
   }
 
-  dimension: score {
-    type: number
+  measure: score {
+    type: sum
     sql: ${TABLE}.score ;;
   }
 
