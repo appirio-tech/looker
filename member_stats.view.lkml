@@ -3,6 +3,7 @@ view: member_stats {
 
   dimension: active_contests {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.active_contests ;;
   }
 
@@ -20,6 +21,7 @@ view: member_stats {
 
   dimension: active_projects {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.active_projects ;;
   }
 
@@ -90,6 +92,7 @@ view: member_stats {
 
   dimension: contests {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.contests ;;
   }
 
@@ -125,11 +128,13 @@ view: member_stats {
 
   measure: failures {
     type: sum
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.failures ;;
   }
 
   measure: fulfillment {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.fulfillment ;;
   }
 
@@ -218,6 +223,7 @@ view: member_stats {
 
   dimension: projects {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.projects ;;
   }
 
@@ -241,6 +247,7 @@ view: member_stats {
 
   dimension: reposts {
     type: number
+    description: "Available for Co-Poilts"
     sql: ${TABLE}.reposts ;;
   }
 
