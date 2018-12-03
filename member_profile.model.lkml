@@ -185,3 +185,17 @@ explore: member_business_conduct_survey {
     relationship: many_to_one
   }
 }
+
+# Added 2nd November - 2018, Member Submission pulled from DynamoDb
+explore: member_submission {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+  join: challenge {
+    type: left_outer
+    sql_on: ${member_submission.challenge_id} = ${challenge.challenge_id} ;;
+    relationship: many_to_one
+  }
+}
