@@ -1133,18 +1133,6 @@ explore: srm_tco19 {
 
 }
 
-
-# Added 30th November - 2019
-explore: mm_tco19 {
-
-  join: member_profile_basic {
-    type: left_outer
-    sql_on: ${mm_tco19.user_id} = ${member_profile_basic.user_id} ;;
-    relationship: many_to_one
-  }
-
-}
-
 # Added 3rd September - 2018
 explore: user_terms_signed {
 
