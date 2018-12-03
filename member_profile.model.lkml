@@ -103,16 +103,17 @@ explore: member_newsletters {
 
 # Added 20th November - 2018
 
-explore: member_profile_360 {
+explore: member_profile_all {
+  label: "Member Profile 360"
   join: member_stats {
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_stats.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_stats.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_stats_history {
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_stats_history.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_stats_history.user_id} ;;
     relationship: one_to_many
   }
 
@@ -124,25 +125,25 @@ explore: member_profile_360 {
 
   join: member_community{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_community.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_community.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_device{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_device.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_device.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_hobby{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_hobby.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_hobby.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_skill{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_skill.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_skill.user_id} ;;
     relationship: one_to_many
   }
 
@@ -154,27 +155,34 @@ explore: member_profile_360 {
 
   join: member_service_provider{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_service_provider.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_service_provider.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_software{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_software.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_software.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_subscription{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_subscription.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_subscription.user_id} ;;
     relationship: one_to_many
   }
 
   join: member_newsletters{
     type: left_outer
-    sql_on: ${member_profile_360.user_id} = ${member_newsletters.user_id} ;;
+    sql_on: ${member_profile_all.user_id} = ${member_newsletters.user_id} ;;
     relationship: one_to_many
   }
+
+  join: member_business_conduct_survey {
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_business_conduct_survey.user_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 # Added 22nd November - 2018

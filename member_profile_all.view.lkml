@@ -1,4 +1,4 @@
-view: member_profile_360 {
+view: member_profile_all {
   derived_table:{
     sql: SELECT basic.birth_date,
           basic.country,
