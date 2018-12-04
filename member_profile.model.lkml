@@ -206,4 +206,15 @@ explore: member_submission {
     sql_on: ${member_submission.challenge_id} = ${challenge.challenge_id} ;;
     relationship: many_to_one
   }
+  join:direct_project_dim  {
+     type: left_outer
+     sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id};;
+    relationship: many_to_one
+  }
+  join:billing_account_budgets  {
+    view_label: "Billing Account"
+    type: left_outer
+    sql_on: ${direct_project_dim.billing_account_id} = ${billing_account_budgets.billing_account_id};;
+    relationship: many_to_many
+  }
 }
