@@ -56,13 +56,18 @@ view: member_profile_all {
           member.status,
           member.tracks,
           member.user_id
-          from tcs_dw.member_profile member LEFT OUTER JOIN tcs_dw.member_basic_info basic ON member.user_id = basic.user_id
+          from tcs_dw.member_profile member
+          LEFT OUTER JOIN tcs_dw.member_basic_info basic ON member.user_id = basic.user_id
           LEFT OUTER JOIN tcs_dw.member_customer_info customer ON member.user_id = customer.user_id
           LEFT OUTER JOIN tcs_dw.member_personalization personalization ON member.user_id = personalization.user_id
 
           ;;
-
+          persist_for: "8 hours" #New data gets loaded every 8 hours, hence prudent to persist for 8 hours.
+          indexes: ["member.user_id", "member.handle","member.email","member.status"]
+          distribution: "member.user_id"
     }
+
+
 
     dimension_group: birth {
       type: time
