@@ -62,13 +62,11 @@ view: member_profile_all {
           LEFT OUTER JOIN tcs_dw.member_personalization personalization ON member.user_id = personalization.user_id
 
           ;;
-          persist_for: "2 minute"
-          distribution_style: even
+          persist_for: "8 hours" #Persist for 8 hours as data gets loaded in every 8 hours
+          distribution_style: even #Required for saving the look
           indexes: ["user_id"]
 
-            }
-
-
+    }
 
     dimension_group: birth {
       type: time
