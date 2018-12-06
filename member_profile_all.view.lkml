@@ -62,10 +62,11 @@ view: member_profile_all {
           LEFT OUTER JOIN tcs_dw.member_personalization personalization ON member.user_id = personalization.user_id
 
           ;;
-          persist_for: "8 hours" #New data gets loaded every 8 hours, hence prudent to persist for 8 hours.
-          indexes: ["member.user_id", "member.handle","member.email","member.status"]
-          distribution: "member.user_id"
-    }
+          persist_for: "2 minute"
+          distribution_style: even
+          indexes: ["user_id"]
+
+            }
 
 
 
