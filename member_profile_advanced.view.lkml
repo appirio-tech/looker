@@ -89,6 +89,7 @@ view: member_profile_advanced {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+    group_label: "Address"
   }
 
   dimension_group: created {
@@ -204,12 +205,14 @@ view: member_profile_advanced {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    group_label: "Address"
   }
 
   dimension: competition_country_code {
     type: string
     description: "Country code for the country the member is competing in"
     sql: ${TABLE}.competition_country_code ;;
+    group_label: "Address"
   }
 
  dimension: email {
@@ -231,6 +234,7 @@ view: member_profile_advanced {
     type: string
     description: "Country code for the country member belong to"
     sql: ${TABLE}.home_country_code ;;
+    group_label: "Address"
   }
 
   dimension: status {
@@ -249,6 +253,7 @@ view: member_profile_advanced {
     type: string
     description: "Address given is an office address or home address"
     sql: ${TABLE}.address_type ;;
+    group_label: "Address"
   }
 
   dimension: description {
@@ -310,21 +315,25 @@ view: member_profile_advanced {
   dimension: state_code {
     type: string
     sql: ${TABLE}.state_code ;;
+    group_label: "Address"
   }
 
   dimension: street_address_1 {
     type: string
     sql: ${TABLE}.street_address_1 ;;
+    group_label: "Address"
   }
 
   dimension: street_address_2 {
     type: string
     sql: ${TABLE}.street_address_2 ;;
+    group_label: "Address"
   }
 
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;
+    group_label: "Address"
   }
 
   measure: count {
