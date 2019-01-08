@@ -182,8 +182,7 @@ view: challenge {
   # Added on 3rd October, 2018
   dimension: exclude_from_TCO {
     type: number
-    hidden: yes
-    description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
+    description: "Used in Copilot leaderboard to exclude challenges were copilot is the submitter"
     sql: ${TABLE}.exclude_from_TCO ;;
   }
 
