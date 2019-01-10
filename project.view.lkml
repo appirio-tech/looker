@@ -179,11 +179,11 @@ view: challenge {
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
-  # Added on 3rd October, 2018
-  dimension: exclude_from_TCO {
+  # Added on 10th Jan, 2019
+  dimension: tco_flag {
     type: number
-    description: "Used in Copilot leaderboard to exclude challenges were copilot is the submitter"
-    sql: ${TABLE}.exclude_from_TCO ;;
+    description: "Used in TCO Leaderboards for various purposes to include / exclude certain challenges e.g. copilot submitter etc"
+    sql: ${TABLE}.tco_flag;;
   }
 
   # Added on 7th June, 2018
