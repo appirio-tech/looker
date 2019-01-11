@@ -93,7 +93,7 @@ view: non_qa_design_challenges {
        pr.submit_timestamp,
        pr.review_complete_timestamp,
        pr.prize_amount AS payment,
-       --pr.old_rating,
+       pr.prize_type_id,
        --pr.new_rating,
        --pr.old_reliability,
        --pr.new_reliability,
@@ -160,6 +160,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
       description: "Challenge ID Alias"
       type: number
       sql: ${TABLE}.project_id ;;
+    }
+
+    dimension: prize_type {
+      description: "A value of 15 means a contest prize, 14 represents a checkpoint prize"
+      sql:  ${TABLE}.prize_type_id ;;
     }
 
     dimension: component_id {
