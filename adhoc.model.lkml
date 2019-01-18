@@ -11,3 +11,5 @@ include: "*.view.lkml"                       # include all views in this project
      sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
     }
  }
+
+explore: copilot_self_payment {}
