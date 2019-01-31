@@ -569,6 +569,12 @@ view: challenge {
     sql: ${TABLE}.winner_id ;;
   }
 
+  dimension: technology_list {
+    type: string
+    description: "A comma separated list of technolgies used in the challenge. More details are available in Challenge Technology view"
+    sql: ${TABLE}.technology_list;;
+  }
+
   measure: review_process_duration {
     type: sum
     description: "Time taken by reviewer to review the submissions"
