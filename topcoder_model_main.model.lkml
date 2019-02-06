@@ -260,14 +260,14 @@ explore: connect_project {
 
   join: connect_project_members {
     type: left_outer
-    sql_on: ${connect_project.id} = ${connect_project_members.projectid} ;;
+    sql_on: ${connect_project.id} = ${connect_project_members.project_id} ;;
     relationship: one_to_many
   }
 
   join: connect_project_member_user {
     from: user
     type: left_outer
-    sql_on: ${connect_project_members.createdby} = ${connect_project_member_user.coder_id} ;;
+    sql_on: ${connect_project_members.created_by} = ${connect_project_member_user.coder_id} ;;
     relationship: many_to_one
   }
 
