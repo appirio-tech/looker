@@ -575,6 +575,13 @@ view: challenge {
     sql: ${TABLE}.technology_list;;
   }
 
+  dimension: challenge_fee_percent {
+    type: number
+    description: "Challenge Fee %"
+    value_format: "0.00%"
+    sql:  ${TABLE}.challenge_fee_percentage ;;
+  }
+
   measure: review_process_duration {
     type: sum
     description: "Time taken by reviewer to review the submissions"
