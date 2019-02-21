@@ -749,6 +749,7 @@ where project_technology.name in ('QA'))
     }
 
     measure: final_score {
+      label: "score"
       type: sum
       description: "Score after any re-review appeals"
       sql: ${TABLE}.final_score ;;

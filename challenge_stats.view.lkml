@@ -928,6 +928,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   }
 
   measure: final_score {
+    label: "score"
     type: sum
     description: "Score after any re-review appeals"
     sql: ${TABLE}.final_score ;;
