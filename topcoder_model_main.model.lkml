@@ -29,9 +29,9 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
-  join: member_profile_basic {
+  join: member_profile_advanced {
     type: left_outer
-    sql_on: ${challenge_stats.registrant_id} = ${member_profile_basic.user_id} ;;
+    sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
     relationship: many_to_one
   }
 
