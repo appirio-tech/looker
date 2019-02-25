@@ -7,11 +7,6 @@ view: connect_project_phases {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: budget {
-    type: number
-    sql: ${TABLE}.budget ;;
-  }
-
   dimension_group: created {
     type: time
     timeframes: [
@@ -48,11 +43,6 @@ view: connect_project_phases {
   dimension: deleted_by {
     type: number
     sql: ${TABLE}.deleted_by ;;
-  }
-
-  dimension: duration {
-    type: number
-    sql: ${TABLE}.duration ;;
   }
 
   dimension_group: end {
@@ -149,11 +139,6 @@ view: connect_project_phases {
     sql: ${TABLE}.project_id ;;
   }
 
-  dimension: spent_budget {
-    type: number
-    sql: ${TABLE}.spent_budget ;;
-  }
-
   dimension_group: start {
     type: time
     timeframes: [
@@ -190,6 +175,23 @@ view: connect_project_phases {
   dimension: updated_by {
     type: number
     sql: ${TABLE}.updated_by ;;
+  }
+
+  measure: spent_budget {
+    type: sum
+    sql: ${TABLE}.spent_budget ;;
+    value_format_name: usd
+  }
+
+  measure: duration {
+    type: sum
+    sql: ${TABLE}.duration ;;
+  }
+
+  measure: budget {
+    type: sum
+    sql: ${TABLE}.budget ;;
+    value_format_name: usd
   }
 
   measure: count {
