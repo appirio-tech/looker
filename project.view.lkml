@@ -517,7 +517,8 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      day_of_week
     ]
     sql: ${TABLE}.submitby_date ;;
   }
