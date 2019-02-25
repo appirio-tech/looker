@@ -11,6 +11,12 @@ view: srm_tco19 {
     sql: ${TABLE}.division ;;
   }
 
+  dimension: track {
+    type: string
+    description: "Available values are SRM, Marathon Match, Sponsored Marathan Match"
+    sql: ${TABLE}.track ;;
+  }
+
   dimension: handle {
     type: string
     sql: ${TABLE}.handle ;;

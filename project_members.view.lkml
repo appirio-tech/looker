@@ -1,57 +1,83 @@
 view: connect_project_members {
   sql_table_name: public.project_members ;;
 
-  dimension: id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.id ;;
-  }
+ dimension: id {
+  primary_key: yes
+  description: "Unique Database identifier, Project Member Id"
+  type: number
+  sql: ${TABLE}.id ;;
+}
 
-  dimension: createdat {
-    type: string
+   dimension_group: created_at {
+    type: time
+    description: "Date when the Member was added to the project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month
+    ]
     sql: ${TABLE}.createdat ;;
   }
 
-  dimension: createdby {
+  dimension: created_by {
     type: number
+    description: "User who added the member to the project"
     sql: ${TABLE}.createdby ;;
   }
 
-  dimension: deletedat {
-    type: string
+   dimension_group: deleted_at {
+    type: time
+    description: "Date when the Member was deleted from the project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month
+    ]
     sql: ${TABLE}.deletedat ;;
   }
-
-  dimension: isprimary {
-    type: string
-    sql: ${TABLE}.isprimary ;;
+  dimension: owner {
+    type: yesno
+    description: "The first customer who created the project is considered the owner of the project"
+    sql: ${TABLE}.isprimary = 1;;
   }
 
-  dimension: projectid {
+  dimension: project_id {
     type: number
     value_format_name: id
+    description: "Connect Project Id"
     # hidden: true
     sql: ${TABLE}.projectid ;;
   }
 
   dimension: role {
     type: string
+    description: "Role of the user in the project ie. copilot, customer, manager etc"
     sql: ${TABLE}.role ;;
   }
 
-  dimension: updatedat {
-    type: string
+  dimension_group: updated_at {
+    type: time
+    description: "Date when the Member updated on the project"
+    timeframes: [
+      time,
+      date,
+      week,
+      month
+    ]
     sql: ${TABLE}.updatedat ;;
   }
 
-  dimension: updatedby {
+  dimension: updated_by {
     type: number
     sql: ${TABLE}.updatedby ;;
   }
 
-  dimension: userid {
+  dimension: user_id {
     type: number
     value_format_name: id
+    description: "User Id for the member in Database"
     sql: ${TABLE}.userid ;;
   }
 

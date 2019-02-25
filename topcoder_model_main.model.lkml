@@ -22,9 +22,16 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+
   join: user {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: member_profile_advanced {
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
     relationship: many_to_one
   }
 
@@ -253,27 +260,27 @@ explore: connect_project {
 
   join: connect_project_members {
     type: left_outer
-    sql_on: ${connect_project.id} = ${connect_project_members.projectid} ;;
+    sql_on: ${connect_project.id} = ${connect_project_members.project_id} ;;
     relationship: one_to_many
   }
 
   join: connect_project_member_user {
     from: user
     type: left_outer
-    sql_on: ${connect_project_members.createdby} = ${connect_project_member_user.coder_id} ;;
+    sql_on: ${connect_project_members.created_by} = ${connect_project_member_user.coder_id} ;;
     relationship: many_to_one
   }
 
   join: connect_messages {
     type: left_outer
-    sql_on: ${connect_project.id} = ${connect_messages.referenceid} ;;
+    sql_on: ${connect_project.id} = ${connect_messages.project_id} ;;
     relationship: one_to_many
   }
 
   join: message_author {
     from: user
     type: left_outer
-    sql_on: ${connect_messages.createdby} = ${message_author.coder_id} ;;
+    sql_on: ${connect_messages.created_by} = ${message_author.coder_id} ;;
     relationship: many_to_one
   }
 }
@@ -508,6 +515,12 @@ explore: payment {
     from: user
     type: inner
     sql_on: ${user_payment.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_many
+  }
+
+  join: member_profile_basic {
+    type: inner
+    sql_on: ${user_payment.user_id} = ${member_profile_basic.user_id} ;;
     relationship: many_to_many
   }
 
@@ -1194,7 +1207,11 @@ explore: non_qa_dev_challenges {
     sql_on: ${non_qa_dev_challenges.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
-
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${non_qa_dev_challenges.registrant_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
   join: challenge_technology {
     type: left_outer
     sql_on: ${non_qa_dev_challenges.project_id} = ${challenge_technology.project_id} ;;
@@ -1214,7 +1231,11 @@ explore: non_qa_dev_challenges {
       sql_on: ${non_qa_design_challenges.registrant_id} = ${user.coder_id} ;;
       relationship: many_to_one
     }
-
+    join: member_profile_basic {
+      type: left_outer
+      sql_on: ${non_qa_design_challenges.registrant_id} = ${member_profile_basic.user_id} ;;
+      relationship: many_to_one
+    }
     join: challenge_technology {
       type: left_outer
       sql_on: ${non_qa_design_challenges.project_id} = ${challenge_technology.project_id} ;;
@@ -1222,3 +1243,18 @@ explore: non_qa_dev_challenges {
     }
 
 }
+
+#Added 14th November 2018
+
+explore: challenge_user_payments {
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge_user_payments.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+   }
+    join: user {
+      type: left_outer
+      sql_on: ${challenge_user_payments.user_id} = ${user.coder_id} ;;
+      relationship: many_to_one
+    }
+  }

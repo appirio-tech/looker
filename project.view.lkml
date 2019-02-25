@@ -179,11 +179,11 @@ view: challenge {
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
-  # Added on 3rd October, 2018
-  dimension: exclude_from_TCO {
+  # Added on 10th Jan, 2019
+  dimension: tco_flag {
     type: number
-    description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
-    sql: ${TABLE}.exclude_from_TCO ;;
+    description: "Used in TCO Leaderboards for various purposes to include / exclude certain challenges e.g. copilot submitter etc"
+    sql: ${TABLE}.tco_flag;;
   }
 
   # Added on 7th June, 2018
@@ -568,6 +568,19 @@ view: challenge {
     type: number
     description: "First Place prize winner unique identifier for a particular challenge"
     sql: ${TABLE}.winner_id ;;
+  }
+
+  dimension: technology_list {
+    type: string
+    description: "A comma separated list of technolgies used in the challenge. More details are available in Challenge Technology view"
+    sql: ${TABLE}.technology_list;;
+  }
+
+  dimension: challenge_fee_percent {
+    type: number
+    description: "Challenge Fee %"
+    value_format: "0.00%"
+    sql:  ${TABLE}.challenge_fee_percentage ;;
   }
 
   measure: review_process_duration {

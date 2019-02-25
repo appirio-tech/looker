@@ -33,6 +33,18 @@ view: group_membership {
     sql: ${TABLE}.group_id ;;
   }
 
+  dimension: group_name {
+    type: string
+    # hidden: yes
+    sql: ${TABLE}.group_name ;;
+  }
+
+  dimension: member_name {
+    type: string
+    description: "Member name for the groups are populated"
+    sql: ${TABLE}.member_name;;
+  }
+
   dimension: member_id {
     type: number
     sql: ${TABLE}.member_id ;;

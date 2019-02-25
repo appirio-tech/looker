@@ -36,6 +36,7 @@ view: user_payment {
   measure: gross_amount {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    description: "Prize Money Amount Paid to the Winner"
     sql: ${TABLE}.gross_amount ;;
   }
 
@@ -48,6 +49,7 @@ view: user_payment {
   measure: total_amount {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
+    description: "Total Amount of Prize. A prize can be split into multiple payments. Use Gross Amount to get the amount paid"
     sql: ${TABLE}.total_amount ;;
   }
 }

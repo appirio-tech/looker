@@ -313,6 +313,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: exclude_from_TCO {
     type: number
+    hidden: yes
     description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
     sql: ${TABLE}.exclude_from_TCO ;;
   }
@@ -438,104 +439,48 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: string
     case: {
       when: {
-        sql: ${TABLE}.project_category_name = 'First2Finish' ;;
+        sql: ${TABLE}.project_category_name IN
+            (
+              'First2Finish',
+              'Code',
+              'Assembly Competition',
+              'Bug Hunt',
+              'Architecture',
+              'Copilot Posting',
+              'Test Scenarios',
+              'Test Suites',
+              'Content Creation',
+              'Specification',
+              'Conceptualization',
+              'Design',
+              'Development',
+              'Testing Competition'
+            ) ;;
         label: "Develop"
       }
+
       when: {
-        sql: ${TABLE}.project_category_name = 'Code' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Assembly Competition' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'UI Prototype Competition' ;;
+        sql: ${TABLE}.project_category_name IN
+            (
+              'UI Prototype Competition',
+              'Web Design',
+              'Widget or Mobile Screen Design',
+              'Design First2Finish',
+              'Wireframes',
+              'Print/Presentation',
+              'Idea Generation',
+              'Logo Design',
+              'Application Front-End Design',
+              'Banners/Icons',
+              'Studio Other'
+            ) ;;
+
         label: "Design"
       }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Web Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Widget or Mobile Screen Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Bug Hunt' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Design First2Finish' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Wireframes' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Architecture' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Print/Presentation' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Copilot Posting' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Idea Generation' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Logo Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Application Front-End Design' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Banners/Icons' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Test Scenarios' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Content Creation' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Test Suites' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Specification' ;;
-        label: "Develop"
-      }
+
       when: {
         sql: ${TABLE}.project_category_name = 'Marathon Match' ;;
         label: "Data Science"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Conceptualization' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Studio Other' ;;
-        label: "Design"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Design' ;;
-        label: "Develop"
-      }
-      when: {
-        sql: ${TABLE}.project_category_name = 'Development' ;;
-        label: "Develop"
       }
       else: "Other"
     }
@@ -927,6 +872,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   }
 
   measure: final_score {
+    label: "score"
     type: sum
     description: "Score after any re-review appeals"
     sql: ${TABLE}.final_score ;;
@@ -990,25 +936,25 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     value_format: "#,##0"
     label: "TCO Points - Dev/Design/QA"
     sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.actual_total_prize*1
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*1
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.70
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.30
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.70
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.30
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.65
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.25
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.10
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.65
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.25
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.60
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.22
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.08
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.60
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.22
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.56
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.20
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.08
-                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.06
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.56
+                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.20
+                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
+                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.06
                    ELSE 0
             END ;;
   }
@@ -1084,6 +1030,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.payment ;;
+  }
+
+  measure: wins {
+    type: sum
+    sql: CASE WHEN (${TABLE}.placed != NULL or ${TABLE}.placed > 0) THEN 1
+         else 0
+         end;;
   }
 
   measure: old_rating {

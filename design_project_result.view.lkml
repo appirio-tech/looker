@@ -91,6 +91,12 @@ view: design_project_result {
     sql: ${TABLE}.valid_submission_ind ;;
   }
 
+  dimension: total_placements {
+    type: number
+    sql: ${TABLE}.total_placements ;;
+    description: "Number of members who have received a prize"
+  }
+
   measure: count {
     type: count
     drill_fields: [project.component_name, project.review_phase_name, project.project_category_name, project.client_project_id]

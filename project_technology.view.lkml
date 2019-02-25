@@ -23,7 +23,7 @@ view: challenge_technology {
     sql: ${TABLE}.project_id ;;
     link: {
       label: "Challenge Link"
-      url: "https://www.topcoder.com/challenges/{{ project_technology.project_id._value }}"
+      url: "https://www.topcoder.com/challenges/{{challenge_technology.project_id._value }}"
       icon_url: "https://looker.com/favicon.ico"
     }
   }

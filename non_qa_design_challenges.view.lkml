@@ -93,11 +93,12 @@ view: non_qa_design_challenges {
        pr.submit_timestamp,
        pr.review_complete_timestamp,
        pr.prize_amount AS payment,
-       --pr.old_rating,
+       pr.prize_type_id,
        --pr.new_rating,
        --pr.old_reliability,
        --pr.new_reliability,
        pr.placement AS placed,
+       pr.total_placements AS total_placements,
        --pr.rating_ind,
        --pr.passed_review_ind,
        --pr.points_awarded,
@@ -117,9 +118,10 @@ FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.design_project_result pr ON p.proje
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
-where p.project_id not in (select design_project_result.project_id from design_project_result
-left join project_technology on design_project_result.project_id = project_technology.project_id
-where project_technology.name in ('QA'))
+
+WHERE p.project_id not in (select design_project_result.project_id from design_project_result
+     LEFT join project_technology on design_project_result.project_id = project_technology.project_id
+     WHERE project_technology.name in ('QA'))
 ;;
 
     }
@@ -133,6 +135,7 @@ where project_technology.name in ('QA'))
 
    dimension: exclude_from_TCO {
     type: number
+    hidden: yes
     description: "By default all challenges are set to 0, only specific challenges for TCO point calculation are set to 1"
     sql: ${TABLE}.exclude_from_TCO ;;
    }
@@ -157,6 +160,11 @@ where project_technology.name in ('QA'))
       description: "Challenge ID Alias"
       type: number
       sql: ${TABLE}.project_id ;;
+    }
+
+    dimension: prize_type {
+      description: "A value of 15 means a contest prize, 14 represents a checkpoint prize"
+      sql:  ${TABLE}.prize_type_id ;;
     }
 
     dimension: component_id {
@@ -797,32 +805,39 @@ where project_technology.name in ('QA'))
       sql: ${TABLE}.photo_url ;;
     }
 
-    measure: Dev_tco_points {
-      type: sum
-      description: "TCO Points computed for the standard design track"
-      value_format: "#,##0"
-      label: "TCO Points - Design"
-      sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN ${TABLE}.actual_total_prize*1
+    dimension: total_placements {
+      type: number
+      sql: ${TABLE}.total_placements ;;
+    }
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.70
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 2 THEN ${TABLE}.actual_total_prize*.30
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.65
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.25
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 3 THEN ${TABLE}.actual_total_prize*.10
+  measure: Dev_tco_points {
+    type: sum
+    description: "TCO Points computed for the standard design track Updated"
+    value_format: "#,##0"
+    label: "TCO Points - Design"
+    sql: CASE
+                   WHEN ${TABLE}.placed = 1 and ${total_placements} = 1 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*1
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.60
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.22
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review = 4 THEN ${TABLE}.actual_total_prize*.08
+                   WHEN ${TABLE}.placed = 1 and ${total_placements} = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.70
+                   WHEN ${TABLE}.placed = 2 and ${total_placements} = 2 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.30
 
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.56
-                   WHEN ${TABLE}.placed = 2 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.20
-                   WHEN ${TABLE}.placed = 3 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.10
-                   WHEN ${TABLE}.placed = 4 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.08
-                   WHEN ${TABLE}.placed = 5 and ${TABLE}.num_submissions_passed_review >= 5 THEN ${TABLE}.actual_total_prize*.06
+                   WHEN ${TABLE}.placed = 1 and ${total_placements} = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.65
+                   WHEN ${TABLE}.placed = 2 and ${total_placements} = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.25
+                   WHEN ${TABLE}.placed = 3 and ${total_placements} = 3 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+
+                   WHEN ${TABLE}.placed = 1 and ${total_placements} = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.60
+                   WHEN ${TABLE}.placed = 2 and ${total_placements} = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.22
+                   WHEN ${TABLE}.placed = 3 and ${total_placements} = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${total_placements} = 4 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
+
+                   WHEN ${TABLE}.placed = 1 and ${total_placements} >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.56
+                   WHEN ${TABLE}.placed = 2 and ${total_placements} >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.20
+                   WHEN ${TABLE}.placed = 3 and ${total_placements} >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.10
+                   WHEN ${TABLE}.placed = 4 and ${total_placements} >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.08
+                   WHEN ${TABLE}.placed = 5 and ${total_placements} >= 5 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*.06
                    ELSE 0
             END ;;
-    }
+  }
+
   }

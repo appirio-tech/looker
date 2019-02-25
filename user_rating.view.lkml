@@ -111,6 +111,11 @@ view: user_rating {
     sql: ${TABLE}.vol ;;
   }
 
+  measure: max_rating {
+    type: max
+    sql: ${TABLE}.rating ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
