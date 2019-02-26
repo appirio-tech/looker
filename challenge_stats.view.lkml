@@ -871,8 +871,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.raw_score ;;
   }
 
-  measure: final_score {
-    alias : [ srm_tco19.score ]
+  measure: final_score  {
     label: "score"
     type: sum
     description: "Score after any re-review appeals"
