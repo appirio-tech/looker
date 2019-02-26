@@ -749,11 +749,19 @@ where project_technology.name in ('QA'))
     }
 
     measure: final_score {
-      alias : [ srm_tco19.score ]
       label: "score"
       type: sum
       description: "Score after any re-review appeals"
       sql: ${TABLE}.final_score ;;
+    }
+
+  #Added Temporary field to display score in regional Leaderboards
+   measure : srm_tco19.score {
+      label: "Total Score"
+      type: sum
+      description: "Temporary Filed for regional leaderboards"
+      sql: ${TABLE}.final_score ;;
+
     }
 
     dimension_group: inquire_timestamp {
