@@ -748,8 +748,8 @@ where project_technology.name in ('QA'))
       sql: ${TABLE}.raw_score ;;
     }
 
-    measure: srm_tco19.score {
-      alias : [ final_score ]
+    measure: final_score {
+      alias : [ srm_tco19.score ]
       label: "score"
       type: sum
       description: "Score after any re-review appeals"
