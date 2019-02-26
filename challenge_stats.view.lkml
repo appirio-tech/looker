@@ -878,6 +878,15 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.final_score ;;
   }
 
+#Added Temporary field to display score in regional Leaderboards
+  measure : srm_tco19.score {
+    label: "Total Score"
+    type: sum
+    description: "Temporary Field for regional leaderboards"
+    sql: ${TABLE}.final_score ;;
+
+  }
+
   dimension_group: inquire_timestamp {
     type: time
     timeframes: [
