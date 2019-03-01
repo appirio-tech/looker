@@ -6,6 +6,12 @@ view: client_project_dim {
     sql: ${TABLE}.billing_account_code ;;
   }
 
+  dimension: has_subscription {
+    type: number
+    description: "Is the Billing Account a part of the subscription ? (1 is yes)"
+    sql:  ${TABLE}.has_subscription ;;
+  }
+
   dimension: billing_account_id {
     type: number
     sql: ${TABLE}.billing_project_id ;;
