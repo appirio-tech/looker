@@ -60,6 +60,16 @@ view: direct_project_dim {
        ;;
   }
 
+  measure:project_budget  {
+    type: sum
+    sql:  ${TABLE}.direct_project_budget;;
+  }
+
+  measure:project_duration {
+    type: sum
+    sql: ${TABLE}.direct_project_duration  ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [name]
