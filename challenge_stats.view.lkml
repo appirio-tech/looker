@@ -235,7 +235,8 @@ SELECT p.project_id,
        null AS rating_order,
        c.photo_url,
        p.task_ind,
-       p.effort_hours_estimate
+       p.effort_hours_estimate,
+      member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
@@ -247,6 +248,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
      LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
+     LEFT OUTER JOIN tcs_dw.member_profile member_profile ON pr.user_id = member_profile.user_id
 
  ;;
     sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date"]
@@ -1109,6 +1111,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   dimension: photo_url {
     type: string
     sql: ${TABLE}.photo_url ;;
+  }
+
+  dimension: member_photo_url {
+    type:  string
+    sql: ${TABLE}.member_photo_url ;;
   }
 
   measure: num_appeals {

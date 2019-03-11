@@ -24,8 +24,6 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
-
-
 explore: member_activity_tenure {}
 
 # Derived Views
