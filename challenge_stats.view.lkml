@@ -112,7 +112,7 @@ view: challenge_stats {
        pr.rating_order,
        c.photo_url,
        p.task_ind,
-       p.effort_hours_estimate
+       p.effort_hours_estimate,
       member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
