@@ -113,6 +113,7 @@ view: challenge_stats {
        c.photo_url,
        p.task_ind,
        p.effort_hours_estimate
+      member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
@@ -123,6 +124,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id =
      LEFT OUTER JOIN tcs_dw.coder challenge_launcher ON p.challenge_launcher = challenge_launcher.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_copilot ON p.copilot = challenge_copilot.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
+    LEFT OUTER JOIN tcs_dw.member_profile member_profile ON pr.user_id = member_profile.user_id
 UNION
 SELECT p.project_id,
        p.component_id,
