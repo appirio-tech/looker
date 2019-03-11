@@ -1,5 +1,17 @@
 connection: "prod_-_topcoder_redshift"
 
+# project cache for 8 hours as load projects in 8 hours
+datagroup: project_cache {
+  sql_trigger: SELECT max(id) FROM project ;;
+  max_cache_age: "8 hours"
+}
+
+# srm cache for 24 hours
+datagroup: srm_cache {
+  sql_trigger: select count(*) FROM srm_tco19 ;;
+  max_cache_age: "24 hours"
+}
+
 # include all the views
 include: "*.view"
 
@@ -11,6 +23,7 @@ week_start_day: sunday
 
 # filters will NOT be case sensitive
 case_sensitive: no
+
 
 
 explore: member_activity_tenure {}
@@ -1130,6 +1143,8 @@ explore: srm_tco19 {
     sql_on: ${srm_tco19.user_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+  # cache for 24 hours
+  persist_with: srm_cache
 
 }
 
@@ -1217,7 +1232,8 @@ explore: non_qa_dev_challenges {
     sql_on: ${non_qa_dev_challenges.project_id} = ${challenge_technology.project_id} ;;
     relationship: one_to_many
   }
-
+  # cache for 8 hours
+  persist_with: project_cache
 }
 
   explore: non_qa_design_challenges {
@@ -1241,7 +1257,8 @@ explore: non_qa_dev_challenges {
       sql_on: ${non_qa_design_challenges.project_id} = ${challenge_technology.project_id} ;;
       relationship: one_to_many
     }
-
+    # cache for 8 hours
+    persist_with: project_cache
 }
 
 #Added 14th November 2018
