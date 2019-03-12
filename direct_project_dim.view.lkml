@@ -62,11 +62,14 @@ view: direct_project_dim {
 
   measure:project_budget  {
     type: sum
+    value_format_name: usd
+    description: "Direct project budget (user entered)"
     sql:  ${TABLE}.direct_project_budget;;
   }
 
   measure:project_duration {
     type: sum
+    description: "Direct project duration (user entered)"
     sql: ${TABLE}.direct_project_duration  ;;
   }
 
