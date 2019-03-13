@@ -103,9 +103,4 @@ view: member_stats_history {
     sql: ${TABLE}.challenge_id ;;
   }
 
-  measure: user_id_count {
-    type:  count_distinct
-    sql:  ${TABLE}.user_id ;;
-
-  }
 }

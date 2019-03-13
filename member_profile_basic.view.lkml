@@ -190,4 +190,10 @@ view: member_profile_basic {
     type: count
     drill_fields: [other_lang_name, last_name, first_name]
   }
+
+  measure: handle_count {
+    type :  count_distinct
+    sql: ${TABLE}.handle ;;
+
+  }
 }
