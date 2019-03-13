@@ -142,6 +142,12 @@ explore: auth_refresh_log {
     sql_on: ${user.comp_country_code} = ${country.country_code} ;;
     relationship: many_to_one
   }
+  join: group_membership {
+    type: inner
+    sql_on: ${group_membership.member_id} = ${user.coder_id} ;;
+    relationship: many_to_many
+  }
+
 }
 
 explore: copilot {}

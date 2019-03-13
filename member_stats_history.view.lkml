@@ -97,4 +97,9 @@ view: member_stats_history {
     type: count
     drill_fields: [challenge_name]
   }
+
+  measure: Challenge_Count{
+    type:  count_distinct
+    sql: ${TABLE}.challenge_id ;;
+  }
 }
