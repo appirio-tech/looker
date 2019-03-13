@@ -14,6 +14,7 @@ view: budget_threshold {
       LEFT JOIN tcs_dw.challenge_groups AS challenge_group ON challenge.project_id = challenge_group.challenge_id
       LEFT JOIN "authorization"."group" AS group_name ON challenge_group.group_id = group_name.id
        ;;
+      persist_for: "2 hours"
       distribution: "challenge_id"
       sortkeys: ["challenge)id","direct_project_id"]
   }

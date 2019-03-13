@@ -1285,3 +1285,7 @@ explore: challenge_user_payments {
       relationship: many_to_one
     }
   }
+
+  #Added on 13th March 2019
+  explore: budget_threshold {}
+
