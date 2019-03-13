@@ -32,31 +32,31 @@ view: budget_threshold {
   dimension: direct_project_budget {
     type: number
     label: "direct project budget"
-    sql: ${TABLE}."direct project budget" ;;
+    sql: ${TABLE}.direct_project_budget ;;
   }
 
   dimension: gross_amount {
     type: number
-    label: "gross amount"
-    sql: ${TABLE}."gross amount" ;;
+    label: "gross_amount"
+    sql: ${TABLE}.gross_amount ;;
   }
 
   dimension: challenge_id {
     type: number
-    label: "challenge id"
-    sql: ${TABLE}."challenge id" ;;
+    label: "challenge_id"
+    sql: ${TABLE}.challenge_id ;;
   }
 
   dimension: group_id {
     type: number
-    label: "group id"
-    sql: ${TABLE}."group id" ;;
+    label: "group_id"
+    sql: ${TABLE}.group_id ;;
   }
 
   dimension: group_name {
     type: string
-    label: "group name"
-    sql: ${TABLE}."group name" ;;
+    label: "group_name"
+    sql: ${TABLE}.group_name ;;
   }
   measure: gross_amount_total {
     type: sum
