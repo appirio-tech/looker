@@ -16,7 +16,7 @@ view: budget_threshold {
        ;;
       persist_for: "2 hours"
       distribution: "challenge_id"
-      sortkeys: ["challenge)id","direct_project_id"]
+      sortkeys: ["challenge_id","direct_project_id"]
   }
 
   measure: count {
