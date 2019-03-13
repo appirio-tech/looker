@@ -131,6 +131,7 @@ explore: opportunity {
 
 }
 
+#added the group deatils
 explore: auth_refresh_log {
   join: user {
     type: inner
@@ -143,9 +144,14 @@ explore: auth_refresh_log {
     relationship: many_to_one
   }
   join: group_membership {
-    type: inner
-    sql_on: ${group_membership.member_id} = ${user.coder_id} ;;
-    relationship: many_to_many
+    type: left_outer
+    sql_on: ${user.coder_id} = ${group_membership.member_id} ;;
+    relationship: many_to_one
+  }
+  join: group {
+    type: left_outer
+    sql_on: ${group.id} = ${group_membership.group_id} ;;
+    relationship: many_to_one
   }
 
 }
