@@ -67,6 +67,14 @@ view: direct_project_dim {
     sql:  ${TABLE}.direct_project_budget;;
   }
 
+  measure:project_budget_distinct  {
+    type: sum_distinct
+    value_format_name: usd
+    sql_distinct_key: ${TABLE}.direct_project_id ;;
+    description: "Direct project budget (user entered). Used for summary calculations "
+    sql:  ${TABLE}.direct_project_budget;;
+  }
+
 
   measure:project_duration {
     type: sum
