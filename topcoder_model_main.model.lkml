@@ -1286,29 +1286,6 @@ explore: challenge_user_payments {
     }
   }
 
-  #Added on 13th March 2019
-  explore: budget_threshold {}
 
-  explore: direct_budget {
-    join:  user_payment{
-      type: inner
-      sql_on: ${direct_budget.payment_id} = ${user_payment.payment_id} ;;
-      relationship: one_to_one
-      }
-    join: challenge {
-      type: left_outer
-      sql_on: ${direct_budget.reference_id} = ${challenge.project_id} ;;
-      relationship: one_to_one
-    }
-    join: direct_project_dim {
-      type: left_outer
-      sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
-      relationship: one_to_one
-    }
-    join: challenge_groups {
-      type: left_outer
-      sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
-      relationship: one_to_one
-    }
 
-  }
+
