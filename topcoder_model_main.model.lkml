@@ -1285,7 +1285,3 @@ explore: challenge_user_payments {
       relationship: many_to_one
     }
   }
-
-
-
-

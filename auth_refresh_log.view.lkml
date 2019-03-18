@@ -25,6 +25,11 @@ view: auth_refresh_log {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: count_unique {
+    type: count_distinct
+    description: "Count distinct user records"
+    sql: ${TABLE}.user_id ;;
+  }
   measure: count {
     type: count
     drill_fields: []
