@@ -79,6 +79,13 @@ explore: member_stats {
     sql_on: ${member_stats.user_id} = ${member_profile_basic.user_id} ;;
     relationship: many_to_one
   }
+
+#Added on 26th March 2019
+  join: user {
+    type: left_outer
+    sql_on: ${member_stats.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
 }
 
 # Added 6th November - 2018
