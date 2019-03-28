@@ -23,6 +23,12 @@ view: submission {
     sql: ${TABLE}.submission_url ;;
   }
 
+  dimension: external_url {
+    type: string
+    description: "S3 Bucket Url or External Url used for private communities"
+    sql: ${TABLE}.submission_url_external ;;
+  }
+
   dimension: submitter_id {
     type: number
     sql: ${TABLE}.submitter_id ;;
