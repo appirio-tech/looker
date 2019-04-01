@@ -20,7 +20,6 @@ view: data_science_members {
       where calendar.date = date(c.member_since)
       group by 1
       order by 1 desc
-      limit 100;
  ;;
   }
 
