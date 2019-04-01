@@ -33,13 +33,13 @@ view: data_science_members {
     sql: ${TABLE}.member_since_date ;;
   }
 
-  dimension: new_data_science_participants {
-    type: number
+  measure: new_data_science_participants {
+    type: sum
     sql: ${TABLE}.new_data_science_participants ;;
   }
 
-  dimension: new_data_science_submitters {
-    type: number
+  measure: new_data_science_submitters {
+    type: sum
     sql: ${TABLE}.new_data_science_submitters ;;
   }
 
