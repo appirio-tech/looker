@@ -1285,3 +1285,6 @@ explore: challenge_user_payments {
       relationship: many_to_one
     }
   }
+
+  # for new data science participants and submitters
+  explore: data_science_members  {}
