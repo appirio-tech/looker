@@ -194,6 +194,22 @@ view: challenge {
     sql: ${TABLE}.effort_hours_estimate ;;
   }
 
+  #Added on 4 april, 2019
+  measure: effort_offshore_days {
+    type: sum
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate offshore efforts on a challenge"
+    sql: ${TABLE}.effort_offshore_days ;;
+  }
+
+  #Added on 4 april, 2019
+  measure: effort_onshore_days {
+    type: sum
+    value_format: "#,##0.00"
+    description: "Topgear field to estimate onshore efforts on a challenge"
+    sql: ${TABLE}.effort_onshore_days ;;
+  }
+
   measure: effort_days_estimate {
     type: sum
     value_format: "#,##0.00"
