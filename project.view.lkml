@@ -186,14 +186,6 @@ view: challenge {
     sql: ${TABLE}.tco_flag;;
   }
 
-  # Added on 7th June, 2018
-  measure: effort_hours_estimate {
-    type: sum
-    value_format: "#,##0.00"
-    description: "Topgear field to estimate efforts on a challenge"
-    sql: ${TABLE}.effort_hours_estimate ;;
-  }
-
   #Added on 4 april, 2019
   measure: effort_offshore_days {
     type: sum
@@ -210,12 +202,6 @@ view: challenge {
     sql: ${TABLE}.effort_onshore_days ;;
   }
 
-  measure: effort_days_estimate {
-    type: sum
-    value_format: "#,##0.00"
-    description: "Topgear field to estimate efforts on a challenge.  Calculated as # of days."
-    sql: ${TABLE}.effort_hours_estimate/24 ;;
-  }
 
   measure: estimated_review_cost {
     type: sum
