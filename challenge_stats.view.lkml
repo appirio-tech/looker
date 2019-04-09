@@ -112,7 +112,8 @@ view: challenge_stats {
        pr.rating_order,
        c.photo_url,
        p.task_ind,
-       p.effort_hours_estimate,
+       p.effort_offshore_days,
+       p.effort_onshore_days,
       member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
@@ -237,7 +238,8 @@ SELECT p.project_id,
        null AS rating_order,
        c.photo_url,
        p.task_ind,
-       p.effort_hours_estimate,
+       p.effort_offshore_days,
+       p.effort_onshore_days,
       member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
@@ -816,18 +818,21 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
-  dimension: effort_hours_estimate {
+
+  # added on 9 april
+
+  dimension: effort_offshore_days {
     type: number
     value_format: "#,##0.00"
-    description: "Topgear field to estimate efforts on a challenge"
-    sql: ${TABLE}.effort_hours_estimate ;;
+    description: "Topgear field to estimate offshore efforts on a challenge"
+    sql: ${TABLE}.effort_offshore_days ;;
   }
 
-  measure: effort_days_estimate {
-    type: sum
+  dimension: effort_onshore_days {
+    type: number
     value_format: "#,##0.00"
-    description: "Topgear field to estimate efforts on a challenge.  Calculated as # of days."
-    sql: ${TABLE}.effort_hours_estimate/24 ;;
+    description: "Topgear field to estimate onshore efforts on a challenge"
+    sql: ${TABLE}.effort_onshore_days ;;
   }
 
   measure: estimated_review_cost {
