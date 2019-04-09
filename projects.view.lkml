@@ -251,6 +251,12 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
   }
 
+  dimension: business_unit {
+    type: string
+    description: "Kubik Business Unit Code"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'businessUnit') ;;
+  }
+
   dimension: ref_code {
     type: string
     description: "Marketing Reference Code"
