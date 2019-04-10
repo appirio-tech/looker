@@ -292,7 +292,7 @@ view: user {
 
   measure: distinct_user {
     type: count_distinct
-    sql: ${handle} ;;
+    sql: ${coder_id} ;;
 
   }
 
