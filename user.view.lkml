@@ -287,4 +287,13 @@ view: user {
       coder_type_id
     ]
   }
+
+  #Added Count Distinct for handle
+
+  measure: distinct_user {
+    type: count_distinct
+    sql: ${handle} ;;
+
+  }
+
 }
