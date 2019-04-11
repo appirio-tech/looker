@@ -7,6 +7,12 @@ view: duplicate_review {
     drill_fields: [detail*]
   }
 
+  dimension: Key {
+    type: string
+    description: "Artificial Primary key generated for internal use"
+    sql: ${project_phase_id} || '-' || ${resource_id} || '-' || ${submission_id} ;;
+  }
+
   dimension: review_id {
     type: number
     primary_key: yes
