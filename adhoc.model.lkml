@@ -3,7 +3,10 @@ connection: "prod_-_topcoder_redshift"
 include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# # This is a temporary model used to store temporary tables and looks
+###########################################################################################
+## This is a temporary model used to store temporary tables and looks
+## This views are created for admin use only and should not be exposed to normal users as is
+###########################################################################################
 
  explore: dec_give_away_submission {
    join: member_profile_basic {
@@ -14,6 +17,18 @@ include: "*.view.lkml"                       # include all views in this project
 
 explore: copilot_self_payment {}
 
+
+# Find all Reviews for a submission to help detect duplicates
+explore: duplicate_review {
+  label: "Detect Duplicate Review"
+  description: "Detects if there are duplicate reviews created, Used to alert the support team"
+  join: submission {
+    type: inner
+    sql_on: ${submission.submission_id} = ${duplicate_review.submission_id} ;;
+    relationship: one_to_one
+  }
+
+}
 
 #Join Submission with Challenge to see Challenge details and Submission
 explore: challenge {
