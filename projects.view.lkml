@@ -105,14 +105,6 @@ view: connect_project {
     sql: ${TABLE}.name ;;
   }
 
-  #Added to count project name on 16th April 2019
-
-  measure: count_name {
-    type: count_distinct
-    description: "Used to count project , request from zurich"
-    sql: ${TABLE}.name ;;
-    }
-
   measure: offshore_efforts {
     type: sum
     description: "Used by Topgear team, Offshore hours allocated to the project"
