@@ -306,6 +306,13 @@ explore: connect_project {
     sql_on: ${connect_messages.created_by} = ${message_author.coder_id} ;;
     relationship: many_to_one
   }
+  #Added on 17th April for Template ID
+  join: connect_templates {
+    type: left_outer
+    sql_on: ${connect_project.template_id} = ${connect_templates.id} ;;
+    relationship: one_to_one
+
+  }
 }
 
 #explore:  member_aggregated_skills {}
