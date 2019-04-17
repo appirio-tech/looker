@@ -256,6 +256,11 @@ view: connect_project {
     description: "Kubik Business Unit Code"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'businessUnit') ;;
   }
+  dimension: kubik_cost_center {
+    type: string
+    description: "Cost Center for Kubik Projects only"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'costCentre') ;;
+  }
 
   dimension: ref_code {
     type: string
