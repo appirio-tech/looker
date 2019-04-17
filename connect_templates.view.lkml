@@ -9,6 +9,7 @@ view: connect_templates {
 
   dimension: aliases {
     type: string
+    hidden: yes
     sql: ${TABLE}.aliases ;;
   }
 
@@ -67,6 +68,7 @@ view: connect_templates {
 
   dimension: icon {
     type: string
+    hidden: yes
     sql: ${TABLE}.icon ;;
   }
 
@@ -87,6 +89,7 @@ view: connect_templates {
 
   dimension: phases {
     type: string
+    hidden: yes
     sql: ${TABLE}.phases ;;
   }
 
@@ -97,6 +100,7 @@ view: connect_templates {
 
   dimension: scope {
     type: string
+    hidden: yes
     sql: ${TABLE}.scope ;;
   }
 
