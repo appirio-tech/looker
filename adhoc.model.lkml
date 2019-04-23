@@ -18,8 +18,18 @@ fiscal_month_offset: 3
     }
  }
 
-explore: copilot_self_payment {}
+# Find new challenges that are launched to help detect new challenge scorecards
+explore: project_scorecard {
+  label: "New Project Scorecards"
+  description: "New Project that are launched with other scorecards"
+  join: challenge {
+    type: left_outer
+    sql_on: ${project_scorecard.project_id} = ${challenge.challenge_id} ;;
+    relationship: one_to_one
+  }
+}
 
+explore: copilot_self_payment {}
 
 # Find all Reviews for a submission to help detect duplicates
 explore: duplicate_review {
