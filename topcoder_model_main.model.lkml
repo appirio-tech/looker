@@ -95,12 +95,14 @@ explore: round {
     sql_on: ${round.round_id} = ${round_division.round_id} ;;
     relationship: one_to_many
   }
-  join: round_date {
-    from: calendar
-    type: inner
-    sql_on: ${round.calendar_id} = ${round_date.calendar_id} ;;
-    relationship: many_to_many
-  }
+  # Hide the Calendar as it doesn't seem to be useful
+ # join: round_date {
+ #   from: calendar
+ #  type: inner
+ # sql_on: ${round.calendar_id} = ${round_date.calendar_id} ;;
+ #   relationship: many_to_many
+ # }
+
 }
 
 explore: participant_funnel_monthly {}
@@ -261,7 +263,10 @@ explore: user {
 
 explore: country {}
 
-explore: calendar {}
+# Hide the Calendar explore as it doesn't seem to be useful
+explore: calendar {
+  hidden: yes
+}
 
 explore: challenge_groups {
   join: group {
@@ -564,33 +569,37 @@ explore: payment {
     relationship: many_to_many
   }
 
-  join: payment_create_date {
-    from: calendar
-    type: inner
-    sql_on: ${payment.created_calendar_id} = ${payment_create_date.calendar_id} ;;
-    relationship: many_to_one
-  }
+  # Hide the Calendar as it doesn't seem to be useful
+  #join: payment_create_date {
+  #  from: calendar
+  #  type: inner
+  #  sql_on: ${payment.created_calendar_id} = ${payment_create_date.calendar_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: payment_modify_date {
-    from: calendar
-    type: inner
-    sql_on: ${payment.modified_calendar_id} = ${payment_modify_date.calendar_id} ;;
-    relationship: many_to_one
-  }
+  # Hide the Calendar as it doesn't seem to be useful
+  #join: payment_modify_date {
+  #  from: calendar
+  #  type: inner
+  #  sql_on: ${payment.modified_calendar_id} = ${payment_modify_date.calendar_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: payment_due_date {
-    from: calendar
-    type: inner
-    sql_on: ${user_payment.due_calendar_id} = ${payment_due_date.calendar_id} ;;
-    relationship: many_to_one
-  }
+  # Hide the Calendar as it doesn't seem to be useful
+  #join: payment_due_date {
+  #  from: calendar
+  #  type: inner
+  #  sql_on: ${user_payment.due_calendar_id} = ${payment_due_date.calendar_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: payment_paid_date {
-    from: calendar
-    type: inner
-    sql_on: ${user_payment.paid_calendar_id} = ${payment_paid_date.calendar_id} ;;
-    relationship: many_to_one
-  }
+  # Hide the Calendar as it doesn't seem to be useful
+  #join: payment_paid_date {
+  #  from: calendar
+  #  type: inner
+  #  sql_on: ${user_payment.paid_calendar_id} = ${payment_paid_date.calendar_id} ;;
+  #  relationship: many_to_one
+  #}
 
   join: challenge {
     type: left_outer
