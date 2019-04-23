@@ -511,13 +511,6 @@ view: challenge {
     sql: ${TABLE}.stage_id ;;
   }
 
-  dimension: start_date_calendar_id {
-    type: number
-    hidden: yes
-    description: "unique identifier for start date being tagged to the calendar table "
-    sql: ${TABLE}.start_date_calendar_id ;;
-  }
-
   dimension: status_desc {
     type: string
     description: "Challenge Status like Draft, Cancelled - Client Request, Cancelled - Zero submissions etc..."
