@@ -25,7 +25,11 @@ view: direct_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.project_create_date ;;
   }
@@ -38,7 +42,11 @@ view: direct_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.project_modification_date ;;
   }

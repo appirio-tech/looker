@@ -25,7 +25,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.client_create_date ;;
   }
@@ -44,7 +48,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.client_modification_date ;;
   }
@@ -78,7 +86,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.project_create_date ;;
   }
@@ -91,7 +103,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.project_modification_date ;;
   }
@@ -173,7 +189,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.billing_account_start_date ;;
   }
@@ -186,7 +206,11 @@ view: client_project_dim {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.billing_account_end_date ;;
   }

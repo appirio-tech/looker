@@ -104,7 +104,11 @@ view: member_payments {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_modified ;;
   }
@@ -117,7 +121,11 @@ view: member_payments {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_created ;;
   }
@@ -160,7 +168,11 @@ view: member_payments {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.member_since ;;
   }
@@ -173,7 +185,11 @@ view: member_payments {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_due ;;
   }
@@ -186,7 +202,11 @@ view: member_payments {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_paid ;;
   }

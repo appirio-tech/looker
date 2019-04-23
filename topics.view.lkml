@@ -15,7 +15,11 @@ view: connect_messages_1 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.createdat ;;
   }
@@ -53,7 +57,11 @@ view: connect_messages_1 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.updatedat ;;
   }

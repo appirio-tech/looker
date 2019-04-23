@@ -64,7 +64,11 @@ group by 1,2,3,4,5,6,7,8
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.billing_account_start_date ;;
   }
@@ -77,7 +81,11 @@ group by 1,2,3,4,5,6,7,8
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.billing_account_end_date ;;
   }

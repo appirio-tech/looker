@@ -8,6 +8,9 @@ include: "*.view.lkml"                       # include all views in this project
 ## This views are created for admin use only and should not be exposed to normal users as is
 ###########################################################################################
 
+#for fiscal year
+fiscal_month_offset: 3
+
  explore: dec_give_away_submission {
    join: member_profile_basic {
     relationship: many_to_one

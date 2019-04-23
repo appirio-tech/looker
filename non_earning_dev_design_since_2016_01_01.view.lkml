@@ -69,7 +69,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.create_date ;;
   }
@@ -82,7 +86,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.dw_stats_updated_time ;;
   }
@@ -140,7 +148,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_login ;;
   }
@@ -158,7 +170,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_site_hit_date ;;
   }
@@ -171,7 +187,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.member_since ;;
   }
@@ -189,7 +209,11 @@ view: non_earning_dev_design_since_2016_01_01 {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.modify_date ;;
   }

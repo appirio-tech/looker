@@ -24,6 +24,9 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
+#for fiscal year
+fiscal_month_offset: 3
+
 explore: member_activity_tenure {}
 
 # Derived Views

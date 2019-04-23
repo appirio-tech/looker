@@ -19,7 +19,11 @@ view: project_result {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.inquire_timestamp ;;
   }
@@ -130,7 +134,11 @@ view: project_result {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.review_complete_timestamp ;;
   }
@@ -148,7 +156,11 @@ view: project_result {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.submit_timestamp ;;
   }

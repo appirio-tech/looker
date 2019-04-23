@@ -9,6 +9,9 @@ include: "*.view"
 # sets the week start day to Sunday
 week_start_day: sunday
 
+#for fiscal year
+fiscal_month_offset: 3
+
 explore: user {
   fields: [
     ALL_FIELDS*,

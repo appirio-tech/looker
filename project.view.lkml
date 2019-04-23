@@ -53,7 +53,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.checkpoint_end_date ;;
   }
@@ -80,7 +84,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.checkpoint_start_date ;;
   }
@@ -94,7 +102,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.complete_date ;;
   }
@@ -250,7 +262,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_modification_date ;;
   }
@@ -330,7 +346,11 @@ view: challenge {
       quarter,
       day_of_week,
       day_of_month,
-      hour_of_day
+      hour_of_day,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.posting_date ;;
   }
@@ -412,7 +432,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.rating_date ;;
   }
@@ -426,7 +450,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.registration_end_date ;;
   }
@@ -450,7 +478,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.scheduled_end_date ;;
   }
@@ -465,7 +497,11 @@ view: challenge {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: NVL(${TABLE}.complete_date, ${TABLE}.scheduled_end_date) ;;
   }
@@ -520,7 +556,11 @@ view: challenge {
       month,
       year,
       quarter,
-      day_of_week
+      day_of_week,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.submitby_date ;;
   }

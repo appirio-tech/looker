@@ -43,7 +43,11 @@ view: participant_funnel_monthly {
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.member_since_date ;;
   }

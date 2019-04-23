@@ -15,7 +15,11 @@ view: connect_project_members {
       time,
       date,
       week,
-      month
+      month,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.createdat ;;
   }
@@ -33,7 +37,11 @@ view: connect_project_members {
       time,
       date,
       week,
-      month
+      month,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.deletedat ;;
   }
@@ -64,7 +72,11 @@ view: connect_project_members {
       time,
       date,
       week,
-      month
+      month,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.updatedat ;;
   }

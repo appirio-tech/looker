@@ -15,7 +15,11 @@ view: auth_refresh_log {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.refresh_at ;;
   }

@@ -383,7 +383,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.posting_date ;;
   }
@@ -396,7 +400,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.submitby_date ;;
   }
@@ -409,7 +417,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.complete_date ;;
   }
@@ -505,7 +517,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.rating_date ;;
   }
@@ -616,7 +632,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.start_date ;;
   }
@@ -639,7 +659,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_modification_date ;;
   }
@@ -673,7 +697,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     type: time
     sql: ${TABLE}.checkpoint_start_date ;;
@@ -686,7 +714,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     type: time
     sql: ${TABLE}.checkpoint_end_date ;;
@@ -740,7 +772,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.registration_end_date ;;
   }
@@ -753,7 +789,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
   }
 
@@ -904,7 +944,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.inquire_timestamp ;;
   }
@@ -917,7 +961,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.submit_timestamp ;;
   }
@@ -930,7 +978,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.review_complete_timestamp ;;
   }

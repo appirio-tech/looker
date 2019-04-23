@@ -12,6 +12,9 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
+#for fiscal year
+fiscal_month_offset: 3
+
 # Derived Views
 explore: challenge_stats {
   join: challenge_groups {

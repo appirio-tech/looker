@@ -6,6 +6,9 @@ include: "*.view"
 # include all dashboards in this project
 # include: "*.dashboard"
 
+#for fiscal year
+fiscal_month_offset: 3
+
 explore: project_result {}
 
 explore: country {}

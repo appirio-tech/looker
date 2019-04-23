@@ -42,7 +42,11 @@ where result.submitdate > '2016-12-31'
       week,
       month,
       year,
-      quarter
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.submitdate ;;
   }

@@ -229,7 +229,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.posting_date ;;
     }
@@ -242,7 +246,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.submitby_date ;;
     }
@@ -255,7 +263,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.complete_date ;;
     }
@@ -407,7 +419,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.rating_date ;;
     }
@@ -513,7 +529,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.start_date ;;
     }
@@ -536,7 +556,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.last_modification_date ;;
     }
@@ -570,7 +594,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       type: time
       sql: ${TABLE}.checkpoint_start_date ;;
@@ -583,7 +611,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       type: time
       sql: ${TABLE}.checkpoint_end_date ;;
@@ -617,7 +649,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.registration_end_date ;;
     }
@@ -630,7 +666,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
     }
 
@@ -772,7 +812,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.inquire_timestamp ;;
     }
@@ -785,7 +829,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.submit_timestamp ;;
     }
@@ -798,7 +846,11 @@ where project_technology.name in ('QA'))
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.review_complete_timestamp ;;
     }

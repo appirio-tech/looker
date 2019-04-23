@@ -236,7 +236,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.posting_date ;;
     }
@@ -249,7 +253,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.submitby_date ;;
     }
@@ -262,7 +270,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.complete_date ;;
     }
@@ -414,7 +426,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.rating_date ;;
     }
@@ -520,7 +536,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.start_date ;;
     }
@@ -543,7 +563,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.last_modification_date ;;
     }
@@ -577,7 +601,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       type: time
       sql: ${TABLE}.checkpoint_start_date ;;
@@ -590,7 +618,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       type: time
       sql: ${TABLE}.checkpoint_end_date ;;
@@ -624,7 +656,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.registration_end_date ;;
     }
@@ -637,7 +673,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
     }
 
@@ -757,7 +797,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.inquire_timestamp ;;
     }
@@ -770,7 +814,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.submit_timestamp ;;
     }
@@ -783,7 +831,11 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
         week,
         month,
         year,
-        quarter
+        quarter,
+        fiscal_month_num,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        fiscal_year
       ]
       sql: ${TABLE}.review_complete_timestamp ;;
     }
