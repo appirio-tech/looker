@@ -62,6 +62,17 @@ view: client_project_dim {
     sql: ${TABLE}.client_name ;;
   }
 
+  dimension: Category {
+    description: "Categorize Client as Internal or Customer. Internal includes Topcoder and [topcoder] copilots Name"
+    type: string
+    sql: CASE
+      WHEN ${TABLE}.client_name = 'Topcoder' THEN 'Internal'
+      WHEN ${TABLE}.client_name = '[topcoder] copilots' THEN 'Internal'
+      ELSE 'Customer'
+    END ;;
+
+    }
+
   dimension: client_project_id {
     primary_key: yes
     type: number
