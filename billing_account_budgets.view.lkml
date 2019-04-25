@@ -22,15 +22,26 @@ group by 1,2,3,4,5,6,7,8
   }
 
   dimension: customer_name {
-    description: ""
+    description: "Customer (Billing Account Sponsor)"
     type: string
     sql: ${TABLE}.customer_name ;;
   }
 
   dimension: client_id {
-    description: ""
+    description: "Internal Customer Id"
     type: number
     sql: ${TABLE}.client_id ;;
+  }
+
+  dimension: Category {
+    description: "Categorize Client as Internal or Customer. Internal includes Topcoder and [topcoder] copilots Name"
+    type: string
+    sql: CASE
+      WHEN ${TABLE}.customer_name = 'Topcoder' THEN 'Internal'
+      WHEN ${TABLE}.customer_name = '[topcoder] copilots' THEN 'Internal'
+      ELSE 'Customer'
+    END ;;
+
   }
 
   dimension: billing_account_id {
