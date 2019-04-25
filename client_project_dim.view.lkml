@@ -62,7 +62,7 @@ view: client_project_dim {
     sql: ${TABLE}.client_name ;;
   }
 
-  dimension: Category {
+  dimension: client_category {
     description: "Categorize Client as Internal or Customer. Internal includes Topcoder and [topcoder] copilots Name"
     type: string
     sql: CASE
