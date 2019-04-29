@@ -44,9 +44,9 @@ view: member_skill {
     sql: ${TABLE}.external ;;
   }
 
-  dimension: active {
+  dimension: deleted {
     type: yesno
-    description: "No implies skill has been removed by the user or system"
+    description: "Yes implies skill has been removed / deleted by the user or system"
     sql: ${TABLE}.hidden ;;
   }
 
