@@ -326,6 +326,15 @@ view: challenge {
     drill_fields: [detail*]
     sql: MAX(${TABLE}.posting_date) ;;
   }
+
+  measure: min_posting_date {
+    type: date
+    label: "Min Posting Date"
+    description: "Minumum Posting Date for a group of challenges. Useful to determine when the first challenge was posted"
+    drill_fields: [detail*]
+    sql: MIN(${TABLE}.posting_date) ;;
+  }
+
   measure: max_complete_date {
     type: date
     label: "Max Complete Date"
@@ -334,6 +343,16 @@ view: challenge {
     sql: MAX(${TABLE}.complete_date) ;;
 
  }
+
+  measure: actual_project_duration{
+    type: number
+    label: "Actual Project Duration"
+    description: "Project duration based on the time between the start of the first challenge and end of the last challenge."
+    drill_fields: [detail*]
+    sql:  ${max_complete_date} - ${min_posting_date} ;;
+
+  }
+
   dimension_group: posting {
     description: "Start of registration. If challenge is draft, then uses scheduled start date."
     type: time
