@@ -15,6 +15,11 @@ view: direct_project_dim {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    link: {
+      label: "Direct Project Link"
+      url: "https://www.topcoder.com/direct/projectOverview?formData.projectId={{ direct_project_dim.direct_project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   dimension_group: project_create {
