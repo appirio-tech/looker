@@ -13,6 +13,15 @@ view: member_skill {
     sql: ${TABLE}.challenge ;;
   }
 
+  dimension: skill_type{
+    type: string
+    description: "Status of the skill"
+    sql: CASE WHEN ${TABLE}.source = '%CHALLENGE%' THEN "Challenge"
+              WHEN ${TABLE}.source = '%USER_ENTERED%' THEN "USER_ENTERED"
+              ELSE "EXTERNAL"
+          ;;
+
+   }
   dimension_group: created {
     type: time
     hidden: yes
