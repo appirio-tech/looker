@@ -13,16 +13,14 @@ view: member_skill {
     sql: ${TABLE}.challenge ;;
   }
 
-
-
   dimension: priority_source {
     description: "Priority Source. A skill can be sourced from either Challenge, External or User Entered. Priority is taken for Challenge, external and Internal"
     type: string
     sql: CASE
-          WHEN ${TABLE}.challenge = true THEN "Challenge"
-          WHEN ${TABLE}.external  = true THEN "External"
-          WHEN ${TABLE}.user_entered = true THEN "User Entered"
-          ELSE "Other"
+          WHEN ${TABLE}.challenge = true THEN 'Challenge'
+          WHEN ${TABLE}.external  = true THEN 'External'
+          WHEN ${TABLE}.user_entered = true THEN 'User Entered'
+          ELSE 'Other'
         END ;;
   }
 
