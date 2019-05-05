@@ -84,3 +84,19 @@ explore: direct_budget {
     relationship: one_to_one
   }
 }
+
+explore: duplicate_resource {
+  label: "Detect Duplicate Resource"
+  description: "Duplicate Resources assigned on a project"
+  join: challenge {
+    type: left_outer
+    sql_on: ${duplicate_resource.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+  }
+  join: user {
+    type: left_outer
+    sql_on: ${duplicate_resource.user_id} = ${user.coder_id} ;;
+    relationship: one_to_one
+  }
+
+}
