@@ -53,6 +53,8 @@ view: member_profile_advanced {
     member.handle_lower,
     member.competition_country_code,
     member.home_country_code,
+    member.home_country_name,
+    member.competition_country_name,
     member.status,
     member.tracks,
     member.user_id
@@ -91,8 +93,24 @@ view: member_profile_advanced {
 
   dimension: country {
     type: string
+    label: "Address Country"
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+    group_label: "Address"
+  }
+
+#added on 8th May 2019
+  dimension: home_country_name {
+    type: string
+    label: "Home Country"
+    sql: ${TABLE}.home_country_name ;;
+    group_label: "Address"
+  }
+
+  dimension: competition_country_name {
+    type: string
+    label: "Competition Country"
+    sql: ${TABLE}.competition_country_name ;;
     group_label: "Address"
   }
 
