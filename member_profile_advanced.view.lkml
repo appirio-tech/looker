@@ -91,8 +91,9 @@ view: member_profile_advanced {
     sql: datediff(year, ${TABLE}.birth_date, current_date) ;;
   }
 
-  dimension: mailing_country {
+  dimension: country {
     type: string
+    label: "Mailing Country"
     map_layer_name: countries
     sql: ${TABLE}.country ;;
     group_label: "Address"
@@ -231,8 +232,9 @@ view: member_profile_advanced {
     sql: ${TABLE}.user_consent ;;
   }
 
-  dimension: mailing_city {
+  dimension: city {
     type: string
+    label: "Mailing City"
     sql: ${TABLE}.city ;;
     group_label: "Address"
   }
@@ -345,20 +347,23 @@ view: member_profile_advanced {
     sql: ${TABLE}.quote ;;
   }
 
-  dimension: mailing_state_code {
+  dimension: state_code {
     type: string
+    label: "Mailing State_code"
     sql: ${TABLE}.state_code ;;
     group_label: "Address"
   }
 
-  dimension: mailing_street_address_1 {
+  dimension: street_address_1 {
     type: string
+    label: "Mailing Street_Address_1"
     sql: ${TABLE}.street_address_1 ;;
     group_label: "Address"
   }
 
-  dimension: mailing_street_address_2 {
+  dimension: street_address_2 {
     type: string
+    label: "Mailing Street_Address_2"
     sql: ${TABLE}.street_address_2 ;;
     group_label: "Address"
   }
