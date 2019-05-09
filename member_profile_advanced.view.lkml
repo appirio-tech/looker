@@ -91,25 +91,24 @@ view: member_profile_advanced {
     sql: datediff(year, ${TABLE}.birth_date, current_date) ;;
   }
 
-  dimension: country {
+  dimension: mailing_country {
     type: string
-    label: "Address Country"
     map_layer_name: countries
     sql: ${TABLE}.country ;;
     group_label: "Address"
   }
 
 #added on 8th May 2019
-  dimension: home_country_name {
+  dimension: home_country {
     type: string
-    label: "Home Country"
+    description: "Country name for the country member belong to"
     sql: ${TABLE}.home_country_name ;;
     group_label: "Address"
   }
 
-  dimension: competition_country_name {
+  dimension: competition_country {
     type: string
-    label: "Competition Country"
+    description: "Country name for the country member is competing in"
     sql: ${TABLE}.competition_country_name ;;
     group_label: "Address"
   }
@@ -232,7 +231,7 @@ view: member_profile_advanced {
     sql: ${TABLE}.user_consent ;;
   }
 
-  dimension: city {
+  dimension: mailing_city {
     type: string
     sql: ${TABLE}.city ;;
     group_label: "Address"
@@ -346,19 +345,19 @@ view: member_profile_advanced {
     sql: ${TABLE}.quote ;;
   }
 
-  dimension: state_code {
+  dimension: mailing_state_code {
     type: string
     sql: ${TABLE}.state_code ;;
     group_label: "Address"
   }
 
-  dimension: street_address_1 {
+  dimension: mailing_street_address_1 {
     type: string
     sql: ${TABLE}.street_address_1 ;;
     group_label: "Address"
   }
 
-  dimension: street_address_2 {
+  dimension: mailing_street_address_2 {
     type: string
     sql: ${TABLE}.street_address_2 ;;
     group_label: "Address"
