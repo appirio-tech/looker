@@ -54,6 +54,7 @@ view: member_profile_basic {
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    tags: ["email"]
   }
 
   dimension: email_verify_token {
@@ -190,6 +191,7 @@ view: member_profile_basic {
     type: number
     primary_key: yes
     sql: ${TABLE}.user_id ;;
+    tags: ["user_id"]
   }
 
   dimension: zip {

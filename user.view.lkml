@@ -5,6 +5,7 @@ view: user {
     primary_key: yes
     type: number
     sql: ${TABLE}.coder_id ;;
+    tags: ["user_id"]
   }
 
   dimension: country_code {
@@ -91,6 +92,7 @@ view: user {
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    tags: ["email"]
   }
 
   dimension: employer_search {
