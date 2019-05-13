@@ -25,7 +25,7 @@ week_start_day: sunday
 case_sensitive: no
 
 #for fiscal year
-fiscal_month_offset: 3
+fiscal_month_offset: -9
 
 explore: member_activity_tenure {}
 
