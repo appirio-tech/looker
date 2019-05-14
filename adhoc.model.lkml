@@ -9,7 +9,7 @@ include: "*.view.lkml"                       # include all views in this project
 ###########################################################################################
 
 #for fiscal year
-fiscal_month_offset: 3
+fiscal_month_offset: -9
 
  explore: dec_give_away_submission {
    join: member_profile_basic {
