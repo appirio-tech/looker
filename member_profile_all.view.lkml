@@ -97,6 +97,7 @@ view: member_profile_all {
 
     dimension: country {
       type: string
+      label: "Mailing Country"
       map_layer_name: countries
       sql: ${TABLE}.country ;;
       group_label: "Address"
@@ -240,6 +241,7 @@ view: member_profile_all {
 
     dimension: city {
       type: string
+      label: "Mailing City"
       sql: ${TABLE}.city ;;
       group_label: "Address"
     }
@@ -354,18 +356,21 @@ view: member_profile_all {
 
     dimension: state_code {
       type: string
+      label: "Mailing State Code"
       sql: ${TABLE}.state_code ;;
       group_label: "Address"
     }
 
     dimension: street_address_1 {
       type: string
+      label: "Mailing Street Address 1"
       sql: ${TABLE}.street_address_1 ;;
       group_label: "Address"
     }
 
     dimension: street_address_2 {
       type: string
+      label: "Mailing Street Address 2"
       sql: ${TABLE}.street_address_2 ;;
       group_label: "Address"
     }
