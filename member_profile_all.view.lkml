@@ -53,6 +53,8 @@ view: member_profile_all {
           member.handle_lower,
           member.competition_country_code,
           member.home_country_code,
+          member.home_country_name,
+          member.competition_country_name,
           member.status,
           member.tracks,
           member.user_id
@@ -97,7 +99,24 @@ view: member_profile_all {
       type: string
       map_layer_name: countries
       sql: ${TABLE}.country ;;
+      group_label: "Address"
     }
+
+#added on 22nd May 2019
+
+  dimension: home_country {
+    type: string
+    description: "Country name for the country member belong to"
+    sql: ${TABLE}.home_country_name ;;
+    group_label: "Address"
+  }
+
+  dimension: competition_country {
+    type: string
+    description: "Country name for the country member is competing in"
+    sql: ${TABLE}.competition_country_name ;;
+    group_label: "Address"
+  }
 
     dimension_group: created {
       type: time
@@ -222,12 +241,14 @@ view: member_profile_all {
     dimension: city {
       type: string
       sql: ${TABLE}.city ;;
+      group_label: "Address"
     }
 
     dimension: competition_country_code {
       type: string
       description: "Country code for the country the member is competing in"
       sql: ${TABLE}.competition_country_code ;;
+      group_label: "Address"
     }
 
     dimension: email {
@@ -250,6 +271,7 @@ view: member_profile_all {
       type: string
       description: "Country code for the country member belong to"
       sql: ${TABLE}.home_country_code ;;
+      group_label: "Address"
     }
 
     dimension: status {
@@ -333,21 +355,25 @@ view: member_profile_all {
     dimension: state_code {
       type: string
       sql: ${TABLE}.state_code ;;
+      group_label: "Address"
     }
 
     dimension: street_address_1 {
       type: string
       sql: ${TABLE}.street_address_1 ;;
+      group_label: "Address"
     }
 
     dimension: street_address_2 {
       type: string
       sql: ${TABLE}.street_address_2 ;;
+      group_label: "Address"
     }
 
     dimension: zip {
       type: zipcode
       sql: ${TABLE}.zip ;;
+      group_label: "Address"
     }
 
     measure: count {
