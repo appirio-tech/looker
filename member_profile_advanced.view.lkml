@@ -191,11 +191,13 @@ view: member_profile_advanced {
     type: number
     primary_key: yes
     sql: ${TABLE}.user_id ;;
+    tags: ["user_id"]
   }
 
   dimension: business_email {
     type: string
     sql: ${TABLE}.business_email ;;
+    tags: ["email"]
   }
 
   dimension: business_phone {
@@ -249,6 +251,7 @@ view: member_profile_advanced {
  dimension: email {
     type: string
     sql: ${TABLE}.email ;;
+    tags: ["email"]
   }
 
   dimension: handle {

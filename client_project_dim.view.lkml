@@ -62,6 +62,13 @@ view: client_project_dim {
     sql: ${TABLE}.client_name ;;
   }
 
+  #dimension: billable {
+  #  type: yesno
+  #  sql: ${TABLE}.billable ;;
+  #  description: "A customer Billing Account is marked billable. An internal or Goodwill BA is marked non billable"
+  #}
+
+
   dimension: client_category {
     description: "Categorize Client as Internal or Customer. Internal includes Topcoder and [topcoder] copilots Name"
     type: string
