@@ -21,6 +21,17 @@ view: skill {
     sql: ${TABLE}.name ;;
   }
 
+  #24th May 2019
+  #Added a dimension for displaying a comma seperated list of skills
+  dimension: Skill_list {
+    type :  string
+    label: "Skill List"
+    description: " Technology Skill"
+    sql: select LISTAGG( name , ',') WITHIN GROUP (ORDER BY name ) from tcs_dw.skill ;;
+
+
+  }
+
   dimension: priority {
     type: number
     description: "skill priority with 1 being high on priority and 15 being last on priority"
