@@ -17,6 +17,12 @@ explore: member_skill {
      relationship: many_to_many
      sql_on: ${member_skill.user_id} = ${user.coder_id} ;;
    }
+
+  join: derived_skills_list {
+    relationship: many_to_many
+    sql_on: ${member_skill.user_id}= ${derived_skills_list.user_coder_id} ;;
+
+  }
 }
 
 # Added 24th October - 2018
