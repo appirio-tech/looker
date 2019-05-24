@@ -27,7 +27,7 @@ view: skill {
     type :  string
     label: "Skill List"
     description: " Technology Skill"
-    sql: select LISTAGG( name , ',') WITHIN GROUP (ORDER BY name ) from tcs_dw.skill ;;
+    sql: (select LISTAGG( name , ',') WITHIN GROUP (ORDER BY name ) from tcs_dw.skill) ;;
 
 
   }
