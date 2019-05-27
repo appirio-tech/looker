@@ -646,6 +646,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.duration ;;
   }
 
+  measure: avg_duration {
+    type: average
+    sql: ${TABLE}.duration ;;
+  }
+
   measure: fulfillment {
     type: sum
     sql: ${TABLE}.fulfillment ;;
