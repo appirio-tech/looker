@@ -43,6 +43,17 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  #Adding skills tab to Challenge stats table
+  join: member_skill {
+   relationship: many_to_many
+   sql_on: ${member_skill.user_id} = ${user.coder_id} ;;
+ }
+
+  join: skill {
+    relationship: many_to_many
+    sql_on: ${member_skill.skill_id} = ${skill.skill_id} ;;
+  }
+
   join: member_profile_advanced {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
