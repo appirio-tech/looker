@@ -25,6 +25,7 @@ view: skill {
   #Added a dimension for displaying a comma seperated list of skills
   dimension: Skill_list {
     type :  string
+    hidden: yes
     label: "Skill List"
     description: " Technology Skill"
     sql: LISTAGG( name , ',') ;;
