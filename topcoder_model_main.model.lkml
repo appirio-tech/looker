@@ -47,12 +47,35 @@ explore: challenge_stats {
   join: member_skill {
    relationship: many_to_many
    sql_on: ${member_skill.user_id} = ${user.coder_id} ;;
- }
+  }
 
   join: skill {
     relationship: many_to_many
     sql_on: ${member_skill.skill_id} = ${skill.skill_id} ;;
   }
+
+  #Comment Starts 27th May 2019
+  #Adding below tables to challenge stats explore
+
+  join: member_hobby {
+    type :  left_outer
+    sql_on: ${challenge_stats.registrant_id}= ${member_hobby.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_software {
+    type: left_outer
+    sql_on:${challenge_stats.registrant_id} = ${member_software.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: member_device{
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${member_device.user_id} ;;
+    relationship: one_to_many
+  }
+
+  #Comment Ends
 
   join: member_profile_advanced {
     type: left_outer
