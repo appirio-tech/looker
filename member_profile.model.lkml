@@ -18,18 +18,21 @@ explore: member_skill {
      sql_on: ${member_skill.user_id} = ${user.coder_id} ;;
    }
 
-  join: derived_skills_list {
-    relationship: many_to_many
-    sql_on: ${member_skill.user_id}= ${derived_skills_list.user_coder_id} ;;
-
-  }
 }
 
 # Added 24th October - 2018
 
 explore: member_profile_basic {}
 
-explore: member_profile_advanced {}
+explore: member_profile_advanced {
+
+  #Added 28th May 2019
+  join: derived_skills_list {
+    relationship: many_to_many
+    sql_on: ${member_profile_advanced.user_id}= ${derived_skills_list.user_coder_id} ;;
+
+  }
+}
 
 explore: member_community {
   join: member_profile_basic{
@@ -166,6 +169,12 @@ explore: member_profile_all {
     type: left_outer
     sql_on: ${member_skill.skill_id} = ${skill.skill_id} ;;
     relationship: many_to_many
+  }
+  #Added on 28th May 2019
+  join: derived_skills_list {
+    relationship: many_to_many
+    sql_on: ${member_skill.user_id}= ${derived_skills_list.user_coder_id} ;;
+
   }
 
   join: member_service_provider{
