@@ -27,9 +27,9 @@ explore: member_profile_basic {}
 explore: member_profile_advanced {
 
   #Added 28th May 2019
-  join: derived_skills_list {
+  join: computed_skills {
     relationship: many_to_many
-    sql_on: ${member_profile_advanced.user_id}= ${derived_skills_list.user_coder_id} ;;
+    sql_on: ${member_profile_advanced.user_id}= ${computed_skills.user_id} ;;
 
   }
 }
@@ -171,9 +171,9 @@ explore: member_profile_all {
     relationship: many_to_many
   }
   #Added on 28th May 2019
-  join: derived_skills_list {
+  join: computed_skills {
     relationship: many_to_many
-    sql_on: ${member_skill.user_id}= ${derived_skills_list.user_coder_id} ;;
+    sql_on: ${member_skill.user_id}= ${computed_skills.user_id} ;;
 
   }
 
