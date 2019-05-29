@@ -1337,3 +1337,7 @@ explore: challenge_user_payments {
 
   # for new data science participants and submitters
   explore: data_science_members  {}
+
+  #for sfdc account and opportunity table
+  explore:  sfdc_account{}
+  explore:  sfdc_opportunity{}
