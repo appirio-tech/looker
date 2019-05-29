@@ -18,6 +18,17 @@ fiscal_month_offset: -9
     }
  }
 
+#Added back to check for schedule
+explore: project_scorecard {
+  label: "New Project Scorecards"
+  description: "New Project that are launched with other scorecards"
+  join: challenge {
+    type: left_outer
+    sql_on: ${project_scorecard.project_id} = ${challenge.challenge_id} ;;
+    relationship: one_to_one
+
+  }
+}
 
 
 explore: copilot_self_payment {}
