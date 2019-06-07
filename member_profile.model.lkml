@@ -58,6 +58,34 @@ explore: member_hobby {
   }
 }
 
+#added on 7th June
+explore: member_education {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_education.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
+
+#added on 7th June
+explore: member_language {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_language.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
+
+#added on 7th June
+explore: member_work {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_work.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: many_to_one
+  }
+}
+
+
 explore: member_service_provider {
   join: member_profile_basic {
     type: left_outer
@@ -241,4 +269,6 @@ explore: member_submission {
     sql_on: ${direct_project_dim.billing_account_id} = ${billing_account_budgets.billing_account_id};;
     relationship: many_to_many
   }
+
+
 }
