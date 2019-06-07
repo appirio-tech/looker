@@ -187,6 +187,26 @@ explore: member_profile_all {
     relationship: one_to_many
   }
 
+#added on 7th June
+  join: member_education{
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_education.user_id} ;;
+    relationship: one_to_many
+  }
+
+  #added on 7th June
+  join: member_language{
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_language.user_id} ;;
+    relationship: one_to_many
+  }
+
+  #added on 7th June
+  join: member_work{
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_work.user_id} ;;
+    relationship: one_to_many
+  }
   join: member_skill{
     type: left_outer
     sql_on: ${member_profile_all.user_id} = ${member_skill.user_id} ;;
