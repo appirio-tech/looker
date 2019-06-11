@@ -803,14 +803,14 @@ view: challenge {
     type: number
     value_format: "#,##0.0"
     drill_fields: [detail*]
-    sql: ${num_submissions}/${count} ;;
+    sql: ${num_submissions}/ NULLIF(${count},0) ;;
   }
 
   measure: average_registrants {
     type: number
     value_format: "#,##0.0"
     drill_fields: [detail*]
-    sql: ${num_registrations}/${count} / NULLIF(${count}, 0)  ;;
+    sql: ${num_registrations}/ NULLIF(${count}, 0) ;;
   }
 
 
