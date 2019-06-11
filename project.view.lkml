@@ -810,7 +810,7 @@ view: challenge {
     type: number
     value_format: "#,##0.0"
     drill_fields: [detail*]
-    sql: ${num_registrations}/${count} ;;
+    sql: ${num_registrations}/${count} / NULLIF(${count}, 0)  ;;
   }
 
 
