@@ -97,30 +97,48 @@ view: client_project_dim {
   }
 
   #added on 14th June 2019
-  dimension:sfdc_account  {
+  dimension:billing_sfdc_account  {
     type: string
+    description: "Sponsor Account for Challenges. e.g. Wipro SubContracting or Topcoder for Goodwill projects"
     sql: ${TABLE}.sfdc_account ;;
   }
 
   #added on 14th June 2019
+  dimension:reporting_sfdc_account  {
+    description: "End Client, receiving the benefits"
+    type: string
+    sql: CASE
+
+         when ${TABLE}.subscription_opportunity_subcontracting_end_customer__c is not null
+               then ${TABLE}.subscription_opportunity_subcontracting_end_customer__c
+         when ${TABLE}.subscription_subcontracting_end_customer__c is not null
+               then ${TABLE}.subscription_subcontracting_end_customer__c
+
+        when ${TABLE}.subscription_account__c is not null
+               then ${TABLE}.subscription_account__c
+        when ${TABLE}.sfdc_account is not null
+               then ${TABLE}.sfdc_account
+
+
+    else NULL
+    END ;;
+  }
+
   dimension:subscription_opportunity_subcontracting_end_customer  {
     type: string
+    hidden: yes
     sql: ${TABLE}.subscription_opportunity_subcontracting_end_customer__c ;;
   }
-
-  #added on 14th June 2019
   dimension:subscription_subcontracting_end_customer  {
     type: string
+    hidden: yes
     sql: ${TABLE}.subscription_subcontracting_end_customer__c ;;
   }
-
-  #added on 14th June 2019
   dimension:subscription_account  {
     type: string
+    hidden: yes
     sql: ${TABLE}.subscription_account__c ;;
   }
-
-
 
   dimension_group: project_create {
     type: time
