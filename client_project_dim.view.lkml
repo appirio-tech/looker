@@ -96,6 +96,32 @@ view: client_project_dim {
     sql: ${TABLE}.customer_number ;;
   }
 
+  #added on 14th June 2019
+  dimension:sfdc_account  {
+    type: string
+    sql: ${TABLE}.sfdc_account ;;
+  }
+
+  #added on 14th June 2019
+  dimension:subscription_opportunity_subcontracting_end_customer  {
+    type: string
+    sql: ${TABLE}.subscription_opportunity_subcontracting_end_customer__c ;;
+  }
+
+  #added on 14th June 2019
+  dimension:subscription_subcontracting_end_customer  {
+    type: string
+    sql: ${TABLE}.subscription_subcontracting_end_customer__c ;;
+  }
+
+  #added on 14th June 2019
+  dimension:subscription_account  {
+    type: string
+    sql: ${TABLE}.subscription_account__c ;;
+  }
+
+
+
   dimension_group: project_create {
     type: time
     timeframes: [
@@ -254,6 +280,8 @@ view: client_project_dim {
     type: count_distinct
     sql: ${TABLE}.billing_account_id ;;
   }
+
+
 
 ##  measure: self_service {
 ##    type: string
