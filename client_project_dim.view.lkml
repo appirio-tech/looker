@@ -99,6 +99,7 @@ view: client_project_dim {
   #added on 14th June 2019
   dimension:billing_sfdc_account  {
     type: string
+    hidden: yes
     description: "Sponsor Account for Challenges. e.g. Wipro SubContracting or Topcoder for Goodwill projects"
     sql: ${TABLE}.sfdc_account ;;
   }
@@ -107,6 +108,7 @@ view: client_project_dim {
   dimension:reporting_sfdc_account  {
     description: "End Client, receiving the benefits"
     type: string
+    hidden: yes
     sql: CASE
 
          when ${TABLE}.subscription_opportunity_subcontracting_end_customer__c is not null

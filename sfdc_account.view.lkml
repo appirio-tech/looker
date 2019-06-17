@@ -1,10 +1,15 @@
 view: sfdc_account {
   sql_table_name: tcs_dw.sfdc_account ;;
 
-  dimension: id {
+  dimension: account_id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
+    link: {
+      label: "sfdc_account_url"
+      url: "https://topcoder.my.salesforce.com/{{ value }}"
+      icon_url: "https://www.topcoder.com/wp-content/media/2017/03/Topcoder-Connect-Logo.png"
+    }
   }
 
   dimension: name {
@@ -232,6 +237,6 @@ view: sfdc_account {
 
  measure: count {
     type: count
-    drill_fields: [id, name]
+    drill_fields: [account_id, name]
   }
 }
