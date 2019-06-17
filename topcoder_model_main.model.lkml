@@ -387,7 +387,12 @@ explore: challenge {
     relationship: many_to_one
   }
 
-
+  join: sfdc_account {
+    view_label: "Reporting Account"
+    type: left_outer
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
 
   join: connect_project {
     type: left_outer
@@ -689,7 +694,7 @@ explore: user_payment {}
 #added on 17th June 2019
 explore: client_project_dim {
   join: sfdc_account{
-  view_label: "reporting account"
+  view_label: "Reporting Account"
   type: left_outer
   sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
   relationship: many_to_one
