@@ -42,13 +42,13 @@ view: challenge_stats {
        p.project_category_name,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
-       direct_project.billing_project_id AS billing_account_id,
+       --direct_project.billing_project_id AS billing_account_id,
        client_project.project_name as billing_account_name,
        client_project.customer_number,
        client_project.client_name,
        p.admin_fee,
        p.contest_prizes_total,
-       p.client_project_id,
+       p.client_project_id  AS billing_account_id,
        p.start_date_calendar_id,
        p.duration,
        p.fulfillment,
@@ -117,7 +117,7 @@ view: challenge_stats {
        member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
-     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON p.client_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
      LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
@@ -168,13 +168,13 @@ SELECT p.project_id,
        p.project_category_name,
        p.tc_direct_project_id,
        direct_project.name AS project_name,
-       direct_project.billing_project_id AS billing_account_id,
+       --direct_project.billing_project_id AS billing_account_id,
        client_project.project_name as billing_account_name,
        client_project.customer_number,
        client_project.client_name,
        p.admin_fee,
        p.contest_prizes_total,
-       p.client_project_id,
+       p.client_project_id  AS billing_account_id,
        p.start_date_calendar_id,
        p.duration,
        p.fulfillment,
@@ -244,7 +244,7 @@ SELECT p.project_id,
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
-     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
+     LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON p.client_project_id = client_project.billing_project_id
      LEFT OUTER JOIN tcs_dw.coder c ON pr.user_id = c.coder_id
      LEFT OUTER JOIN tcs_dw.coder winner ON p.winner_id = winner.coder_id
      LEFT OUTER JOIN tcs_dw.coder challenge_manager ON p.challenge_manager = challenge_manager.coder_id
@@ -614,10 +614,10 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.contest_prizes_total ;;
   }
 
-  dimension: client_project_id {
-    type: number
-    sql: ${TABLE}.client_project_id ;;
-  }
+  #dimension: client_project_id {
+  #  type: number
+  #  sql: ${TABLE}.client_project_id ;;
+  #}
 
   dimension: start_date_calendar_id {
     type: number
@@ -1278,7 +1278,6 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       client_name,
       admin_fee,
       contest_prizes_total,
-      client_project_id,
       start_date_calendar_id,
       start_date_time,
       duration,
