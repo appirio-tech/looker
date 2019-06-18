@@ -127,6 +127,21 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  #added on 18t June 2019
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${challenge_stats.billing_account_id} = ${client_project_dim.client_project_id} ;;
+    relationship: many_to_one
+  }
+
+  #added on 18t June 2019
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
