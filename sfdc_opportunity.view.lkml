@@ -12,6 +12,11 @@ view: sfdc_opportunity {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: account_id {
+  type: string
+  sql: ${TABLE}.accountid ;;
+  }
+
   measure: amount {
     type: sum
     sql: ${TABLE}.amount ;;

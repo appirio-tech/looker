@@ -295,9 +295,9 @@ explore: cost_transaction {
     sql_on: ${cost_transaction.contest_id} = ${challenge.project_id} ;;
     relationship: one_to_many
   }
-  join: opportunity {
+  join: sfdc_opportunity {
     type:  left_outer
-    sql_on: ${cost_transaction.billing_project_id} = ${opportunity.account_id} ;;
+    sql_on: ${cost_transaction.billing_project_id} = ${sfdc_account.account_id} ;;
     relationship: many_to_one
   }
 
