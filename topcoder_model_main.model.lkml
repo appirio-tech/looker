@@ -276,6 +276,15 @@ explore: cost_transaction {
     relationship: many_to_one
   }
 
+  #added on 20th June 2019
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id} ;;
+    relationship: many_to_one
+  }
+
+
   join: challenge_groups {
     type: left_outer
     sql_on: ${cost_transaction.contest_id} = ${challenge_groups.challenge_id} ;;
@@ -708,13 +717,20 @@ explore: user_payment {}
 
 #added on 17th June 2019
 explore: client_project_dim {
-  join: sfdc_account{
-  view_label: "Reporting Account"
-  type: left_outer
-  sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
-  relationship: many_to_one
-
+  join: reporting_account{
+    from: sfdc_account
+    type: left_outer
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${reporting_account.account_id};;
+    relationship: many_to_one
 }
+
+  #added on 20th June 2019
+  join: sponsored_account{
+    from :  sfdc_account
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${sponsored_account.account_id};;
+    relationship: many_to_one
+  }
 }
 
 #- explore: client_user_stats
