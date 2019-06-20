@@ -189,14 +189,15 @@ explore: data_science_contest {}
 explore: leads {}
 
 
-explore: opportunity {
-  join: connect_project {
-    type: left_outer
-    sql_on: ${opportunity.connect_project_id} = ${connect_project.id} ;;
-    relationship: one_to_one
-  }
+#removed the opportunity table on 20th June 2019
+#explore: opportunity {
+#  join: connect_project {
+#    type: left_outer
+#    sql_on: ${opportunity.connect_project_id} = ${connect_project.id} ;;
+#    relationship: one_to_one
+#  }
 
-}
+#}
 
 #added the group deatils
 explore: auth_refresh_log {
@@ -297,7 +298,7 @@ explore: cost_transaction {
   }
   join: sfdc_opportunity {
     type:  left_outer
-    sql_on: ${cost_transaction.billing_project_id} = ${sfdc_account.account_id} ;;
+    sql_on: ${sfdc_account.account_id} = ${sfdc_opportunity.account_id} ;;
     relationship: many_to_one
   }
 
