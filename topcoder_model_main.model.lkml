@@ -648,6 +648,13 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: payee_competition_country {
+    from: country
+    type: inner
+    sql_on: ${payee_competition_country.country_code} = ${payee.comp_country_code} ;;
+    relationship: many_to_many
+  }
+
    join: payment_create_date {
     from: calendar
     type: inner
