@@ -45,6 +45,17 @@ explore: duplicate_review {
 
 }
 
+# Find the dmz submissions
+explore: dmz_submission {
+  label: "Detect Dmz Submission"
+  join: submission {
+    type: left_outer
+    sql_on:  ${dmz_submission.challenge_id} = ${submission.project_id} ;;
+    relationship: many_to_one
+  }
+
+}
+
 #Join Submission with Challenge to see Challenge details and Submission
 explore: challenge {
   label: "Challenge Submissions"
