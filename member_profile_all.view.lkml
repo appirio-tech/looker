@@ -119,6 +119,19 @@ view: member_profile_all {
     group_label: "Address"
   }
 
+#added on 28th June 2019
+  dimension: reporting_country {
+    type: string
+    description: "There are 3 countries in the system. Shows reporting country based on logic ( Competition Country > Home Country > Mailing Country)"
+    group_label: "Address"
+    sql: CASE
+        WHEN ${TABLE}.competition_country_name is not null
+          THEN  ${TABLE}.competition_country_name
+        WHEN ${TABLE}.home_country_name is not null
+          THEN ${TABLE}.home_country_name
+       ELSE ${TABLE}.country
+   END;;
+  }
     dimension_group: created {
       type: time
       timeframes: [
