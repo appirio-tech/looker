@@ -25,7 +25,12 @@ explore: member_skill {
 explore: member_profile_basic {}
 
 explore: member_profile_advanced {
-
+  #Added 28th June 2019
+  join: user {
+    type: inner
+    sql_on: ${member_profile_advanced.user_id} = ${user.coder_id} ;;
+    relationship: one_to_one
+  }
   #Added 28th May 2019
   join: computed_skills {
     relationship: many_to_many
