@@ -200,6 +200,36 @@ view: member_profile_basic {
     sql: ${TABLE}.zip ;;
   }
 
+#added on 2nd July 2019
+  dimension: home_country {
+    type: string
+    description: "Country name for the country member belong to"
+    sql: ${TABLE}.home_country_name ;;
+
+  }
+
+  #added on 2nd July 2019
+  dimension: competition_country {
+    type: string
+    description: "Country name for the country member is competing in"
+    sql: ${TABLE}.competition_country_name ;;
+
+  }
+
+  #added on 2nd July 2019
+  dimension: reporting_country {
+    type: string
+    description: "There are 3 countries in the system. Shows reporting country based on logic ( Competition Country > Home Country > Mailing Country)"
+
+    sql: CASE
+         WHEN ${TABLE}.competition_country_name is not null
+           THEN  ${TABLE}.competition_country_name
+         WHEN ${TABLE}.home_country_name is not null
+           THEN ${TABLE}.home_country_name
+        ELSE Null
+    END;;
+  }
+
   measure: count {
     type: count
     drill_fields: [other_lang_name, last_name, first_name]
