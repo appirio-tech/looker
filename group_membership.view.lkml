@@ -39,12 +39,26 @@ view: group_membership {
 
   dimension: group_name {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.group_name ;;
+  }
+
+  dimension: membership_type {
+     type: string
+     description: "If the Member Id is of user or group"
+      sql: CASE
+    WHEN ${TABLE}.membership_type = 1
+        THEN 'User'
+    WHEN ${TABLE}.membership_type = 2
+        THEN 'Group'
+    ELSE
+         'Unknown'
+    END;;
   }
 
   dimension: member_name {
     type: string
+    hidden: yes
     description: "Member name for the groups are populated"
     sql: ${TABLE}.member_name;;
   }
@@ -54,8 +68,9 @@ view: group_membership {
     sql: ${TABLE}.member_id ;;
   }
 
-  dimension: membership_type {
+  dimension: membership_type_ind {
     type: number
+    description: "Numeric field to indicate if the member is of type user or group. 1 is member and 2 is group"
     sql: ${TABLE}.membership_type ;;
   }
 
