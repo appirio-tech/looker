@@ -245,7 +245,7 @@ explore: group_membership{
       from:  group
       type: left_outer
       sql_on: ${group_membership.member_id} = ${child_group.id} and ${group_membership.membership_type_ind} = 2 ;;
-    relationship: many_to_many
+    relationship: one_to_one
   }
 
 }
