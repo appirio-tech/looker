@@ -241,10 +241,10 @@ explore: group_membership{
   }
 
   #added on 2nd July 2019
-  join: child_group {
+  join: sub_group {
       from:  group
       type: left_outer
-      sql_on: ${group_membership.member_id} = ${child_group.id} and ${group_membership.membership_type_ind} = 2 ;;
+      sql_on: ${group_membership.member_id} = ${sub_group.id} and ${group_membership.membership_type_ind} = 2 ;;
     relationship: one_to_one
   }
 
