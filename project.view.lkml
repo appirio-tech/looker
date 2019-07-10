@@ -506,6 +506,26 @@ view: challenge {
     sql: ${TABLE}.scheduled_end_date ;;
   }
 
+ #added on 10th July 2019
+
+  dimension_group: create_date {
+    type: time
+    description: "Date on which the challenge is created"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      year,
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: ${TABLE}.create_date ;;
+  }
+
   # If the completed date is null (challenge not completed), then use the scheduled end date.
   dimension_group: projected_end {
     description: "If the completed date is null (challenge not completed), then use the scheduled end date."
