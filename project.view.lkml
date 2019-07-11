@@ -508,7 +508,7 @@ view: challenge {
 
  #added on 10th July 2019
 
-  dimension_group: create_date {
+  dimension_group: create {
     type: time
     description: "Date on which the challenge is created"
     timeframes: [
