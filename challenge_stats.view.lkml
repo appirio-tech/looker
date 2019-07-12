@@ -16,7 +16,7 @@ view: challenge_stats {
        p.category_desc,
        p.posting_date,
        p.submitby_date,
-       p.complete_date,
+       p.complete_date as complete_date,
        p.review_phase_id,
        p.review_phase_name,
        p.status_id,
@@ -143,7 +143,7 @@ SELECT p.project_id,
        p.category_desc,
        p.posting_date,
        p.submitby_date,
-       p.complete_date,
+       p.complete_date as complete_date,
        p.review_phase_id,
        p.review_phase_name,
        p.status_id,
@@ -255,8 +255,8 @@ FROM tcs_dw.project p LEFT OUTER JOIN
      LEFT OUTER JOIN tcs_dw.member_profile member_profile ON pr.user_id = member_profile.user_id
 
  ;;
-    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date"]
-    distribution: "billing_account_name"
+    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date", "complete_date"]
+    distribution: "complete_date"
     persist_for: "8 hours"
   }
 
