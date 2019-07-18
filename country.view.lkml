@@ -9,6 +9,7 @@ view: country {
 
   dimension: country_name {
     type: string
+    map_layer_name: countries
     sql: ${TABLE}.country_name ;;
   }
 
