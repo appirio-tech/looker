@@ -22,8 +22,8 @@ view: project_stream {
     sql: ${TABLE}.actuals_to_update__c ;;
   }
 
-  dimension: assignment_count {
-    type: number
+  measure: assignment_count {
+    type: sum
     sql: ${TABLE}.assignment_count__c ;;
   }
 
@@ -37,18 +37,18 @@ view: project_stream {
     sql: ${TABLE}.billing_account_allow__c ;;
   }
 
-  dimension: billings_from_challenge {
-    type: number
+  measure: billings_from_challenge {
+    type: sum
     sql: ${TABLE}.billings_from_challenge__c ;;
   }
 
-  dimension: billings_from_milestones {
-    type: number
+  measure: billings_from_milestones {
+    type :sum
     sql: ${TABLE}.billings_from_milestones__c ;;
   }
 
-  dimension: billings_from_timecard {
-    type: number
+  measure: billings_from_timecard {
+    type: sum
     sql: ${TABLE}.billings_from_timecard__c ;;
   }
 
@@ -57,13 +57,14 @@ view: project_stream {
     sql: ${TABLE}.bookings__c ;;
   }
 
-  dimension: challenge_budget_burn_down_ {
-    type: number
+  measure: challenge_budget_burn_down_ {
+    type: sum
     sql: ${TABLE}.challenge_budget_burn_down__c ;;
   }
 
   dimension: consumed {
     type: string
+    label: "Consumed %"
     sql: ${TABLE}.consumed__c ;;
   }
 
@@ -136,8 +137,8 @@ view: project_stream {
     sql: ${TABLE}.first_revenue_date__c ;;
   }
 
-  dimension: gross_revenue_recognised {
-    type: number
+  measure: gross_revenue_recognised {
+    type: sum
     sql: ${TABLE}.gross_revenue_recognised__c ;;
   }
 
