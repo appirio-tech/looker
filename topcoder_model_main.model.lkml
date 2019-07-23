@@ -399,7 +399,13 @@ explore: connect_project {
     type: left_outer
     sql_on: ${connect_project.template_id} = ${connect_templates.id} ;;
     relationship: one_to_one
+  }
 
+  #added on 23rd july 2019 for project stream
+  join: project_stream {
+    type: full_outer
+    sql_on: ${connect_project.id}=${project_stream.tc_connect_project_id} ;;
+    relationship: one_to_one
   }
 }
 
