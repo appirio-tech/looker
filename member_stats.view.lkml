@@ -248,7 +248,7 @@ view: member_stats {
   dimension: rating {
     type: number
     description: "Available in SRM, Marathon,Assembly & UI"
-    value_format: "0"
+    #value_format: "0"
     sql: ${TABLE}.rating ;;
   }
 
