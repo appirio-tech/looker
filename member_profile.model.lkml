@@ -273,6 +273,9 @@ explore: member_business_conduct_survey {
   }
 }
 
+#added on 23rd July 2019
+explore: member_verification {}
+
 # Added 2nd November - 2018, Member Submission pulled from DynamoDb
 explore: member_submission {
   join: member_profile_basic {
@@ -296,6 +299,5 @@ explore: member_submission {
     sql_on: ${direct_project_dim.billing_account_id} = ${billing_account_budgets.billing_account_id};;
     relationship: many_to_many
   }
-
 
 }
