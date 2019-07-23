@@ -24,6 +24,12 @@ view: connect_project {
     sql: ${TABLE}.billingaccountid ;;
   }
 
+  dimension: is_deleted {
+    description: "If the project has been deleted from the Db"
+    type: yesno
+    sql: NVL2(${TABLE}.deletedat, true, false) ;;
+  }
+
   dimension: bookmarks {
     type: string
     sql: ${TABLE}.bookmarks ;;
