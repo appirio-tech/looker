@@ -112,6 +112,7 @@ view: member_stats_history {
 
   measure: Challenge_Count{
     type:  count_distinct
+    description: "Distinct Challenges / SRM / Marathon Matches "
     sql: ${TABLE}.challenge_id ;;
   }
 
