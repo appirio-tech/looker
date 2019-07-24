@@ -42,6 +42,11 @@ view: srm_tco19 {
     sql: ${TABLE}.stage ;;
   }
 
+  dimension: year {
+    type: number
+    sql: ${TABLE}.year ;;
+  }
+
   dimension: user_id {
     type: number
     sql: ${TABLE}.user_id ;;
