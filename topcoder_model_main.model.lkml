@@ -304,6 +304,12 @@ explore: cost_transaction {
     sql_on: ${cost_transaction.contest_id} = ${challenge.project_id} ;;
     relationship: one_to_many
   }
+  join: member_profile_basic {
+    view_label: "Challenge Manager"
+    type: left_outer
+    sql_on: ${challenge.challenge_manager_id} = ${member_profile_basic.user_id} ;;
+    relationship: one_to_many
+  }
   join: sfdc_opportunity {
     type:  left_outer
     sql_on: ${sfdc_account.account_id} = ${sfdc_opportunity.account_id} ;;
