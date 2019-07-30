@@ -363,6 +363,175 @@ view: member_stats {
     sql: ${TABLE}.wins ;;
   }
 
+  #added on 30th July 2019
+  dimension: challenge_level_one_created {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_one_created ;;
+    group_label: "SRM"
+  }
+
+  dimension: challenge_level_one_failed  {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_one_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: challenge_level_two_created {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_two_created ;;
+    group_label: "SRM"
+  }
+
+  dimension: challenge_level_two_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_two_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: challenge_level_three_created {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_three_created ;;
+    group_label: "SRM"
+  }
+
+  dimension: challenge_level_three_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.challenge_level_three_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_one_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_one_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_one_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_one_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_one_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_one_failed_system_test ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_two_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_two_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_two_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_two_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_two_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_two_failed_system_test ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_three_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_three_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_three_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_three_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division1_level_three_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division1_level_three_failed_system_test ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_one_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_one_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_one_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_one_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_one_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_one_failed_system_test ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_two_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_two_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_two_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_two_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_two_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_two_failed_system_test ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_three_submitted {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_three_submitted ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_three_failed {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_three_failed ;;
+    group_label: "SRM"
+  }
+
+  dimension: division2_level_three_failed_system_test {
+    type: number
+    description: "Available in SRM only"
+    sql: ${TABLE}.division2_level_three_failed_system_test ;;
+    group_label: "SRM"
+  }
+
   measure: count {
     type: count
     drill_fields: [most_recent_event_name]
