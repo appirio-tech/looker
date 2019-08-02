@@ -4,11 +4,13 @@ view: member_verification {
   dimension: country {
     type: string
     map_layer_name: countries
+    description: "User Provided Country for verification"
     sql: ${TABLE}.country ;;
   }
 
   dimension: matched_on {
     type: string
+    description: "Documents that were matched for verification"
     sql: ${TABLE}.matched_on ;;
   }
 
@@ -28,16 +30,19 @@ view: member_verification {
     ]
     convert_tz: no
     datatype: date
+    description: "Verification form sent on date"
     sql: ${TABLE}.sent_on ;;
   }
 
   dimension: status {
     type: string
+    description: "If the user is verified"
     sql: ${TABLE}.status ;;
   }
 
   dimension: transaction_record_id {
     type: string
+    description: "Trulio provided Transaction Id for verification"
     sql: ${TABLE}.transaction_record_id ;;
   }
 
@@ -62,21 +67,27 @@ view: member_verification {
     ]
     convert_tz: no
     datatype: date
+    description: "Verification completed on"
     sql: ${TABLE}.verification_date ;;
   }
 
   dimension: verification_mode {
     type: string
+    description: "Verification done via Digital or Document mode"
     sql: ${TABLE}.verification_mode ;;
   }
 
   dimension: watch_list {
     type: string
+    description: "If the user is on watch list report by Truilio"
     sql: ${TABLE}.watch_list ;;
   }
 
-  measure: count {
+  measure: member_verification_count {
     type: count
-    drill_fields: []
+
+    drill_fields: [
+      country, sent_date, status, matched_on,watch_list, transaction_record_id, verification_date
+    ]
   }
 }

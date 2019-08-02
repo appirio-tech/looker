@@ -255,6 +255,12 @@ explore: member_profile_all {
     relationship: one_to_many
   }
 
+  join: member_verification {
+    type: left_outer
+    sql_on:  ${member_profile_all.user_id} = ${member_verification.user_id};;
+    relationship: one_to_many
+  }
+
   #added on 28th June 2019
   join: user {
     type: inner
@@ -274,7 +280,13 @@ explore: member_business_conduct_survey {
 }
 
 #added on 23rd July 2019
-explore: member_verification {}
+explore: member_verification {
+  join: member_profile_basic {
+    type: left_outer
+    sql_on: ${member_verification.user_id} = ${member_profile_basic.user_id} ;;
+    relationship: one_to_one
+  }
+}
 
 # Added 2nd November - 2018, Member Submission pulled from DynamoDb
 explore: member_submission {
