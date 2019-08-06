@@ -62,8 +62,8 @@ view: project_stream {
     sql: ${TABLE}.challenge_budget_burn_down__c ;;
   }
 
-  dimension: consumed {
-    type: string
+  measure: consumed {
+    type: sum
     label: "Consumed %"
     sql: ${TABLE}.consumed__c ;;
   }
@@ -96,8 +96,8 @@ view: project_stream {
     sql: ${TABLE}.edit_revenue_split__c ;;
   }
 
-  dimension: effective_assigned_work_amount_timecard {
-    type: number
+  measure: effective_assigned_work_amount_timecard {
+    type: sum
     sql: ${TABLE}.effective_assigned_work_amount_timecard__c ;;
   }
 
@@ -231,8 +231,8 @@ view: project_stream {
     sql: ${TABLE}.minimum_prebill_effective_date__c ;;
   }
 
-  dimension: net_revenue_recognised {
-    type: number
+  measure: net_revenue_recognised {
+    type: sum
     sql: ${TABLE}.net_revenue_recognised__c ;;
   }
 
@@ -283,8 +283,8 @@ view: project_stream {
     sql: ${TABLE}.parent_type__c ;;
   }
 
-  dimension: prebill_adjustment {
-    type: number
+  measure: prebill_adjustment {
+    type: sum
     sql: ${TABLE}.prebill_adjustment__c ;;
   }
 
@@ -308,18 +308,18 @@ view: project_stream {
     sql: ${TABLE}.psa_project_number__c ;;
   }
 
-  dimension: remaining_billed_amount {
-    type: number
+  measure: remaining_billed_amount {
+    type: sum
     sql: ${TABLE}.remaining_billed_amount__c ;;
   }
 
-  dimension: remaining_prebilled {
-    type: number
+  measure: remaining_prebilled {
+    type: sum
     sql: ${TABLE}.remaining_prebilled__c ;;
   }
 
-  dimension: remaining_recognition {
-    type: number
+  measure: remaining_recognition {
+    type: sum
     sql: ${TABLE}.remaining_recognition__c ;;
   }
 
@@ -338,8 +338,8 @@ view: project_stream {
     sql: ${TABLE}.revenue_recognised_by__c ;;
   }
 
-  dimension: services_budget_in_hybrid {
-    type: number
+  measure: services_budget_in_hybrid {
+    type: sum
     sql: ${TABLE}.services_budget_in_hybrid__c ;;
   }
 
@@ -403,18 +403,18 @@ view: project_stream {
     sql: ${TABLE}.total_approved_budget__c ;;
   }
 
-  dimension: total_approved_milestone {
-    type: number
+  measure: total_approved_milestone {
+    type: sum
     sql: ${TABLE}.total_approved_milestone__c ;;
   }
 
-  dimension: total_approved_miscellaneous_adjustment {
-    type: number
+  measure: total_approved_miscellaneous_adjustment {
+    type: sum
     sql: ${TABLE}.total_approved_miscellaneous_adjustment__c ;;
   }
 
-  dimension: total_approved_work_amount {
-    type: number
+  measure: total_approved_work_amount {
+    type: sum
     sql: ${TABLE}.total_approved_work_amount__c ;;
   }
 
