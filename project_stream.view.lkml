@@ -308,7 +308,7 @@ view: project_stream {
     sql: ${TABLE}.psa_project_number__c ;;
   }
 
-  measure: remaining_billed_amount {
+  measure: remaining_invoiced_budget {
     type: sum
     sql: ${TABLE}.remaining_billed_amount__c ;;
   }
@@ -416,6 +416,21 @@ view: project_stream {
   measure: total_approved_work_amount {
     type: sum
     sql: ${TABLE}.total_approved_work_amount__c ;;
+  }
+
+  measure: total_actual_challenge_fee {
+    type: sum
+    sql: ${TABLE}.total_actual_challenge_fee__c ;;
+  }
+
+  measure: total_actual_member_payment {
+    type: sum
+    sql: ${TABLE}.total_actual_member_payment__c ;;
+  }
+
+  measure: total_invoiced_amount {
+    type: sum
+    sql: ${TABLE}.total_invoiced_amount__c ;;
   }
 
   measure: count {
