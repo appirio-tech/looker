@@ -370,6 +370,31 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'budget') ;;
   }
 
+ dimension : users {
+   type: string
+   sql:  json_extract_array_element_text(json_extract_path_text((regexp_replace(${TABLE}.details,'\\\\.','')), 'users'), 0);;
+ }
+
+# added on 19th Aug
+
+ dimension: designType {
+  description: "Progressive or Responsive"
+   type :  string
+  sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'progressiveResponsive') ;;
+ }
+
+  dimension: AppType {
+    description: "Hybrid or Native"
+    type :  string
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'nativeHybrid') ;;
+  }
+
+  dimension: designGoal {
+    description: "Goal of the design"
+    type :  string
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'designGoal') ;;
+  }
+
   measure: submitted_count {
     type: count
     description: "Count of submitted projects. Includes in_review, reviewed, active, completed, cancelled, paused."
