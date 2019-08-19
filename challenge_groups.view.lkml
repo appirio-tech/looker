@@ -9,7 +9,7 @@ view: challenge_groups {
        ;;
     sortkeys: ["group_name", "challenge_id"]
     distribution: "group_name"
-    persist_for: "2 hours"
+    persist_for: "30 minutes"
   }
 
   dimension: group_name {
