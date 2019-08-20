@@ -9,6 +9,7 @@ view: challenge {
 
   dimension: parent_category_desc {
     description: "Type of technology."
+    label: "Category Desc"
     type: string
     sql: ${TABLE}.category_desc ;;
   }
@@ -22,6 +23,7 @@ view: challenge {
   dimension: parent_category_id {
     description: "Technology's unique identifier."
     type: number
+    label: "Category Id"
     hidden: yes
     sql: ${TABLE}.category_id ;;
   }
@@ -382,6 +384,7 @@ view: challenge {
 
   dimension: challenge_category_name {
     type: string
+    label: "Project Category Name"
     description: "Type of Challenge - Design, Code, Bug Hunt, F2F etc..."
     sql: ${TABLE}.project_category_name ;;
   }
