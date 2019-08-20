@@ -375,26 +375,54 @@ view: connect_project {
    sql:  json_extract_array_element_text(json_extract_path_text((regexp_replace(${TABLE}.details,'\\\\.','')), 'users'), 0);;
  }
 
-# added on 19th Aug
+# added on 19th Aug DesignGoal , AppType and DesignType
 
  dimension: designType {
   description: "Progressive or Responsive"
    type :  string
   sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'progressiveResponsive') ;;
+  group_label: "Scope"
  }
 
   dimension: AppType {
     description: "Hybrid or Native"
     type :  string
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'nativeHybrid') ;;
+    group_label: "Scope"
   }
 
   dimension: designGoal {
     description: "Goal of the design"
     type :  string
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'designGoal') ;;
+    group_label: "Scope"
   }
 
+# added on 20th Aug numberscreen , devicetype , ostype , deliverables
+
+dimension: number_of_screen {
+  type :  string
+  sql: ${TABLE}.numberscreens ;;
+  group_label: "Scope"
+}
+
+  dimension: device {
+    type :  string
+    sql: ${TABLE}.devicetype ;;
+    group_label: "Scope"
+  }
+
+  dimension: operating_system {
+    type: string
+    sql: ${TABLE}.ostype ;;
+    group_label: "Scope"
+  }
+
+  dimension: deliverables {
+    type:  string
+    sql: ${TABLE}.deliverables ;;
+    group_label: "Scope"
+  }
   measure: submitted_count {
     type: count
     description: "Count of submitted projects. Includes in_review, reviewed, active, completed, cancelled, paused."
