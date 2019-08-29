@@ -388,6 +388,14 @@ explore: connect_project {
     relationship: many_to_one
   }
 
+  #added on 29th Aug 2019
+  join: connect_project_creator_member {
+    from:connect_project_members
+    type: inner
+    sql_on: ${connect_project.createdby}=${connect_project_creator_member.user_id} and ${connect_project.id}=${connect_project_creator_member.project_id} ;;
+    relationship: one_to_one
+  }
+
   join: connect_messages {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_messages.project_id} ;;
