@@ -123,6 +123,7 @@ view: member_profile_all {
   dimension: reporting_country {
     type: string
     description: "There are 3 countries in the system. Shows reporting country based on logic ( Competition Country > Home Country > Mailing Country)"
+    map_layer_name: countries
     group_label: "Address"
     sql: CASE
         WHEN ${TABLE}.competition_country_name is not null
