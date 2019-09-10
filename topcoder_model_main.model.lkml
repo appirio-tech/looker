@@ -375,6 +375,15 @@ explore: connect_project {
     relationship: many_to_one
   }
 
+  #added sfdc account info to connect project on 10th Sep 2019
+
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
+
   join: connect_project_members {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_project_members.project_id} ;;
