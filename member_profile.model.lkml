@@ -268,6 +268,12 @@ explore: member_profile_all {
     relationship: one_to_one
   }
 
+  join: user_payment {
+    type: left_outer
+    sql_on:  ${member_profile_all.user_id} = ${user_payment.user_id};;
+    relationship: one_to_many
+  }
+
 }
 
 # Added 22nd November - 2018
