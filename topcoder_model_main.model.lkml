@@ -1037,6 +1037,14 @@ explore: challenge_technology {
     relationship: many_to_one
   }
 
+  #added on 30th Sept 2019
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
+
   join: project_result {
     type: left_outer
     sql_on: ${challenge.project_id} = ${project_result.project_id} ;;
