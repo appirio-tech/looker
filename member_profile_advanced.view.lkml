@@ -116,6 +116,7 @@ view: member_profile_advanced {
 
   dimension: reporting_country {
     type: string
+    map_layer_name: countries
     description: "There are 3 countries in the system. Shows reporting country based on logic ( Competition Country > Home Country > Mailing Country)"
     group_label: "Address"
     sql: CASE
