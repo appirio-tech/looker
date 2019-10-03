@@ -1095,7 +1095,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     value_format: "#,##0"
     label: "TCO Points - F2F"
     sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.actual_total_prize >= 1200 THEN 800
+                   WHEN ${TABLE}.placed = 1 and ${TABLE}.actual_total_prize >= 800 THEN 800
                    ELSE least(${TABLE}.actual_total_prize,800)
             END ;;
   }
