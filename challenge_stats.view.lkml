@@ -1094,11 +1094,16 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     description: "TCO Points computed for the F2F track"
     value_format: "#,##0"
     label: "TCO Points - F2F"
-    sql: CASE
-                   WHEN ${TABLE}.placed = 1 and ${TABLE}.actual_total_prize >= 800 THEN 800
-                   ELSE least(${TABLE}.actual_total_prize,800)
-            END ;;
+    sql: least(${TABLE}.actual_total_prize,800) ;;
+
+#Updated on 3rd Oct 2019
+#previous logic :
+# CASE
+# WHEN ${TABLE}.placed = 1 and ${TABLE}.actual_total_prize >= 1200 THEN 800
+#                  ELSE least(${TABLE}.actual_total_prize,800)
+# END ;;
   }
+
 
 
   measure: payment {
