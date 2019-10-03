@@ -1463,3 +1463,12 @@ explore: challenge_user_payments {
 
   #for prject stream data
   explore: project_stream {}
+
+  #for Topcoder X tables
+  explore: topcoder_x_copilot_payment {}
+  explore: topcoder_x_issue {}
+  explore: topcoder_x_owner_user_group {}
+  explore: topcoder_x_owner_user_team {}
+  explore: topcoder_x_project {}
+  explore: topcoder_x_user {}
+  explore: topcoder_x_user_mapping {}
