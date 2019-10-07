@@ -391,6 +391,7 @@ view: challenge {
 
   dimension: track {
     type: string
+    label: "Legacy Track"
     description: "Broader category of Challenge - design, develop, data science etc.."
     sql: CASE
                    WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
@@ -420,6 +421,31 @@ view: challenge {
                    WHEN ${TABLE}.project_category_name = 'Bug Hunt' THEN 'Develop'
                    ELSE 'Other'
             END ;;
+  }
+
+  dimension: new_track {
+    type: string
+    label: "Track"
+    description: "Broader category of Challenge - design, develop, data science, QA etc.."
+    sql: CASE
+
+                    WHEN ((${TABLE}.project_category_name = 'Marathon Match') or (${TABLE}.technology_list like '%Data Science%'))  THEN 'Data Science'
+                    WHEN ((${TABLE}.project_category_name = 'Test Scenarios') or (${TABLE}.project_category_name = 'Test Suites') or
+                         (${TABLE}.project_category_name = 'Bug Hunt') or (${TABLE}.project_category_name = 'Testing Competition') or
+                         (${TABLE}.technology_list like '%QA%')) THEN 'QA'
+                    WHEN ((${TABLE}.project_category_name = 'First2Finish') or (${TABLE}.project_category_name = 'Code') or
+                         (${TABLE}.project_category_name = 'Assembly Competition') or (${TABLE}.project_category_name = 'UI Prototype Competition') or
+                         (${TABLE}.project_category_name = 'Architecture') or (${TABLE}.project_category_name = 'Copilot Posting') or
+                         (${TABLE}.project_category_name = 'Specification') or (${TABLE}.project_category_name = 'Conceptualization') or
+                         (${TABLE}.project_category_name = 'Development') or (${TABLE}.project_category_name = 'Content Creation')) THEN 'Develop'
+                    WHEN ((${TABLE}.project_category_name = 'Web Design') or (${TABLE}.project_category_name = 'Widget or Mobile Screen Design') or
+                         (${TABLE}.project_category_name = 'Design First2Finish') or (${TABLE}.project_category_name = 'Wireframes') or
+                         (${TABLE}.project_category_name = 'Print/Presentation') or (${TABLE}.project_category_name = 'Idea Generation') or
+                         (${TABLE}.project_category_name = 'Logo Design') or (${TABLE}.project_category_name = 'Application Front-End Design') or
+                         (${TABLE}.project_category_name = 'Banners/Icons') or (${TABLE}.project_category_name = 'Studio Other') or
+                         (${TABLE}.project_category_name = 'Design')) THEN 'Design'
+                    ELSE 'Other'
+              END ;;
   }
 
   dimension: challenge_id {
