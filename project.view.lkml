@@ -421,6 +421,7 @@ view: challenge {
                    WHEN ${TABLE}.project_category_name = 'Bug Hunt' THEN 'Develop'
                    ELSE 'Other'
             END ;;
+    group_label: "Deprecated"
   }
 
   dimension: new_track {
