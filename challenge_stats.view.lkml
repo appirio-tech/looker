@@ -114,6 +114,7 @@ view: challenge_stats {
        p.task_ind,
        p.effort_offshore_days,
        p.effort_onshore_days,
+       p.technology_list,
        member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
@@ -240,6 +241,7 @@ SELECT p.project_id,
        p.task_ind,
        p.effort_offshore_days,
        p.effort_onshore_days,
+       p.technology_list,
        member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
@@ -455,6 +457,8 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: Track {
     type: string
+    description: "Original Challenge Track - Design, Develop or Data Science. (Use Track field to better classify the Challenge in DS and QA )"
+    label: "Legacy Track"
     case: {
       when: {
         sql: ${TABLE}.project_category_name IN
@@ -502,6 +506,32 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       }
       else: "Other"
     }
+  group_label: "Deprecated"
+  }
+
+  dimension: new_track {
+    type: string
+    label: "Track"
+    description: "Challenge Track - Design, Develop, Data Science or QA"
+    sql: CASE
+
+                    WHEN ((${TABLE}.project_category_name = 'Marathon Match') or (${TABLE}.technology_list like '%Data Science%'))  THEN 'Data Science'
+                    WHEN ((${TABLE}.project_category_name = 'Test Scenarios') or (${TABLE}.project_category_name = 'Test Suites') or
+                         (${TABLE}.project_category_name = 'Bug Hunt') or (${TABLE}.project_category_name = 'Testing Competition') or
+                         (${TABLE}.technology_list like '%QA%')) THEN 'QA'
+                    WHEN ((${TABLE}.project_category_name = 'First2Finish') or (${TABLE}.project_category_name = 'Code') or
+                         (${TABLE}.project_category_name = 'Assembly Competition') or (${TABLE}.project_category_name = 'UI Prototype Competition') or
+                         (${TABLE}.project_category_name = 'Architecture') or (${TABLE}.project_category_name = 'Copilot Posting') or
+                         (${TABLE}.project_category_name = 'Specification') or (${TABLE}.project_category_name = 'Conceptualization') or
+                         (${TABLE}.project_category_name = 'Development') or (${TABLE}.project_category_name = 'Content Creation')) THEN 'Develop'
+                    WHEN ((${TABLE}.project_category_name = 'Web Design') or (${TABLE}.project_category_name = 'Widget or Mobile Screen Design') or
+                         (${TABLE}.project_category_name = 'Design First2Finish') or (${TABLE}.project_category_name = 'Wireframes') or
+                         (${TABLE}.project_category_name = 'Print/Presentation') or (${TABLE}.project_category_name = 'Idea Generation') or
+                         (${TABLE}.project_category_name = 'Logo Design') or (${TABLE}.project_category_name = 'Application Front-End Design') or
+                         (${TABLE}.project_category_name = 'Banners/Icons') or (${TABLE}.project_category_name = 'Studio Other') or
+                         (${TABLE}.project_category_name = 'Design')) THEN 'Design'
+                    ELSE 'Other'
+              END ;;
   }
 
   dimension: level_id {
@@ -878,6 +908,14 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     value_format: "#,##0.00"
     description: "Topgear field to estimate onshore efforts on a challenge"
     sql: ${TABLE}.effort_onshore_days ;;
+  }
+
+  #added on 7th Oct 2019 for new track field
+
+  dimension: technology_list {
+    type: string
+    description: "A comma separated list of technolgies used in the challenge. More details are available in Challenge Technology view"
+    sql: ${TABLE}.technology_list;;
   }
 
   measure: estimated_review_cost {

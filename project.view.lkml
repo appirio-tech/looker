@@ -392,7 +392,7 @@ view: challenge {
   dimension: track {
     type: string
     label: "Legacy Track"
-    description: "Broader category of Challenge - design, develop, data science etc.."
+    description: "Original Challenge Track - Design, Develop or Data Science. (Use Track field to better classify the Challenge in DS and QA )"
     sql: CASE
                    WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
                    WHEN ${TABLE}.project_category_name = 'Code' THEN 'Develop'
@@ -427,7 +427,7 @@ view: challenge {
   dimension: new_track {
     type: string
     label: "Track"
-    description: "Broader category of Challenge - design, develop, data science, QA etc.."
+    description: "Challenge Track - Design, Develop, Data Science or QA"
     sql: CASE
 
                     WHEN ((${TABLE}.project_category_name = 'Marathon Match') or (${TABLE}.technology_list like '%Data Science%'))  THEN 'Data Science'
