@@ -83,6 +83,7 @@ view: non_qa_dev_challenges {
        p.estimated_review_cost,
        p.estimated_copilot_cost,
        p.estimated_admin_fee,
+       p.technology_list,
        pr.user_id AS registrant_id,
        --challenge_registrant.handle AS registrant_handle,
        pr.submit_ind,
@@ -954,6 +955,14 @@ where project_technology.name in ('QA'))
   dimension: rating_order {
     type: number
     sql: ${TABLE}.rating_order ;;
+  }
+
+  #Added on 7th Oct
+
+  dimension: technology_list {
+    type: string
+    description: "A comma separated list of technolgies used in the challenge. More details are available in Challenge Technology view"
+    sql: ${TABLE}.technology_list;;
   }
 
     measure: Dev_tco_points {
