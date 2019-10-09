@@ -374,6 +374,8 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: category_desc {
     type: string
+    description: "Technology Name"
+    label: "Legacy Technology Name"
     sql: ${TABLE}.category_desc ;;
     group_label: "Deprecated"
   }
@@ -524,13 +526,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
                          (${TABLE}.project_category_name = 'Assembly Competition') or (${TABLE}.project_category_name = 'UI Prototype Competition') or
                          (${TABLE}.project_category_name = 'Architecture') or (${TABLE}.project_category_name = 'Copilot Posting') or
                          (${TABLE}.project_category_name = 'Specification') or (${TABLE}.project_category_name = 'Conceptualization') or
-                         (${TABLE}.project_category_name = 'Development') or (${TABLE}.project_category_name = 'Content Creation')) THEN 'Develop'
+                         (${TABLE}.project_category_name = 'Development') or (${TABLE}.project_category_name = 'Content Creation') or
+                         (${TABLE}.project_category_name = 'Design')) THEN 'Develop'
                     WHEN ((${TABLE}.project_category_name = 'Web Design') or (${TABLE}.project_category_name = 'Widget or Mobile Screen Design') or
                          (${TABLE}.project_category_name = 'Design First2Finish') or (${TABLE}.project_category_name = 'Wireframes') or
                          (${TABLE}.project_category_name = 'Print/Presentation') or (${TABLE}.project_category_name = 'Idea Generation') or
                          (${TABLE}.project_category_name = 'Logo Design') or (${TABLE}.project_category_name = 'Application Front-End Design') or
-                         (${TABLE}.project_category_name = 'Banners/Icons') or (${TABLE}.project_category_name = 'Studio Other') or
-                         (${TABLE}.project_category_name = 'Design')) THEN 'Design'
+                         (${TABLE}.project_category_name = 'Banners/Icons') or (${TABLE}.project_category_name = 'Studio Other')) THEN 'Design'
                     ELSE 'Other'
               END ;;
   }
