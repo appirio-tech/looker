@@ -12,6 +12,7 @@ view: challenge {
     label: "Category Desc"
     type: string
     sql: ${TABLE}.category_desc ;;
+    group_label: "Deprecated"
   }
 
   dimension: confidentiality_type {
@@ -393,6 +394,7 @@ view: challenge {
     type: string
     label: "Legacy Track"
     description: "Original Challenge Track - Design, Develop or Data Science. (Use Track field to better classify the Challenge in DS and QA )"
+    group_label: "Deprecated"
     sql: CASE
                    WHEN ${TABLE}.project_category_name = 'First2Finish ' THEN 'Develop'
                    WHEN ${TABLE}.project_category_name = 'Code' THEN 'Develop'
@@ -421,7 +423,6 @@ view: challenge {
                    WHEN ${TABLE}.project_category_name = 'Bug Hunt' THEN 'Develop'
                    ELSE 'Other'
             END ;;
-    group_label: "Deprecated"
   }
 
   dimension: new_track {

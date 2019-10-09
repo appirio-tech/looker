@@ -375,6 +375,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   dimension: category_desc {
     type: string
     sql: ${TABLE}.category_desc ;;
+    group_label: "Deprecated"
   }
 
   dimension_group: posting_date {
@@ -459,6 +460,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     type: string
     description: "Original Challenge Track - Design, Develop or Data Science. (Use Track field to better classify the Challenge in DS and QA )"
     label: "Legacy Track"
+    group_label: "Deprecated"
     case: {
       when: {
         sql: ${TABLE}.project_category_name IN
@@ -506,7 +508,6 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       }
       else: "Other"
     }
-  group_label: "Deprecated"
   }
 
   dimension: new_track {
