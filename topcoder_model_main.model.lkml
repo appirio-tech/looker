@@ -149,6 +149,12 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  join: member_verification {
+    type: left_outer
+    sql_on: ${challenge_stats.winner_id}=${member_verification.user_id} ;;
+   relationship: many_to_one
+  }
+
 }
 explore: billing_account_budgets {}
 explore: non_earning_dev_design_since_2016_01_01 {}
