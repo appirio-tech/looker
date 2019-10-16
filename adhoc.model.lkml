@@ -132,4 +132,19 @@ explore: challenge_stats{
     sql_on: ${challenge_stats.winner_id}=${member_verification.user_id} ;;
     relationship: many_to_one
   }
+  join: user {
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+  join: member_profile_advanced {
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
+    relationship: many_to_one
+  }
+  join: country {
+    type: inner
+    sql_on: ${user.comp_country_code} = ${country.country_code} ;;
+    relationship: many_to_one
+  }
 }
