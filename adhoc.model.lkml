@@ -121,3 +121,15 @@ explore: problem_submission {}
 explore: system_test_case {}
 
 explore: system_test_result {}
+
+
+#Added adhoc explore for winner handles verification
+
+explore: challenge_stats{
+
+  join: member_verification {
+    type: left_outer
+    sql_on: ${challenge_stats.winner_id}=${member_verification.user_id} ;;
+    relationship: many_to_one
+  }
+}
