@@ -62,6 +62,7 @@ view: group {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    tags: ["segment_group_id"]
   }
 
   measure: count {
