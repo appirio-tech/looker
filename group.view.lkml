@@ -6,7 +6,7 @@ view: group {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-    tags: ["group_id"]
+    tags: ["segment_group_id"]
   }
 
   dimension_group: createdat {
