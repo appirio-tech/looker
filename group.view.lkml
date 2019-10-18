@@ -5,7 +5,8 @@ view: group {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id
+    tags: ["group_id"] ;;
   }
 
   dimension_group: createdat {
@@ -62,7 +63,7 @@ view: group {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
-    tags: ["segment_group_id"]
+    tags: ["group_name"]
   }
 
   measure: count {
