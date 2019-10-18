@@ -5,8 +5,8 @@ view: group {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id
-    tags: ["group_id"] ;;
+    sql: ${TABLE}.id ;;
+    tags: ["group_id"]
   }
 
   dimension_group: createdat {
