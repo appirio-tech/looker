@@ -12,13 +12,13 @@ view: connect_project {
     }
   }
 
-  measure: actualprice {
+  measure: actual_price {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actualprice ;;
   }
 
-  dimension: billingaccountid {
+  dimension: billing_account_id {
     type: number
     value_format_name: id
     sql: ${TABLE}.billingaccountid ;;
@@ -42,12 +42,12 @@ view: connect_project {
     sql: ${TABLE}.cancelReason ;;
   }
 
-  dimension: challengeeligibility {
+  dimension: challenge_eligibility {
     type: string
     sql: ${TABLE}.challengeeligibility ;;
   }
 
-  dimension_group: createdat {
+  dimension_group: created_at {
     type: time
     timeframes: [
       raw,
@@ -65,12 +65,12 @@ view: connect_project {
     sql: ${TABLE}.createdat ;;
   }
 
-  dimension: createdby {
+  dimension: created_by {
     type: number
     sql: ${TABLE}.createdby ;;
   }
 
-  dimension_group: deletedat {
+  dimension_group: deleted_at {
     type: time
     timeframes: [
       raw,
@@ -98,12 +98,12 @@ view: connect_project {
     sql: ${TABLE}.details ;;
   }
 
-  dimension: directprojectid {
+  dimension: direct_project_id {
     type: number
     sql: ${TABLE}.directprojectid ;;
   }
 
-  measure: estimatedprice {
+  measure: estimated_price {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.estimatedprice ;;
@@ -169,7 +169,7 @@ view: connect_project {
     sql: ${TABLE}.planned_start_date ;;
   }
 
-  dimension: projectfulltext {
+  dimension: project_full_text {
     type: string
     sql: ${TABLE}.projectfulltext ;;
   }
@@ -238,7 +238,7 @@ view: connect_project {
     sql: ${TABLE}.type ;;
   }
 
-  dimension_group: updatedat {
+  dimension_group: updated_at {
     type: time
     timeframes: [
       raw,
@@ -256,7 +256,7 @@ view: connect_project {
     sql: ${TABLE}.updatedat ;;
   }
 
-  dimension: updatedby {
+  dimension: updated_by {
     type: number
     sql: ${TABLE}.updatedby ;;
   }
@@ -457,6 +457,6 @@ dimension: number_of_screen {
 
   measure: count {
     type: count
-    drill_fields: [directprojectid, id, template_name, name, project_members.count]
+    drill_fields: [direct_project_id, id, template_name, name, project_members.count]
   }
 }

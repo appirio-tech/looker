@@ -117,7 +117,7 @@ explore: challenge_stats {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${challenge_stats.tc_direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${challenge_stats.tc_direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -273,7 +273,7 @@ explore: challenge_volume {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 }
@@ -283,7 +283,7 @@ explore: challenge_volume {
 explore: cost_transaction {
   join: connect_project {
     type: left_outer
-    sql_on: ${cost_transaction.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${cost_transaction.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -373,7 +373,7 @@ explore: challenge_groups {
 explore: connect_project {
   join: direct_project_dim {
     type: left_outer
-    sql_on: ${connect_project.directprojectid} = ${direct_project_dim.direct_project_id} ;;
+    sql_on: ${connect_project.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -409,7 +409,7 @@ explore: connect_project {
   join: connect_project_creator_member {
     from:connect_project_members
     type: inner
-    sql_on: ${connect_project.createdby}=${connect_project_creator_member.user_id} and ${connect_project.id}=${connect_project_creator_member.project_id} ;;
+    sql_on: ${connect_project.created_by}=${connect_project_creator_member.user_id} and ${connect_project.id}=${connect_project_creator_member.project_id} ;;
     relationship: one_to_one
   }
 
@@ -466,7 +466,7 @@ explore: challenge {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -564,7 +564,7 @@ explore: project_result {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -633,7 +633,7 @@ explore: design_project_result {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -754,7 +754,7 @@ explore: payment {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -869,7 +869,7 @@ explore: country_user_rank {}
 explore: direct_project_dim {
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 }
@@ -969,7 +969,7 @@ explore: challenge_platform {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -1060,7 +1060,7 @@ explore: challenge_technology {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -1157,7 +1157,7 @@ explore: submission_review {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 

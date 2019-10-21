@@ -96,7 +96,7 @@ explore: challenge {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -194,7 +194,7 @@ explore: project_result {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -263,7 +263,7 @@ explore: design_project_result {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -372,7 +372,7 @@ explore: copilot_statistics {
 explore: direct_project_dim {
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 }
@@ -405,7 +405,7 @@ explore: challenge_platform {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
@@ -479,7 +479,7 @@ explore: challenge_technology {
 
   join: connect_project {
     type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.directprojectid} ;;
+    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
     relationship: many_to_one
   }
 
