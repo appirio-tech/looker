@@ -285,7 +285,6 @@ explore: member_profile_all {
     sql_on: ${group.id} = ${group_membership.group_id} ;;
     relationship: many_to_one
   }
-
 }
 
 # Added 22nd November - 2018
