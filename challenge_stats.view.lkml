@@ -896,6 +896,32 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.estimated_reliability_cost ;;
   }
 
+  measure: max_posting_date {
+    type: date
+    label: "Max Posting Date"
+    description: "Maximum Posting Date for a group of challenges. Useful to determine when the latest challenge was posted"
+    drill_fields: [detail*]
+    sql: MAX(${TABLE}.posting_date) ;;
+  }
+
+  measure: min_posting_date {
+    type: date
+    label: "Min Posting Date"
+    description: "Minumum Posting Date for a group of challenges. Useful to determine when the first challenge was posted"
+    drill_fields: [detail*]
+    sql: MIN(${TABLE}.posting_date) ;;
+  }
+
+  measure: max_complete_date {
+    type: date
+    label: "Max Complete Date"
+    description: "Maximum Completion Date for a group of challenges. Useful to determine when the latest challenge was completed"
+    drill_fields: [detail*]
+    sql: MAX(${TABLE}.complete_date) ;;
+
+  }
+
+
 
   # added on 9 april
 
