@@ -9,7 +9,7 @@ view: computed_skills {
                        LISTAGG(skill.name,', ') WITHIN GROUP(ORDER BY skill.name ASC )  AS user_entered_skill
               FROM member_skill
               INNER JOIN  tcs_dw.skill  AS skill ON member_skill.skill_id = skill.skill_id
-              WHERE source = 'USER_ENTERED'
+              WHERE source Like '%USER_ENTERED%'
               GROUP BY 1
             ) AS A
     LEFT JOIN  (
@@ -17,7 +17,7 @@ view: computed_skills {
                        LISTAGG(skill.name,', ') WITHIN GROUP(ORDER BY skill.name ASC )  AS challenge_derived_skill
               FROM member_skill
               INNER JOIN  tcs_dw.skill  AS skill ON member_skill.skill_id = skill.skill_id
-              WHERE source = 'CHALLENGE'
+              WHERE source Like '%CHALLENGE%'
               GROUP BY 1
       ) AS B ON A.user_id = B.user_id
        ;;

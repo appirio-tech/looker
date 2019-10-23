@@ -274,6 +274,17 @@ explore: member_profile_all {
     relationship: one_to_many
   }
 
+  join: group_membership {
+    type: left_outer
+    sql_on: ${user.coder_id} = ${group_membership.member_id} ;;
+    relationship: many_to_many
+  }
+
+  join: group {
+    type: left_outer
+    sql_on: ${group.id} = ${group_membership.group_id} ;;
+    relationship: many_to_one
+  }
 }
 
 # Added 22nd November - 2018
