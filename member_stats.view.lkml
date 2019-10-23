@@ -485,7 +485,14 @@ view: member_stats {
 
   measure: rating {
     type: average
-    description: "Available in SRM, Marathon,Assembly & UI"
+    description: "Average Current Rating across all challenge types if summed"
+    #value_format: "0"
+    sql: ${TABLE}.rating ;;
+  }
+
+  measure: max_current_rating {
+    type: max
+    description: "Max Current Rating across all challenge types"
     #value_format: "0"
     sql: ${TABLE}.rating ;;
   }
