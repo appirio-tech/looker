@@ -764,6 +764,12 @@ explore: payment {
     relationship: many_to_one
   }
 
+  join : fulfilment_test {
+    type:left_outer
+    sql_on: ${payee.coder_id} = ${fulfilment_test.copilot} ;;
+    relationship: many_to_many
+  }
+
 }
 
 explore: user_payment {}
