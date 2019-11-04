@@ -9,6 +9,7 @@ view: topcoder_x_issue {
   }
 
   dimension_group: assigned {
+    description: "Timestamp of issue assignment"
     type: time
     timeframes: [
       raw,
@@ -27,21 +28,25 @@ view: topcoder_x_issue {
   }
 
   dimension: body {
+    description: "Issue Description"
     type: string
     sql: ${TABLE}.body ;;
   }
 
   dimension: challenge_id {
+    description: "Standard F2F Task Challenge ID attached with the Issue"
     type: number
     sql: ${TABLE}.challenge_id ;;
   }
 
-  measure: firstprize {
+  measure: first_prize {
+    description: "First or Highest prize paid for Issue"
     type: sum
     sql: ${TABLE}.firstprize ;;
   }
 
   dimension: labels {
+    description: "Comma Separated list of labels attached to the Issue"
     type: string
     sql: ${TABLE}.labels ;;
   }
@@ -52,21 +57,25 @@ view: topcoder_x_issue {
   }
 
   dimension: project_id {
+    description: "Topcoder X unique Project Id"
     type: string
     sql: ${TABLE}.project_id ;;
   }
 
   dimension: provider {
+    description: "Gitlab / Github or Bit Bucket etc"
     type: string
     sql: ${TABLE}.provider ;;
   }
 
   dimension: repository_id {
+    description: "External ID for the repository"
     type: number
     sql: ${TABLE}.repository_id ;;
   }
 
-  measure: secondprize {
+  measure: second_prize {
+    description: "Second Prize if any paid on the challenge. Normally should be blank"
     type: sum
     sql: ${TABLE}.secondprize ;;
   }
@@ -76,17 +85,20 @@ view: topcoder_x_issue {
     sql: ${TABLE}.status ;;
   }
 
-  measure: thirdprize {
+  measure: third_prize {
+    description: "Third Prize if any paid on the challenge. Normally should be blank"
     type: sum
     sql: ${TABLE}.thirdprize ;;
   }
 
   dimension: title {
+    description: "Issue Title"
     type: string
     sql: ${TABLE}.title ;;
   }
 
   dimension_group: updated {
+    description: "Last Updated On"
     type: time
     timeframes: [
       raw,
@@ -106,6 +118,6 @@ view: topcoder_x_issue {
 
   measure: count {
     type: count
-    drill_fields: [id]
+    drill_fields: [id, title, challenge_id, status, labels, first_prize]
   }
 }
