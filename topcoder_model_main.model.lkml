@@ -528,6 +528,12 @@ explore: challenge {
     sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+  join: winner {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.winner_id} = ${winner.coder_id} ;;
+    relationship: many_to_one
+  }
 
 }
 
