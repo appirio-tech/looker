@@ -535,6 +535,27 @@ explore: challenge {
     relationship: many_to_one
   }
 
+  #5th Nov 2019 : Adding Topcoder X tables
+
+  join: topcoder_x_issue {
+    type: left_outer
+    sql_on: ${challenge.challenge_id} = ${topcoder_x_issue.challenge_id} ;;
+    relationship: one_to_one
+  }
+
+  join: topcoder_x_project {
+    type: left_outer
+    sql_on: ${topcoder_x_issue.project_id} = ${topcoder_x_project.id} ;;
+    relationship: one_to_many
+  }
+
+  join: topcoder_x_copilot_payment {
+    type: left_outer
+    sql_on: ${topcoder_x_copilot_payment.project} = ${topcoder_x_project.id} ;;
+    relationship: one_to_many
+  }
+
+
 }
 
 explore: project_result {
