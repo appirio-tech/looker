@@ -1,4 +1,6 @@
+include: "connect_form_reporting.view"
 view: connect_project {
+  extends: [connect_form_reporting]
   sql_table_name: public.projects ;;
 
   dimension: id {
