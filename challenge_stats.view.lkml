@@ -115,6 +115,7 @@ view: challenge_stats {
        p.effort_offshore_days,
        p.effort_onshore_days,
        p.technology_list,
+       p.tco_flag,
        member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
@@ -242,6 +243,7 @@ SELECT p.project_id,
        p.effort_offshore_days,
        p.effort_onshore_days,
        p.technology_list,
+       p.tco_flag,
        member_profile.photo_url AS member_photo_url
 FROM tcs_dw.project p LEFT OUTER JOIN
      tcs_dw.design_project_result pr ON p.project_id = pr.project_id
@@ -260,6 +262,14 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date", "complete_date"]
     distribution: "complete_date"
     persist_for: "8 hours"
+  }
+
+  #added on 20/11/2019
+
+  dimension: tco_flag {
+    type: number
+    description: "Used in TCO Leaderboards for various purposes to include / exclude certain challenges e.g. copilot submitter etc"
+    sql: ${TABLE}.tco_flag;;
   }
 
   #Added on 6/9. Task #29
@@ -1411,7 +1421,8 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       old_rating_id,
       new_rating_id,
       num_ratings,
-      rating_order
+      rating_order,
+      tco_flag
     ]
   }
 }

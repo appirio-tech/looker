@@ -113,7 +113,8 @@ view: non_qa_design_challenges {
        --pr.rating_order,
        c.photo_url,
        p.task_ind,
-       p.effort_hours_estimate
+       p.effort_hours_estimate,
+       p.tco_flag
 FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.design_project_result pr ON p.project_id = pr.project_id
      LEFT OUTER JOIN tcs_dw.direct_project_dim direct_project ON p.tc_direct_project_id = direct_project.direct_project_id
      LEFT OUTER JOIN tcs_dw.client_project_dim client_project ON direct_project.billing_project_id = client_project.billing_project_id
@@ -126,6 +127,13 @@ WHERE p.project_id not in (select design_project_result.project_id from design_p
 
     }
 
+    #added on 20/11/2019
+
+    dimension: tco_flag {
+      type: number
+      description: "Used in TCO Leaderboards for various purposes to include / exclude certain challenges e.g. copilot submitter etc"
+      sql: ${TABLE}.tco_flag;;
+    }
     dimension: task_ind {
       label: "IsTask?"
       description: "Whether challenge consist of a task or not."
