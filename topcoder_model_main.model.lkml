@@ -438,6 +438,12 @@ explore: connect_project {
     sql_on: ${connect_project.id}=${project_stream.tc_connect_project_id} ;;
     relationship: one_to_one
   }
+
+  join: connect_intake_form {
+    type: inner
+    sql_on: ${connect_project.id} = ${connect_intake_form.id} ;;
+    relationship: one_to_one
+  }
 }
 
 #explore:  member_aggregated_skills {}

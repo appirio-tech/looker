@@ -1,6 +1,4 @@
-include: "connect_form_reporting.view"
 view: connect_project {
-  extends: [connect_form_reporting]
   sql_table_name: public.projects ;;
 
   dimension: id {
@@ -425,6 +423,13 @@ dimension: number_of_screen {
     sql: ${TABLE}.deliverables ;;
     group_label: "Scope"
   }
+
+  dimension: objective {
+    type: string
+    description: "Purpose of creating the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'intakePurpose') ;;
+  }
+
   measure: submitted_count {
     type: count
     description: "Count of submitted projects. Includes in_review, reviewed, active, completed, cancelled, paused."
