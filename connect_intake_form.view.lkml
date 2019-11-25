@@ -14,13 +14,13 @@ view: connect_intake_form {
     group_label: "Computer Vision Intake Form"
   }
 
-  dimension: data_type {
+  dimension: data_types {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.dataVariety') ;;
     group_label: "Computer Vision Intake Form"
   }
 
-  dimension: data_technology {
+  dimension: data_type {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.solutionAim') ;;
     group_label: "Computer Vision Intake Form"
@@ -44,9 +44,8 @@ view: connect_intake_form {
     group_label: "Computer Vision Intake Form"
   }
 
-  dimension: patent_licenses {
+  dimension: patent_or_licenses {
     type: string
-    label: "Patent/Licenses"
     sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.hasDataRestrictions') ;;
     group_label: "Computer Vision Intake Form"
   }
@@ -81,6 +80,30 @@ view: connect_intake_form {
     group_label: "Computer Vision Intake Form"
   }
 
+  dimension: additional_context {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.notes') ;;
+    group_label: "Computer Vision Intake Form"
+  }
+
+  dimension: other_data_type {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.otherSolutionAims') ;;
+    group_label: "Computer Vision Intake Form"
+  }
+
+  dimension: data_location {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.dataLocation') ;;
+    group_label: "Computer Vision Intake Form"
+  }
+
+  dimension: other_data_types{
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'compVisDefinition.otherDataVariety') ;;
+    group_label: "Computer Vision Intake Form"
+  }
+
   dimension: deliverables {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.deliverables') ;;
@@ -95,25 +118,43 @@ view: connect_intake_form {
 
   dimension: existing_platforms {
     type: string
-    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.existing.platforms') ;;
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.platforms') ;;
     group_label: "Data Visualization Intake Form"
   }
 
   dimension: licensed_features {
     type: string
-    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.existing.licensedFeatures') ;;
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.licensedFeatures') ;;
     group_label: "Data Visualization Intake Form"
   }
 
   dimension: visualization_platforms {
     type: string
-    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.existing.platformsRequired') ;;
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.platformsRequired') ;;
+    group_label: "Data Visualization Intake Form"
+  }
+
+  dimension: other_platforms {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.otherPlatformsRequired') ;;
     group_label: "Data Visualization Intake Form"
   }
 
   dimension: target_devices {
     type: string
     sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.targetDevices') ;;
+    group_label: "Data Visualization Intake Form"
+  }
+
+  dimension: functionalities {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.functionalities') ;;
+    group_label: "Data Visualization Intake Form"
+  }
+
+  dimension: tabs_count {
+    type: string
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.tabsCount') ;;
     group_label: "Data Visualization Intake Form"
   }
 
@@ -131,7 +172,7 @@ view: connect_intake_form {
 
   dimension: need_obfuscation {
     type: string
-    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.dataVizDefinition.needObfuscation') ;;
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'dataVizDefinition.needObfuscation') ;;
     group_label: "Data Visualization Intake Form"
   }
 
@@ -466,7 +507,7 @@ view: connect_intake_form {
 
   dimension: design_description {
     type: string
-    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'taasDefinition.design') ;;
+    sql: json_extract_path_text((regexp_replace(connect_project.intake_form,'\\\\.')), 'taasDefinition.design.brief') ;;
     group_label: "Taas Intake Form"
   }
 
