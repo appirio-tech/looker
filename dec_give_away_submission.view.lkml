@@ -52,7 +52,8 @@ view: dec_give_away_submission {
   dimension: contest_type {
     type: string
     sql: CASE
-      WHEN ${TABLE}.contest_type= 'Marathon Match' THEN 'Marathon Match'
+      WHEN ${TABLE}.contest_type = 'Marathon Match' THEN 'Marathon Match'
+      WHEN ${TABLE}.contest_type = 'SRM' THEN 'SRM'
       ELSE 'Challenge'
       END;;
   }
