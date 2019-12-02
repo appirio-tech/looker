@@ -4,7 +4,7 @@ view: dec_give_away_submission {
       SELECT
         member_submission.user_id  AS "user_id",
         member_profile_basic.handle  AS "handle",
-        'Challenge' AS "contest_type",
+        challenge.project_category_name AS "contest_type",
         challenge.project_id  AS "challenge_id",
         member_submission.created_at AS "submission_time",
         challenge.component_name  AS "challenge_name"
@@ -51,7 +51,10 @@ view: dec_give_away_submission {
 
   dimension: contest_type {
     type: string
-    sql: ${TABLE}.contest_type ;;
+    sql: CASE
+      WHEN ${TABLE}.contest_type= 'Marathon Match' THEN 'Marathon '
+      ELSE 'Challenge'
+      END;;
   }
 
   dimension: challenge_id {
