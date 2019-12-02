@@ -1503,3 +1503,11 @@ explore: challenge_user_payments {
 
   #for prject stream data
   explore: project_stream {}
+
+#for December promotion look
+explore: dec_give_away_submission {
+  join: member_profile_basic {
+    relationship: many_to_one
+    sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
+  }
+}

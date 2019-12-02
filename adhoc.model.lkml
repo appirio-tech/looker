@@ -11,12 +11,6 @@ include: "*.view.lkml"                       # include all views in this project
 #for fiscal year
 fiscal_month_offset: -9
 
- explore: dec_give_away_submission {
-   join: member_profile_basic {
-    relationship: many_to_one
-     sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
-    }
- }
 
 #Added back to check for schedule
 explore: project_scorecard {
