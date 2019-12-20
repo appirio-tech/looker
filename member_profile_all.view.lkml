@@ -134,6 +134,8 @@ view: member_profile_all {
    END;;
   }
 
+#added on 20th Dec 2019
+
   dimension: geographical_location {
     label: "Geo Location"
     description: "Geographical region of the member's country"
