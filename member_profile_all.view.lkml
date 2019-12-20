@@ -150,15 +150,7 @@ view: member_profile_all {
               ${reporting_country} = 'South Korea';;
         label: "Eastern Asia"
       }
-      when: {
-        sql:  ${reporting_country} ='Kazakhstan' or
-              ${reporting_country} ='Kyrgyzstan' or
-              ${reporting_country} ='Tajikistan' or
-              ${reporting_country} ='Turkmenistan' or
-              ${reporting_country} ='Uzbekistan';;
-        label: "Central Asia"
-      }
-      when: {
+        when: {
         sql:  ${reporting_country} ='Brunei Darussalam' or
               ${reporting_country} ='Cambodia' or
               ${reporting_country} ='Indonesia' or
@@ -169,8 +161,13 @@ view: member_profile_all {
               ${reporting_country} ='Singapore' or
               ${reporting_country} ='Thailand' or
               ${reporting_country} ='Timor-Leste' or
-              ${reporting_country} ='Vietnam' ;;
-      label: "South-Eastern Asia"
+              ${reporting_country} ='Vietnam' or
+              ${reporting_country} ='Australia' or
+              ${reporting_country} ='Melanesia' or
+              ${reporting_country} ='Micronesia' or
+              ${reporting_country} ='Polynesia' or
+              ${reporting_country} ='New Zealand' ;;
+      label: "South-Eastern Asia and Ocenia"
     }
       when: {
         sql:  ${reporting_country} ='Afghanistan' or
@@ -185,28 +182,38 @@ view: member_profile_all {
       label: "Southern Asia "
     }
       when: {
-        sql:  ${reporting_country} ='Armenia' or
-              ${reporting_country} ='Azerbaijan' or
-              ${reporting_country} ='Bahrain' or
-              ${reporting_country} ='Cyprus' or
-              ${reporting_country} ='Georgia' or
-              ${reporting_country} ='Iraq' or
-              ${reporting_country} ='Israel' or
-              ${reporting_country} ='Jordan' or
-              ${reporting_country} ='Kuwait' or
-              ${reporting_country} ='Lebanon' or
-              ${reporting_country} ='Oman' or
-              ${reporting_country} ='Qatar' or
-              ${reporting_country} ='Saudi Arabia' or
-              ${reporting_country} ='State of Palestine' or
-              ${reporting_country} ='Syria' or
-              ${reporting_country} ='Turkey' or
-              ${reporting_country} ='United Arab Emirates' or
-              ${reporting_country} ='Yemen'  ;;
-      label: "Western Asia"
+        sql:  ${reporting_country} ='Kazakhstan' or
+              ${reporting_country} ='Kyrgyzstan' or
+              ${reporting_country} ='Tajikistan' or
+              ${reporting_country} ='Turkmenistan' or
+              ${reporting_country} ='Uzbekistan';;
+        label: "Central Asia"
     }
       when: {
-        sql:  ${reporting_country} ='Anguilla' or
+        sql:  ${reporting_country} ='Belize' or
+              ${reporting_country} ='Costa Rica' or
+              ${reporting_country} ='El Salvador' or
+              ${reporting_country} ='Guatemala' or
+              ${reporting_country} ='Honduras' or
+              ${reporting_country} ='Mexico' or
+              ${reporting_country} ='Nicaragua' or
+              ${reporting_country} ='Panama' or
+              ${reporting_country} ='Argentina' or
+              ${reporting_country} ='Bolivia' or
+              ${reporting_country} ='Brazil' or
+              ${reporting_country} ='Chile' or
+              ${reporting_country} ='Colombia' or
+              ${reporting_country} ='Ecuador' or
+              ${reporting_country} ='Falkland Islands' or
+              ${reporting_country} ='French Guiana' or
+              ${reporting_country} ='Guyana' or
+              ${reporting_country} ='Paraguay' or
+              ${reporting_country} ='Peru' or
+              ${reporting_country} ='South Georgia and the South Sandwich Islands' or
+              ${reporting_country} ='Suriname' or
+              ${reporting_country} ='Uruguay' or
+              ${reporting_country} ='Venezuela' or
+              ${reporting_country} ='Anguilla' or
               ${reporting_country} ='Antigua and Barbuda' or
               ${reporting_country} ='Aruba' or
               ${reporting_country} ='Bahamas' or
@@ -215,7 +222,7 @@ view: member_profile_all {
               ${reporting_country} ='British Virgin Islands' or
               ${reporting_country} ='Cayman Islands' or
               ${reporting_country} ='Cuba' or
-              ${reporting_country} ='CuraÃ§ao' or
+              ${reporting_country} ='Curaçao' or
               ${reporting_country} ='Dominica' or
               ${reporting_country} ='Dominican Republic' or
               ${reporting_country} ='Grenada' or
@@ -225,7 +232,7 @@ view: member_profile_all {
               ${reporting_country} ='Martinique' or
               ${reporting_country} ='Montserrat' or
               ${reporting_country} ='Puerto Rico' or
-              ${reporting_country} ='Saint BarthÃ©lemy' or
+              ${reporting_country} ='Saint Barthélemy' or
               ${reporting_country} ='Saint Kitts and Nevis' or
               ${reporting_country} ='Saint Lucia' or
               ${reporting_country} ='Saint Martin (French part)' or
@@ -233,35 +240,10 @@ view: member_profile_all {
               ${reporting_country} ='Sint Maarten (Dutch part)' or
               ${reporting_country} ='Trinidad and Tobago' or
               ${reporting_country} ='Turks and Caicos Islands' or
-              ${reporting_country} ='United States Virgin Islands';;
-        label: "Caribbean"
+              ${reporting_country} ='United States Virgin Islands' ;;
+        label: "Caribbean and South-Central America"
       }
-      when: {
-          sql:  ${reporting_country} ='Belize' or
-                ${reporting_country} ='Costa Rica' or
-                ${reporting_country} ='El Salvador' or
-                ${reporting_country} ='Guatemala' or
-                ${reporting_country} ='Honduras' or
-                ${reporting_country} ='Mexico' or
-                ${reporting_country} ='Nicaragua' or
-                ${reporting_country} ='Panama' or
-                ${reporting_country} ='Argentina' or
-                ${reporting_country} ='Bolivia' or
-                ${reporting_country} ='Brazil' or
-                ${reporting_country} ='Chile' or
-                ${reporting_country} ='Colombia' or
-                ${reporting_country} ='Ecuador' or
-                ${reporting_country} ='Falkland Islands (Malvinas)' or
-                ${reporting_country} ='French Guiana' or
-                ${reporting_country} ='Guyana' or
-                ${reporting_country} ='Paraguay' or
-                ${reporting_country} ='Peru' or
-                ${reporting_country} ='South Georgia and The S.Sandwich Is.' or
-                ${reporting_country} ='Suriname' or
-                ${reporting_country} ='Uruguay' or
-                ${reporting_country} ='Venezuela' ;;
-          label: "South and Central America"
-      }
+
       when: {
           sql:  ${reporting_country} ='Bermuda' or
                 ${reporting_country} ='Canada' or
@@ -281,7 +263,7 @@ view: member_profile_all {
                 ${reporting_country} ='Russia' or
                 ${reporting_country} ='Slovakia' or
                 ${reporting_country} ='Ukraine' or
-                ${reporting_country} ='Ã…land Islands' or
+                ${reporting_country} ='Åland Islands' or
                 ${reporting_country} ='Denmark' or
                 ${reporting_country} ='Estonia' or
                 ${reporting_country} ='Faroe Islands' or
@@ -322,8 +304,13 @@ view: member_profile_all {
                 ${reporting_country} ='Luxembourg' or
                 ${reporting_country} ='Monaco' or
                 ${reporting_country} ='Netherlands' or
-                ${reporting_country} ='Switzerland' ;;
-          label: "Europe"
+                ${reporting_country} ='Switzerland' or
+                ${reporting_country} ='Kazakhstan' or
+                ${reporting_country} ='Kyrgyzstan' or
+                ${reporting_country} ='Tajikistan' or
+                ${reporting_country} ='Turkmenistan' or
+                ${reporting_country} ='Uzbekistan';;
+          label: "Europe and Central Asia"
       }
       else: "other"
     }
