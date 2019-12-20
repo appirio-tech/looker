@@ -1090,9 +1090,9 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   measure: Dev_tco_points {
     type: sum
-    description: "TCO Points computed for the standard dev, QA and design tracks"
+    description: "TCO Points computed for the standard Dev and QA"
     value_format: "#,##0"
-    label: "TCO Points - Dev/Design/QA"
+    label: "TCO Points - Dev/QA"
     sql: CASE
                    WHEN ${TABLE}.placed = 1 and ${TABLE}.num_submissions_passed_review = 1 THEN (${TABLE}.total_prize-(${TABLE}.checkpoint_prize_amount*${TABLE}.checkpoint_prize_number))*1
 
