@@ -181,7 +181,7 @@ view: member_profile_all {
               ${reporting_country} ='Nepal' or
               ${reporting_country} ='Pakistan' or
               ${reporting_country} ='Sri Lanka';;
-      label: "Southern Asia "
+      label: "Southern Asia"
     }
       when: {
         sql:  ${reporting_country} ='Kazakhstan' or
