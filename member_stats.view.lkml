@@ -429,10 +429,54 @@ view: member_stats {
     sql: ${TABLE}.max_score ;;
   }
 
-  measure: maximum_rating {
-    type: max
+  dimension: maximum_rating {
+    type: number
     description: "Available in SRM, Marathon, Assembly & UI"
     sql: ${TABLE}.maximum_rating ;;
+  }
+
+  dimension: maximum_rating_tier {
+    type: tier
+    tiers: [
+      0,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      1000,
+      1100,
+      1200,
+      1300,
+      1400,
+      1500,
+      1600,
+      1700,
+      1800,
+      1900,
+      2000,
+      2100,
+      2200,
+      2300,
+      2400,
+      2500,
+      2600,
+      2700,
+      2800,
+      2900,
+      3000,
+      3100,
+      3200,
+      3300,
+      3400
+    ]
+    # the default value, could be excluded
+    style: integer
+    sql: ${maximum_rating} ;;
   }
 
   measure: min_score {
