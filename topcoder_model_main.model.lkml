@@ -1368,6 +1368,12 @@ explore: srm_tco19 {
     sql_on: ${srm_tco19.user_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+
+  join : member_profile_all {
+    type: left_outer
+    sql_on: ${user.coder_id} = ${member_profile_all.user_id} ;;
+    relationship: one_to_one
+  }
   # cache for 24 hours
   persist_with: srm_cache
 
