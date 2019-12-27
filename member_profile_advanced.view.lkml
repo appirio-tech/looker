@@ -240,7 +240,6 @@ view: member_profile_advanced {
                  ${reporting_country} ='Benin' or
                  ${reporting_country} ='Burkina Faso' or
                  ${reporting_country} ='Cabo Verde' or
-                 ${reporting_country} ='Côte d'Ivoire' or
                  ${reporting_country} ='Gambia' or
                  ${reporting_country} ='Ghana' or
                  ${reporting_country} ='Guinea' or

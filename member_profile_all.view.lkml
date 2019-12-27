@@ -184,7 +184,7 @@ view: member_profile_all {
       label: "Southern Asia"
     }
       when: {
-        sql:    ${reporting_country} ='Armenia' or
+        sql: ${reporting_country} ='Armenia' or
                  ${reporting_country} ='Azerbaijan' or
                  ${reporting_country} ='Bahrain' or
                  ${reporting_country} ='Cyprus' or
@@ -246,7 +246,6 @@ view: member_profile_all {
                  ${reporting_country} ='Benin' or
                  ${reporting_country} ='Burkina Faso' or
                  ${reporting_country} ='Cabo Verde' or
-                 ${reporting_country} ='Côte d'Ivoire' or
                  ${reporting_country} ='Gambia' or
                  ${reporting_country} ='Ghana' or
                  ${reporting_country} ='Guinea' or
