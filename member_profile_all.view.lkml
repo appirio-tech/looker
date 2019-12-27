@@ -259,7 +259,7 @@ view: member_profile_all {
                  ${reporting_country} ='Saint Helena, Ascension and Tristan da Cunha' or
                  ${reporting_country} ='Senegal' or
                  ${reporting_country} ='Sierra Leone' or
-                 ${reporting_country} ='Togo' or ;;
+                 ${reporting_country} ='Togo' ;;
         label: "Africa and Western Asia"
       }
       when: {
