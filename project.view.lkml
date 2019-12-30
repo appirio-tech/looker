@@ -231,6 +231,20 @@ view: challenge {
     sql: ${TABLE}.first_place_prize ;;
   }
 
+  measure: average_first_place_prize {
+    type: average
+    description: "Average prize money for first place"
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.first_place_prize ;;
+  }
+
+  dimension: average_first_place_prize_tier {
+    type: tier
+    tiers: [0,250,500,750,1000,1250,1500,1750,2000]
+    style: integer
+    sql: ${TABLE}.first_place_prize ;;
+  }
+
   dimension: forum_id {
     type: number
     sql: ${TABLE}.forum_id ;;
