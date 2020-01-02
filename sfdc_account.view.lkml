@@ -194,6 +194,19 @@ view: sfdc_account {
     sql: ${TABLE}.num_active_projects__c ;;
   }
 
+  measure: isActive {
+    type: string
+    case: {
+      when: {
+        sql:  ${number_active_projects} > 0 or
+              ${number_of_open_opportunities} > 0
+              ;;
+      label: "Active"
+            }
+      else: "Inactive"
+            }
+    }
+
   dimension_group: date_of_last_won_opportunity {
     type: time
     timeframes: [
