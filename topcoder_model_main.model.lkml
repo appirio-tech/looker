@@ -378,12 +378,7 @@ explore: challenge_groups {
 }
 
 explore: connect_project {
-  always_filter: {
-    filters: {
-      field: project_stream.isdeleted
-      value: "no"
-    }
-  }
+
   join: direct_project_dim {
     type: left_outer
     sql_on: ${connect_project.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
@@ -1521,14 +1516,8 @@ explore: challenge_user_payments {
   explore:  sfdc_opportunity{}
 
   #for prject stream data
-  explore: project_stream {
-    always_filter: {
-      filters: {
-        field: isdeleted
-        value: "no"
-      }
-    }
-  }
+  explore: project_stream {}
+
 
 #for December promotion look
 explore: dec_give_away_submission {
