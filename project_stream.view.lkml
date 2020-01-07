@@ -398,6 +398,11 @@ view: project_stream {
     sql: ${TABLE}.subscription_project__r_subscription__r_subcontracting_end_customer__c ;;
   }
 
+  dimension: isdeleted {
+    type: yesno
+    sql: ${TABLE}.isdeleted ;;
+  }
+
   measure: total_approved_budget {
     type: sum
     sql: ${TABLE}.total_approved_budget__c ;;
