@@ -1511,12 +1511,20 @@ explore: challenge_user_payments {
   # for new data science participants and submitters
   explore: data_science_members  {}
 
-  #for sfdc account and opportunity table
+  #for sfdc account and opportunity and assignment table
   explore:  sfdc_account{}
   explore:  sfdc_opportunity{}
+  explore:  sfdc_assignment {}
 
   #for prject stream data
-  explore: project_stream {}
+  #joined afdc assignment table on 8th Jan 2020
+  explore: project_stream {
+    join: sfdc_assignment {
+      type: left_outer
+      sql_on: ${project_stream.id}=${sfdc_assignment.project_stream_id} ;;
+      relationship: one_to_many
+    }
+  }
 
 
 #for December promotion look
