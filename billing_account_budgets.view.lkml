@@ -45,6 +45,7 @@ group by 1,2,3,4,5,6,7,8
   }
 
   dimension: billing_account_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.billing_account_id ;;
   }

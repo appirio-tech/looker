@@ -811,6 +811,25 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
+
+  join: sfdc_opportunity {
+    type:  left_outer
+    sql_on: ${sfdc_account.account_id} = ${sfdc_opportunity.account_id} ;;
+    relationship: many_to_one
+  }
+
+  join: billing_account_budgets{
+    type:  left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${billing_account_budgets.billing_account_id} ;;
+    relationship: one_to_one
+  }
+
 }
 
 explore: user_payment {}
