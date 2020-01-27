@@ -830,8 +830,23 @@ explore: payment {
     relationship: one_to_one
   }
 
-}
+  #added on 27th Jan 2019
+  join: user_tax_form {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_one
+  }
 
+}
+#added on 27th Jan 2019
+explore: user_tax_form {
+  join: user {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+}
 explore: user_payment {}
 
 #added on 17th June 2019
