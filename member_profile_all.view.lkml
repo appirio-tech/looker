@@ -321,7 +321,8 @@ view: member_profile_all {
                 ${reporting_country} ='Canada' or
                 ${reporting_country} ='Greenland' or
                 ${reporting_country} ='Saint Pierre and Miquelon' or
-                ${reporting_country} ='United States of America' ;;
+                ${reporting_country} ='United States of America' or
+                ${reporting_country} ='United States';;
           label: "Northern America"
       }
       when: {
