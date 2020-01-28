@@ -163,11 +163,15 @@ view: member_profile_all {
               ${reporting_country} ='Singapore' or
               ${reporting_country} ='Thailand' or
               ${reporting_country} ='Timor-Leste' or
+              ${reporting_country} ='East Timor' or
               ${reporting_country} ='Vietnam' or
+              ${reporting_country} ='Viet Nam' or
               ${reporting_country} ='Australia' or
               ${reporting_country} ='Melanesia' or
               ${reporting_country} ='Micronesia' or
+              ${reporting_country} ='Micronesia, Federated States of' or
               ${reporting_country} ='Polynesia' or
+              ${reporting_country} ='French Polynesia' or
               ${reporting_country} ='New Zealand' ;;
       label: "South-Eastern Asia and Ocenia"
     }
@@ -198,6 +202,7 @@ view: member_profile_all {
                  ${reporting_country} ='Qatar' or
                  ${reporting_country} ='Saudi Arabia' or
                  ${reporting_country} ='State of Palestine' or
+                 ${reporting_country} ='Palestine, State of' or
                  ${reporting_country} ='Syria' or
                  ${reporting_country} ='Turkey' or
                  ${reporting_country} ='United Arab Emirates' or
@@ -214,11 +219,13 @@ view: member_profile_all {
                  ${reporting_country} ='Mayotte' or
                  ${reporting_country} ='Mozambique' or
                  ${reporting_country} ='Réunion' or
+                 ${reporting_country} ='Reunion' or
                  ${reporting_country} ='Rwanda' or
                  ${reporting_country} ='Seychelles' or
                  ${reporting_country} ='Somalia' or
                  ${reporting_country} ='South Sudan' or
                  ${reporting_country} ='Tanzania' or
+                 ${reporting_country} ='Tanzania, United Republic of' or
                  ${reporting_country} ='Uganda' or
                  ${reporting_country} ='Zambia' or
                  ${reporting_country} ='Zimbabwe' or
@@ -228,9 +235,11 @@ view: member_profile_all {
                  ${reporting_country} ='Chad' or
                  ${reporting_country} ='Democratic Republic of the Congo' or
                  ${reporting_country} ='Republic of the Congo' or
+                 ${reporting_country} ='Congo' or
                  ${reporting_country} ='Equatorial Guinea' or
                  ${reporting_country} ='Gabon' or
                  ${reporting_country} ='São Tomé and Príncipe' or
+                 ${reporting_country} ='Sao Tome and Principe' or
                  ${reporting_country} ='Algeria' or
                  ${reporting_country} ='Egypt' or
                  ${reporting_country} ='Libya' or
@@ -240,12 +249,14 @@ view: member_profile_all {
                  ${reporting_country} ='Western Sahara' or
                  ${reporting_country} ='Botswana' or
                  ${reporting_country} ='Eswatini (Swaziland)' or
+                 ${reporting_country} ='Swaziland' or
                  ${reporting_country} ='Lesotho' or
                  ${reporting_country} ='Namibia' or
                  ${reporting_country} ='South Africa' or
                  ${reporting_country} ='Benin' or
                  ${reporting_country} ='Burkina Faso' or
                  ${reporting_country} ='Cabo Verde' or
+                 ${reporting_country} ='Cape Verde' or
                  ${reporting_country} ='Gambia' or
                  ${reporting_country} ='Ghana' or
                  ${reporting_country} ='Guinea' or
@@ -277,11 +288,13 @@ view: member_profile_all {
               ${reporting_country} ='Colombia' or
               ${reporting_country} ='Ecuador' or
               ${reporting_country} ='Falkland Islands' or
+              ${reporting_country} ='Falkland Islands (Malvinas)' or
               ${reporting_country} ='French Guiana' or
               ${reporting_country} ='Guyana' or
               ${reporting_country} ='Paraguay' or
               ${reporting_country} ='Peru' or
               ${reporting_country} ='South Georgia and the South Sandwich Islands' or
+              ${reporting_country} ='South Georgia and The S.Sandwich Is.' or
               ${reporting_country} ='Suriname' or
               ${reporting_country} ='Uruguay' or
               ${reporting_country} ='Venezuela' or
@@ -292,9 +305,11 @@ view: member_profile_all {
               ${reporting_country} ='Barbados' or
               ${reporting_country} ='Bonaire, Sint Eustatius and Saba' or
               ${reporting_country} ='British Virgin Islands' or
+              ${reporting_country} ='Virgin Islands (British)'or
               ${reporting_country} ='Cayman Islands' or
               ${reporting_country} ='Cuba' or
               ${reporting_country} ='Curaçao' or
+              ${reporting_country} ='Curacao' or
               ${reporting_country} ='Dominica' or
               ${reporting_country} ='Dominican Republic' or
               ${reporting_country} ='Grenada' or
@@ -305,14 +320,19 @@ view: member_profile_all {
               ${reporting_country} ='Montserrat' or
               ${reporting_country} ='Puerto Rico' or
               ${reporting_country} ='Saint Barthélemy' or
+              ${reporting_country} ='Saint Barthelemy' or
               ${reporting_country} ='Saint Kitts and Nevis' or
+              ${reporting_country} ='St. Kitts and Nevis' or
               ${reporting_country} ='Saint Lucia' or
+              ${reporting_country} ='St. Lucia' or
               ${reporting_country} ='Saint Martin (French part)' or
               ${reporting_country} ='Saint Vincent and the Grenadines' or
+              ${reporting_country} ='St. Vincent and Grenadines' or
               ${reporting_country} ='Sint Maarten (Dutch part)' or
               ${reporting_country} ='Trinidad and Tobago' or
               ${reporting_country} ='Turks and Caicos Islands' or
-              ${reporting_country} ='United States Virgin Islands' ;;
+              ${reporting_country} ='United States Virgin Islands' or
+              ${reporting_country} ='Virgin Islands (U.S.)';;
         label: "Caribbean and South-Central America"
       }
 
@@ -321,6 +341,7 @@ view: member_profile_all {
                 ${reporting_country} ='Canada' or
                 ${reporting_country} ='Greenland' or
                 ${reporting_country} ='Saint Pierre and Miquelon' or
+                ${reporting_country} ='St. Pierre and Miquelon' or
                 ${reporting_country} ='United States of America' or
                 ${reporting_country} ='United States';;
           label: "Northern America"
@@ -329,14 +350,16 @@ view: member_profile_all {
           sql:  ${reporting_country} ='Belarus' or
                 ${reporting_country} ='Bulgaria' or
                 ${reporting_country} ='Czechia (Czech Republic)' or
+                ${reporting_country} ='Czech Republic' or
                 ${reporting_country} ='Hungary' or
                 ${reporting_country} ='Moldova' or
+                ${reporting_country} ='Moldova, Republic of' or
                 ${reporting_country} ='Poland' or
                 ${reporting_country} ='Romania' or
                 ${reporting_country} ='Russia' or
                 ${reporting_country} ='Slovakia' or
                 ${reporting_country} ='Ukraine' or
-                ${reporting_country} ='Åland Islands' or
+                ${reporting_country} ='Aland Islands' or
                 ${reporting_country} ='Denmark' or
                 ${reporting_country} ='Estonia' or
                 ${reporting_country} ='Faroe Islands' or
@@ -355,7 +378,7 @@ view: member_profile_all {
                 ${reporting_country} ='United Kingdom' or
                 ${reporting_country} ='Albania' or
                 ${reporting_country} ='Andorra' or
-                ${reporting_country} ='Bosnia and Herzegovina' or
+                ${reporting_country} ='Bosnia & Herzegovina' or
                 ${reporting_country} ='Croatia' or
                 ${reporting_country} ='Gibraltar' or
                 ${reporting_country} ='Greece' or
@@ -363,12 +386,14 @@ view: member_profile_all {
                 ${reporting_country} ='Malta' or
                 ${reporting_country} ='Montenegro' or
                 ${reporting_country} ='North Macedonia' or
+                ${reporting_country} ='Macedonia' or
                 ${reporting_country} ='Portugal' or
                 ${reporting_country} ='San Marino' or
                 ${reporting_country} ='Serbia' or
                 ${reporting_country} ='Slovenia' or
                 ${reporting_country} ='Spain' or
                 ${reporting_country} ='Vatican City' or
+                ${reporting_country} ='Vatican City State (Holy See)' or
                 ${reporting_country} ='Austria' or
                 ${reporting_country} ='Belgium' or
                 ${reporting_country} ='France' or
