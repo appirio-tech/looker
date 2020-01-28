@@ -727,6 +727,11 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: member_profile_advanced {
+    type: inner
+    sql_on: ${user_payment.user_id} = ${member_profile_advanced.user_id} ;;
+    relationship: many_to_many
+  }
   join: payee_country {
     from: country
     type: inner

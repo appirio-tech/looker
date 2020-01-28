@@ -671,6 +671,13 @@ view: member_profile_advanced {
     group_label: "Address"
   }
 
+  dimension: Full_Address {
+    type: string
+    sql: ISNULL(${street_address_1},'') + ' ' + ISNULL(${street_address_2},'') + ' ' + ISNULL(${city},'') + ' ' + ISNULL(${state_code},'')
+        + ' ' + ISNULL(${country},'');;
+    group_label: "Address"
+  }
+
   measure: count {
     type: count
   }
