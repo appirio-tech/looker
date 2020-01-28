@@ -354,6 +354,12 @@ explore: user {
     sql_on: ${user.comp_country_code} = ${country.country_code} ;;
     relationship: many_to_one
   }
+
+  join: user_tax_form {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
 #  join: copilot_user {
 #    from:  copilot
 #    type:  left_outer
@@ -845,13 +851,9 @@ explore: payment {
 }
 #added on 27th Jan 2019
 explore: user_tax_form {
-  join: user {
-    type: left_outer
-    sql_on: ${user_tax_form.user_id} = ${user.coder_id} ;;
-    relationship: many_to_one
+  hidden:yes
   }
 
-}
 explore: user_payment {}
 
 #added on 17th June 2019
