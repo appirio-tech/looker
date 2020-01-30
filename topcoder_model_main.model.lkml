@@ -178,9 +178,6 @@ explore: round {
 explore: participant_funnel_monthly {}
 
 
-
-explore: round_division {}
-explore: room {}
 explore: room_result {
   join: user {
     type: inner
