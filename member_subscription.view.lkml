@@ -1,6 +1,13 @@
 view: member_subscription {
   sql_table_name: tcs_dw.member_subscription ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.name ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

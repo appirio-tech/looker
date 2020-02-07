@@ -1,6 +1,13 @@
 view: member_language {
   sql_table_name: tcs_dw.member_language ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.language ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

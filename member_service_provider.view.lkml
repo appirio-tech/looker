@@ -1,6 +1,13 @@
 view: member_service_provider {
   sql_table_name: tcs_dw.member_service_provider ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.name || ${TABLE}.service_provider_type ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

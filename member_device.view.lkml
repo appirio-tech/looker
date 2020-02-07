@@ -1,6 +1,13 @@
 view: member_device {
   sql_table_name: tcs_dw.member_device ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.device_type || ${TABLE}.manufacturer || ${TABLE}.model || ${TABLE}.operating_system || ${TABLE}.os_language || ${TABLE}.os_version;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

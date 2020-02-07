@@ -1,6 +1,13 @@
 view: member_work {
   sql_table_name: tcs_dw.member_work ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.company || ${TABLE}.position || ${TABLE}.industry || ${TABLE}.timeperiodfrom ;;
+  }
+
   dimension: citytown {
     type: string
     sql: ${TABLE}.citytown ;;

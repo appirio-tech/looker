@@ -1,6 +1,13 @@
 view: member_education {
   sql_table_name: tcs_dw.member_education ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.name || ${TABLE}.major ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

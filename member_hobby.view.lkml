@@ -1,6 +1,13 @@
 view: member_hobby {
   sql_table_name: tcs_dw.member_hobby ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.hobby ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

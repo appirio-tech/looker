@@ -285,6 +285,13 @@ explore: member_profile_all {
     sql_on: ${group.id} = ${group_membership.group_id} ;;
     relationship: many_to_one
   }
+
+  join: country {
+    view_label: "reporting_country_name"
+    type: left_outer
+    sql_on: ${member_profile_all.reporting_country} = ${country.country_name} ;;
+    relationship: many_to_one
+  }
 }
 
 # Added 22nd November - 2018
