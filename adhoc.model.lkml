@@ -108,15 +108,6 @@ explore: duplicate_resource {
 
 }
 
-#added the problem_submission,system_test_case,system_test_result view of srm at 1st Jule 2019
-
-explore: problem_submission {}
-
-explore: system_test_case {}
-
-explore: system_test_result {}
-
-
 #Added adhoc explore for winner handles verification
 
 explore: challenge_stats{

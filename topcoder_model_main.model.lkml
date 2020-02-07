@@ -178,9 +178,6 @@ explore: round {
 explore: participant_funnel_monthly {}
 
 
-
-explore: round_division {}
-explore: room {}
 explore: room_result {
   join: user {
     type: inner
@@ -354,6 +351,12 @@ explore: user {
     sql_on: ${user.comp_country_code} = ${country.country_code} ;;
     relationship: many_to_one
   }
+
+  join: user_tax_form {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
 #  join: copilot_user {
 #    from:  copilot
 #    type:  left_outer
@@ -413,6 +416,13 @@ explore: connect_project {
     relationship: many_to_one
   }
 
+  join: member_traits {
+    from: member_profile_advanced
+    type: left_outer
+    sql_on: ${connect_project_members.user_id} = ${member_traits.user_id} ;;
+    relationship: one_to_one
+  }
+
   #added on 29th Aug 2019
   join: connect_project_creator_member {
     from:connect_project_members
@@ -456,7 +466,14 @@ explore: connect_project {
 
 #explore:  member_aggregated_skills {}
 
-explore: connect_project_members {}
+explore: connect_project_members {
+
+  join: member_profile_advanced {
+    type: inner
+    sql_on: ${connect_project_members.user_id} = ${member_profile_advanced.user_id} ;;
+    relationship: one_to_one
+  }
+}
 
 explore: challenge {
   join: client_project_dim {
@@ -727,6 +744,11 @@ explore: payment {
     relationship: many_to_many
   }
 
+  join: member_profile_advanced {
+    type: inner
+    sql_on: ${user_payment.user_id} = ${member_profile_advanced.user_id} ;;
+    relationship: many_to_many
+  }
   join: payee_country {
     from: country
     type: inner
@@ -830,7 +852,18 @@ explore: payment {
     relationship: one_to_one
   }
 
+  #added on 27th Jan 2019
+  join: user_tax_form {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_one
+  }
+
 }
+#added on 27th Jan 2019
+explore: user_tax_form {
+  hidden:yes
+  }
 
 explore: user_payment {}
 

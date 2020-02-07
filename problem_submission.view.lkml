@@ -4,6 +4,7 @@ view: problem_submission {
   dimension: coder_id {
     type: number
     sql: ${TABLE}.coder_id ;;
+    primary_key: yes
   }
 
   dimension: final_points {
