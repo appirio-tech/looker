@@ -416,6 +416,13 @@ explore: connect_project {
     relationship: many_to_one
   }
 
+  join: traits {
+    from: member_profile_advanced
+    type: left_outer
+    sql_on: ${connect_project_members.user_id} = ${traits.user_id} ;;
+    relationship: many_to_one
+  }
+
   #added on 29th Aug 2019
   join: connect_project_creator_member {
     from:connect_project_members
@@ -459,7 +466,14 @@ explore: connect_project {
 
 #explore:  member_aggregated_skills {}
 
-explore: connect_project_members {}
+explore: connect_project_members {
+
+  join: member_profile_advanced {
+    type: inner
+    sql_on: ${connect_project_members.user_id} = ${member_profile_advanced.user_id} ;;
+    relationship: one_to_one
+  }
+}
 
 explore: challenge {
   join: client_project_dim {
