@@ -416,11 +416,11 @@ explore: connect_project {
     relationship: many_to_one
   }
 
-  join: traits {
+  join: member_traits {
     from: member_profile_advanced
     type: left_outer
-    sql_on: ${connect_project_members.user_id} = ${traits.user_id} ;;
-    relationship: many_to_one
+    sql_on: ${connect_project_members.user_id} = ${member_traits.user_id} ;;
+    relationship: one_to_one
   }
 
   #added on 29th Aug 2019
