@@ -363,7 +363,18 @@ explore: user {
 #    sql_on: ${user.handle} = ${copilot_user.handle} ;;
 #    relationship: one_to_one
 #  }
+
+  #added on 12th Feb 2020
+  join: user_payment_method {
+    type: left_outer
+    sql_on: ${user_payment_method.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+
+  }
 }
+
+
+
 
 explore: country {}
 
@@ -852,17 +863,29 @@ explore: payment {
     relationship: one_to_one
   }
 
-  #added on 27th Jan 2019
+  #added on 27th Jan 2020
   join: user_tax_form {
     type: left_outer
     sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
     relationship: many_to_one
   }
 
+  #added on 12th Feb 2020
+  join: user_payment_method {
+    type: left_outer
+    sql_on: ${user_payment_method.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_one
+  }
+
 }
-#added on 27th Jan 2019
+#added on 27th Jan 2020
 explore: user_tax_form {
   hidden:yes
+  }
+
+  #added on 12th Feb 2020
+  explore: user_payment_method {
+    hidden: yes
   }
 
 explore: user_payment {}
