@@ -39,6 +39,7 @@ view: sfdc_account {
 
   measure: annualrevenue {
     type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.annualrevenue ;;
   }
 
@@ -245,6 +246,7 @@ view: sfdc_account {
 
   measure: total_bookings_usd {
     type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_bookings_usd__c ;;
   }
 

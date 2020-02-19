@@ -19,6 +19,7 @@ view: sfdc_opportunity {
 
   measure: amount {
     type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount ;;
   }
 
@@ -87,12 +88,14 @@ view: sfdc_opportunity {
   }
 
   dimension: probability {
-    type: string
+    type:  number
+    value_format_name: percent_2
     sql: ${TABLE}.probability ;;
   }
 
   measure: expected_revenue {
     type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expectedrevenue ;;
   }
 
