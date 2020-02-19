@@ -7,6 +7,12 @@ view: sfdc_opportunity {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: connect_project_id  {
+    type: number
+    description: "Connect Project Id associated with the Opportunity"
+    sql: ${TABLE}.tc_connect_project_id__c ;;
+  }
+
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;

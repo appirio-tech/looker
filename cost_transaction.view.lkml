@@ -81,6 +81,14 @@ view: cost_transaction {
     sql: ${TABLE}.invoice_amount ;;
   }
 
+  measure: distinct_invoice_amount{
+    label: "Invoice Amount ( Distinct )"
+    type: sum_distinct
+    description: "Sum distinct values of Cost Transaction Record only"
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.invoice_amount ;;
+  }
+
   dimension: invoice_id {
     type: number
     sql: ${TABLE}.invoice_id ;;
