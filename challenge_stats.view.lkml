@@ -673,22 +673,23 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.start_date_calendar_id ;;
   }
 
-  dimension_group: start_date {
-    type: time
-    timeframes: [
-      time,
-      date,
-      week,
-      month,
-      year,
-      quarter,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-    ]
-    sql: ${TABLE}.start_date ;;
-  }
+#commented out on 20th Feb 2020 as the column does not exist in the table query.
+  #dimension_group: start_date {
+  #  type: time
+  #  timeframes: [
+  #    time,
+  #    date,
+  #    week,
+  #    month,
+  #    year,
+  #    quarter,
+  #    fiscal_month_num,
+  #    fiscal_quarter,
+  #    fiscal_quarter_of_year,
+  #    fiscal_year
+  # ]
+  #  sql: ${TABLE}.start_date ;;
+  #}
 
   measure: duration {
     type: sum
@@ -1406,7 +1407,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       admin_fee,
       contest_prizes_total,
       start_date_calendar_id,
-      start_date_time,
+      #start_date_time,
       duration,
       fulfillment,
       last_modification_date_time,

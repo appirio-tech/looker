@@ -149,6 +149,13 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+  join: challenge_start_date {
+    from: calendar
+    type: inner
+    sql_on: ${challenge_stats.start_date_calendar_id} = ${challenge_start_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
 
 }
 explore: billing_account_budgets {}
