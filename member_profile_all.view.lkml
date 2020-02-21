@@ -613,6 +613,16 @@ view: member_profile_all {
            END;;
   }
 
+  dimension: No_track{
+    type: number
+    hidden: yes
+    description: "1 if Member has NOT opted for any track , 0 if yes"
+    sql: CASE
+                WHEN (${tracks} = null or ${tracks} = '') THEN 1
+                ELSE 0
+           END;;
+  }
+
 
     dimension: address_type {
       type: string
@@ -720,6 +730,11 @@ view: member_profile_all {
   measure: Count_data_science{
     type: sum
     sql:  ${Data_Science};;
+  }
+
+  measure: Count_None {
+    type: sum
+    sql: ${No_track} ;;
   }
 
     measure: count {
