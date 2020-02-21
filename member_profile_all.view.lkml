@@ -583,6 +583,37 @@ view: member_profile_all {
       sql: ${TABLE}.tracks ;;
     }
 
+    dimension: Develop {
+      type: number
+      hidden: yes
+      description: "1 if Member has opted for develop track , 0 if not"
+      sql: CASE
+                WHEN (${tracks} LIKE '%DEVELOP%') THEN 1
+                ELSE 0
+           END;;
+    }
+
+  dimension: Design {
+    type: number
+    hidden: yes
+    description: "1 if Member has opted for design track , 0 if not"
+    sql: CASE
+                WHEN (${tracks} LIKE '%DESIGN%') THEN 1
+                ELSE 0
+           END;;
+  }
+
+  dimension: Data_Science{
+    type: number
+    hidden: yes
+    description: "1 if Member has opted for data science track , 0 if not"
+    sql: CASE
+                WHEN (${tracks} LIKE '%DATA_SCIENCE%') THEN 1
+                ELSE 0
+           END;;
+  }
+
+
     dimension: address_type {
       type: string
       description: "Address given is an office address or home address"
@@ -675,6 +706,21 @@ view: member_profile_all {
       sql: ${TABLE}.zip ;;
       group_label: "Address"
     }
+
+    measure: Count_development{
+      type: sum
+      sql:  ${Develop};;
+    }
+
+  measure: Count_design{
+    type: sum
+    sql:  ${Design};;
+  }
+
+  measure: Count_data_science{
+    type: sum
+    sql:  ${Data_Science};;
+  }
 
     measure: count {
       type: count
