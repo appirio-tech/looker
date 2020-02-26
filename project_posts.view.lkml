@@ -165,7 +165,7 @@ view: connect_messages {
 
   dimension: topicid {
     type: number
-    hidden: yes
+    hidden: no
     value_format_name: id
     sql: ${TABLE}.topicid ;;
   }
