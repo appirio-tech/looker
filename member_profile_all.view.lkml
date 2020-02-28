@@ -618,7 +618,7 @@ view: member_profile_all {
     hidden: yes
     description: "1 if Member has NOT opted for any track , 0 if yes"
     sql: CASE
-                WHEN (${tracks} = null or ${tracks} = '') THEN 1
+                WHEN ((${tracks} is null) or ${tracks} = '' or ${tracks} = ' ') THEN 1
                 ELSE 0
            END;;
   }
