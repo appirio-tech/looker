@@ -133,3 +133,7 @@ explore: challenge_stats{
     relationship: many_to_one
   }
 }
+
+
+#Added for temp SFDC billing account
+explore: temp_sfdc_billing_account {}
