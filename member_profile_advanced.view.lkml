@@ -673,7 +673,7 @@ view: member_profile_advanced {
 
   dimension: Full_Address {
     type: string
-    sql: ISNULL(${street_address_1},'') + ' ' + ISNULL(${street_address_2},'') + ' ' + ISNULL(${city},'') + ' ' + ISNULL(${state_code},'')
+    sql: ISNULL(${street_address_1},null) + ' ' + ISNULL(${street_address_2},'') + ' ' + ISNULL(${city},'') + ' ' + ISNULL(${state_code},'')
         + ' ' + ISNULL(${country},'');;
     group_label: "Address"
   }
