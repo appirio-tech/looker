@@ -1,6 +1,13 @@
 view: member_verification {
   sql_table_name: tcs_dw.member_verification ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: ${TABLE}.user_id || ${TABLE}.transaction_record_id ;;
+  }
+
   dimension: country {
     type: string
     map_layer_name: countries
