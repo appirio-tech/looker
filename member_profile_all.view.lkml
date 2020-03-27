@@ -564,6 +564,15 @@ view: member_profile_all {
       sql: ${TABLE}.handle_lower ;;
     }
 
+    dimension: profile_link {
+      sql: ${TABLE}.handle ;;
+      link: {
+        label: "Profile"
+        url: "https://www.topcoder.com/members/{{ value }}"
+        icon_url: ""
+      }
+    }
+
     dimension: home_country_code {
       type: string
       description: "Country code for the country member belong to"
