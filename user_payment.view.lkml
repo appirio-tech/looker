@@ -33,6 +33,12 @@ view: user_payment {
     drill_fields: [payment.parent_payment_id]
   }
 
+ measure: distinct_user_count {
+   type: count_distinct
+   sql:  ${user_id};;
+   description: "Distinct Users Paid"
+ }
+
   measure: gross_amount {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
