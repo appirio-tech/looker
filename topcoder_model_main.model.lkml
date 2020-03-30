@@ -2,12 +2,16 @@ connection: "prod_-_topcoder_redshift"
 
 # project cache for 8 hours as load projects in 8 hours
 datagroup: project_cache {
-  sql_trigger: SELECT max(id) FROM project ;;
+  label: "Challenge Cache"
+  description: "Challenges are loaded every 8 hours hence the default challenge cache"
+  sql_trigger: SELECT max(project_id) FROM project ;;
   max_cache_age: "8 hours"
 }
 
 # srm cache for 24 hours
 datagroup: srm_cache {
+  label: "SRM Data"
+  description: "SRM Data is loaded after every SRM hence cached for earlier of (24 hours or when new records are loaded)"
   sql_trigger: select count(*) FROM srm_tco19 ;;
   max_cache_age: "24 hours"
 }
