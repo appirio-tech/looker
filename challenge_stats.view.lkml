@@ -895,6 +895,12 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.is_private ;;
   }
 
+  measure: max_submitted_date {
+    type: date
+    sql: max(${TABLE}.submit_timestamp) ;;
+    description: "Maximum of submitted date"
+  }
+
   measure: actual_total_prize {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
