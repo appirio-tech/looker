@@ -608,6 +608,11 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  join: challenge_phase {
+    type: left_outer
+    sql_on: ${challenge.challenge_id} = ${challenge_phase.challenge_id};;
+    relationship: one_to_many
+  }
 
 }
 
