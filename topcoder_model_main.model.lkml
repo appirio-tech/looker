@@ -608,9 +608,9 @@ explore: challenge {
     relationship: one_to_many
   }
 
-  join: challenge_phase {
+  join: challenge_phases {
     type: left_outer
-    sql_on: ${challenge.challenge_id} = ${challenge_phase.challenge_id};;
+    sql_on: ${challenge.challenge_id} = ${challenge_phases.challenge_id};;
     relationship: one_to_many
   }
 

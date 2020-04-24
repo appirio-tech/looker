@@ -1,15 +1,26 @@
-view: challenge_phase {
+view: challenge_phases {
   sql_table_name: tcs_dw.project_phase ;;
-  drill_fields: [challenge_phase_id,challenge_id,challenge_phase,duration,duration_in_days,scheduled_end_date,scheduled_start_date,actual_end_date,actual_start_date,modify_by,modify_date,create_date,created_by]
+  drill_fields: [
+                  challenge_phase_id,challenge_id,
+                    phase_name,
+                    duration_in_days,
+                    scheduled_start_date,
+                    scheduled_end_date,
+                    actual_start_date,
+                    actual_end_date,
+                    modify_date,
+                    create_date
+               ]
 
   dimension: challenge_phase_id {
     primary_key: yes
+    value_format_name: id
     type: number
     sql: ${TABLE}.project_phase_id ;;
   }
 
   dimension_group: actual_end {
-    description: "Date on which the challenge phase is actually ended "
+    description: "Actual end date for the challenge phase"
     type: time
     timeframes: [
       raw,
@@ -24,7 +35,7 @@ view: challenge_phase {
   }
 
   dimension_group: actual_start {
-    description: "Date on which the challenge phase is actually started "
+    description: "Actual start date for the challenge phase"
     type: time
     timeframes: [
       raw,
@@ -59,14 +70,16 @@ view: challenge_phase {
 
   dimension: duration {
     description: "Challenge duration in milliseconds"
+    hidden: yes
     type: number
     sql: ${TABLE}.duration ;;
   }
 
   dimension: duration_in_days {
-    description: "Challenge duration in days "
+    description: "Approximate Phase duration in days.The value is rounded"
     type: number
-    sql: (${TABLE}.duration/ (60*60*24*1000)) ;;
+    value_format_name: decimal_0
+    sql: (${TABLE}.duration/ ( 60 * 60 * 24 * 1000)) ;;
   }
 
   dimension_group: fixed_start {
@@ -86,6 +99,7 @@ view: challenge_phase {
 
   dimension: modify_by {
     type: number
+    hidden: yes
     sql: ${TABLE}.modify_by ;;
   }
 
@@ -103,14 +117,14 @@ view: challenge_phase {
     sql: ${TABLE}.modify_date ;;
   }
 
-  dimension: challenge_phase {
-    description: "Challenge Phase like registration, submission, review, iterative review etc "
+  dimension: phase_name {
+    description: "Phase name e.g. Registration, Submission, Review, Iterative review etc"
     type: string
     sql: ${TABLE}.phase_name ;;
   }
 
-  dimension: challenge_phase_status {
-    description: "Challenge Phase status like scheduled, open and closed "
+  dimension: phase_status {
+    description: "Is the Phase Scheduled, Open or Closed"
     type: string
     sql: ${TABLE}.phase_status_desc ;;
   }
@@ -123,17 +137,19 @@ view: challenge_phase {
 
   dimension: phase_type_id {
     hidden: yes
+    value_format_name: id
     type: number
     sql: ${TABLE}.phase_type_id ;;
   }
 
   dimension: challenge_id {
     type: number
+    value_format_name: id
     sql: ${TABLE}.project_id ;;
   }
 
   dimension_group: scheduled_end {
-    description: "Date on which the challenge phase is scheduled to end "
+    description: "Initial planned end date for phase"
     type: time
     timeframes: [
       raw,
@@ -148,7 +164,7 @@ view: challenge_phase {
   }
 
   dimension_group: scheduled_start {
-    description: "Date on which the challenge phase is scheduled to start "
+    description: "Initial planned start date for phase"
     type: time
     timeframes: [
       raw,
@@ -163,13 +179,13 @@ view: challenge_phase {
   }
 
   measure: challenge_count {
-    description: "The distinct challenge count"
+    description: "Distinct Challenge count"
     type: count_distinct
+    hidden: yes
     sql: ${TABLE}.project_id ;;
   }
 
-  measure: challenge_phase_count {
+  measure: phase_count {
     type: count
-    drill_fields: [challenge_id]
   }
 }
