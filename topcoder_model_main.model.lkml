@@ -1625,3 +1625,19 @@ explore: dec_give_away_submission {
     sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
   }
 }
+
+#for Design month TCO leaderboards
+#added on 25th April 2020
+
+explore: design_month_tco {
+  join:  challenge{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${design_month_tco.challenge_id} = ${challenge.challenge_id} ;;
+  }
+  join: user {
+    type: left_outer
+    sql_on: ${design_month_tco.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+ }

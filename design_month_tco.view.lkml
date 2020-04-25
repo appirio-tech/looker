@@ -1,0 +1,52 @@
+view: design_month_tco {
+  sql_table_name: tcs_dw.design_month_tco ;;
+  drill_fields: [id]
+
+  dimension: id {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension: challenge_id {
+    type: number
+    description : "Unique identifier for the challenge"
+    sql: ${TABLE}.challenge_id ;;
+  }
+
+  dimension: challenge_name {
+    type: string
+    description :"Name of the challenge"
+    sql: ${TABLE}.challenge_name ;;
+  }
+
+  dimension: handle {
+    type: string
+    description :"User Handle"
+    sql: ${TABLE}.handle ;;
+  }
+
+  dimension: points {
+    type: number
+    description :"Points earned by the user"
+    sql: ${TABLE}.points ;;
+  }
+
+  dimension: user_id {
+    type: number
+    description :"Unique identifier for the user"
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: year {
+    type: number
+    description :"year of the campaign"
+    sql: ${TABLE}.year ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [id, challenge_name]
+  }
+}
