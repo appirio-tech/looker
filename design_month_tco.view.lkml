@@ -27,9 +27,8 @@ view: design_month_tco {
     sql: ${TABLE}.handle ;;
   }
 
-  dimension: points {
-    type: number
-    description :"Points earned by the user"
+  measure: points {
+    type: sum
     sql: ${TABLE}.points ;;
   }
 
