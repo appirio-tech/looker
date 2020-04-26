@@ -1640,4 +1640,18 @@ explore: design_month_tco {
     sql_on: ${design_month_tco.user_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: user_payment {
+    type: inner
+    sql_on: ${design_month_tco.user_id} = ${user_payment.user_id} ;;
+    relationship: many_to_many
+  }
+
+  join: payment {
+    type: inner
+    sql_on: ${user_payment.payment_id} = ${payment.payment_id} ;;
+    relationship: one_to_many
+  }
+
+
  }
