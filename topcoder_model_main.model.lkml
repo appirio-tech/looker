@@ -1653,5 +1653,9 @@ explore: design_month_tco {
     relationship: one_to_many
   }
 
-
- }
+  join: challenge_stats {
+    type: left_outer
+    sql_on: ${challenge_stats.challenge_id} = ${challenge.challenge_id} ;;
+    relationship: many_to_one
+   }
+  }
