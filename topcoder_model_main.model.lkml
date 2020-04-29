@@ -1658,4 +1658,11 @@ explore: design_month_tco {
     sql_on: ${challenge_stats.challenge_id} = ${challenge.challenge_id} ;;
     relationship: many_to_one
    }
+
+  join: design_month_tco_temp {
+    type: left_outer
+    sql_on: ${design_month_tco_temp.user_id} = ${design_month_tco.user_id} ;;
+    relationship: one_to_many
+  }
+
   }

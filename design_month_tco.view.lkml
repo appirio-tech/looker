@@ -41,7 +41,12 @@ view: design_month_tco {
   dimension: year {
     type: number
     description :"year of the campaign"
-    sql: ${TABLE}.year ;;
+    sql: ${TABLE}.year;;
+  }
+
+  dimension: member_type {
+    type: string
+    sql: ${TABLE}.member_type;;
   }
 
   measure: count {
