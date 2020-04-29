@@ -24,6 +24,11 @@ view: calendar {
     sql: ${TABLE}.date ;;
   }
 
+  measure: min_date {
+    type: date
+    sql: MIN(${date_date}) ;;
+  }
+
   dimension: day_of_month {
     type: number
     sql: ${TABLE}.day_of_month ;;

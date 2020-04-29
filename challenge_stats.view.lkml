@@ -1048,6 +1048,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     sql: ${TABLE}.inquire_timestamp ;;
   }
 
+  measure: min_inquire_timestamp {
+    type: date
+    sql: MIN(${inquire_timestamp_date}) ;;
+  }
+
   dimension_group: submit_timestamp {
     type: time
     timeframes: [
@@ -1063,6 +1068,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
       fiscal_year
     ]
     sql: ${TABLE}.submit_timestamp ;;
+  }
+
+  measure: min_submit_timestamp {
+    type: date
+    sql: MIN(${submit_timestamp_date}) ;;
   }
 
   dimension_group: review_complete_timestamp {
