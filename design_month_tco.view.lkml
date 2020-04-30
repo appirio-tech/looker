@@ -49,6 +49,12 @@ view: design_month_tco {
     sql: ${TABLE}.member_type;;
   }
 
+  dimension: placement {
+    type: number
+    description: "Placement of the user on the challenge"
+    sql: ${TABLE}.placement ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, challenge_name]
