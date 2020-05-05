@@ -11,7 +11,6 @@ include: "*.view.lkml"                       # include all views in this project
 #for fiscal year
 fiscal_month_offset: -9
 
-
 #Added back to check for schedule
 explore: project_scorecard {
   label: "New Project Scorecards"

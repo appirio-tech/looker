@@ -484,6 +484,12 @@ explore: connect_project {
     sql_on: ${connect_project.id} = ${connect_intake_form.id} ;;
     relationship: one_to_one
   }
+
+  join: connect_status_history {
+    type: left_outer
+    sql_on: ${connect_project.id} = ${connect_status_history.project_id} ;;
+    relationship: one_to_many
+  }
 }
 
 #explore:  member_aggregated_skills {}
