@@ -11,6 +11,19 @@ include: "*.view.lkml"                       # include all views in this project
 #for fiscal year
 fiscal_month_offset: -9
 
+explore: jive_forum {
+  join: challenge {
+    type: inner
+    sql_on: ${jive_forum.category_id} = ${challenge.forum_id} ;;
+    relationship: one_to_one
+  }
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+}
+
 #Added back to check for schedule
 explore: project_scorecard {
   label: "New Project Scorecards"
