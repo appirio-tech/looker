@@ -27,6 +27,9 @@ view: jive_forum {
       inner join jive_forum as forum ON category.category_id = forum.category_id
       left join jive_message message ON forum.forum_id = message.forum_id
        ;;
+    persist_for: "24 hours"
+    distribution_style: "even"
+    indexes: ["category_id", "forum_id", "message_id"]
   }
 
   measure: count {
