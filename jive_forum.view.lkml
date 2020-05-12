@@ -6,6 +6,8 @@ view: jive_forum {
       category.description  as category_decription,
       category.name as category_name,
       category.modificationdate / 1000 as category_modify_date,
+      category.is_deleted as category_is_deleted,
+      category.deleted_at as category_deleted_at,
 
       forum.forum_id as forum_id,
       forum.creationdate / 1000 as forum_created_date,
@@ -34,11 +36,19 @@ view: jive_forum {
 
   measure: message_count {
     type: count_distinct
+    description: "Count of Distinct Messages"
     sql: ${message_id} ;;
+  }
+
+  measure: category_count {
+    type: count_distinct
+    description: "Count of Distinct Categories"
+    sql: ${category_id} ;;
   }
 
   measure: forum_count {
     type: count_distinct
+    description: "Count of Distinct Forums"
     sql: ${forum_id};;
   }
 
@@ -46,6 +56,13 @@ view: jive_forum {
     type: number
     sql: ${TABLE}.category_id ;;
   }
+
+  dimension: category_is_deleted {
+    type: yesno
+    sql: ${TABLE}.category_is_deleted ;;
+  }
+
+
 
   dimension_group: category_created {
     type: time
@@ -67,6 +84,12 @@ view: jive_forum {
     type: time
     datatype: epoch
     sql: ${TABLE}.category_modify_date ;;
+  }
+
+  dimension_group: category_deleted_at {
+    type: time
+    datatype: date
+    sql: ${TABLE}.category_deleted_at ;;
   }
 
   dimension: forum_id {
