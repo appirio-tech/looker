@@ -13,7 +13,7 @@ fiscal_month_offset: -9
 
 explore: jive_forum {
   join: challenge {
-    type: inner
+    type: left_outer
     sql_on: ${jive_forum.category_id} = ${challenge.forum_id} ;;
     relationship: one_to_one
   }

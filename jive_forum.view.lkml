@@ -20,7 +20,8 @@ view: jive_forum {
       message.modificationdate / 1000 as message_modify_date,
       message.subject as subject,
       message.thread_id as thread_id,
-      message.user_id as user_id
+      message.user_id as user_id,
+      message.body as body
 
       from jive_category as category
 
@@ -55,6 +56,12 @@ view: jive_forum {
     sql: ${forum_id};;
   }
 
+  dimension: body {
+    type: string
+    description: "Message Body"
+    sql: ${TABLE}.body ;;
+  }
+
   dimension: category_id {
     type: number
     sql: ${TABLE}.category_id ;;
@@ -64,7 +71,6 @@ view: jive_forum {
     type: yesno
     sql: ${TABLE}.category_is_deleted ;;
   }
-
 
 
   dimension_group: category_created {
