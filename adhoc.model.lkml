@@ -12,6 +12,11 @@ include: "*.view.lkml"                       # include all views in this project
 fiscal_month_offset: -9
 
 explore: jive_forum {
+  join: user {
+    type: left_outer
+    sql_on: ${jive_forum.user_id} = ${user.coder_id} ;;
+    relationship: one_to_one
+  }
   join: challenge {
     type: left_outer
     sql_on: ${jive_forum.category_id} = ${challenge.forum_id} ;;
@@ -22,6 +27,7 @@ explore: jive_forum {
     sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
     relationship: one_to_many
   }
+
 }
 
 #Added back to check for schedule
