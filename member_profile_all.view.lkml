@@ -749,9 +749,9 @@ view: member_profile_all {
     measure: count {
       type: count
       drill_fields: [
+        profile_link,
         first_name,
         last_name,
-        handle,
         email,
         reporting_country
       ]
