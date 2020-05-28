@@ -125,7 +125,7 @@ view: member_skill {
     drill_fields: [id, skill.skill_id, skill.name]
     link: {
       label: "View Users"
-      url: "/explore/member_profile/member_profile_all?fields=user.handle,member_profile_all.reporting_country,computed_skills.challenge_derived_skill,computed_skills.user_entered_skill&f[skill.name]={{ skill.name }}&f[computed_skills.challenge_derived_skill]=&f[computed_skills.user_entered_skill]=&f[member_profile_all.status]=ACTIVE&f[member_profile_all.handle]=-tcwebservice&f[group.name]=%25TaaS%25&f[member_profile_all.email]=-%25topcoder.com%2C-%25wipro.com&f[member_stats.maximum_rating]=%3E0%2CNOT+NULL&f[member_skill.source]=%25CHALLENGE%25&sorts=user.handle"
+      url: "/explore/member_profile/member_profile_all?fields=user.profile_link,member_profile_all.reporting_country,computed_skills.challenge_derived_skill,computed_skills.user_entered_skill&f[skill.name]={{ skill.name }}&f[computed_skills.challenge_derived_skill]=&f[computed_skills.user_entered_skill]=&f[member_profile_all.status]=ACTIVE&f[member_profile_all.handle]=-tcwebservice&f[group.name]=%25TaaS%25&f[member_profile_all.email]=-%25topcoder.com%2C-%25wipro.com&f[member_stats.maximum_rating]=%3E0%2CNOT+NULL&f[member_skill.source]=%25CHALLENGE%25&sorts=user.handle"
       icon_url: "https://looker.com/favicon.ico"
     }
   }

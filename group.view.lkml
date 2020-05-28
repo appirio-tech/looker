@@ -66,7 +66,7 @@ view: group {
     tags: ["group_name"]
     link: {
       label: "View Users"
-      url: "/explore/member_profile/member_profile_all?fields=user.handle,member_profile_all.reporting_country,computed_skills.challenge_derived_skill,computed_skills.user_entered_skill&f[group.name]={{ group.name }}&f[member_profile_all.status]=ACTIVE&f[member_profile_all.handle]=-tcwebservice&f[member_profile_all.email]=-%25topcoder.com&sorts=user.handle"
+      url: "/explore/member_profile/member_profile_all?fields=user.profile_link,member_profile_all.reporting_country,computed_skills.challenge_derived_skill,computed_skills.user_entered_skill&f[group.name]={{ group.name }}&f[member_profile_all.status]=ACTIVE&f[member_profile_all.handle]=-tcwebservice&f[member_profile_all.email]=-%25topcoder.com&sorts=user.handle"
       icon_url: "https://looker.com/favicon.ico"
     }
   }
