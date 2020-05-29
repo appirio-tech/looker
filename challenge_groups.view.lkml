@@ -28,6 +28,7 @@ view: challenge_groups {
     description: ""
     type: number
     sql: ${TABLE}.challenge_id ;;
+    primary_key: yes
   }
 
   measure: count {
