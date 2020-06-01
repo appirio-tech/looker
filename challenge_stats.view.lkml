@@ -1240,6 +1240,13 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.payment ;;
   }
+  dimension: is_payment_paid {
+    type:yesno
+    description: "Did the submitter received any payment for his submission (Both as a prize or ad hoc payment)"
+    sql: CASE WHEN ( ${TABLE}.payment > 0 ) then true
+    else false
+    end;;
+  }
 
   measure: wins {
     type: sum
