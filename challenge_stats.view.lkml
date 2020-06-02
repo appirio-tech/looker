@@ -628,6 +628,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   dimension: project_name {
     type: string
+    link: {
+      label: "Direct Project Link"
+      url: "https://www.topcoder.com/direct/projectOverview?formData.projectId={{ challenge_stats.tc_direct_project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
     sql: ${TABLE}.project_name ;;
   }
 
