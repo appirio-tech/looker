@@ -342,7 +342,7 @@ explore: cost_transaction {
   #added on 2nd Jun 2020
   join: direct_project_dim {
     type: left_outer
-    sql_on: ${connect_project.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
+    sql_on: ${cost_transaction.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: many_to_one
   }
 }
