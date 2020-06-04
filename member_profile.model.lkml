@@ -292,6 +292,20 @@ explore: member_profile_all {
     sql_on: ${member_profile_all.reporting_country} = ${country.country_name} ;;
     relationship: many_to_one
   }
+
+  join: user_terms_signed {
+    type:left_outer
+    sql_on: ${user.coder_id} = ${user_terms_signed.user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: terms_of_use {
+    type: left_outer
+    sql_on: ${user_terms_signed.terms_of_use_id} = ${terms_of_use.terms_of_use_id} ;;
+    relationship: many_to_one
+  }
+
+
 }
 
 # Added 22nd November - 2018
