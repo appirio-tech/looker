@@ -241,7 +241,6 @@ explore: auth_refresh_log {
 }
 
 explore: copilot {}
-explore: challenge_type {}
 
 explore: group_membership{
   join: group {
