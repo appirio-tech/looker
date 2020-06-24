@@ -11,8 +11,8 @@ view: connect_intake_form_extension {
     sql: ${TABLE}.key ;;
   }
 
-  dimension: duration {
-    type: number
+  measure: duration {
+    type: sum
     sql: json_extract_path_text((regexp_replace(connect_intake_form_extension.details,'\\\\.')), 'duration') ;;
     description: "Duration in months"
   }
@@ -29,8 +29,8 @@ view: connect_intake_form_extension {
     description: "Technology/skill name like java, node.js, xcode or mobile design etc."
   }
 
-  dimension: people {
-    type: number
+  measure: people {
+    type: sum
     sql: json_extract_path_text((regexp_replace(connect_intake_form_extension.details,'\\\\.')), 'people') ;;
     description: "Number of users for a specific role in project"
   }
