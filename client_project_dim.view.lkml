@@ -104,6 +104,13 @@ view: client_project_dim {
     sql: ${TABLE}.sfdc_account ;;
   }
 
+  #added on 26th June 2020
+  dimension: is_taas_billing_account {
+    type: yesno
+    description: "indicates whether the billing account is for Taas or not "
+    sql: ${TABLE}.is_taas_billing_account ;;
+  }
+
   #added on 14th June 2019
   dimension:reporting_sfdc_account  {
     description: "End Client, receiving the benefits"
