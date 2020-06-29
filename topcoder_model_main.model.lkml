@@ -241,7 +241,6 @@ explore: auth_refresh_log {
 }
 
 explore: copilot {}
-explore: challenge_type {}
 
 explore: group_membership{
   join: group {
@@ -494,6 +493,12 @@ explore: connect_project {
   join: connect_status_history {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_status_history.project_id} ;;
+    relationship: one_to_many
+  }
+
+  join: connect_intake_form_extension {
+    type: left_outer
+    sql_on: ${connect_project.id} = ${connect_intake_form_extension.connect_project_id} ;;
     relationship: one_to_many
   }
 }

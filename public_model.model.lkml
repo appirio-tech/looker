@@ -63,8 +63,6 @@ explore: data_science_contest {}
 
 explore: copilot {}
 
-explore: challenge_type {}
-
 
 # Table Views
 
