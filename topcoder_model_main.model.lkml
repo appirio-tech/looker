@@ -1683,3 +1683,33 @@ explore: design_month_tco {
   }
 
   }
+
+
+
+  #added on 1st July 2020
+
+  explore: tco_leaderboard {
+
+      join: challenge {
+        type: left_outer
+        relationship: many_to_one
+        sql_on: ${tco_leaderboard.challenge_id} = ${challenge.challenge_id} ;;
+      }
+
+      join: round {
+        type: left_outer
+        relationship: many_to_one
+        sql_on: ${tco_leaderboard.round_id} = ${round.round_id} ;;
+      }
+
+      join: member_profile_basic {
+        type: left_outer
+        relationship: many_to_one
+        sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
+      }
+  }
+
+
+
+
+
