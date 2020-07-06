@@ -11,6 +11,20 @@ include: "*.view.lkml"                       # include all views in this project
 #for fiscal year
 fiscal_month_offset: -9
 
+explore: deleted_payment {
+  description: "Payments that have been set as deleted from PACTS"
+  join: user {
+    type: left_outer
+    sql_on: ${deleted_payment.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+  join: challenge {
+    type: left_outer
+    sql_on: ${deleted_payment.reference_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: jive_forum {
   join: user {
     type: left_outer
