@@ -23,6 +23,17 @@ explore: deleted_payment {
     sql_on: ${deleted_payment.reference_id} = ${challenge.project_id} ;;
     relationship: many_to_one
   }
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+    relationship: many_to_one
+  }
+  join: sfdc_account {
+    view_label: "Reporting Account"
+    type: left_outer
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id};;
+    relationship: many_to_one
+  }
 }
 
 explore: jive_forum {
