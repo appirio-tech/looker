@@ -53,6 +53,25 @@ view: contest {
     sql: ${TABLE}.contest_type_desc ;;
   }
 
+  dimension: track {
+    type: string
+    description: "High level track of the contest eg Design, QA, Develop, Copilot etc"
+    sql: ${TABLE}.track ;;
+  }
+
+  dimension: active {
+    type: yesno
+    description: "Is the contest currently active ? An active track is used for TCO Leaderboard calculation"
+    hidden: yes
+    sql: ${TABLE}.active ;;
+  }
+
+  dimension: sub_track {
+    type: string
+    description: "Sub Category of track for the purpose of contest"
+    sql: ${TABLE}.sub_track ;;
+  }
+
   dimension: contest_type_id {
     type: number
     sql: ${TABLE}.contest_type_id ;;
