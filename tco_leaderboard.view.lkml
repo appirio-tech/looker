@@ -95,6 +95,20 @@ view: tco_leaderboard {
     sql: ${TABLE}.fixed_score ;;
   }
 
+  measure: tco_points {
+    type: sum
+    description: "TCO points for competitors except copilots"
+    value_format: "#,##0"
+    sql:  CASE
+                WHEN ${TABLE}.points IS NOT NULL THEN ${TABLE}.fixed_points
+
+                WHEN ${contest.track} = "Copilot" THEN $(${TABLE}.percentage*${TABLE}.total_prize*${tco_rating_booster.rating}
+
+                ELSE (${TABLE}.total_prize)*(${TABLE}.percentage)
+
+          END;;
+  }
+
 
   measure: count {
     type: count
