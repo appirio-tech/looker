@@ -119,4 +119,10 @@ view: member_work {
     type: count
     drill_fields: []
   }
+
+  measure: count_distinct_users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
 }

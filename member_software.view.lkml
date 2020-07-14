@@ -75,4 +75,10 @@ view: member_software {
     type: count
     drill_fields: [name]
   }
+
+  measure: count_distinct_users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
 }
