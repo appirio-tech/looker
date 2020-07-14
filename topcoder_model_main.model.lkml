@@ -1716,4 +1716,10 @@ explore: design_month_tco {
         relationship: one_to_many
         sql_on: ${tco_rating_booster.contest_id} = ${tco_leaderboard.contest_id} ;;
       }
+
+      join: contest {
+        type: left_outer
+        relationship: many_to_one
+        sql_on: ${tco_leaderboard.contest_id} = ${contest.contest_id} ;;
+      }
   }
