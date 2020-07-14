@@ -1686,6 +1686,9 @@ explore: design_month_tco {
 
 
 
+  explore: tco_rating_booster {
+    hidden: yes
+  }
   #added on 1st July 2020
 
   explore: tco_leaderboard {
@@ -1707,9 +1710,10 @@ explore: design_month_tco {
         relationship: many_to_one
         sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
       }
+
+      join: tco_rating_booster {
+        type: left_outer
+        relationship: one_to_many
+        sql_on: ${tco_rating_booster.contest_id} = ${tco_leaderboard.contest_id} ;;
+      }
   }
-
-
-
-
-

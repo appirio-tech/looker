@@ -4,6 +4,7 @@ view: tco_leaderboard {
 
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -12,6 +13,33 @@ view: tco_leaderboard {
     type: number
     sql: ${TABLE}.challenge_id ;;
   }
+
+  dimension: user_id {
+    type: number
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: points {
+    type: number
+    sql: ${TABLE}.points ;;
+  }
+
+  dimension: placement {
+    type: number
+    description: "Placement earned by the user"
+    sql: ${TABLE}.placement ;;
+  }
+
+  dimension: total_score {
+    type: number
+    sql: ${TABLE}.total_score ;;
+  }
+
+  dimension: round_id {
+    type: number
+    sql: ${TABLE}.round_id ;;
+  }
+
 
   dimension_group: created {
     type: time
@@ -25,41 +53,6 @@ view: tco_leaderboard {
       year
     ]
     sql: ${TABLE}.created_at ;;
-  }
-
-  dimension: placement {
-    type: number
-    sql: ${TABLE}.placement ;;
-  }
-
-  dimension: points {
-    type: number
-    sql: ${TABLE}.points ;;
-  }
-
-  dimension: raw_score {
-    type: number
-    sql: ${TABLE}.raw_score ;;
-  }
-
-  dimension: round_id {
-    type: number
-    sql: ${TABLE}.round_id ;;
-  }
-
-  dimension: stage_num {
-    type: number
-    sql: ${TABLE}.stage_num ;;
-  }
-
-  dimension: total_score {
-    type: number
-    sql: ${TABLE}.total_score ;;
-  }
-
-  dimension: track {
-    type: string
-    sql: ${TABLE}.track ;;
   }
 
   dimension_group: updated {
@@ -76,15 +69,32 @@ view: tco_leaderboard {
     sql: ${TABLE}.updated_at ;;
   }
 
-  dimension: user_id {
+  dimension: total_prize {
     type: number
-    sql: ${TABLE}.user_id ;;
+    description: "Total Prize on the challenge"
+    sql: ${TABLE}.total_prize ;;
   }
 
-  dimension: year {
+  dimension: percentage {
     type: number
-    sql: ${TABLE}.year ;;
+    sql: ${TABLE}.percentage ;;
   }
+
+  dimension: raw_points {
+    type: number
+    sql: ${TABLE}.raw_points ;;
+  }
+
+  dimension: contest_id {
+    type: number
+    sql: ${TABLE}.contest_id  ;;
+  }
+
+  dimension: fixed_score {
+    type: number
+    sql: ${TABLE}.fixed_score ;;
+  }
+
 
   measure: count {
     type: count
