@@ -944,6 +944,8 @@ explore: client_project_dim {
 #- explore: client_user_stats
 
 explore: contest {
+  hidden: yes
+
   join: contest_project_xref {
     type: inner
     sql_on: ${contest.contest_id} = ${contest_project_xref.contest_id} ;;
