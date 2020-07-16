@@ -1747,11 +1747,4 @@ explore: design_month_tco {
     }
 
 
-    join: contest {
-      type: left_outer
-      relationship: many_to_one
-      sql_on: ${tco_leaderboard_test.contest_id} = ${contest.contest_id} ;;
-    }
-
-
   }
