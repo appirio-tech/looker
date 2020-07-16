@@ -100,9 +100,9 @@ view: tco_leaderboard {
     description: "TCO points for competitors except copilots"
     value_format: "#,##0"
     sql:  CASE
-                WHEN ${TABLE}.points IS NOT NULL THEN ${TABLE}.fixed_points
+                WHEN ${TABLE}.points IS NOT NULL THEN ${TABLE}.fixed_score
 
-                WHEN ${contest.track} = "Copilot" THEN $(${TABLE}.percentage*${TABLE}.total_prize*${tco_rating_booster.rating}
+                WHEN ${contest.track} = "Copilot" THEN $((${TABLE}.percentage)*$({TABLE}.total_prize)*(${tco_rating_booster.rating}))
 
                 ELSE (${TABLE}.total_prize)*(${TABLE}.percentage)
 

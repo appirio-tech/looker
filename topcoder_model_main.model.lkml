@@ -1725,3 +1725,33 @@ explore: design_month_tco {
         sql_on: ${tco_leaderboard.contest_id} = ${contest.contest_id} ;;
       }
   }
+
+  explore: tco_leaderboard_test {
+
+    join: challenge {
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${tco_leaderboard_test.challenge_id} = ${challenge.challenge_id} ;;
+    }
+
+    join: round {
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${tco_leaderboard_test.round_id} = ${round.round_id} ;;
+    }
+
+    join: member_profile_basic {
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${tco_leaderboard_test.user_id} = ${member_profile_basic.user_id} ;;
+    }
+
+
+    join: contest {
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${tco_leaderboard_test.contest_id} = ${contest.contest_id} ;;
+    }
+
+
+  }
