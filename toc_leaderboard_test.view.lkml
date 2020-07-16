@@ -31,6 +31,10 @@ view: tco_leaderboard_test {
     drill_fields: [detail*]
   }
 
+  measure: challenge_count {
+    type: count_distinct
+    sql: ${challenge_id};;
+  }
   dimension: challenge_id {
     type: number
     sql: ${TABLE}.challenge_id ;;
