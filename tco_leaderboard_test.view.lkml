@@ -16,7 +16,8 @@ view: tco_leaderboard_test {
             lb.fixed_score as fixed_score,
             rb.rating as rating_booster,
             ct.track as tco_track,
-            ct.sub_track as tco_sub_track
+            ct.sub_track as tco_sub_track,
+            ct.contest_name as tco_contest_name
     from tcs_dw.tco_leaderboard lb
     left join tcs_dw.tco_rating_booster rb
     on lb.contest_id = rb.contest_id
@@ -133,6 +134,11 @@ view: tco_leaderboard_test {
     sql: ${TABLE}.tco_sub_track ;;
   }
 
+  dimension: tco_contest_name {
+    description: "Name of the contest"
+    type: string
+    sql: ${TABLE}.tco_contest_name ;;
+  }
   measure: tco_points {
     type: sum
     description: "TCO points for competitors except copilots"
