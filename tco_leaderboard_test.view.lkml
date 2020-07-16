@@ -1,29 +1,29 @@
 view: tco_leaderboard_test {
   derived_table: {
     sql:
-    select  lb.challenge_id as challenge_id,
-            lb.user_id as user_id,
-            lb.total_score as total_score,
-            lb.round_id as round_id,
-            lb.created_at as created_at,
-            lb.updated_at as updated_at,
-            lb.contest_id as contest_id,
-            lb.points as points,
-            lb.placement as placement,
-            lb.total_prize as total_prize,
-            lb.percentage as percentage,
-            lb.raw_points as raw_points,
-            lb.fixed_score as fixed_score,
-            rb.rating as rating_booster,
-            ct.track as tco_track,
-            ct.sub_track as tco_sub_track,
-            ct.contest_name as tco_contest_name
-    from tcs_dw.tco_leaderboard lb
-    left join tcs_dw.tco_rating_booster rb
-    on lb.contest_id = rb.contest_id
-       and lb.user_id = rb.user_id
-    left join tcs_dw.contest ct
-    on lb.contest_id = ct.contest_id
+    select  leaderboard.challenge_id as challenge_id,
+            leaderboard.user_id as user_id,
+            leaderboard.total_score as total_score,
+            leaderboard.round_id as round_id,
+            leaderboard.created_at as created_at,
+            leaderboard.updated_at as updated_at,
+            leaderboard.contest_id as contest_id,
+            --leaderboard.points as points,
+            leaderboard.placement as placement,
+            leaderboard.total_prize as total_prize,
+            leaderboard.percentage as percentage,
+            leaderboard.raw_points as raw_points,
+            leaderboard.fixed_score as fixed_score,
+            rating_booster.rating as rating_booster,
+            contest.track as tco_track,
+            contest.sub_track as tco_sub_track,
+            contest.contest_name as tco_contest_name
+    from tcs_dw.tco_leaderboard as leaderboard
+    left join tcs_dw.tco_rating_booster as rating_booster
+        on leaderboard.contest_id = rating_booster.contest_id
+        and leaderboard.user_id = rating_booster.user_id
+    left join tcs_dw.contest as contest
+        on leaderboard.contest_id = contest.contest_id
     ;;
 
     persist_for: "24 hours"
@@ -80,11 +80,12 @@ view: tco_leaderboard_test {
     sql: ${TABLE}.contest_id ;;
   }
 
-  dimension: points {
-    description: "Points earned"
-    type: number
-    sql: ${TABLE}.points ;;
-  }
+# Removed as the calculation is being done seperatly in the view.
+  # dimension: points {
+  #    description: "Points earned"
+  #   type: number
+  #  sql: ${TABLE}.points ;;
+  #}
 
   dimension: placement {
     description: "Placement earned"
@@ -144,12 +145,9 @@ view: tco_leaderboard_test {
     description: "TCO points for competitors except copilots"
     value_format: "#,##0"
     sql:  CASE
-                WHEN ${TABLE}.points IS NOT NULL THEN ${TABLE}.fixed_score
-
-             --   WHEN ${tco_track} = "Copilot" THEN ((${TABLE}.percentage)*(${TABLE}.total_prize)*(ISNULL(${TABLE}.rating_booster,1)))
-
-                ELSE (${TABLE}.total_prize)*(${TABLE}.percentage)
-
+                WHEN ${TABLE}.raw_points IS NOT NULL THEN ${TABLE}.raw_points
+                WHEN ${TABLE}.fixed_score IS NOT NULL THEN ${TABLE}.fixed_score
+                ELSE (${TABLE}.total_prize)*(${TABLE}.percentage)*(ISNULL(${TABLE}.rating_booster,1))
           END;;
   }
 
@@ -162,7 +160,6 @@ view: tco_leaderboard_test {
       created_at_time,
       updated_at_time,
       contest_id,
-      points,
       placement,
       total_prize,
       percentage,
