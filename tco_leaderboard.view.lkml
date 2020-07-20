@@ -1,4 +1,5 @@
 view: tco_leaderboard{
+  label: "TCO Leaderboard"
   derived_table: {
     sql:
     select  leaderboard.challenge_id as challenge_id,
@@ -124,23 +125,27 @@ view: tco_leaderboard{
     }
 
     dimension: tco_track {
+      label: "TCO Tracj"
       description: "track"
       type: string
       sql: ${TABLE}.tco_track ;;
     }
 
     dimension: tco_sub_track {
+      label: "TCO Sub Track"
       description: "Sub track"
       type: string
       sql: ${TABLE}.tco_sub_track ;;
     }
 
     dimension: tco_contest_name {
+      label: "TCO Contest Name"
       description: "Name of the contest"
       type: string
       sql: ${TABLE}.tco_contest_name ;;
     }
     measure: tco_points {
+      label: "TCO Points"
       type: sum
       description: "TCO points for competitors except copilots"
       value_format: "#,##0"
