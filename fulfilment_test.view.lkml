@@ -1,4 +1,5 @@
-view: fulfilment_test {
+view: fulfilment_copilot {
+  label: "Copilot Fulfilment"
   derived_table: {
     sql: select  challenge.copilot as copilot,
         challenge.project_id as challenge_id,
@@ -52,7 +53,7 @@ group by 1,2,3,4,5
 
   measure: fulfillment {
     type: number
-    sql: ${count_sucess}/(${count_failure}+${count_sucess}) ;;
+    sql: (${count_sucess}) / (${count_failure}+${count_sucess}) ;;
     value_format_name: decimal_2
   }
 

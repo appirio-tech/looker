@@ -871,9 +871,9 @@ explore: payment {
     relationship: many_to_one
   }
 
-  join : fulfilment_test {
+  join : fulfilment_copilot {
     type:left_outer
-    sql_on: ${payee.coder_id} = ${fulfilment_test.copilot} ;;
+    sql_on: ${payee.coder_id} = ${fulfilment_copilot.copilot} ;;
     relationship: many_to_many
   }
 
@@ -1715,5 +1715,10 @@ explore: design_month_tco {
       sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
     }
 
-  }
+    join: fulfilment_copilot {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${tco_leaderboard.challenge_id} = ${fulfilment_copilot.challenge_id} ;;
+    }
 
+  }
