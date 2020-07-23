@@ -1715,10 +1715,10 @@ explore: design_month_tco {
       sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
     }
 
-    join: fulfilment_copilot {
-      type: left_outer
-      relationship: one_to_one
-      sql_on: ${tco_leaderboard.challenge_id} = ${fulfilment_copilot.challenge_id} ;;
-    }
+    #join: fulfilment_copilot {
+    #  type: left_outer
+    #  relationship: one_to_one
+    #  sql_on: ${tco_leaderboard.challenge_id} = ${fulfilment_copilot.challenge_id} ;;
+    #}
 
   }
