@@ -15,7 +15,7 @@ view: tco_leaderboard{
             leaderboard.percentage as percentage,
             leaderboard.raw_points as raw_points,
             leaderboard.fixed_score as fixed_score,
-            rating_booster.rating as rating_booster,
+            nvl(rating_booster.rating, 1) as rating_booster,
             contest.track as tco_track,
             contest.sub_track as tco_sub_track,
             contest.contest_name as tco_contest_name,
@@ -158,7 +158,7 @@ view: tco_leaderboard{
       type: number
       value_format_name: percent_2
       description: "Copilot Fulfilment applicable only to Copilot Track. Completed Challenges / All Challenges"
-      sql:  (1.0 * ${completed_challenges}) / NULLIF(${applicable_challenges}, 0)  ;;
+      sql: (1.0 * ${completed_challenges}) / NULLIF(${applicable_challenges}, 0)  ;;
     }
 
     measure: completed_challenges {
