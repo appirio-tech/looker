@@ -19,9 +19,6 @@ view: tco_leaderboard{
             contest.track as tco_track,
             contest.sub_track as tco_sub_track,
             contest.contest_name as tco_contest_name,
-            user_rating.rating as user_rating,
-            srm_rating.rating as srm_rating,
-            mm_rating.rating as mm_rating,
             challenge.status_id,
             challenge.status_desc
     from tcs_dw.tco_leaderboard as leaderboard
@@ -32,14 +29,6 @@ view: tco_leaderboard{
         on leaderboard.contest_id = contest.contest_id
     left join tcs_dw.project as challenge
         on leaderboard.challenge_id = challenge.project_id
-    left join tcs_dw.user_rating as user_rating
-        on leaderboard.user_id = user_rating.user_id
-    left join topcoder_dw.algo_rating as srm_rating
-        on leaderboard.user_id = srm_rating.coder_id
-        and srm_rating.algo_rating_type_id = 1
-    left join topcoder_dw.algo_rating as mm_rating
-        on leaderboard.user_id = mm_rating.coder_id
-        and mm_rating.algo_rating_type_id = 3
     ;;
 
       persist_for: "24 hours"
@@ -165,23 +154,6 @@ view: tco_leaderboard{
       description: "Challenge Status Description"
     }
 
-    dimension: user_rating {
-      sql: ${TABLE}.user_rating ;;
-      description: "Code Rating for a member"
-      label: "Code Rating"
-    }
-
-    dimension: srm_rating {
-      sql: ${TABLE}.srm_rating ;;
-      description: "SRM Rating for a member"
-      label: "SRM Rating"
-    }
-
-    dimension: mm_rating {
-      sql: ${TABLE}.mm_rating ;;
-      label: "Marathon Match Rating"
-      description: "Marathon Match rating for a member"
-    }
 
     measure: fulfillment {
       type: number
@@ -236,7 +208,6 @@ view: tco_leaderboard{
         raw_points,
         fixed_score,
         rating_booster,
-        user_rating
       ]
     }
   }
