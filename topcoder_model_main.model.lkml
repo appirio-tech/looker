@@ -895,15 +895,8 @@ explore: payment {
     sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
     relationship: many_to_one
   }
-
-  #added on 12th Feb 2020
-  join: user {
-    type: left_outer
-    sql_on: ${user.coder_id} = ${payee.coder_id} ;;
-    relationship: many_to_one
-  }
-
 }
+
 #added on 27th Jan 2020
 explore: user_tax_form {
   hidden:yes
