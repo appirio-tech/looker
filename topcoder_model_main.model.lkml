@@ -380,13 +380,6 @@ explore: user {
 #    relationship: one_to_one
 #  }
 
-  #added on 12th Feb 2020
-  join: user_payment_method {
-    type: left_outer
-    sql_on: ${user_payment_method.user_id} = ${user.coder_id} ;;
-    relationship: many_to_one
-
-  }
 }
 
 
@@ -904,9 +897,9 @@ explore: payment {
   }
 
   #added on 12th Feb 2020
-  join: user_payment_method {
+  join: user {
     type: left_outer
-    sql_on: ${user_payment_method.user_id} = ${payee.coder_id} ;;
+    sql_on: ${user.coder_id} = ${payee.coder_id} ;;
     relationship: many_to_one
   }
 
@@ -914,11 +907,6 @@ explore: payment {
 #added on 27th Jan 2020
 explore: user_tax_form {
   hidden:yes
-  }
-
-  #added on 12th Feb 2020
-  explore: user_payment_method {
-    hidden: yes
   }
 
 explore: user_payment {}

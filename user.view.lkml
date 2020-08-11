@@ -294,6 +294,12 @@ view: user {
     hidden: yes
   }
 
+  dimension:  payment_method_desc {
+    type: string
+    sql:  ${TABLE}.payment_method_desc;;
+    description: "Payment method name like paypal, western union and payoneer etc "
+  }
+
 #  dimension: is_copilot {
 #    type:  string
 #    case: {
