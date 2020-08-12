@@ -1672,6 +1672,10 @@ explore: design_month_tco {
   explore: tco_rating_booster {
     hidden: yes
   }
+
+explore: member_max_rating{
+    hidden: yes
+  }
   #added on 1st July 2020
 
   #modified on 17th July 2020
@@ -1702,6 +1706,12 @@ explore: design_month_tco {
       sql_on:  ${member_stats.user_id}  = ${tco_leaderboard.user_id} ;;
     }
 
+    join: member_max_rating {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${tco_leaderboard.user_id}  = ${member_max_rating.user_id} ;;
+    }
+
     #join: fulfilment_copilot {
     #  type: left_outer
     #  relationship: one_to_one
@@ -1709,3 +1719,4 @@ explore: design_month_tco {
     #}
 
   }
+
