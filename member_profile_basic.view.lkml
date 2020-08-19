@@ -239,6 +239,38 @@ view: member_profile_basic {
     END;;
   }
 
+  #Added on 18th Aug 2020
+
+  dimension: track {
+    type: string
+    description: "Track associated with Maximum rating"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.track ;;
+  }
+
+  dimension: sub_track {
+    type: string
+    description: "Sub track associated with Maximum rating"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.sub_track ;;
+  }
+
+  dimension: rating_color {
+    type: string
+    description: "Color coding corrosponding to Maximum rating"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.rating_color ;;
+  }
+
+  dimension: max_rating {
+    type: number
+    description: "Maximum rating for a user irresepctive of track"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.max_rating ;;
+  }
+
+
+
   measure: count {
     type: count
     drill_fields: [other_lang_name, last_name, first_name]

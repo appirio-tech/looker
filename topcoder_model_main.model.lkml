@@ -1700,17 +1700,19 @@ explore: member_max_rating{
       sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
     }
 
-    join: member_stats {
-      type: left_outer
-      relationship: many_to_one
-      sql_on:  ${member_stats.user_id}  = ${tco_leaderboard.user_id} ;;
-    }
+  #Removed member_stats and member_max_rating as this field has now being loeaded into member profile basic.
 
-    join: member_max_rating {
-      type: left_outer
-      relationship: one_to_one
-      sql_on: ${tco_leaderboard.user_id}  = ${member_max_rating.user_id} ;;
-    }
+    #join: member_stats {
+    #  type: left_outer
+    #  relationship: many_to_one
+    #  sql_on:  ${member_stats.user_id}  = ${tco_leaderboard.user_id} ;;
+    #}
+
+    #join: member_max_rating {
+    #  type: left_outer
+    #  relationship: one_to_one
+    #  sql_on: ${tco_leaderboard.user_id}  = ${member_max_rating.user_id} ;;
+    #}
 
     #join: fulfilment_copilot {
     #  type: left_outer
@@ -1719,4 +1721,3 @@ explore: member_max_rating{
     #}
 
   }
-
