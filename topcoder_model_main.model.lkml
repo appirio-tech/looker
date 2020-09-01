@@ -1673,9 +1673,10 @@ explore: design_month_tco {
     hidden: yes
   }
 
-explore: member_max_rating{
-    hidden: yes
-  }
+#Member_max_rating Derived table , explore ,view has been removed
+#explore: member_max_rating{
+ #   hidden: yes
+#  }
   #added on 1st July 2020
 
   #modified on 17th July 2020
