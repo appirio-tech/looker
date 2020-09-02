@@ -51,9 +51,9 @@ view: tco_leaderboard{
       sql: ${TABLE}.user_id ;;
     }
 
-    dimension: total_score {
+    measure: total_score {
       description: "Total Score obtained"
-      type: number
+      type: sum
       sql: ${TABLE}.total_score ;;
     }
 
