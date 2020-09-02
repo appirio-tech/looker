@@ -189,7 +189,11 @@ view: tco_leaderboard{
    measure: challenge_count {
       description: "Challenge Count"
       type: count_distinct
-      sql: ${challenge_id};;
+      sql: CASE
+                WHEN ${TABLE}.challenge_id IS NOT NULL THEN ${TABLE}.challenge_id
+                ELSE ${TABLE}.round_id
+            END
+                ;;
    }
 
 
