@@ -11,6 +11,8 @@ include: "*.view.lkml"                       # include all views in this project
 #for fiscal year
 fiscal_month_offset: -9
 
+explore: groupmanager_batch_record {}
+
 explore: deleted_payment {
   description: "Payments that have been set as deleted from PACTS"
   join: user {
