@@ -34,7 +34,7 @@ view: sfdc_challenge_group {
   }
 
   dimension: taas_resource_group_id {
-    type: string
+    type: number
     sql: ${TABLE}.taas_resource_group_id ;;
   }
 

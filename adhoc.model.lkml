@@ -183,7 +183,8 @@ explore: challenge_stats{
 #Added for temp SFDC billing account
 explore: temp_sfdc_billing_account {}
 
-
+#Added for sfdc challenge group
+explore:  sfdc_challenge_group{}
 
 #added for design month tco
 explore: design_month_tco_temp {
