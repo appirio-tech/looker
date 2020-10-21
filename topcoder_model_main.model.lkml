@@ -451,6 +451,14 @@ explore: connect_project {
     relationship: one_to_one
   }
 
+  #added on 21st Oct 2020 to display details of creater of the project
+  join: connect_project_creater_member_user {
+    from :  user
+    type: left_outer
+    sql_on: ${connect_project_creator_member.user_id} = ${connect_project_creater_member_user.coder_id} ;;
+    relationship: many_to_one
+  }
+
   join: connect_messages {
     type: left_outer
     sql_on: ${connect_project.id} = ${connect_messages.project_id} ;;
