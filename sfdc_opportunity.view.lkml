@@ -20,7 +20,7 @@ view: sfdc_opportunity {
 
   dimension: owner {
     description: "Opportunity Owner Name"
-    sql: ${TABLE}.owner_name;;
+    sql: ${TABLE}.owner_name__c;;
   }
 
   dimension: account_id {
