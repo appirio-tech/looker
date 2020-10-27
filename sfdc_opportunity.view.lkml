@@ -18,6 +18,11 @@ view: sfdc_opportunity {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: owner {
+    description: "Opportunity Owner Name"
+    sql: ${TABLE}.owner_name;;
+  }
+
   dimension: account_id {
   type: string
   sql: ${TABLE}.accountid ;;
@@ -65,8 +70,9 @@ view: sfdc_opportunity {
     sql: ${TABLE}.total_expenses__c ;;
   }
 
-  dimension_group: closedate {
+  dimension_group: close {
     type: time
+    description: "Date when opportunity marked closed in SFDC"
     timeframes: [
       raw,
       time,
@@ -81,6 +87,25 @@ view: sfdc_opportunity {
       fiscal_year
     ]
     sql: ${TABLE}.closedate ;;
+  }
+
+  dimension_group: created {
+    type: time
+    description: "When the Opportunity was created by the user in SFDC"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: ${TABLE}.createddate ;;
   }
 
   dimension: stage_name {
