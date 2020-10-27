@@ -45,7 +45,6 @@ explore: project_scorecard {
   }
 }
 
-
 # Derived Views
 explore: challenge_stats {
   join: challenge_groups {
