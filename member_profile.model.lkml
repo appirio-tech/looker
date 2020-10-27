@@ -32,6 +32,11 @@ explore: member_profile_advanced {
     sql_on: ${member_profile_advanced.user_id}= ${computed_skills.user_id} ;;
 
   }
+  join: candidate {
+    type: inner
+    sql_on: ${member_profile_advanced.handle} = ${candidate.handle};;
+    relationship: one_to_one
+  }
 }
 
 # Added 1st November - 2018
@@ -276,3 +281,8 @@ explore: member_submission {
   }
 
 }
+
+
+explore: gig {}
+
+explore: candidate {}
