@@ -120,7 +120,6 @@ view: sfdc_opportunity {
 
   dimension: probability {
     type:  number
-    value_format_name: percent_2
     sql: ${TABLE}.probability ;;
   }
 
