@@ -1,11 +1,138 @@
 view: sfdc_opportunity {
   sql_table_name: tcs_dw.sfdc_opportunity ;;
-  drill_fields: [id]
 
   dimension: id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: connect_project_id  {
+    type: number
+    description: "Connect Project Id associated with the Opportunity"
+    sql: ${TABLE}.tc_connect_project_id__c ;;
+  }
+
+  dimension: name {
+    type: string
+    sql: ${TABLE}.name ;;
+  }
+
+  dimension: owner {
+    description: "Opportunity Owner Name"
+    sql: ${TABLE}.owner_name__c;;
+  }
+
+  dimension: account_id {
+  type: string
+  sql: ${TABLE}.accountid ;;
+  }
+
+  measure: amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.amount ;;
+  }
+
+  dimension: executive_sponsor {
+    type: string
+    sql: ${TABLE}.executive_sponsor__c ;;
+  }
+
+  dimension: pricingmethod {
+    type: string
+    sql: ${TABLE}.pricingmethod__c ;;
+  }
+
+  dimension: deal_type {
+    type: string
+    sql: ${TABLE}.deal_type__c ;;
+  }
+
+  dimension: subscription {
+    type: string
+    sql: ${TABLE}.subscription__c ;;
+  }
+
+  dimension: reporting_sbu {
+    type: string
+    sql: ${TABLE}.reporting_sbu__c ;;
+  }
+
+
+  dimension: reporting_industry {
+    type: string
+    sql: ${TABLE}.reporting_industry__c ;;
+  }
+
+  measure: total_expenses {
+    type: sum
+    sql: ${TABLE}.total_expenses__c ;;
+  }
+
+  dimension_group: close {
+    type: time
+    description: "Date when opportunity marked closed in SFDC"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: ${TABLE}.closedate ;;
+  }
+
+  dimension_group: created {
+    type: time
+    description: "When the Opportunity was created by the user in SFDC"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: ${TABLE}.createddate ;;
+  }
+
+  dimension: stage_name {
+    type: string
+    sql: ${TABLE}.stagename ;;
+  }
+
+  dimension: forecast_category {
+    type: string
+    sql: ${TABLE}.forecastcategory ;;
+  }
+
+  dimension: probability {
+    type:  number
+    value_format_name: percent_2
+    sql: ${TABLE}.probability ;;
+  }
+
+  measure: expected_revenue {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.expectedrevenue ;;
+  }
+
+  dimension: geo {
+    type: string
+    sql: ${TABLE}.geo__c ;;
   }
 
   dimension: account_address__c {
@@ -81,11 +208,6 @@ view: sfdc_opportunity {
   dimension: age_of_last_update__c {
     type: number
     sql: ${TABLE}.age_of_last_update__c ;;
-  }
-
-  dimension: amount {
-    type: number
-    sql: ${TABLE}.amount ;;
   }
 
   dimension: amount_days__c {
@@ -764,16 +886,6 @@ view: sfdc_opportunity {
     sql: ${TABLE}.geo__c ;;
   }
 
-  dimension: google_analytics_click_id__c {
-    type: string
-    sql: ${TABLE}.google_analytics_click_id__c ;;
-  }
-
-  dimension: google_analytics_client_id__c {
-    type: string
-    sql: ${TABLE}.google_analytics_client_id__c ;;
-  }
-
   dimension: has_resource_request_dnu__c {
     type: yesno
     sql: ${TABLE}.has_resource_request_dnu__c ;;
@@ -1026,10 +1138,6 @@ view: sfdc_opportunity {
     sql: ${TABLE}.multi_year_contract__c ;;
   }
 
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-  }
 
   dimension: name_geo__c {
     type: string
@@ -1252,11 +1360,6 @@ view: sfdc_opportunity {
   dimension: pricingmethod__c {
     type: string
     sql: ${TABLE}.pricingmethod__c ;;
-  }
-
-  dimension: probability {
-    type: string
-    sql: ${TABLE}.probability ;;
   }
 
   dimension: product_driven__c {
@@ -1642,8 +1745,9 @@ view: sfdc_opportunity {
     sql: ${TABLE}.year_in_current_contract__c ;;
   }
 
+
   measure: count {
     type: count
-    drill_fields: [id, forecastcategoryname, stagename, name]
+    drill_fields: [id, name]
   }
 }
