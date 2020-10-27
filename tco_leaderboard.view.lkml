@@ -190,8 +190,11 @@ view: tco_leaderboard{
       description: "Challenge Count"
       type: count_distinct
       sql: CASE
-                WHEN ${TABLE}.challenge_id IS NOT NULL THEN ${TABLE}.challenge_id
-                ELSE ${TABLE}.round_id
+               WHEN ${TABLE}.raw_points != 0 OR ${TABLE}.fixed_score != 0  OR ${TABLE}.total_prize != 0  THEN
+                  CASE
+                      WHEN ${TABLE}.challenge_id IS NOT NULL THEN ${TABLE}.challenge_id
+                      ELSE ${TABLE}.round_id
+                  END
             END
                 ;;
    }
