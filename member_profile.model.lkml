@@ -235,6 +235,11 @@ explore: member_profile_all {
     relationship: many_to_one
   }
 
+  join: candidate {
+    type: inner
+    sql_on: ${member_profile_all.handle} = ${candidate.handle} ;;
+    relationship: one_to_one
+  }
 
 }
 
