@@ -176,7 +176,7 @@ view: tco_leaderboard{
       hidden: yes
       filters: {
         field: status_desc
-        value: "-Cancelled Client Request" #Exclude Cancelled Client Request challenges
+        value: "-Cancelled - Client Request" #Exclude Cancelled Client Request challenges
       }
     }
 
