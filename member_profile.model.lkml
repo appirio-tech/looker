@@ -294,6 +294,11 @@ explore: gig {
     sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
     relationship: one_to_one
   }
+  join: connect_project {
+    type: left_outer
+    sql_on: ${sfdc_opportunity.connect_project_id} = ${connect_project.id} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: candidate {}
