@@ -29,21 +29,25 @@ view: candidate {
 
   dimension: avatar {
     type: string
+    hidden: yes
     sql: ${TABLE}.avatar ;;
   }
 
-  dimension: c2c_only {
+  dimension: C2C_only {
     type: yesno
+    hidden: yes
     sql: ${TABLE}.c2c_only ;;
   }
 
-  dimension: candidate_don {
+  dimension: candidate_dob {
     type: string
+    hidden: yes
     sql: ${TABLE}.candidate_don ;;
   }
 
-  dimension: cbr {
+  dimension: CBR {
     type: string
+    hidden: yes
     sql: ${TABLE}.cbr ;;
   }
 
@@ -59,6 +63,7 @@ view: candidate {
 
   dimension: created_by {
     type: string
+    hidden: yes
     sql: ${TABLE}.created_by ;;
   }
 
@@ -78,6 +83,7 @@ view: candidate {
 
   dimension: currency_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.currency_id ;;
   }
 
@@ -97,7 +103,8 @@ view: candidate {
   }
 
   dimension: current_taas_pay {
-    type: string
+    type: number
+    value_format_name: usd
     sql: ${TABLE}.current_taas_pay ;;
   }
 
@@ -173,6 +180,7 @@ view: candidate {
 
   dimension: owner {
     type: string
+    hidden: yes
     sql: ${TABLE}.owner ;;
   }
 
@@ -226,6 +234,7 @@ view: candidate {
 
   dimension: qualification_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.qualification_id ;;
   }
 
@@ -256,6 +265,7 @@ view: candidate {
 
   dimension: resume_filename {
     type: string
+    hidden: yes
     sql: ${TABLE}.resume_filename ;;
   }
 
@@ -320,6 +330,7 @@ view: candidate {
 
   dimension: updated_by {
     type: string
+    hidden: yes
     sql: ${TABLE}.updated_by ;;
   }
 
@@ -337,7 +348,7 @@ view: candidate {
     sql: ${TABLE}.updated_on ;;
   }
 
-  dimension: w2_only {
+  dimension: W2_Only {
     type: yesno
     sql: ${TABLE}.w2_only ;;
   }

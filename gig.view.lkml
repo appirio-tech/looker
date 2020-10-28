@@ -55,6 +55,7 @@ view: gig {
 
   dimension: company_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.company_id ;;
   }
 
@@ -75,6 +76,7 @@ view: gig {
 
   dimension: application_form_url {
     type: string
+    hidden: yes
     sql: ${TABLE}.application_form_url ;;
   }
 
@@ -85,6 +87,7 @@ view: gig {
 
   dimension: contact_slug {
     type: string
+    hidden: yes
     sql: ${TABLE}.contact_slug ;;
   }
 
@@ -96,6 +99,7 @@ view: gig {
 
   dimension: created_by {
     type: string
+    hidden: yes
     sql: ${TABLE}.created_by ;;
   }
 
@@ -115,6 +119,7 @@ view: gig {
 
   dimension: currency_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.currency_id ;;
   }
 
@@ -140,6 +145,7 @@ view: gig {
 
   dimension: job_description_file {
     type: string
+    hidden: yes
     sql: ${TABLE}.job_description_file ;;
   }
 
@@ -155,11 +161,13 @@ view: gig {
 
   dimension: job_questions {
     type: string
+    hidden: yes
     sql: ${TABLE}.job_questions ;;
   }
 
   dimension: job_questions_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.job_questions_id ;;
   }
 
@@ -215,11 +223,13 @@ view: gig {
 
   dimension: owner {
     type: string
+    hidden: yes
     sql: ${TABLE}.owner ;;
   }
 
   dimension: qualification_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.qualification_id ;;
   }
 
@@ -235,6 +245,7 @@ view: gig {
 
   dimension: show_company_logo {
     type: string
+    hidden: yes
     sql: ${TABLE}.show_company_logo ;;
   }
 
@@ -270,6 +281,7 @@ view: gig {
 
   dimension: updated_by {
     type: string
+    hidden: yes
     sql: ${TABLE}.updated_by ;;
   }
 
