@@ -43,14 +43,15 @@ view: gig {
       job.qualification_id as qualification_id,
       job.currency_id as currency_id,
       job.hours_per_week as hours_per_week,
-      job.job_description_text as job_description_text
+      job.job_description_text as job_description_text,
+      job.opportunity_id as opportunity_id
 
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
        ;;
     persist_for: "24 hours"
     distribution_style: "even"
-    indexes: ["company_id", "job_id"]
+    indexes: ["company_id", "job_id", "slug"]
   }
 
   dimension: company_id {
@@ -67,6 +68,12 @@ view: gig {
   dimension: job_id {
     type: number
     sql: ${TABLE}.job_id ;;
+  }
+
+  dimension: opportunity_id {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.opportunity_id ;;
   }
 
   dimension: address {

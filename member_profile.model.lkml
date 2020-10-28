@@ -288,6 +288,12 @@ explore: member_submission {
 }
 
 
-explore: gig {}
+explore: gig {
+  join: sfdc_opportunity {
+    type: left_outer
+    sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
+    relationship: one_to_one
+  }
+}
 
 explore: candidate {}
