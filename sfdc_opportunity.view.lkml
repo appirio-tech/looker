@@ -20,6 +20,7 @@ view: sfdc_opportunity {
 
   dimension: owner {
     description: "Opportunity Owner Name"
+    hidden: yes
     sql: ${TABLE}.owner_name__c;;
   }
 
@@ -728,7 +729,7 @@ view: sfdc_opportunity {
     sql: ${TABLE}.engagementstartdate__c ;;
   }
 
-  dimension: estimatedweeks {
+  dimension: estimated_weeks {
     type: number
     sql: ${TABLE}.estimatedweeks__c ;;
   }
@@ -1627,7 +1628,7 @@ view: sfdc_opportunity {
     sql: ${TABLE}.type__c ;;
   }
 
-  dimension: unbooked_capacity__c {
+  dimension: unbooked_capacity {
     type: number
     sql: ${TABLE}.unbooked_capacity__c ;;
   }
@@ -1652,6 +1653,179 @@ view: sfdc_opportunity {
     sql: ${TABLE}.year_in_current_contract__c ;;
   }
 
+  dimension: amount_without_wipro_services {
+    type: number
+    sql: ${TABLE}.amount_without_wipro_services__c ;;
+  }
+
+  dimension: challenge_fee {
+    type: number
+    sql: ${TABLE}.challenge_fee__c ;;
+  }
+
+  dimension: comments_for_billable_psr {
+    type: string
+    sql: ${TABLE}.comments_for_billable_psr__c ;;
+  }
+
+  dimension: con_ops_mismatch_justified {
+    type: yesno
+    sql: ${TABLE}.con_ops_mismatch_justified__c ;;
+  }
+
+  dimension: customer_success_manager {
+    type: string
+    sql: ${TABLE}.customer_success_manager__c ;;
+  }
+
+  dimension: debooking_reason {
+    type: string
+    sql: ${TABLE}.debooking_reason__c ;;
+  }
+
+  dimension: debook_opportunity {
+    type: string
+    sql: ${TABLE}.debook_opportunity__c ;;
+  }
+
+  dimension: debook_request {
+    type: string
+    sql: ${TABLE}.debook_request__c ;;
+  }
+
+  dimension: debook_request_formula {
+    type: string
+    sql: ${TABLE}.debook_request_formula__c ;;
+  }
+
+  dimension_group: debook_request {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.debook_request_date__c ;;
+  }
+
+  dimension: debook_requester {
+    type: string
+    sql: ${TABLE}.debook_requester__c ;;
+  }
+
+  dimension: fc_expert_services_no_wipro {
+    type: number
+    sql: ${TABLE}.fc_expert_services_no_wipro__c ;;
+  }
+
+  dimension: has_wbs_code {
+    type: yesno
+    sql: ${TABLE}.has_wbs_code__c ;;
+  }
+
+  dimension: has_wipro_sow {
+    type: yesno
+    sql: ${TABLE}.has_wipro_sow__c ;;
+  }
+
+  dimension: is_owner_current_user {
+    type: yesno
+    sql: ${TABLE}.is_owner_current_user__c ;;
+  }
+
+  dimension: is_ps_budget_same_as_opportunity {
+    type: yesno
+    sql: ${TABLE}.is_ps_budget_same_as_opportunity__c ;;
+  }
+
+  dimension: marketing_influenced_sourced {
+    type: yesno
+    sql: ${TABLE}.marketing_influenced_sourced__c ;;
+  }
+
+  dimension: markup {
+    type: number
+    sql: ${TABLE}.markup__c ;;
+  }
+
+  dimension: member_payment {
+    type: number
+    sql: ${TABLE}.member_payment__c ;;
+  }
+
+  dimension: owner_name {
+    type: string
+    sql: ${TABLE}.owner_name_formula__c ;;
+  }
+
+  dimension: psr_billable {
+    type: yesno
+    sql: ${TABLE}.psr_billable__c ;;
+  }
+
+  dimension: public_sector {
+    type: yesno
+    sql: ${TABLE}.public_sector__c ;;
+  }
+
+  dimension: remove_from_forecast {
+    type: yesno
+    sql: ${TABLE}.remove_from_forecast__c ;;
+  }
+
+  dimension: services_total {
+    type: number
+    sql: ${TABLE}.services_total__c ;;
+  }
+
+  dimension: fc_taas_amount {
+    type: number
+    sql: ${TABLE}.fc_taas_amount__c ;;
+  }
+
+  dimension: total_amount_including_expense {
+    type: number
+    sql: ${TABLE}.total_amount_including_expense__c ;;
+  }
+
+  dimension: total_approved_budget {
+    type: number
+    sql: ${TABLE}.total_approved_budget_ps__c ;;
+  }
+
+  dimension: total_backlog {
+    type: number
+    sql: ${TABLE}.total_backlog_ps__c ;;
+  }
+
+  dimension: total_billings {
+    type: number
+    sql: ${TABLE}.total_billings_ps__c ;;
+  }
+
+  dimension: total_invoiced_amount {
+    type: number
+    sql: ${TABLE}.total_invoiced_amount_ps__c ;;
+  }
+
+  dimension: total_sponsorship {
+    type: number
+    sql: ${TABLE}.total_sponsorship__c ;;
+  }
+
+  dimension: trace_opportunity_id {
+    type: string
+    sql: ${TABLE}.trace_opportunity_id__c ;;
+  }
+
+  dimension: wipro_services {
+    type: number
+    sql: ${TABLE}.wipro_services__c ;;
+  }
 
   measure: count {
     type: count
