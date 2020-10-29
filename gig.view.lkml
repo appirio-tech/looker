@@ -66,6 +66,7 @@ view: gig {
   }
 
   dimension: job_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.job_id ;;
   }

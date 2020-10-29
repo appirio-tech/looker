@@ -289,6 +289,19 @@ explore: member_submission {
 
 
 explore: gig {
+
+  join: hiring_stage {
+    type: left_outer
+    sql_on: ${gig.slug} = ${hiring_stage.job_slug} ;;
+    relationship: one_to_many
+  }
+
+  join: candidate {
+    type: left_outer
+    sql_on: ${hiring_stage.candidate_slug} = ${candidate.slug} ;;
+    relationship: many_to_one
+  }
+
   join: sfdc_opportunity {
     type: left_outer
     sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
@@ -301,4 +314,17 @@ explore: gig {
   }
 }
 
-explore: candidate {}
+explore: candidate {
+
+  join: hiring_stage {
+    type: left_outer
+    sql_on: ${candidate.slug} = ${hiring_stage.candidate_slug} ;;
+    relationship: one_to_many
+  }
+
+  join: gig {
+    type: left_outer
+    sql_on: ${hiring_stage.job_slug} = ${gig.slug} ;;
+    relationship: many_to_one
+  }
+}
