@@ -46,4 +46,19 @@ view: hiring_stage {
     drill_fields: [candidate_slug,job_slug,stage_date,status]
   }
 
+  measure: count_placed {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status = 'Placed') THEN 1  ELSE 0 END ;;
+  }
+
+  measure: count_applied {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status = 'Applied') THEN 1  ELSE 0 END ;;
+  }
+
+  measure: count_assigned {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status = 'Assigned') THEN 1  ELSE 0 END ;;
+  }
+
 }
