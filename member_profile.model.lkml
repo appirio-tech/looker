@@ -312,6 +312,12 @@ explore: gig {
     sql_on: ${sfdc_opportunity.connect_project_id} = ${connect_project.id} ;;
     relationship: one_to_one
   }
+
+  join: taas_resource {
+    type: left_outer
+    sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: candidate {
