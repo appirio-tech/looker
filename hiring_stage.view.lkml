@@ -17,6 +17,11 @@ view: hiring_stage {
     sql: ${TABLE}.remark ;;
   }
 
+  dimension: job_candidate {
+    primary_key: yes
+    sql:CONCAT(${TABLE}.candidate_slug, ${TABLE}.job_slug) ;;
+  }
+
   dimension_group: stage {
     type: time
     timeframes: [
