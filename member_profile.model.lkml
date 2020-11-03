@@ -33,9 +33,19 @@ explore: member_profile_advanced {
 
   }
   join: candidate {
-    type: inner
+    type: left_outer
     sql_on: ${member_profile_advanced.handle} = ${candidate.handle};;
     relationship: one_to_one
+  }
+  join: taas_resource {
+    type: left_outer
+    sql_on: ${member_profile_advanced.user_id} = ${taas_resource.user_id} ;;
+    relationship: one_to_one
+  }
+  join: taas_payment {
+    type: left_outer
+    sql_on: ${taas_resource.resource_handle} = ${taas_payment.taas_resource_handle} ;;
+    relationship: one_to_many
   }
 }
 

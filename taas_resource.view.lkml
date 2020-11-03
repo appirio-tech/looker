@@ -225,7 +225,8 @@ view: taas_resource {
   }
 
   dimension: user_id {
-    type: string
+    type: number
+    value_format_name: id
     sql: ${TABLE}.user_id__c ;;
   }
 
