@@ -44,7 +44,12 @@ view: gig {
       job.currency_id as currency_id,
       job.hours_per_week as hours_per_week,
       job.job_description_text as job_description_text,
-      job.opportunity_id as opportunity_id
+      job.opportunity_id as opportunity_id,
+      job.salesforce_url as salesforce_url,
+      job.connect_url as connect_url,
+      job.candidates_url as candidates_url,
+      job.fulfillment_confidence as fulfillment_confidence,
+      job.client_rate_type as client_rate_type
 
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
@@ -307,6 +312,31 @@ view: gig {
     sql: ${TABLE}.updated_on ;;
   }
 
+  dimension: salesforce_url {
+    type: string
+    sql: ${TABLE}.salesforce_url ;;
+  }
+
+  dimension: connect_url {
+    type: string
+    sql: ${TABLE}.connect_url ;;
+  }
+
+  dimension: candidates_url {
+    type: string
+    sql: ${TABLE}.candidates_url ;;
+  }
+
+  dimension: fulfillment_confidence {
+    type: string
+    sql: ${TABLE}.fulfillment_confidence ;;
+  }
+
+  dimension: client_rate_type {
+    type: string
+    sql: ${TABLE}.client_rate_type ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -353,7 +383,12 @@ view: gig {
       qualification_id,
       currency_id,
       hours_per_week,
-      job_description_text
+      job_description_text,
+      salesforce_url,
+      connect_url,
+      candidates_url,
+      fulfillment_confidence,
+      client_rate_type
 
     ]
   }
