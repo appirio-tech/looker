@@ -324,7 +324,7 @@ explore: gig {
   }
 
   join: taas_resource {
-    type: left_outer
+    type: full_outer
     sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
     relationship: one_to_one
   }
