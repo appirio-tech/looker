@@ -71,6 +71,11 @@ view: taas_resource {
     sql: ${TABLE}.client__c ;;
   }
 
+  dimension: client_blling_account {
+    type: string
+    sql: ${TABLE}.client_billing_account__c ;;
+  }
+
   dimension: client_bill_rate {
     type: number
     sql: ${TABLE}.client_bill_rate__c ;;
