@@ -41,6 +41,17 @@ view: hiring_stage {
     sql: ${TABLE}.status ;;
   }
 
+  dimension: status_buckets {
+    alpha_sort: no
+    case: {
+      when: {
+        sql: ${status} in ('Client Rejected - Interview') ;;
+        label: "Proposed"
+      }
+      else:"Applied"
+    }
+  }
+
   measure: count {
     type: count
     drill_fields: [candidate_slug,job_slug,stage_date,status]
