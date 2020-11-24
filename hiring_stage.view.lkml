@@ -72,4 +72,9 @@ view: hiring_stage {
     sql: CASE WHEN (hiring_stage.status = 'Assigned') THEN 1  ELSE 0 END ;;
   }
 
+  measure: count_ops_rejected {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status = 'Rejected- Ops Rejected') THEN 1  ELSE 0 END ;;
+  }
+
 }
