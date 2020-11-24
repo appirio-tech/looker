@@ -312,6 +312,18 @@ explore: gig {
     relationship: many_to_one
   }
 
+  join: member_profile_all {
+    type: left_outer
+    sql_on: ${candidate.handle} = ${member_profile_all.handle} ;;
+    relationship: one_to_one
+  }
+
+  join: member_stats {
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_stats.user_id}  ;;
+    relationship: one_to_many
+  }
+
   join: sfdc_opportunity {
     type: left_outer
     sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
@@ -344,6 +356,7 @@ explore: candidate {
     sql_on: ${hiring_stage.job_slug} = ${gig.slug} ;;
     relationship: many_to_one
   }
+
 }
 
 explore: taas_payment {

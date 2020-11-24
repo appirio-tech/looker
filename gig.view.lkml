@@ -229,10 +229,6 @@ view: gig {
     sql: ${TABLE}.note_for_candidates ;;
   }
 
-  dimension: number_of_openings {
-    type: number
-    sql: ${TABLE}.number_of_openings ;;
-  }
 
   dimension: owner {
     type: string
@@ -340,6 +336,11 @@ view: gig {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: number_of_openings {
+    type: sum
+    sql: ${TABLE}.number_of_openings ;;
   }
 
   set: detail {
