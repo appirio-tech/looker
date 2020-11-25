@@ -13,6 +13,8 @@ fiscal_month_offset: -9
 
 explore: groupmanager_batch_record {}
 
+explore: groupmanager_connect {}
+
 explore: deleted_payment {
   description: "Payments that have been set as deleted from PACTS"
   join: user {
