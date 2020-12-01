@@ -44,7 +44,7 @@ view: gig {
       job.currency_id as currency_id,
       job.hours_per_week as hours_per_week,
       job.job_description_text as job_description_text,
-      job.opportunity_id as opportunity_id,
+      left(job.opportunity_id,15) as opportunity_id,
       job.salesforce_url as salesforce_url,
       job.connect_url as connect_url,
       job.candidates_url as candidates_url,
@@ -79,6 +79,7 @@ view: gig {
   dimension: opportunity_id {
     type: string
     hidden: yes
+    case_sensitive: yes
     sql: ${TABLE}.opportunity_id ;;
   }
 
