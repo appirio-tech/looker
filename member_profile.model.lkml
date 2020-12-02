@@ -363,7 +363,7 @@ explore: taas_payment {
 
   join: taas_resource {
     type: left_outer
-    sql_on: ${taas_resource.user_id} = ${taas_payment.taas_resource_handle} ;;
+    sql_on: ${taas_resource.resource_handle} = ${taas_payment.taas_resource_handle} ;;
     relationship: one_to_one
   }
 }
