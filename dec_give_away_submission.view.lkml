@@ -14,7 +14,7 @@ view: dec_give_away_submission {
       LEFT JOIN tcs_dw.direct_project_dim  AS direct_project_dim ON challenge.tc_direct_project_id = direct_project_dim.direct_project_id
 
       --WHERE (member_submission.created_at  >= TIMESTAMP '2019-12-01' AND member_submission.created_at  <= TIMESTAMP '2020-01-04') AND (NVL(challenge.task_ind, 0)  = 0)
-      WHERE (member_submission.created_at  >= TIMESTAMP '2020-12-01' AND member_submission.created_at  <= TIMESTAMP '2021-01-05') AND (NVL(challenge.task_ind, 0)  = 0)
+      WHERE (member_submission.created_at  >= TIMESTAMP '2020-12-01' AND member_submission.created_at  <= TIMESTAMP '2021-01-04') AND (NVL(challenge.task_ind, 0)  = 0)
       --To exclude topgear billing account
       AND (direct_project_dim.billing_project_id <> 80000062)
 
@@ -33,7 +33,7 @@ view: dec_give_away_submission {
       --where (TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') >= '2019-12-01'
       --      AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2020-01-04' )
       where (TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') >= '2020-12-01'
-            AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2021-01-05' )
+            AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2021-01-04' )
        ;;
   }
 
@@ -95,7 +95,7 @@ view: dec_give_away_submission {
         when ${submission_time_date} > '2020-12-07' AND ${submission_time_date} <= '2020-12-14' THEN 'Week 2'
         when ${submission_time_date} > '2020-12-14' AND ${submission_time_date} <= '2020-12-21' THEN 'Week 3'
         when ${submission_time_date} > '2020-12-21' AND ${submission_time_date} <= '2020-12-28' THEN 'Week 4'
-        when ${submission_time_date} > '2020-12-28' AND ${submission_time_date} <= '2021-01-05' THEN 'Week 5'
+        when ${submission_time_date} > '2020-12-28' AND ${submission_time_date} <= '2021-01-04' THEN 'Week 5'
         else null
         END;;
   }
