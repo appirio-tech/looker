@@ -325,7 +325,7 @@ explore: gig {
   }
 
   join: sfdc_opportunity {
-    type: left_outer
+    type: full_outer
     sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
     relationship: one_to_one
   }
