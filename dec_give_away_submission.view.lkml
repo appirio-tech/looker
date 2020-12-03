@@ -13,7 +13,8 @@ view: dec_give_away_submission {
       LEFT JOIN tcs_dw.project  AS challenge ON member_submission.challenge_id = challenge.project_id
       LEFT JOIN tcs_dw.direct_project_dim  AS direct_project_dim ON challenge.tc_direct_project_id = direct_project_dim.direct_project_id
 
-      WHERE (member_submission.created_at  >= TIMESTAMP '2019-12-01' AND member_submission.created_at  <= TIMESTAMP '2020-01-04') AND (NVL(challenge.task_ind, 0)  = 0)
+      --WHERE (member_submission.created_at  >= TIMESTAMP '2019-12-01' AND member_submission.created_at  <= TIMESTAMP '2020-01-04') AND (NVL(challenge.task_ind, 0)  = 0)
+      WHERE (member_submission.created_at  >= TIMESTAMP '2020-12-01' AND member_submission.created_at  <= TIMESTAMP '2021-01-04') AND (NVL(challenge.task_ind, 0)  = 0)
       --To exclude topgear billing account
       AND (direct_project_dim.billing_project_id <> 80000062)
 
@@ -29,8 +30,10 @@ view: dec_give_away_submission {
       FROM topcoder_dw.problem_submission  AS problem_submission
       LEFT JOIN tcs_dw.member_profile  AS member_profile_basic ON problem_submission.coder_id = member_profile_basic.user_id
       LEFT JOIN topcoder_dw.round ON problem_submission.round_id = round.round_id
-      where (TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') >= '2019-12-01'
-            AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2020-01-04' )
+      --where (TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') >= '2019-12-01'
+      --      AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2020-01-04' )
+      where (TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') >= '2020-12-01'
+            AND TRUNC(TIMESTAMP 'epoch' + problem_submission.submit_time/1000 *INTERVAL '1 second') <= '2021-01-04' )
        ;;
   }
 
@@ -73,14 +76,26 @@ view: dec_give_away_submission {
     sql: ${TABLE}.challenge_name ;;
   }
 
+  # dimension: week_number {
+  #   type: string
+  #   sql: CASE
+  #       when ${submission_time_date} > '2019-11-30' AND ${submission_time_date} <= '2019-12-07' THEN 'Week 1'
+  #       when ${submission_time_date} > '2019-12-07' AND ${submission_time_date} <= '2019-12-14' THEN 'Week 2'
+  #       when ${submission_time_date} > '2019-12-14' AND ${submission_time_date} <= '2019-12-21' THEN 'Week 3'
+  #       when ${submission_time_date} > '2019-12-21' AND ${submission_time_date} <= '2019-12-28' THEN 'Week 4'
+  #       when ${submission_time_date} > '2019-12-28' AND ${submission_time_date} <= '2020-01-04' THEN 'Week 5'
+  #       else null
+  #       END;;
+  # }
+
   dimension: week_number {
     type: string
     sql: CASE
-        when ${submission_time_date} > '2019-11-30' AND ${submission_time_date} <= '2019-12-07' THEN 'Week 1'
-        when ${submission_time_date} > '2019-12-07' AND ${submission_time_date} <= '2019-12-14' THEN 'Week 2'
-        when ${submission_time_date} > '2019-12-14' AND ${submission_time_date} <= '2019-12-21' THEN 'Week 3'
-        when ${submission_time_date} > '2019-12-21' AND ${submission_time_date} <= '2019-12-28' THEN 'Week 4'
-        when ${submission_time_date} > '2019-12-28' AND ${submission_time_date} <= '2020-01-04' THEN 'Week 5'
+        when ${submission_time_date} > '2020-11-30' AND ${submission_time_date} <= '2020-12-07' THEN 'Week 1'
+        when ${submission_time_date} > '2020-12-07' AND ${submission_time_date} <= '2020-12-14' THEN 'Week 2'
+        when ${submission_time_date} > '2020-12-14' AND ${submission_time_date} <= '2020-12-21' THEN 'Week 3'
+        when ${submission_time_date} > '2020-12-21' AND ${submission_time_date} <= '2020-12-28' THEN 'Week 4'
+        when ${submission_time_date} > '2020-12-28' AND ${submission_time_date} <= '2021-01-04' THEN 'Week 5'
         else null
         END;;
   }

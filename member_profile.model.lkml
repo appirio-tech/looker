@@ -326,7 +326,7 @@ explore: gig {
 
   join: sfdc_opportunity {
     type: full_outer
-    sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.id} ;;
+    sql_on: ${gig.opportunity_id} = ${sfdc_opportunity.X_15_digit_id} ;;
     relationship: one_to_one
   }
   join: connect_project {
@@ -363,7 +363,7 @@ explore: taas_payment {
 
   join: taas_resource {
     type: left_outer
-    sql_on: ${taas_resource.user_id} = ${taas_payment.taas_resource_handle} ;;
-    relationship: one_to_one
+    sql_on:  ${taas_payment.taas_resource_handle} =${taas_resource.resource_handle}  ;;
+    relationship: many_to_one
   }
 }

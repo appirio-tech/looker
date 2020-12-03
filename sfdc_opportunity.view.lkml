@@ -7,6 +7,13 @@ view: sfdc_opportunity {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: X_15_digit_id {
+    type: string
+    description: "SFDC has 15 Digit ID in the URL which is case sensitive"
+    case_sensitive: yes
+    sql: LEFT(id,15) ;;
+  }
+
   dimension: connect_project_id  {
     type: number
     description: "Connect Project Id associated with the Opportunity"
