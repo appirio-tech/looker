@@ -17,6 +17,11 @@ view: sfdc_account {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: parent_name {
+    type: string
+    sql: ${TABLE}.parent_name ;;
+  }
+
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
