@@ -1613,6 +1613,8 @@ explore: challenge_user_payments {
   explore:  sfdc_account{}
   explore:  sfdc_opportunity{}
   explore:  sfdc_assignment {}
+  explore:  sfdc_forecast {}
+  explore:  sfdc_revenue_recognition {}
 
   #for prject stream data
   #joined afdc assignment table on 8th Jan 2020
