@@ -223,8 +223,8 @@ view: taas_resource {
     sql: ${TABLE}.survey_monkey_contact_id__c ;;
   }
 
-  dimension: total_payments {
-    type: number
+  measure: total_payments {
+    type: sum
     sql: ${TABLE}.total_payments__c ;;
     value_format: "$#.00;($#.00)"
   }
@@ -235,8 +235,8 @@ view: taas_resource {
     sql: ${TABLE}.user_id__c ;;
   }
 
-  dimension: weekly_payment {
-    type: number
+  measure: weekly_payment {
+    type: sum
     sql: ${TABLE}.weekly_payment__c ;;
     value_format: "$#.00;($#.00)"
   }
