@@ -13,38 +13,45 @@ view: sfdc_forecast {
     sql: ${TABLE}.account__c ;;
   }
 
-  dimension: actual_adhoc {
-    type: number
+  measure: actual_adhoc {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_adhoc__c ;;
   }
 
-  dimension: actual_challenge_budget {
-    type: number
+  measure: actual_challenge_budget {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_challenge_budget__c ;;
   }
 
-  dimension: actual_expert_services {
-    type: number
+  measure: actual_expert_services {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_expert_services__c ;;
   }
 
-  dimension: actual_license_fee {
-    type: number
+  measure: actual_license_fee {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_license_fee__c ;;
   }
 
-  dimension: actual_mftaas {
-    type: number
+  measure: actual_mftaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_mftaas__c ;;
   }
 
-  dimension: actual_mis {
-    type: number
+  measure: actual_mis {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_mis__c ;;
   }
 
-  dimension: actual_qaas {
-    type: number
+  measure: actual_qaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.actual_qaas__c ;;
   }
 
@@ -137,48 +144,57 @@ view: sfdc_forecast {
     sql: ${TABLE}.parent_id__c ;;
   }
 
-  dimension: planned_adhoc {
-    type: number
+  measure: planned_adhoc {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_adhoc__c ;;
   }
 
-  dimension: planned_challenge_budget {
-    type: number
+  measure: planned_challenge_budget {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_challenge_budget__c ;;
   }
 
-  dimension: planned_challenge_fee {
-    type: number
+  measure: planned_challenge_fee {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_challenge_fee__c ;;
   }
 
-  dimension: planned_expert_services {
-    type: number
+  measure: planned_expert_services {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_expert_services__c ;;
   }
 
-  dimension: planned_license_fee {
-    type: number
+  measure: planned_license_fee {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_license_fee__c ;;
   }
 
-  dimension: planned_member_payment {
-    type: number
+  measure: planned_member_payment {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_member_payment__c ;;
   }
 
-  dimension: planned_mftaas {
-    type: number
+  measure: planned_mftaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_mftaas__c ;;
   }
 
-  dimension: planned_mis {
-    type: number
+  measure: planned_mis {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_mis__c ;;
   }
 
-  dimension: planned_qaas {
-    type: number
+  measure: planned_qaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.planned_qaas__c ;;
   }
 
@@ -246,8 +262,9 @@ view: sfdc_forecast {
     sql: ${TABLE}.reporting_sbu__c ;;
   }
 
-  dimension: scheduled_expert_services {
-    type: number
+  measure: scheduled_expert_services {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.scheduled_expert_services__c ;;
   }
 
@@ -261,13 +278,15 @@ view: sfdc_forecast {
     sql: ${TABLE}.subscription_schedule__c ;;
   }
 
-  dimension: t_m_actual_amount {
-    type: number
+  measure: t_m_actual_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.t_m_actual_amount__c ;;
   }
 
-  dimension: t_m_planned_amount {
-    type: number
+  measure: t_m_planned_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.t_m_planned_amount__c ;;
   }
 
