@@ -49,7 +49,8 @@ view: gig {
       job.connect_url as connect_url,
       job.candidates_url as candidates_url,
       job.fulfillment_confidence as fulfillment_confidence,
-      job.client_rate_type as client_rate_type
+      job.client_rate_type as client_rate_type,
+      job.account_executive as account_executive
 
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
@@ -334,6 +335,11 @@ view: gig {
     sql: ${TABLE}.client_rate_type ;;
   }
 
+  dimension: account_executive {
+    type: string
+    sql: ${TABLE}.account_executive ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -390,7 +396,8 @@ view: gig {
       connect_url,
       candidates_url,
       fulfillment_confidence,
-      client_rate_type
+      client_rate_type,
+      account_executive
 
     ]
   }
