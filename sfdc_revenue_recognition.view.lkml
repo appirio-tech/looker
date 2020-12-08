@@ -32,8 +32,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.accrual_date__c ;;
   }
 
-  dimension: adhoc {
-    type: number
+  measure: adhoc {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.adhoc__c ;;
   }
 
@@ -52,8 +53,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.adhoc_revenue_reason__c ;;
   }
 
-  dimension: amount {
-    type: number
+  measure: gross_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount__c ;;
   }
 
@@ -81,8 +83,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.category__c ;;
   }
 
-  dimension: challenge_fee {
-    type: number
+  measure: challenge_fee {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.challenge_fee__c ;;
   }
 
@@ -105,8 +108,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.date__c ;;
   }
 
-  dimension: expense_amount {
-    type: number
+  measure: expense_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expense_amount__c ;;
   }
 
@@ -150,18 +154,21 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.isdeleted ;;
   }
 
-  dimension: license_amount {
-    type: number
+  measure: license_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.license_amount__c ;;
   }
 
-  dimension: member_payment {
-    type: number
+  measure: member_payment {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.member_payment__c ;;
   }
 
-  dimension: mftaas {
-    type: number
+  measure: mftaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.mftaas__c ;;
   }
 
@@ -170,13 +177,15 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.milestone_or_revenue_schedule__c ;;
   }
 
-  dimension: mis {
-    type: number
+  measure: mis {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.mis__c ;;
   }
 
-  dimension: net_amount {
-    type: number
+  measure: net_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.net_amount__c ;;
   }
 
@@ -264,8 +273,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.psa_timecard__c ;;
   }
 
-  dimension: qaas {
-    type: number
+  measure: qaas {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.qaas__c ;;
   }
 
@@ -293,8 +303,9 @@ view: sfdc_revenue_recognition {
     sql: ${TABLE}.revenue_recognise_master_name ;;
   }
 
-  dimension: services_amount {
-    type: number
+  measure: services_amount {
+    type: sum
+    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.services_amount__c ;;
   }
 
@@ -321,7 +332,7 @@ view: sfdc_revenue_recognition {
       challenge,
       category,
       challenge_fee,
-      amount,
+      gross_amount,
       billing_account_id,
       prebill,
       project,

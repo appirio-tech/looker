@@ -1614,7 +1614,13 @@ explore: challenge_user_payments {
   explore:  sfdc_opportunity{}
   explore:  sfdc_assignment {}
   explore:  sfdc_forecast {}
-  explore:  sfdc_revenue_recognition {}
+  explore:  sfdc_revenue_recognition {
+    join: project_stream {
+      type: inner
+      sql_on: ${project_stream.id}=${sfdc_revenue_recognition.project_strem} ;;
+      relationship: one_to_many
+    }
+  }
 
   #for prject stream data
   #joined afdc assignment table on 8th Jan 2020
