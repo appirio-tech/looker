@@ -562,6 +562,7 @@ view: challenge {
       date,
       week,
       month,
+      month_name,
       year,
       quarter,
       fiscal_month_num,
