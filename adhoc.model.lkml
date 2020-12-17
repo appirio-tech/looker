@@ -15,6 +15,8 @@ explore: groupmanager_batch_record {}
 
 explore: groupmanager_connect {}
 
+explore: groupmanager_operation_request {}
+
 explore: deleted_payment {
   description: "Payments that have been set as deleted from PACTS"
   join: user {
