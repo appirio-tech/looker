@@ -123,10 +123,22 @@ view: hiring_stage {
     alpha_sort: no
     case: {
       when: {
-        sql: ${status} in ('Client Rejected - Interview') ;;
-        label: "Proposed"
+        sql: ${status} in ('Applied', 'Reviewed', 'Ops Check Pass', 'Resume Handoff to Client', 'Schedule Interview', 'Interview Scheduled', 'Interview not Attended', 'Client Closed Opportunity' ) ;;
+        label: "Applied"
       }
-      else:"Applied"
+      when: {
+        sql: ${status} in ('Selected', 'Offered', 'Offered - Did Not Join') ;;
+        label: "Assigned"
+      }
+      when: {
+        sql: ${status} in ('Placed') ;;
+        label: "Placed"
+      }
+      when: {
+        sql: ${status} in ('Low Experience - Go Compete', 'Wipro - No TaaS', 'Rejected - Topcoder Rejected', 'Client Rejected - Screening', 'Client Rejected - Interview', 'Client Rejected - Interview No Show'  ) ;;
+        label: "Rejected"
+      }
+      else:"Unknown"
     }
   }
 
@@ -135,24 +147,24 @@ view: hiring_stage {
     drill_fields: [candidate_slug,job_slug,stage_date,status]
   }
 
+  measure: count_applied {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status IN ('Applied', 'Reviewed', 'Ops Check Pass', 'Resume Handoff to Client', 'Schedule Interview', 'Interview Scheduled', 'Interview not Attended', 'Client Closed Opportunity')) THEN 1  ELSE 0 END ;;
+  }
+
+  measure: count_assigned {
+    type: sum
+    sql: CASE WHEN (hiring_stage.status IN ('Selected', 'Offered', 'Offered - Did Not Join')) THEN 1  ELSE 0 END ;;
+  }
+
   measure: count_placed {
     type: sum
     sql: CASE WHEN (hiring_stage.status = 'Placed') THEN 1  ELSE 0 END ;;
   }
 
-  measure: count_applied {
+  measure: count_rejected {
     type: sum
-    sql: CASE WHEN (hiring_stage.status = 'Applied') THEN 1  ELSE 0 END ;;
-  }
-
-  measure: count_assigned {
-    type: sum
-    sql: CASE WHEN (hiring_stage.status = 'Assigned') THEN 1  ELSE 0 END ;;
-  }
-
-  measure: count_ops_rejected {
-    type: sum
-    sql: CASE WHEN (hiring_stage.status = 'Rejected- Ops Rejected') THEN 1  ELSE 0 END ;;
+    sql: CASE WHEN (hiring_stage.status IN ('Low Experience - Go Compete', 'Wipro - No TaaS', 'Rejected - Topcoder Rejected', 'Client Rejected - Screening', 'Client Rejected - Interview', 'Client Rejected - Interview No Show')) THEN 1  ELSE 0 END ;;
   }
 
 }
