@@ -128,7 +128,7 @@ view: hiring_stage {
       }
       when: {
         sql: ${status} in ('Selected', 'Offered', 'Offered - Did Not Join') ;;
-        label: "Assigned"
+        label: "Accepted"
       }
       when: {
         sql: ${status} in ('Placed') ;;
@@ -152,7 +152,7 @@ view: hiring_stage {
     sql: CASE WHEN (hiring_stage.status IN ('Applied', 'Reviewed', 'Ops Check Pass', 'Resume Handoff to Client', 'Schedule Interview', 'Interview Scheduled', 'Interview not Attended', 'Client Closed Opportunity')) THEN 1  ELSE 0 END ;;
   }
 
-  measure: count_assigned {
+  measure: count_accepted {
     type: sum
     sql: CASE WHEN (hiring_stage.status IN ('Selected', 'Offered', 'Offered - Did Not Join')) THEN 1  ELSE 0 END ;;
   }
