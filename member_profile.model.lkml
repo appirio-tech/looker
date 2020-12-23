@@ -341,6 +341,12 @@ explore: gig {
     relationship: one_to_one
   }
 
+  join: gig_skills_requested {
+    type: left_outer
+    sql_on: ${gig.job_id} = ${gig_skills_requested.job_id} ;;
+    relationship: many_to_many
+  }
+
 }
 
 explore: candidate {
