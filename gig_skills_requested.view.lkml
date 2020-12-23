@@ -23,7 +23,7 @@ view: gig_skills_requested {
 
   dimension: skill_name {
     description: "Name of the skill that is parsed from the gig request"
-    type: number
+    type: string
     sql: ${TABLE}.skill_name ;;
   }
 
