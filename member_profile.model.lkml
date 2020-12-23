@@ -297,6 +297,7 @@ explore: member_submission {
 
 }
 
+explore: gig_skills_requested {}
 
 explore: gig {
 
