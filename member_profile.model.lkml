@@ -297,6 +297,7 @@ explore: member_submission {
 
 }
 
+explore: gig_skills_requested {}
 
 explore: gig {
 
@@ -339,6 +340,12 @@ explore: gig {
     type: full_outer
     sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
     relationship: one_to_one
+  }
+
+  join: gig_skills_requested {
+    type: left_outer
+    sql_on: ${gig.job_id} = ${gig_skills_requested.job_id} ;;
+    relationship: many_to_many
   }
 
 }
