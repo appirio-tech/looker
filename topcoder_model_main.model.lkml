@@ -1716,6 +1716,12 @@ explore: design_month_tco {
       sql_on: ${tco_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
     }
 
+    join : member_profile_all {
+      type: left_outer
+      relationship: many_to_one
+      sql_on:  ${tco_leaderboard.user_id} = ${member_profile_all.user_id} ;;
+    }
+
   #Removed member_stats and member_max_rating as this field has now being loeaded into member profile basic.
 
     #join: member_stats {
