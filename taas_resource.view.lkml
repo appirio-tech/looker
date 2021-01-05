@@ -1,9 +1,9 @@
 view: taas_resource {
 
   sql_table_name: tcs_dw.taas_resource ;;
-  drill_fields: [id]
+  drill_fields: [taas_resource_id]
 
-  dimension: id {
+  dimension: taas_resource_id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -243,7 +243,7 @@ view: taas_resource {
 
   measure: count {
     type: count
-    drill_fields: [id, name]
+    drill_fields: [taas_resource_id, name]
   }
 
 }

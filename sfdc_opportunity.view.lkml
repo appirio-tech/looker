@@ -1,7 +1,7 @@
 view: sfdc_opportunity {
   sql_table_name: tcs_dw.sfdc_opportunity ;;
 
-  dimension: id {
+  dimension: sfdc_opportunity_id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -1836,6 +1836,6 @@ view: sfdc_opportunity {
 
   measure: count {
     type: count
-    drill_fields: [id, name]
+    drill_fields: [sfdc_opportunity_id, name]
   }
 }
