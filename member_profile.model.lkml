@@ -251,6 +251,20 @@ explore: member_profile_all {
     relationship: one_to_one
   }
 
+  join: payment {
+    view_label: "payment details"
+    type: inner
+    sql_on: ${payment.payment_id} = ${user_payment.payment_id} ;;
+    relationship: one_to_many
+    }
+
+  join: payment_create_date {
+    from: calendar
+    type: inner
+    sql_on: ${payment.created_calendar_id} = ${payment_create_date.calendar_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 # Added 22nd November - 2018
