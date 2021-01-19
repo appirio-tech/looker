@@ -265,6 +265,12 @@ explore: member_profile_all {
     relationship: many_to_one
   }
 
+  join: user_tax_form {
+    type: left_outer
+    sql_on: ${user_tax_form.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 # Added 22nd November - 2018
