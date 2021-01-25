@@ -403,25 +403,25 @@ view: connect_project {
   dimension: execution_hub {
     type: string
     description: "Used by Topgear team, Execution Hub  of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'execution_hub') ;;
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'execution_hub')),'&amp;','&') ;;
   }
 
   dimension: sub_execution_hub {
     type: string
     description: "Used by Topgear team, Sub Execution Hub  of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_execution_hub') ;;
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_execution_hub')),'&amp;','&') ;;
   }
 
   dimension: smu {
     type: string
     description: "Used by Topgear team, SMU of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'smu') ;;
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'smu')),'&amp;','&') ;;
   }
 
   dimension: sector {
     type: string
     description: "Used by Topgear team, Sector  of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sector') ;;
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sector')),'&amp;','&') ;;
   }
 
 
