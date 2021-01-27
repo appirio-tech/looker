@@ -142,7 +142,7 @@ view: tco_leaderboard{
       description: "Computed TCO points"
       value_format: "#,##0"
       sql:  CASE
-                WHEN ${TABLE}.raw_points IS NOT NULL THEN ${TABLE}.raw_points
+                WHEN ${TABLE}.raw_points IS NOT NULL THEN (${TABLE}.raw_points * (ISNULL(${TABLE}.rating_booster, 1)))
                 WHEN ${TABLE}.fixed_score IS NOT NULL THEN ${TABLE}.fixed_score
                 ELSE (${TABLE}.total_prize) * (${TABLE}.percentage) * (ISNULL(${TABLE}.rating_booster, 1))
           END;;
