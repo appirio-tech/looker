@@ -33,6 +33,8 @@ fiscal_month_offset: -9
 
 explore: member_activity_tenure {}
 
+explore: salesforce_segment_leads {}
+
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
 explore: project_scorecard {
