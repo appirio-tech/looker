@@ -30,8 +30,8 @@ view: tco_leaderboard{
     left join tcs_dw.project as challenge
         on leaderboard.challenge_id = challenge.project_id
     ;;
-
-      persist_for: "24 hours"
+      #Cache the data as long as their is no new entry
+      datagroup_trigger: tco_leaderboard_cache
       distribution_style: "even"
       indexes: ["challenge_id", "user_id", "contest_id"]
     }
