@@ -194,3 +194,13 @@ explore:  sfdc_challenge_group{}
 explore: design_month_tco_temp {
   description: "A temp explore for desing month leaderboards "
 }
+
+explore: wipro_payment_validation {
+  description: "A temp explore for wipro payment validation loader"
+
+  join: payment {
+    type: inner
+    sql_on: ${wipro_payment_validation.payment_id} = ${payment.payment_id} ;;
+    relationship: :one_to_one
+  }
+}
