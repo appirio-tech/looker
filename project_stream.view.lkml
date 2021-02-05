@@ -22,9 +22,9 @@ view: project_stream {
     sql: ${TABLE}.actuals_to_update__c ;;
   }
 
-  measure: assignment_count {
+  measure: total_assigned_work_amount_timecard {
     type: sum
-    sql: ${TABLE}.assignment_count__c ;;
+    sql: ${TABLE}.total_assigned_work_amount_timecard__c ;;
   }
 
   dimension: audit_notes {
@@ -208,9 +208,9 @@ view: project_stream {
     sql: ${TABLE}.legacy_project_number__c ;;
   }
 
-  dimension: milestone_count {
-    type: number
-    sql: ${TABLE}.milestone_count__c ;;
+  measure: total_milestone_amount {
+    type: sum
+    sql: ${TABLE}.total_milestone_amount__c ;;
   }
 
   dimension_group: minimum_prebill_effective {
