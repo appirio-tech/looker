@@ -351,6 +351,7 @@ view: member_profile_advanced {
                 ${reporting_country} ='Poland' or
                 ${reporting_country} ='Romania' or
                 ${reporting_country} ='Russia' or
+                ${reporting_country} ='Russian Federation' or
                 ${reporting_country} ='Slovakia' or
                 ${reporting_country} ='Ukraine' or
                 ${reporting_country} ='Aland Islands' or
