@@ -184,7 +184,8 @@ view: member_profile_all {
               ${reporting_country} ='Maldives' or
               ${reporting_country} ='Nepal' or
               ${reporting_country} ='Pakistan' or
-              ${reporting_country} ='Sri Lanka';;
+              ${reporting_country} ='Sri Lanka' or
+              ${reporting_country} ='British Indian Ocean Territory';;
       label: "Southern Asia"
     }
       when: {
@@ -380,6 +381,7 @@ view: member_profile_all {
                 ${reporting_country} ='Albania' or
                 ${reporting_country} ='Andorra' or
                 ${reporting_country} ='Bosnia & Herzegovina' or
+                ${reporting_country} ='Bosnia and Herzegowina' or
                 ${reporting_country} ='Croatia' or
                 ${reporting_country} ='Gibraltar' or
                 ${reporting_country} ='Greece' or
@@ -387,10 +389,12 @@ view: member_profile_all {
                 ${reporting_country} ='Malta' or
                 ${reporting_country} ='Montenegro' or
                 ${reporting_country} ='North Macedonia' or
+                ${reporting_country} ='Macedonia, Former Yugoslav Rep. of' or
                 ${reporting_country} ='Macedonia' or
                 ${reporting_country} ='Portugal' or
                 ${reporting_country} ='San Marino' or
                 ${reporting_country} ='Serbia' or
+                ${reporting_country} ='Serbia and Montenegro' or
                 ${reporting_country} ='Slovenia' or
                 ${reporting_country} ='Spain' or
                 ${reporting_country} ='Vatican City' or
