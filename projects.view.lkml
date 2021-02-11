@@ -123,12 +123,14 @@ view: connect_project {
     type: sum
     description: "Used by Topgear team, Offshore hours allocated to the project"
     sql: ${TABLE}.offshore_efforts ;;
+    group_label: "Topgear"
   }
 
   measure: onsite_efforts {
     type: sum
     description: "Used by Topgear team, Onsite hours allocated to the project"
     sql: ${TABLE}.onsite_efforts ;;
+    group_label: "Topgear"
   }
 
   dimension_group: planned_end {
@@ -275,6 +277,7 @@ view: connect_project {
     type: string
     description: "Used by Topgear team, WBS code of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
+    group_label: "Topgear"
   }
 
   dimension: business_unit {
@@ -298,24 +301,28 @@ view: connect_project {
     type: string
     description: "Used by Topgear team, cost center allocated to the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'cost_center') ;;
+    group_label: "Topgear"
   }
 
   dimension: project_code {
     type: string
     description: "Used by Topgear team, Unique identifier of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'project_code') ;;
+    group_label: "Topgear"
   }
 
   dimension: group_customer_name {
     type: string
     description: "Used by Topgear team, Customer group name to which project belongs"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'group_customer_name') ;;
+    group_label: "Topgear"
   }
 
   dimension: du {
     type: string
     description: "Used by Topgear team, Division unit of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'du') ;;
+    group_label: "Topgear"
   }
 
   # Added on 23 Nov
@@ -324,30 +331,35 @@ view: connect_project {
     type: string
     description: "Used by Topgear team, Project classification code of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'project_classification_code') ;;
+    group_label: "Topgear"
   }
 
   dimension: invoice_type {
     type: string
     description: "Used by Topgear team, Invoice type of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'invoice_type') ;;
-  }
+    group_label: "Topgear"
+ }
 
   dimension: sow_number {
     type: number
     description: "Used by Topgear team, Sow number of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sow_number') ;;
+    group_label: "Topgear"
   }
 
   dimension: customer_project {
     type: string
     description: "Used by Topgear team, Customer name of the project"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'customer_project') ;;
+    group_label: "Topgear"
   }
 
   dimension: part_of_ng3 {
     type: string
     description: "Used by Topgear team"
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'part_of_ng3') ;;
+    group_label: "Topgear"
   }
 
   dimension: product {
@@ -404,24 +416,28 @@ view: connect_project {
     type: string
     description: "Used by Topgear team, Execution Hub  of the project"
     sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'execution_hub')),'&amp;','&') ;;
+    group_label: "Topgear"
   }
 
   dimension: sub_execution_hub {
     type: string
     description: "Used by Topgear team, Sub Execution Hub  of the project"
     sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_execution_hub')),'&amp;','&') ;;
+    group_label: "Topgear"
   }
 
   dimension: smu {
     type: string
     description: "Used by Topgear team, SMU of the project"
     sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'smu')),'&amp;','&') ;;
+    group_label: "Topgear"
   }
 
   dimension: sector {
     type: string
     description: "Used by Topgear team, Sector  of the project"
     sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sector')),'&amp;','&') ;;
+    group_label: "Topgear"
   }
 
 
