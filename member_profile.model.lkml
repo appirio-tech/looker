@@ -409,4 +409,9 @@ explore: taas_payment {
     sql_on:  ${taas_payment.taas_resource_handle} =${taas_resource.resource_handle}  ;;
     relationship: many_to_one
   }
+
 }
+
+explore: review {}
+
+explore: review_summation {}
