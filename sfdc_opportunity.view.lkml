@@ -1838,4 +1838,11 @@ view: sfdc_opportunity {
     type: count
     drill_fields: [sfdc_opportunity_id, name]
   }
+
+  measure: count_opportunity {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+    description: "Opportunity Count"
+    drill_fields: [sfdc_opportunity_id, name]
+  }
 }
