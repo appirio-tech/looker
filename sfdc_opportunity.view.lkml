@@ -1840,6 +1840,7 @@ view: sfdc_opportunity {
   }
 
   measure: count_opportunity {
+    label: "Count (Distinct)"
     type: count_distinct
     sql: ${TABLE}.id ;;
     description: "Opportunity Count"
