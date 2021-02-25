@@ -1754,4 +1754,10 @@ explore: design_month_tco {
     #  sql_on: ${tco_leaderboard.challenge_id} = ${fulfilment_copilot.challenge_id} ;;
     #}
 
+
+
   }
+
+  #added invoice staging explore to topcoder main model on 25th Feb 2021
+  explore: invoice_staging{
+    }
