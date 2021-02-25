@@ -212,24 +212,24 @@ view: sfdc_opportunity {
     sql: ${TABLE}.age_of_last_update__c ;;
   }
 
-  dimension: amount_days {
-    type: number
+  measure: amount_days {
+    type: sum_distinct
     sql: ${TABLE}.amount_days__c ;;
   }
 
-  dimension: amount_lost {
-    type: number
+  measure: amount_lost {
+    type: sum_distinct
     sql: ${TABLE}.amount_lost_usd__c ;;
   }
 
   measure: amount_usd {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_usd__c ;;
   }
 
   measure: amount_won {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_won_usd__c ;;
   }
@@ -440,7 +440,7 @@ view: sfdc_opportunity {
   }
 
   measure: cloudspokes_billing_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cloudspokes_billing_amount__c ;;
   }
@@ -750,19 +750,19 @@ view: sfdc_opportunity {
   }
 
   measure: expert_community_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount__c ;;
   }
 
   measure: expert_community_amount_converted {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount_converted__c ;;
   }
 
   measure: expert_community_amount_original {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount_original__c ;;
   }
@@ -1110,7 +1110,7 @@ view: sfdc_opportunity {
   }
 
   measure: next_qtr_amount_weighted {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.next_qtr_amount_weighted__c ;;
   }
@@ -1224,13 +1224,13 @@ view: sfdc_opportunity {
   }
 
   measure: outcome_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.outcome_amount__c ;;
   }
 
   measure: outcome_amount_original {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.outcome_amount_original__c ;;
   }
@@ -1271,7 +1271,7 @@ view: sfdc_opportunity {
   }
 
   measure: partner_opportunity_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.partner_opportunity_amount__c ;;
   }
@@ -1432,7 +1432,7 @@ view: sfdc_opportunity {
   }
 
   measure: self_service_amount_converted {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.self_service_amount_converted__c ;;
   }
@@ -1503,7 +1503,7 @@ view: sfdc_opportunity {
   }
 
   measure: subscription_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.subscription_amount__c ;;
   }
@@ -1673,7 +1673,7 @@ view: sfdc_opportunity {
   }
 
   measure: amount_without_wipro_services {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_without_wipro_services__c ;;
   }
@@ -1803,13 +1803,13 @@ view: sfdc_opportunity {
   }
 
   measure: fc_taas_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.fc_taas_amount__c ;;
   }
 
   measure: total_amount_including_expense {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_amount_including_expense__c ;;
   }
@@ -1830,7 +1830,7 @@ view: sfdc_opportunity {
   }
 
   measure: total_invoiced_amount {
-    type: sum
+    type: sum_distinct
     value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.total_invoiced_amount_ps__c ;;
   }
@@ -1850,11 +1850,9 @@ view: sfdc_opportunity {
     sql: ${TABLE}.wipro_services__c ;;
   }
 
-  measure: count_opportunity {
-    label: "Count (Distinct)"
-    type: count_distinct
-    sql: ${TABLE}.id ;;
-    description: "Opportunity Count"
+  measure: count {
+    type: count
+    description: "Total Record Count"
     drill_fields: [sfdc_opportunity_id, name]
   }
 
