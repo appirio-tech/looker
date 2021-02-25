@@ -101,7 +101,7 @@ view: invoice_staging {
           invoice_number,
           invoice_id,
           invoice_record_id,
-          'Fixed_Bug_Fee' as source
+          'Fixed Bug Fee' as source
       FROM
           invoice.fixed_bug_fee
        ;;
