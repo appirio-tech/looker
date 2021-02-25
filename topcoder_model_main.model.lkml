@@ -16,6 +16,16 @@ datagroup: srm_cache {
   max_cache_age: "24 hours"
 }
 
+#TCO Leaderboard Cache
+datagroup: tco_leaderboard_cache {
+  label: "TCO Leaderboard Cache"
+  description: "TCO Leaderboard data cache as long as there is no extra data loaded"
+  sql_trigger: select count(*) FROM tco_leaderboard ;;
+  max_cache_age: "24 hours"
+}
+
+
+
 # include all the views
 include: "*.view"
 
@@ -1744,4 +1754,7 @@ explore: design_month_tco {
     #  sql_on: ${tco_leaderboard.challenge_id} = ${fulfilment_copilot.challenge_id} ;;
     #}
 
+
+
   }
+

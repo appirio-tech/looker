@@ -368,6 +368,22 @@ explore: gig {
     relationship: many_to_many
   }
 
+  #Adding project_stream and sfdc_revenue_recognition to gig view 2nd Feb 2021
+
+  join : project_stream {
+    type: left_outer
+    sql_on: ${sfdc_opportunity.sfdc_opportunity_id} = ${project_stream.opportunity} ;;
+    relationship: one_to_many
+  }
+
+  join: sfdc_revenue_recognition {
+    type: inner
+    sql_on: ${project_stream.id} = ${sfdc_revenue_recognition.project_strem} ;;
+    relationship: one_to_many
+  }
+
+
+
 }
 
 explore: candidate {
@@ -393,4 +409,9 @@ explore: taas_payment {
     sql_on:  ${taas_payment.taas_resource_handle} =${taas_resource.resource_handle}  ;;
     relationship: many_to_one
   }
+
 }
+
+explore: review {}
+
+explore: review_summation {}
