@@ -8,6 +8,9 @@ include: "*.view.lkml"                       # include all views in this project
 ## This views are created for admin use only and should not be exposed to normal users as is
 ###########################################################################################
 
+#added on 25th Feb to include lkml files from invoice folder
+include: "/invoice/*.view.lkml"
+
 #for fiscal year
 fiscal_month_offset: -9
 
@@ -203,4 +206,9 @@ explore: wipro_payment_validation {
     sql_on: ${wipro_payment_validation.payment_id} = ${payment.payment_id} ;;
     relationship: :one_to_one
   }
+}
+
+#added invoice staging explore to topcoder main model on 25th Feb 2021
+explore: invoice_staging{
+
 }

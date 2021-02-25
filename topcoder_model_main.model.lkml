@@ -1758,6 +1758,3 @@ explore: design_month_tco {
 
   }
 
-  #added invoice staging explore to topcoder main model on 25th Feb 2021
-  explore: invoice_staging{
-    }

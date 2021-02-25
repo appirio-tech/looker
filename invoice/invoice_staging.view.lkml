@@ -33,7 +33,7 @@ view: invoice_staging {
           invoice_number,
           invoice_id,
           invoice_record_id,
-          'credit' as source
+          'Credit' as source
       FROM
           invoice.credit
     UNION ALL
@@ -67,7 +67,7 @@ view: invoice_staging {
           invoice_number,
           invoice_id,
           invoice_record_id,
-          'dr' as source
+          'DR' as source
       FROM
           invoice.dr
     UNION ALL
@@ -101,7 +101,7 @@ view: invoice_staging {
           invoice_number,
           invoice_id,
           invoice_record_id,
-          'fixed_bug_fee' as source
+          'Fixed_Bug_Fee' as source
       FROM
           invoice.fixed_bug_fee
        ;;
