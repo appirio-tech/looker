@@ -52,6 +52,12 @@ view: member_submission {
     sql: ${TABLE}.submission_phase_id ;;
   }
 
+  dimension: submission_phase_guid {
+    type: string
+    description: "Project Phase Id, the submission is associated with"
+    sql: ${TABLE}.submission_phase_guid ;;
+  }
+
   dimension: type {
     type: string
     description: "Submission Type can be Checkpoint / Contest Submission"
