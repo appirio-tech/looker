@@ -244,7 +244,7 @@ view: user {
 
   dimension: state_code {
     type: string
-    sql: ${TABLE}.state_code ;;
+    sql: UPPER(${TABLE}.state_code) ;;
   }
 
   dimension: status {
