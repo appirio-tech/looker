@@ -465,9 +465,10 @@ view: challenge {
               END ;;
   }
 
+  # ------------------------------------Challenge IDs ------------------------------- #
   dimension: challenge_id {
     type: number
-    description: "Challenge Unique Identifier"
+    description: "Challenge unique numeric legacy identifier"
     sql: ${TABLE}.project_id ;;
     link: {
       label: "Challenge Link"
@@ -488,6 +489,21 @@ view: challenge {
       icon_url: "https://looker.com/favicon.ico"
     }
   }
+
+  dimension: challenge_GUID
+  {
+    label: "Challenge GUID"
+    type: string
+    description: "Challenge 36 character globally unique idenitifier appears in the URL"
+    sql: ${TABLE}.challenge_guid ;;
+    link: {
+      label: "Community Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+  }
+
+  #-----------------------------------------------------------------------------#
 
   dimension_group: rating {
     type: time
