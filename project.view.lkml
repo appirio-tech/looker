@@ -501,6 +501,11 @@ view: challenge {
       url: "https://www.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
       icon_url: "https://looker.com/favicon.ico"
     }
+    link: {
+      label: "Work Manager Link"
+      url: "https://challenges.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
   }
 
   #-----------------------------------------------------------------------------#
