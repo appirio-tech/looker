@@ -17,6 +17,13 @@ view: client_project_dim {
     sql: ${TABLE}.billing_project_id ;;
   }
 
+  dimension: mark_up {
+    type: number
+    description: "Mark up % applied on BA"
+    value_format_name: "percent_2"
+    sql: ${TABLE}.mark_up__c / 100 ;;
+  }
+
   dimension_group: client_create {
     type: time
     timeframes: [
