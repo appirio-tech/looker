@@ -29,6 +29,12 @@ view: challenge {
     sql: ${TABLE}.category_id ;;
   }
 
+  dimension: description_format {
+    description: "Challenge Description format Markdown or Html"
+    sql: ${TABLE}.description_format ;;
+  }
+
+  # --------------------- Challenge Created by User Ids  --------------------------#
   dimension: challenge_creator_id {
     description: "Community member's unique identifier who created the challenge."
     type: number
@@ -46,6 +52,8 @@ view: challenge {
     description: "Community Member unique Identifier who manages the challenge"
     sql: ${TABLE}.challenge_manager ;;
   }
+
+  # ---------------------------End Challenge User Ids -------------------------#
 
   dimension_group: checkpoint_end {
     type: time
@@ -158,16 +166,18 @@ view: challenge {
     sql: ${TABLE}.digital_run_ind ;;
   }
 
+  measure: dr_points {
+    type: sum
+    sql: ${TABLE}.dr_points ;;
+  }
+
+
   dimension: tco_track {
     type: string
     description: "specifies challenge category like Develop, Design, QA etc. specifically for TCO leaderboard"
     sql: ${TABLE}.tco_track ;;
   }
 
-  measure: dr_points {
-    type: sum
-    sql: ${TABLE}.dr_points ;;
-  }
 
   measure: duration {
     type: sum
@@ -240,7 +250,6 @@ view: challenge {
 
   dimension: average_first_place_prize_tier {
     type: tier
-#    tiers: [0,250,500,750,1000,1250,1500,1750,2000]
     tiers: [0,100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000]
     style: integer
     sql: ${TABLE}.first_place_prize ;;
@@ -328,14 +337,6 @@ view: challenge {
     drill_fields: [detail*]
     sql: ${TABLE}.num_valid_submissions ;;
   }
-
-  #  - dimension: phase_desc
-  #    type: string
-  #    sql: ${TABLE}.phase_desc
-
-  #  - dimension: phase_id
-  #    type: number
-  #    sql: ${TABLE}.phase_id
 
  measure: max_posting_date {
     type: date
@@ -508,7 +509,7 @@ view: challenge {
     }
   }
 
-  #-----------------------------------------------------------------------------#
+  #---------------------------------END CHALLENGE IDS----------------------------------------#
 
   dimension_group: rating {
     type: time
@@ -743,18 +744,20 @@ view: challenge {
     type: sum
     description: "Total no. of challenges launched (active)"
     sql: CASE
-  WHEN ${TABLE}.status_desc = 'Completed' OR ${TABLE}.status_desc = 'Active'
-  THEN 1
-  ELSE 0 END ;;
+            WHEN ${TABLE}.status_desc = 'Completed' OR ${TABLE}.status_desc = 'Active'
+              THEN 1
+            ELSE 0
+        END ;;
   }
 
   measure: count_draft {
     type: sum
     description: "Total no. of challenges in draft"
     sql: CASE
-        WHEN ${TABLE}.status_desc = 'Draft'
-        THEN 1
-        ELSE 0 END ;;
+            WHEN ${TABLE}.status_desc = 'Draft'
+              THEN 1
+            ELSE 0
+        END ;;
   }
 
   measure: count_scheduled {
