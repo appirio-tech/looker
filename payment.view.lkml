@@ -77,6 +77,11 @@ view: payment {
     sql: ${TABLE}.payment_type_id ;;
   }
 
+  dimension: challenge_guid {
+    label: "Challenge GUID"
+    description: "Challenge GUID for the payment. Available for a V5 Payment Task"
+    sql: ${TABLE}.challenge_guid ;;
+  }
   dimension: reference_id {
     type: number
     sql: ${TABLE}.reference_id ;;
