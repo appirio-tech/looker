@@ -34,7 +34,6 @@ view: cost_transaction_temp {
   dimension_group: completion {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -116,7 +115,6 @@ view: cost_transaction_temp {
   dimension_group: launch {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -142,10 +140,9 @@ view: cost_transaction_temp {
     sql: ${TABLE}.line_item_category ;;
   }
 
-  dimension_group: payment {
+  dimension_group: payment_date {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -183,7 +180,6 @@ view: cost_transaction_temp {
   dimension_group: process {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
