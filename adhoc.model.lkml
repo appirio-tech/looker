@@ -10,6 +10,7 @@ include: "*.view.lkml"                       # include all views in this project
 
 #added on 25th Feb to include lkml files from invoice folder
 include: "/invoice/*.view.lkml"
+include: "/cost_transaction_temp/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
@@ -210,5 +211,9 @@ explore: wipro_payment_validation {
 
 #added invoice staging explore to topcoder main model on 25th Feb 2021
 explore: invoice_staging{
+
+}
+
+explore: cost_transaction_temp {
 
 }
