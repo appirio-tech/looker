@@ -1,5 +1,5 @@
-view: cost_transaction_temp {
-  sql_table_name: public.cost_transaction_temp ;;
+view: cost_transaction_sfdc {
+  sql_table_name: public.cost_transaction_sfdc ;;
 
   dimension: actual_total_member_costs {
     type: number
@@ -48,9 +48,10 @@ view: cost_transaction_temp {
     sql: ${TABLE}.completion_date ;;
   }
 
-  dimension: contest_guid {
+  dimension: challenge_guid {
     type: string
-    sql: ${TABLE}.contest_guid ;;
+    description: "The 36 character unique GUID for challenge"
+    sql: ${TABLE}.challenge_guid ;;
   }
 
   dimension: contest_id {
