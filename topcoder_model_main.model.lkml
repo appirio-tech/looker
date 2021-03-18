@@ -1763,6 +1763,7 @@ include: "/cost_transaction_temp/*.view.lkml"
 
 explore: cost_transaction_sfdc {
 
+  description: "Temporary testing view, do not use"
   join: connect_project {
     type: left_outer
     sql_on: ${cost_transaction_sfdc.direct_project_id} = ${connect_project.direct_project_id} ;;
