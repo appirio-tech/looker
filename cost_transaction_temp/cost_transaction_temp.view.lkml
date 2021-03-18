@@ -6,6 +6,12 @@ view: cost_transaction_sfdc {
     sql: ${TABLE}.actual_total_member_costs ;;
   }
 
+  dimension: challenge_blended_id {
+    type: string
+    description: "Challenge Unique ID"
+    sql:  NVL(${TABLE}.challenge_guid, ${TABLE}.contest_id::VARCHAR(8)) ;;
+  }
+
   dimension: billing_project_id {
     type: number
     sql: ${TABLE}.billing_project_id ;;
