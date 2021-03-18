@@ -1758,3 +1758,69 @@ explore: design_month_tco {
 
   }
 
+
+#moving cost transaction temp explore to topcoder main model from adhoc
+
+include: "/cost_transaction_temp/*.view.lkml"
+
+explore: cost_transaction_temp {
+
+
+  join: connect_project {
+    type: left_outer
+    sql_on: ${cost_transaction_temp.direct_project_id} = ${connect_project.direct_project_id} ;;
+    relationship: many_to_one
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${cost_transaction_temp.billing_project_id} ;;
+    relationship: many_to_one
+  }
+
+  #added on 20th June 2019
+  join: sfdc_account {
+    type: left_outer
+    view_label: "Reporting Account"
+    sql_on: ${client_project_dim.reporting_sfdc_account} = ${sfdc_account.account_id} ;;
+    relationship: many_to_one
+  }
+
+
+  join: challenge_groups {
+    type: left_outer
+    sql_on: ${cost_transaction_temp.contest_id} = ${challenge_groups.challenge_id} ;;
+    relationship: one_to_many
+  }
+  join: challenge {
+    type: left_outer
+    sql_on: ${cost_transaction_temp.contest_id} = ${challenge.project_id} ;;
+    relationship: one_to_many
+  }
+  join: member_profile_basic {
+    view_label: "Challenge Manager"
+    type: left_outer
+    sql_on: ${challenge.challenge_manager_id} = ${member_profile_basic.user_id} ;;
+    relationship: one_to_many
+  }
+  join: member_profile_basic_winner {
+    from: member_profile_basic
+    view_label: "Challenge Winner"
+    type: left_outer
+    sql_on: ${challenge.winner_id} = ${member_profile_basic.user_id} ;;
+    relationship: one_to_one
+  }
+  join: sfdc_opportunity {
+    type:  left_outer
+    sql_on: ${sfdc_account.account_id} = ${sfdc_opportunity.account_id} ;;
+    relationship: many_to_one
+  }
+
+  #added on 2nd Jun 2020
+  join: direct_project_dim {
+    type: left_outer
+    sql_on: ${cost_transaction_temp.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
+    relationship: many_to_one
+  }
+
+}
