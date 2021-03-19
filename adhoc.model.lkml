@@ -17,6 +17,8 @@ fiscal_month_offset: -9
 
 explore: groupmanager_batch_record {}
 
+explore : test_cust {}
+
 explore: groupmanager_connect {}
 
 explore: groupmanager_operation_request {}
