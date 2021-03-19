@@ -1,6 +1,36 @@
 view: cost_transaction {
   sql_table_name: public.cost_transaction ;;
 
+  #----------------------------- Ids -------------------------------------#
+  dimension: challenge_system_id {
+    type: string
+    description:  "If Legacy Id is present,display legacy Id else GUID"
+    can_filter: no
+    sql: TRIM(${TABLE}.challenge_blended_id) ;;
+  }
+
+  dimension: challenge_guid {
+    type: string
+    description: "The 36 character unique GUID for challenge"
+    sql: ${TABLE}.challenge_guid ;;
+  }
+
+  dimension: challenge_blended_id {
+    type: string
+    hidden: no
+    description: "If Legacy Id is present,display legacy Id else GUID"
+    sql: ${TABLE}.challenge_blended_id;;
+  }
+
+  dimension: contest_id {
+    type: number
+    description: "Legacy Challenge ID"
+    # hidden: true
+    sql: ${TABLE}.contest_id ;;
+  }
+
+  #-----------------------------End of Ids -----------------------------#
+
   measure: actual_total_member_costs {
     type: sum
     value_format: "$#,##0.00;($#,##0.00)"
@@ -47,12 +77,6 @@ view: cost_transaction {
       fiscal_year
     ]
     sql: ${TABLE}.completion_date ;;
-  }
-
-  dimension: contest_id {
-    type: number
-    # hidden: true
-    sql: ${TABLE}.contest_id ;;
   }
 
   dimension: contest_name {

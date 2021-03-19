@@ -1,6 +1,63 @@
 view: challenge {
   sql_table_name: tcs_dw.project ;;
 
+  # ------------------------------------Challenge IDs ------------------------------- #
+  dimension: challenge_id {
+    type: number
+    description: "Challenge unique numeric legacy identifier"
+    sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+  }
+
+  dimension: challenge_system_id {
+    type: string
+    description:  "If Legacy Id is present,display legacy Id else GUID"
+    sql: NVL(TRIM(${TABLE}.challenge_blended_id),'-') ;;
+  }
+
+  dimension: challenge_blended_id {
+    type: string
+    hidden: yes
+    description: "Returns the legacy Id for a challenge if present, else GUID"
+    sql: ${TABLE}.challenge_blended_id ;;
+  }
+
+  dimension: project_id {
+    primary_key: yes
+    type: number
+    description: "Challenge ID Alias"
+    sql: ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+  }
+
+  dimension: challenge_GUID
+  {
+    label: "Challenge GUID"
+    type: string
+    description: "Challenge 36 character globally unique idenitifier appears in the URL"
+    sql: ${TABLE}.challenge_guid ;;
+    link: {
+      label: "Community Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+    link: {
+      label: "Work Manager Link"
+      url: "https://challenges.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
+  }
+
+  #---------------------------------END CHALLENGE IDS----------------------------------------#
+
   dimension: client_project_id {
     description: "Project's unique identifier."
     type: number
@@ -465,57 +522,6 @@ view: challenge {
                     ELSE 'Other'
               END ;;
   }
-
-  # ------------------------------------Challenge IDs ------------------------------- #
-  dimension: challenge_id {
-    type: number
-    description: "Challenge unique numeric legacy identifier"
-    sql: ${TABLE}.project_id ;;
-    link: {
-      label: "Challenge Link"
-      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
-  }
-
-  dimension: challenge_blended_id {
-    type: string
-    description: "Returns the legacy Id for a challenge if present, else GUID"
-    sql: ${TABLE}.challenge_blended_id ;;
-  }
-
-  dimension: project_id {
-    primary_key: yes
-    type: number
-    # hidden: true
-    description: "Challenge ID Alias"
-    sql: ${TABLE}.project_id ;;
-    link: {
-      label: "Challenge Link"
-      url: "https://www.topcoder.com/challenges/{{ challenge.project_id._value }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
-  }
-
-  dimension: challenge_GUID
-  {
-    label: "Challenge GUID"
-    type: string
-    description: "Challenge 36 character globally unique idenitifier appears in the URL"
-    sql: ${TABLE}.challenge_guid ;;
-    link: {
-      label: "Community Challenge Link"
-      url: "https://www.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
-    link: {
-      label: "Work Manager Link"
-      url: "https://challenges.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
-      icon_url: "https://topcoder.com/favicon.ico"
-    }
-  }
-
-  #---------------------------------END CHALLENGE IDS----------------------------------------#
 
   dimension_group: rating {
     type: time
