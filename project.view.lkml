@@ -478,6 +478,12 @@ view: challenge {
     }
   }
 
+  dimension: challenge_blended_id {
+    type: string
+    description: "Returns the legacy Id for a challenge if present, else GUID"
+    sql: ${TABLE}.challenge_blended_id ;;
+  }
+
   dimension: project_id {
     primary_key: yes
     type: number

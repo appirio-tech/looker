@@ -8,8 +8,8 @@ view: cost_transaction_sfdc {
 
   dimension: challenge_blended_id {
     type: string
-    description: "Challenge Unique ID"
-    sql:  NVL(${TABLE}.challenge_guid, ${TABLE}.contest_id::VARCHAR(8)) ;;
+    description: "If Legacy Id is present,display legacy Id else GUID"
+    sql: ${TABLE}.challenge_blended_id;;
   }
 
   dimension: billing_project_id {

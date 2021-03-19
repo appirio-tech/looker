@@ -1793,12 +1793,7 @@ explore: cost_transaction_sfdc {
   # in such cases
   join: challenge {
     type: left_outer
-    sql_on:
-        ${cost_transaction_sfdc.contest_id} = ${challenge.project_id}
-        OR ( ${cost_transaction_sfdc.challenge_guid} = ${challenge.challenge_GUID}
-             AND ${challenge.project_id} = -1
-        )
-        ;;
+    sql_on:${cost_transaction_sfdc.challenge_blended_id} = ${challenge.challenge_blended_id};;
     relationship: one_to_one
   }
 
