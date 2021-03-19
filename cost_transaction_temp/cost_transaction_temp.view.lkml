@@ -8,8 +8,15 @@ view: cost_transaction_sfdc {
 
   dimension: challenge_blended_id {
     type: string
+    hidden: yes
     description: "If Legacy Id is present,display legacy Id else GUID"
     sql: ${TABLE}.challenge_blended_id;;
+  }
+
+  dimension: challenge_system_id {
+    type: string
+    description:  "If Legacy Id is present,display legacy Id else GUID"
+    sql: NVL(TRIM(${TABLE}.challenge_blended_id),'-') ;;
   }
 
   dimension: billing_project_id {
