@@ -288,6 +288,11 @@ view: gig {
   dimension: topcoder_url {
     type: string
     sql: ${TABLE}.topcoder_url ;;
+    link: {
+      label: "Gig Link"
+      url: "{{ gig.topcoder_url._value }}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
   }
 
   dimension: updated_by {
@@ -313,6 +318,11 @@ view: gig {
   dimension: salesforce_url {
     type: string
     sql: ${TABLE}.salesforce_url ;;
+    link: {
+      label: "Salesforce Link"
+      url: "{{ gig.salesforce_url._value }}"
+      icon_url: "https://salesforce.com/favicon.ico"
+    }
   }
 
   dimension: connect_url {

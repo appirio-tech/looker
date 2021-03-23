@@ -226,7 +226,7 @@ view: taas_resource {
   measure: total_payments {
     type: sum
     sql: ${TABLE}.total_payments__c ;;
-    value_format: "$#.00;($#.00)"
+    value_format_name: usd
   }
 
   dimension: user_id {
@@ -238,7 +238,7 @@ view: taas_resource {
   measure: weekly_payment {
     type: sum
     sql: ${TABLE}.weekly_payment__c ;;
-    value_format: "$#.00;($#.00)"
+    value_format_name: usd
   }
 
   measure: count {
