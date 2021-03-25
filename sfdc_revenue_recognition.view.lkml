@@ -120,7 +120,7 @@ view: sfdc_revenue_recognition {
   }
 
   dimension: for_taas {
-    type: string
+    type: yesno
     sql: ${TABLE}.for_taas__c ;;
   }
 
