@@ -241,6 +241,64 @@ view: taas_resource {
     value_format_name: usd
   }
 
+  dimension: connect_project_id  {
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.connect_project_id__c ;;
+  }
+
+  dimension: connect_project_link {
+    type: string
+    sql: ${TABLE}.connect_project_link__c ;;
+  }
+
+  measure: daily_payment {
+    type: sum
+    sql: ${TABLE}.daily_payment__c ;;
+    value_format_name: usd
+  }
+
+  dimension: opportunity_name {
+    type: string
+    sql: ${TABLE}.opportunity_name__c ;;
+  }
+
+  dimension: subscription_project {
+    type: string
+    sql: ${TABLE}.subscription_project__c;;
+  }
+
+  dimension: taas_with_new_approach {
+    type: yesno
+    sql: ${TABLE}.taas_with_new_approach__c ;;
+  }
+
+  dimension: terms_signed {
+    type: string
+    sql: ${TABLE}.terms_signed__c ;;
+  }
+
+  measure: total_mismanaged_client_billing {
+    type: sum
+    sql: ${TABLE}.total_mismanaged_client_billing__c ;;
+    value_format_name: usd
+  }
+
+  measure: total_planned_client_billing {
+    type: sum
+    sql: ${TABLE}.total_planned_client_billing__c ;;
+    value_format_name: usd
+  }
+
+  dimension: verification_status__c {
+    type: string
+    sql: ${TABLE}.verification_status__c ;;
+  }
+
+  dimension: verified {
+    type: string
+    sql: ${TABLE}.verified__c;;
+  }
   measure: count {
     type: count
     drill_fields: [taas_resource_id, name]
