@@ -38,8 +38,8 @@ view: sfdc_opportunity {
 
   measure: amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount ;;
+    value_format_name: usd
   }
 
   dimension: executive_sponsor {
@@ -133,8 +133,8 @@ view: sfdc_opportunity {
 
   measure: expected_revenue {
     type: sum
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expectedrevenue ;;
+    value_format_name: usd
   }
 
   dimension: geo {
@@ -224,14 +224,14 @@ view: sfdc_opportunity {
 
   measure: amount_usd {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_usd__c ;;
+    value_format_name: usd
   }
 
   measure: amount_won {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.amount_won_usd__c ;;
+    value_format_name: usd
   }
 
   dimension: as_sold_margin {
@@ -441,8 +441,8 @@ view: sfdc_opportunity {
 
   measure: cloudspokes_billing_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.cloudspokes_billing_amount__c ;;
+    value_format_name: usd
   }
 
   dimension: commit_to_count_against {
@@ -751,40 +751,44 @@ view: sfdc_opportunity {
 
   measure: expert_community_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount__c ;;
+    value_format_name: usd
   }
 
   measure: expert_community_amount_converted {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount_converted__c ;;
+    value_format_name: usd
   }
 
   measure: expert_community_amount_original {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.expert_community_amount_original__c ;;
+    value_format_name: usd
   }
 
   dimension: fc_challenge_spend {
     type: number
     sql: ${TABLE}.fc_challenge_spend__c ;;
+    value_format_name: usd
   }
 
   dimension: fc_expert_services {
     type: number
     sql: ${TABLE}.fc_expert_services__c ;;
+    value_format_name: usd
   }
 
   dimension: fc_license_fee {
     type: number
     sql: ${TABLE}.fc_license_fee__c ;;
+    value_format_name: usd
   }
 
   dimension: fc_product_fee {
     type: number
     sql: ${TABLE}.fc_product_fee__c ;;
+    value_format_name: usd
   }
 
   dimension_group: first_forecast {
@@ -1111,8 +1115,8 @@ view: sfdc_opportunity {
 
   measure: next_qtr_amount_weighted {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.next_qtr_amount_weighted__c ;;
+    value_format_name: usd
   }
 
   dimension: next_quarter_unweighted {
@@ -1225,14 +1229,14 @@ view: sfdc_opportunity {
 
   measure: outcome_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.outcome_amount__c ;;
+    value_format_name: usd
   }
 
   measure: outcome_amount_original {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.outcome_amount_original__c ;;
+    value_format_name: usd
   }
 
   dimension: owner_s_manager_at_time_of_deal {
@@ -1272,8 +1276,8 @@ view: sfdc_opportunity {
 
   measure: partner_opportunity_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.partner_opportunity_amount__c ;;
+    value_format_name: usd
   }
 
   dimension: percent_hours_jaipur {
@@ -1504,8 +1508,8 @@ view: sfdc_opportunity {
 
   measure: subscription_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
     sql: ${TABLE}.subscription_amount__c ;;
+    value_format_name: usd
   }
 
   dimension: subscription_level {
@@ -1674,7 +1678,7 @@ view: sfdc_opportunity {
 
   measure: amount_without_wipro_services {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format_name: usd
     sql: ${TABLE}.amount_without_wipro_services__c ;;
   }
 
@@ -1774,6 +1778,7 @@ view: sfdc_opportunity {
 
   dimension: member_payment {
     type: number
+    value_format_name: usd
     sql: ${TABLE}.member_payment__c ;;
   }
 
@@ -1802,15 +1807,16 @@ view: sfdc_opportunity {
     sql: ${TABLE}.services_total__c ;;
   }
 
-  measure: fc_taas_amount {
+  measure: TAAS {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
+    description: "Sum of TaaS Product Amount in the Opportunity"
+    value_format_name: usd
     sql: ${TABLE}.fc_taas_amount__c ;;
   }
 
   measure: total_amount_including_expense {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format_name: usd
     sql: ${TABLE}.total_amount_including_expense__c ;;
   }
 
@@ -1831,7 +1837,7 @@ view: sfdc_opportunity {
 
   measure: total_invoiced_amount {
     type: sum_distinct
-    value_format: "$#,##0.00;($#,##0.00)"
+    value_format_name: usd
     sql: ${TABLE}.total_invoiced_amount_ps__c ;;
   }
 
