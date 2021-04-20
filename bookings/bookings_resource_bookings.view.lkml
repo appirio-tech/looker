@@ -4,12 +4,14 @@ view: resource_bookings {
   drill_fields: [id]
 
   dimension: id {
+    description: ""
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -24,6 +26,7 @@ view: resource_bookings {
   }
 
   dimension: created_by {
+    description: ""
     type: string
     sql: ${TABLE}.created_by ;;
   }
@@ -35,6 +38,7 @@ view: resource_bookings {
   }
 
   dimension_group: deleted {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -49,6 +53,7 @@ view: resource_bookings {
   }
 
   dimension_group: end {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -87,6 +92,7 @@ view: resource_bookings {
   }
 
   dimension_group: start {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -101,12 +107,14 @@ view: resource_bookings {
   }
 
   dimension: status {
+
     description: " Status of the booking"
     type: string
     sql: ${TABLE}.status ;;
   }
 
   dimension_group: updated {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -121,6 +129,7 @@ view: resource_bookings {
   }
 
   dimension: updated_by {
+    description: ""
     type: string
     sql: ${TABLE}.updated_by ;;
   }

@@ -11,6 +11,7 @@ view: job_candidates {
   }
 
   dimension_group: created {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -25,11 +26,13 @@ view: job_candidates {
   }
 
   dimension: created_by {
+    description: ""
     type: string
     sql: ${TABLE}.created_by ;;
   }
 
   dimension_group: deleted {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -68,6 +71,7 @@ view: job_candidates {
   }
 
   dimension_group: updated {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -82,6 +86,7 @@ view: job_candidates {
   }
 
   dimension: updated_by {
+    description: ""
     type: string
     sql: ${TABLE}.updated_by ;;
   }

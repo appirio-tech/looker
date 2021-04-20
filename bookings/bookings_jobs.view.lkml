@@ -11,6 +11,7 @@ view: jobs {
   }
 
   dimension_group: created {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -31,6 +32,7 @@ view: jobs {
   }
 
   dimension_group: deleted {
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -114,6 +116,7 @@ view: jobs {
   }
 
   dimension_group: updated {
+    description: ""
     type: time
     timeframes: [
       raw,
