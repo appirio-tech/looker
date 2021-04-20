@@ -1,4 +1,5 @@
-view: bookings_resource_bookings {
+view: resource_bookings {
+
   sql_table_name: public.bookings_resource_bookings ;;
   drill_fields: [id]
 
@@ -28,6 +29,7 @@ view: bookings_resource_bookings {
   }
 
   dimension: customer_rate {
+    description: "Rate decided by the customer"
     type: number
     sql: ${TABLE}.customer_rate ;;
   }
@@ -61,21 +63,25 @@ view: bookings_resource_bookings {
   }
 
   dimension: job_id {
+    description: " id of the job"
     type: string
     sql: ${TABLE}.job_id ;;
   }
 
   dimension: member_rate {
+    description: " Rate for the member"
     type: number
     sql: ${TABLE}.member_rate ;;
   }
 
   dimension: project_id {
+    description: " Project id assocaited with the job "
     type: number
     sql: ${TABLE}.project_id ;;
   }
 
   dimension: rate_type {
+    description: "rate type of the booking"
     type: string
     sql: ${TABLE}.rate_type ;;
   }
@@ -95,6 +101,7 @@ view: bookings_resource_bookings {
   }
 
   dimension: status {
+    description: " Status of the booking"
     type: string
     sql: ${TABLE}.status ;;
   }
@@ -119,6 +126,7 @@ view: bookings_resource_bookings {
   }
 
   dimension: user_id {
+    description: "user id"
     type: string
     sql: ${TABLE}.user_id ;;
   }

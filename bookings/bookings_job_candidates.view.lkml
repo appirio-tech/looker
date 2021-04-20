@@ -1,9 +1,11 @@
-view: bookings_job_candidates {
+view: job_candidates {
+
   sql_table_name: public.bookings_job_candidates ;;
   drill_fields: [id]
 
   dimension: id {
     primary_key: yes
+    description: "unique identifier"
     type: string
     sql: ${TABLE}.id ;;
   }
@@ -42,21 +44,25 @@ view: bookings_job_candidates {
   }
 
   dimension: external_id {
+    description: " Externam id mapped to the candidates"
     type: string
     sql: ${TABLE}.external_id ;;
   }
 
   dimension: job_id {
+    description: "id of the job"
     type: string
     sql: ${TABLE}.job_id ;;
   }
 
   dimension: resume {
+    description: " resume of the candidate"
     type: string
     sql: ${TABLE}.resume ;;
   }
 
   dimension: status {
+    description: " Status of the candidate"
     type: string
     sql: ${TABLE}.status ;;
   }
@@ -81,6 +87,7 @@ view: bookings_job_candidates {
   }
 
   dimension: user_id {
+    description: " user id of the candidate"
     type: string
     sql: ${TABLE}.user_id ;;
   }

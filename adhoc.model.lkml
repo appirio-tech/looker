@@ -230,21 +230,3 @@ explore: wipro_payment_validation {
 explore: invoice_staging{
 
 }
-
-# 20th April 2021 adding explore for booking
-
-explore :  bookings_jobs {
-
-  join: bookings_job_candidates {
-    type: left_outer
-    sql_on: ${bookings_jobs.id} = ${bookings_job_candidates.job_id}   ;;
-    relationship: one_to_many
-  }
-
-  join: bookings_resource_bookings {
-    type: left_outer
-    sql_on:  ${bookings_jobs.id} = ${bookings_resource_bookings.job_id};;
-    relationship: one_to_many
-  }
-
-}

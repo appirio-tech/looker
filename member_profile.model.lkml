@@ -2,6 +2,7 @@ connection: "prod_-_topcoder_redshift"
 
 include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include : "/bookings/*.view.lkml"            # include all views from booking folder
 
 fiscal_month_offset: -9
 
@@ -415,3 +416,20 @@ explore: taas_payment {
 explore: review {}
 
 explore: review_summation {}
+
+# 20th April 2021 adding explore for booking
+explore :  jobs {
+
+  join: job_candidates {
+    type: left_outer
+    sql_on: ${jobs.id} = ${job_candidates.job_id}   ;;
+    relationship: one_to_many
+  }
+
+  join: resource_bookings {
+    type: left_outer
+    sql_on:  ${jobs.id} = ${resource_bookings.job_id};;
+    relationship: one_to_many
+  }
+
+}
