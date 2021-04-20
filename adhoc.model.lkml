@@ -16,6 +16,8 @@ include : "/bookings/*.view.lkml"
 #for fiscal year
 fiscal_month_offset: -9
 
+explore: copilot_feedback_score {}
+
 explore: groupmanager_batch_record {}
 
 explore : test_cust {}
