@@ -11,6 +11,7 @@ include: "*.view.lkml"                       # include all views in this project
 #added on 25th Feb to include lkml files from invoice folder
 include: "/invoice/*.view.lkml"
 include: "/cost_transaction_temp/*.view.lkml"
+include : "/bookings/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
@@ -18,6 +19,20 @@ fiscal_month_offset: -9
 explore: groupmanager_batch_record {}
 
 explore : test_cust {}
+
+explore: dynamo_hours {
+  description: "Identify Effort Hours Lost"
+  join: challenge {
+    type: inner
+    sql_on: ${dynamo_hours.challenge_guid} = ${challenge.challenge_GUID} ;;
+    relationship: many_to_one
+  }
+  join: client_project_dim {
+    type: inner
+    sql_on: ${challenge.client_project_id} = ${client_project_dim.billing_account_id} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: groupmanager_connect {}
 
@@ -213,5 +228,23 @@ explore: wipro_payment_validation {
 
 #added invoice staging explore to topcoder main model on 25th Feb 2021
 explore: invoice_staging{
+
+}
+
+# 20th April 2021 adding explore for booking
+
+explore :  bookings_jobs {
+
+  join: bookings_job_candidates {
+    type: left_outer
+    sql_on: ${bookings_jobs.id} = ${bookings_job_candidates.job_id}   ;;
+    relationship: one_to_many
+  }
+
+  join: bookings_resource_bookings {
+    type: left_outer
+    sql_on:  ${bookings_jobs.id} = ${bookings_resource_bookings.job_id};;
+    relationship: one_to_many
+  }
 
 }
