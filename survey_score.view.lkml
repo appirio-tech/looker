@@ -13,8 +13,8 @@ view: copilot_feedback_score {
     sql: ${TABLE}.challenge_id ;;
   }
 
-  dimension: challenge_rating {
-    type: number
+  measure: challenge_rating {
+    type: average
     sql: ${TABLE}.challenge_rating ;;
   }
 
@@ -23,8 +23,8 @@ view: copilot_feedback_score {
     sql: ${TABLE}.copilot ;;
   }
 
-  dimension: copilot_rating {
-    type: number
+  measure: copilot_rating {
+    type: average
     sql: ${TABLE}.copilot_rating ;;
   }
 
@@ -56,18 +56,18 @@ view: copilot_feedback_score {
     sql: ${TABLE}.date_modified ;;
   }
 
-  dimension: forum_rating {
-    type: number
+  measure: forum_rating {
+    type: average
     sql: ${TABLE}.forum_rating ;;
   }
 
-  dimension: prize {
-    type: string
+  measure: prize {
+    type: average
     sql: ${TABLE}.prize ;;
   }
 
-  dimension: review_score {
-    type: number
+  measure: review_score {
+    type: average
     sql: ${TABLE}.review_score ;;
   }
 
@@ -76,8 +76,8 @@ view: copilot_feedback_score {
     sql: ${TABLE}.scope ;;
   }
 
-  dimension: spec_rating {
-    type: number
+  measure: spec_rating {
+    type: average
     sql: ${TABLE}.spec_rating ;;
   }
 
