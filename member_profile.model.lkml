@@ -420,16 +420,37 @@ explore: review_summation {}
 # 20th April 2021 adding explore for booking
 explore :  jobs {
 
+  sql_always_where: ${deleted_date} IS NULL ;; #exclude deleted records
+
+  join: connect_project {
+    type: inner
+    sql_on: ${jobs.project_id} = ${connect_project.id} ;;
+    relationship: one_to_one
+  }
+
+  join: gig {
+    type: left_outer
+    sql_on: ${jobs.external_id} = ${gig.slug} ;;
+    relationship: one_to_one
+  }
+
   join: job_candidates {
     type: left_outer
     sql_on: ${jobs.id} = ${job_candidates.job_id}   ;;
     relationship: one_to_many
   }
 
+  join: candidate {
+    type: inner
+    sql_on: ${candidate.slug} = ${job_candidates.external_id} ;;
+    relationship: one_to_one
+  }
+
   join: resource_bookings {
     type: left_outer
     sql_on:  ${jobs.id} = ${resource_bookings.job_id};;
     relationship: one_to_many
+    sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
   }
 
 }

@@ -39,6 +39,7 @@ view: resource_bookings {
 
   dimension_group: deleted {
     description: ""
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -53,7 +54,7 @@ view: resource_bookings {
   }
 
   dimension_group: end {
-    description: ""
+    description: "End Date for Resource booking"
     type: time
     timeframes: [
       raw,
@@ -69,6 +70,7 @@ view: resource_bookings {
 
   dimension: job_id {
     description: " id of the job"
+    hidden: yes
     type: string
     sql: ${TABLE}.job_id ;;
   }
@@ -80,7 +82,8 @@ view: resource_bookings {
   }
 
   dimension: project_id {
-    description: " Project id assocaited with the job "
+    description: " Connect Project id associated with the job "
+    hidden: yes
     type: number
     sql: ${TABLE}.project_id ;;
   }
@@ -92,7 +95,7 @@ view: resource_bookings {
   }
 
   dimension_group: start {
-    description: ""
+    description: "Start Date for the Resource"
     type: time
     timeframes: [
       raw,
