@@ -6,6 +6,11 @@ view: client_project_dim {
     sql: ${TABLE}.billing_account_code ;;
   }
 
+  dimension: billable {
+    type: yesno
+    sql: ${TABLE}.billable ;;
+  }
+
   dimension: has_subscription {
     type: number
     description: "Is the Billing Account a part of the subscription ? (1 is yes)"
