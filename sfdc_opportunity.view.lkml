@@ -1856,6 +1856,68 @@ view: sfdc_opportunity {
     sql: ${TABLE}.wipro_services__c ;;
   }
 
+  dimension: attributed_finished_sequences {
+    type: string
+    sql: ${TABLE}.outreach_attributed_finished_sequences__c ;;
+  }
+
+  dimension: customer_success_manager_name {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.customer_success_manager_name__c ;;
+  }
+
+  dimension: customer_success_segment {
+    type: string
+    sql: ${TABLE}.customer_success_segment__c ;;
+  }
+
+  measure: data_science_budget {
+    type: sum_distinct
+    value_format_name: usd
+    sql: ${TABLE}.data_science_budget__c ;;
+  }
+
+  dimension: import_to_outreach {
+    type: yesno
+    sql: ${TABLE}.import_to_outreach__c ;;
+  }
+
+  dimension: last_touch_contact {
+    type: string
+    sql: ${TABLE}.outreach_last_touch_contact__c ;;
+  }
+
+  dimension: last_touch_sequence {
+    type: string
+    sql: ${TABLE}.outreach_last_touch_sequence__c ;;
+  }
+
+  dimension: reporting_sector {
+    type: string
+    sql: ${TABLE}.reporting_sector__c ;;
+  }
+
+  dimension: reporting_smu {
+    type: string
+    sql: ${TABLE}.reporting_smu__c ;;
+  }
+
+  dimension: sequence_attributed {
+    type: string
+    sql: ${TABLE}.outreach_sequence_attributed__c ;;
+  }
+
+  dimension: topcoder_customer_tier {
+    type: string
+    sql: ${TABLE}.topcoder_customer_tier__c ;;
+  }
+
+  dimension: wipro_entity {
+    type: string
+    sql: ${TABLE}.wipro_entity__c ;;
+  }
+
   measure: count {
     type: count
     description: "Total Record Count"
