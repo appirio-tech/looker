@@ -1825,3 +1825,16 @@ explore: cost_transaction_sfdc {
   }
 
 }
+
+#addin resource view on 7th May 2021
+explore:challenge_resources {
+  label: "Resources"
+
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge.challenge_GUID} = ${challenge_resources.challenge_id} ;;
+    relationship: one_to_many
+  }
+
+}
