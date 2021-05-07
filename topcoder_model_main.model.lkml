@@ -643,6 +643,14 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  #adding resource on 7th May 2021
+  join: challenge_resources {
+    view_label: "Resources"
+    type: left_outer
+    sql_on: ${challenge.challenge_GUID} = ${challenge_resources.challenge_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: project_result {
@@ -1822,19 +1830,6 @@ explore: cost_transaction_sfdc {
     type: left_outer
     sql_on: ${cost_transaction_sfdc.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: one_to_one
-  }
-
-}
-
-#addin resource view on 7th May 2021
-explore:challenge_resources {
-  label: "Resources"
-
-
-  join: challenge {
-    type: left_outer
-    sql_on: ${challenge.challenge_GUID} = ${challenge_resources.challenge_id} ;;
-    relationship: one_to_many
   }
 
 }
