@@ -232,3 +232,15 @@ explore: wipro_payment_validation {
 explore: invoice_staging{
 
 }
+
+#explore for challenge resources added on 7th May 2021
+
+explore: challenge_resources {
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge.challenge_GUID} = ${challenge_resources.challenge_id} ;;
+    relationship: one_to_many
+  }
+
+}
