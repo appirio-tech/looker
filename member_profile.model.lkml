@@ -357,6 +357,13 @@ explore: gig {
     relationship: one_to_one
   }
 
+  join: member_profile_advanced {
+    view_label: "Connect Project Creator"
+    type: left_outer
+    sql_on: ${connect_project.created_by} = ${member_profile_advanced.user_id} ;;
+    relationship: one_to_one
+  }
+
   join: taas_resource {
     type: full_outer
     sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
