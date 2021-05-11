@@ -42,6 +42,7 @@ view: member_submission {
 
   dimension: submission_id {
     description: "GUID for submission"
+    primary_key: yes
     type: string
     sql: ${TABLE}.submission_id ;;
   }
@@ -96,6 +97,12 @@ view: member_submission {
   dimension: user_id {
     type: number
     sql: ${TABLE}.user_id ;;
+  }
+
+  measure: distinct_user_count {
+    type: count_distinct
+    sql:  ${user_id};;
+    description: "Find out Distinct Users who submitted"
   }
 
   measure: count {

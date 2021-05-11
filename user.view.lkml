@@ -27,6 +27,22 @@ view: user {
 
   }
 
+  #---- Regular Expression to find Topgear email domains ----------------#
+  dimension: user_segment {
+    description: "Segregate user on basis of their email Ids"
+    case: {
+      when: {
+        sql: regexp_instr(${TABLE}.email, '@wipro.com|@appirio.com|@womensbusinesspark.com') > 0;;
+        label: "Topgear"
+      }
+      when: {
+        sql: CHARINDEX('@topcoder.com', ${TABLE}.email) > 0 ;;
+        label: "Employee"
+      }
+      else: "Community"
+    }
+  }
+
   dimension: address2 {
     type: string
     sql: ${TABLE}.address2 ;;
@@ -180,6 +196,38 @@ view: user {
     sql: ${TABLE}.last_site_hit_date ;;
   }
 
+  #----------------------Start Membership Tier definition -----------------------------------#
+
+  dimension: tenure_tier_months {
+    type: tier
+    tiers: [0, 1, 3, 6, 12, 24, 36, 48, 60, 72, 84, 96, 120]
+    description: "Bucket the Membership Months into tiers"
+    style: relational # the default value, could be excluded
+    sql: ${tenure_months} ;;
+    value_format: "0 \"Months\""
+  }
+
+  dimension: tenure_months {
+    type: number
+    description: "User has been member since how many months i.e. (TODAY - Member Since)"
+    sql: DATEDIFF('months', ${TABLE}.member_since,GETDATE()) ;;
+  }
+
+  dimension: tenure_tier_days {
+    type: tier
+    tiers: [0, 30, 60, 90, 180, 365]
+    description: "Bucket the Membership Days into tiers"
+    style: relational # the default value, could be excluded
+    sql: ${tenure_days} ;;
+    value_format: "0 \"Days\""
+  }
+
+  dimension: tenure_days {
+    type: number
+    description: "User has been member since how many days i.e. (TODAY - Member Since)"
+    sql: DATEDIFF('days', ${TABLE}.member_since,GETDATE()) ;;
+  }
+
   dimension_group: member_since {
     type: time
     timeframes: [
@@ -196,6 +244,8 @@ view: user {
     ]
     sql: ${TABLE}.member_since ;;
   }
+
+  #----------------------End Membership Tier definition -----------------------------------#
 
   dimension: middle_name {
     type: string

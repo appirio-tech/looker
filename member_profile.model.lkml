@@ -98,6 +98,12 @@ explore: member_profile_all {
     relationship: one_to_many
   }
 
+  join: member_submission {
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_submission.user_id};;
+    relationship: one_to_many
+  }
+
   join: member_stats_history {
     type: left_outer
     sql_on: ${member_profile_all.user_id} = ${member_stats_history.user_id} ;;
@@ -163,8 +169,8 @@ explore: member_profile_all {
   join: computed_skills {
     relationship: many_to_many
     sql_on: ${member_skill.user_id}= ${computed_skills.user_id} ;;
-
   }
+
 
   join: member_service_provider{
     type: left_outer
