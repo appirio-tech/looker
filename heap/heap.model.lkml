@@ -213,3 +213,5 @@ explore: gigs_apply_button_application_page {
     relationship: many_to_one
   }
 }
+
+explore: heap_profile_events_success_login {}
