@@ -583,6 +583,7 @@ view: heap_profile_events_success_login {
 
   measure: count_distinct_users {
     type: count_distinct
+    sql: ${nickname} ;;
     drill_fields: [detail*]
   }
 
