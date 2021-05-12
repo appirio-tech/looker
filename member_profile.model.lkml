@@ -98,6 +98,12 @@ explore: member_profile_all {
     relationship: one_to_many
   }
 
+  join: member_submission {
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${member_submission.user_id};;
+    relationship: one_to_many
+  }
+
   join: member_stats_history {
     type: left_outer
     sql_on: ${member_profile_all.user_id} = ${member_stats_history.user_id} ;;
@@ -163,8 +169,8 @@ explore: member_profile_all {
   join: computed_skills {
     relationship: many_to_many
     sql_on: ${member_skill.user_id}= ${computed_skills.user_id} ;;
-
   }
+
 
   join: member_service_provider{
     type: left_outer
@@ -357,6 +363,13 @@ explore: gig {
     relationship: one_to_one
   }
 
+  join: member_profile_advanced {
+    view_label: "Connect Project Creator"
+    type: left_outer
+    sql_on: ${connect_project.created_by} = ${member_profile_advanced.user_id} ;;
+    relationship: one_to_one
+  }
+
   join: taas_resource {
     type: full_outer
     sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
@@ -420,16 +433,37 @@ explore: review_summation {}
 # 20th April 2021 adding explore for booking
 explore :  jobs {
 
+  sql_always_where: ${deleted_date} IS NULL ;; #exclude deleted records
+
+  join: connect_project {
+    type: inner
+    sql_on: ${jobs.project_id} = ${connect_project.id} ;;
+    relationship: one_to_one
+  }
+
+  join: gig {
+    type: left_outer
+    sql_on: ${jobs.external_id} = ${gig.slug} ;;
+    relationship: one_to_one
+  }
+
   join: job_candidates {
     type: left_outer
     sql_on: ${jobs.id} = ${job_candidates.job_id}   ;;
     relationship: one_to_many
   }
 
+  join: candidate {
+    type: inner
+    sql_on: ${candidate.slug} = ${job_candidates.external_id} ;;
+    relationship: one_to_one
+  }
+
   join: resource_bookings {
     type: left_outer
     sql_on:  ${jobs.id} = ${resource_bookings.job_id};;
     relationship: one_to_many
+    sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
   }
 
 }

@@ -643,6 +643,14 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  #adding resource on 7th May 2021
+  join: challenge_resources {
+    view_label: "Resources"
+    type: left_outer
+    sql_on: ${challenge.challenge_GUID} = ${challenge_resources.challenge_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: project_result {

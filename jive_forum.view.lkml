@@ -67,6 +67,7 @@ view: jive_forum {
     sql: ${TABLE}.category_id ;;
   }
 
+
   dimension: category_is_deleted {
     type: yesno
     sql: ${TABLE}.category_is_deleted ;;
@@ -153,6 +154,11 @@ view: jive_forum {
   dimension: thread_id {
     type: number
     sql: ${TABLE}.thread_id ;;
+    link: {
+      label: "View In Jive Forums"
+      url: "https://apps.topcoder.com/forums/?module=Thread&threadID={{jive_forum.thread_id._value}}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
   }
 
   dimension: user_id {

@@ -297,6 +297,8 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'utm', 'code') ;;
   }
 
+  #-----------------------------------Topgear specific fields------------------------
+
   dimension: cost_center {
     type: string
     description: "Used by Topgear team, cost center allocated to the project"
@@ -311,6 +313,21 @@ view: connect_project {
     group_label: "Topgear"
   }
 
+  dimension: practice {
+    type: string
+    description: "Used by Topgear team, Practice associated with the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'practice') ;;
+    group_label: "Topgear"
+  }
+
+  dimension: sub_practice {
+    type: string
+    description: "Used by Topgear team, Sub Practice associated with the project"
+    sql: replace(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_practice'),'&amp;','&') ;;
+    group_label: "Topgear"
+  }
+
+
   dimension: group_customer_name {
     type: string
     description: "Used by Topgear team, Customer group name to which project belongs"
@@ -324,8 +341,6 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'du') ;;
     group_label: "Topgear"
   }
-
-  # Added on 23 Nov
 
   dimension: project_classification_code {
     type: string
@@ -361,6 +376,36 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'part_of_ng3') ;;
     group_label: "Topgear"
   }
+
+  dimension: sub_execution_hub {
+    type: string
+    description: "Used by Topgear team, Sub Execution Hub  of the project"
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_execution_hub')),'&amp;','&') ;;
+    group_label: "Topgear"
+  }
+
+  dimension: smu {
+    type: string
+    description: "Used by Topgear team, SMU of the project"
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'smu')),'&amp;','&') ;;
+    group_label: "Topgear"
+  }
+
+  dimension: sector {
+    type: string
+    description: "Used by Topgear team, Sector  of the project"
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sector')),'&amp;','&') ;;
+    group_label: "Topgear"
+  }
+
+  dimension: execution_hub {
+    type: string
+    description: "Used by Topgear team, Execution Hub  of the project"
+    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'execution_hub')),'&amp;','&') ;;
+    group_label: "Topgear"
+  }
+
+  #-------------------------------------- End -------------------------------------#
 
   dimension: product {
     type: string
@@ -409,37 +454,6 @@ view: connect_project {
     sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'appDefinition', 'designGoal') ;;
     group_label: "Scope"
   }
-
-  #added on 25th Jan 2021 EXECUTION_HUB, SUB_EXECUTION_HUB, SMU, SECTOR
-
-  dimension: execution_hub {
-    type: string
-    description: "Used by Topgear team, Execution Hub  of the project"
-    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'execution_hub')),'&amp;','&') ;;
-    group_label: "Topgear"
-  }
-
-  dimension: sub_execution_hub {
-    type: string
-    description: "Used by Topgear team, Sub Execution Hub  of the project"
-    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sub_execution_hub')),'&amp;','&') ;;
-    group_label: "Topgear"
-  }
-
-  dimension: smu {
-    type: string
-    description: "Used by Topgear team, SMU of the project"
-    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'smu')),'&amp;','&') ;;
-    group_label: "Topgear"
-  }
-
-  dimension: sector {
-    type: string
-    description: "Used by Topgear team, Sector  of the project"
-    sql: replace((json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'sector')),'&amp;','&') ;;
-    group_label: "Topgear"
-  }
-
 
 # added on 20th Aug numberscreen , devicetype , ostype , deliverables
 

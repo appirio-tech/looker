@@ -1,7 +1,8 @@
 view: jobs {
 
   sql_table_name: public.bookings_jobs ;;
-  drill_fields: [id]
+  drill_fields: [id, title,status, duration,num_positions, rate_type, resource_type,
+        created_date, updated_date ]
 
   dimension: id {
     primary_key: yes
@@ -32,7 +33,8 @@ view: jobs {
   }
 
   dimension_group: deleted {
-    description: ""
+    description: "If the record is deleted, this will have a value"
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -54,6 +56,7 @@ view: jobs {
 
   dimension: external_id {
     description: "External id mapped to the job id"
+    hidden: yes
     type: string
     sql: ${TABLE}.external_id ;;
   }
@@ -65,13 +68,14 @@ view: jobs {
   }
 
   dimension: num_positions {
-    description: "Positions available on the job"
+    description: "Count of Positions available"
     type: number
     sql: ${TABLE}.num_positions ;;
   }
 
   dimension: project_id {
-    description: "Project mapped to the job "
+    description: "Connect Project ID"
+    hidden: yes
     type: number
     sql: ${TABLE}.project_id ;;
   }
@@ -137,7 +141,6 @@ view: jobs {
   }
 
   dimension: workload {
-    description: "Workload"
     type: string
     sql: ${TABLE}.workload ;;
   }

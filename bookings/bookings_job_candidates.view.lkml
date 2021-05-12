@@ -11,7 +11,6 @@ view: job_candidates {
   }
 
   dimension_group: created {
-    description: ""
     type: time
     timeframes: [
       raw,
@@ -32,8 +31,9 @@ view: job_candidates {
   }
 
   dimension_group: deleted {
-    description: ""
+    description: "Deleted Date will be populated when record is deleted"
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -47,19 +47,20 @@ view: job_candidates {
   }
 
   dimension: external_id {
-    description: " Externam id mapped to the candidates"
+    description: " Recruit CRM Candidate Slug"
     type: string
+    hidden: yes
     sql: ${TABLE}.external_id ;;
   }
 
   dimension: job_id {
-    description: "id of the job"
     type: string
+    hidden: yes
     sql: ${TABLE}.job_id ;;
   }
 
   dimension: resume {
-    description: " resume of the candidate"
+    description: "Candidate Resume Link in Recruit CRM"
     type: string
     sql: ${TABLE}.resume ;;
   }
@@ -71,7 +72,6 @@ view: job_candidates {
   }
 
   dimension_group: updated {
-    description: ""
     type: time
     timeframes: [
       raw,
@@ -86,7 +86,7 @@ view: job_candidates {
   }
 
   dimension: updated_by {
-    description: ""
+    description: "User Id of the user last updating the record"
     type: string
     sql: ${TABLE}.updated_by ;;
   }
