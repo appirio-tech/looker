@@ -28,6 +28,8 @@ datagroup: tco_leaderboard_cache {
 
 # include all the views
 include: "*.view"
+include: "/loader/*.view.lkml"
+
 
 # include all the dashboards
 # include: "*.dashboard"
@@ -42,8 +44,8 @@ case_sensitive: no
 fiscal_month_offset: -9
 
 explore: member_activity_tenure {}
-
 explore: salesforce_segment_leads {}
+explore: loader_events {}
 
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
