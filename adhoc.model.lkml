@@ -16,11 +16,34 @@ include : "/bookings/*.view.lkml"
 #for fiscal year
 fiscal_month_offset: -9
 
+
+
 explore: copilot_feedback_score {}
 
 explore: groupmanager_batch_record {}
 
 explore : test_cust {}
+
+explore: payment {
+  label: "Missing Cost Transaction Payments"
+  description: "Identify Payments that are not present in Cost Transactions"
+  join: challenge {
+    type: inner
+    sql_on: ${payment.challenge_blended_id} = ${challenge.challenge_blended_id} ;;
+    relationship: one_to_many
+  }
+  join: client_project_dim {
+    view_label: "Billing Account"
+    type: left_outer
+    sql_on: ${challenge.client_project_id} = ${client_project_dim.client_project_id} ;;
+    relationship: many_to_one
+  }
+  join: cost_transaction {
+    type: left_outer
+    sql_on: ${challenge.challenge_id} = ${cost_transaction.contest_id} ;;
+    relationship: one_to_many
+  }
+}
 
 explore: dynamo_hours {
   description: "Identify Effort Hours Lost"
