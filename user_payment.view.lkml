@@ -23,6 +23,12 @@ view: user_payment {
     sql: ${TABLE}.due_calendar_id ;;
   }
 
+  dimension: payment_method_desc {
+    type: string
+    description: "Payment method used to withdraw this payment"
+    sql:  ${TABLE}.payment_method_desc ;;
+  }
+
   dimension: paid_calendar_id {
     type: number
     sql: ${TABLE}.paid_calendar_id ;;
