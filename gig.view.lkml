@@ -50,8 +50,9 @@ view: gig {
       job.candidates_url as candidates_url,
       job.fulfillment_confidence as fulfillment_confidence,
       job.client_rate_type as client_rate_type,
-      job.account_executive as account_executive
-
+      job.account_executive as account_executive,
+      job.completion_date as completion_date,
+      job.completion_reason as completion_reason
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
        ;;
@@ -220,6 +221,28 @@ view: gig {
     type: number
     sql: ${TABLE}.minimum_experience ;;
   }
+
+  dimension_group: completion {
+   type: time
+   description: "When was the gig marked complete ?"
+   timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.completion_date ;;
+  }
+
+  dimension: completion_reason {
+    type: string
+    description: "Reason for marking the Gig as completed.A completed gig is not being worked as its either fulfilled or dropped"
+    sql: ${TABLE}.completion_reason ;;
+  }
+
 
   dimension: job_name {
     type: string
@@ -407,7 +430,9 @@ view: gig {
       candidates_url,
       fulfillment_confidence,
       client_rate_type,
-      account_executive
+      account_executive,
+      completion_date,
+      completion_reason
 
     ]
   }
