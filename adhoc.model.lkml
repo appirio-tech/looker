@@ -45,19 +45,7 @@ explore: payment {
   }
 }
 
-explore: dynamo_hours {
-  description: "Identify Effort Hours Lost"
-  join: challenge {
-    type: inner
-    sql_on: ${dynamo_hours.challenge_guid} = ${challenge.challenge_GUID} ;;
-    relationship: many_to_one
-  }
-  join: client_project_dim {
-    type: inner
-    sql_on: ${challenge.client_project_id} = ${client_project_dim.billing_account_id} ;;
-    relationship: many_to_one
-  }
-}
+
 
 explore: groupmanager_connect {}
 
