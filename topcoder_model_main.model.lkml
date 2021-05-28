@@ -357,6 +357,20 @@ explore: cost_transaction {
     sql_on: ${cost_transaction.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: many_to_one
   }
+
+  #added on 28th May 2021
+  join: user_payment {
+    type: inner
+    sql_on: ${cost_transaction.payment_id} = ${user_payment.payment_id} ;;
+    relationship: one_to_many
+  }
+
+  join: payee {
+    from: user
+    type: inner
+    sql_on: ${user_payment.user_id} = ${payee.coder_id} ;;
+    relationship: many_to_many
+  }
 }
 
 explore: consulting_time_and_material {
