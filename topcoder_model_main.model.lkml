@@ -362,14 +362,14 @@ explore: cost_transaction {
   join: user_payment {
     type: inner
     sql_on: ${cost_transaction.payment_id} = ${user_payment.payment_id} ;;
-    relationship: one_to_many
+    relationship: one_to_one
   }
 
   join: payee {
     from: user
     type: inner
     sql_on: ${user_payment.user_id} = ${payee.coder_id} ;;
-    relationship: many_to_many
+    relationship: one_to_one
   }
 }
 
