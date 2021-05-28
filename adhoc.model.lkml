@@ -40,7 +40,7 @@ explore: payment {
   }
   join: cost_transaction {
     type: left_outer
-    sql_on: ${challenge.challenge_id} = ${cost_transaction.contest_id} ;;
+    sql_on: ${challenge.challenge_blended_id} = ${cost_transaction.challenge_blended_id} ;;
     relationship: one_to_many
   }
 }

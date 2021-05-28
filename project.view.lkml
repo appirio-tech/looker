@@ -752,6 +752,13 @@ view: challenge {
     drill_fields: [detail*]
   }
 
+  #count distinct blended id , added on 28th May 2021
+  measure: count_blended_challenge_id {
+    type: count_distinct
+    description: "Count unique challenge based on blended Id"
+    sql: ${challenge_blended_id} ;;
+  }
+
  measure: count_launched {
     type: sum
     description: "Total no. of challenges launched (active)"

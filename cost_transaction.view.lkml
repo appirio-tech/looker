@@ -292,6 +292,13 @@ view: cost_transaction {
     sql: ${TABLE}.contest_id ;;
   }
 
+  #count distinct blended id , added on 28th May 2021
+  measure: count_blended_challenge_id {
+    label: "Count unique challenge based on blended Id"
+    type: count_distinct
+    sql:  ${TABLE}.challenge_blended_id;;
+  }
+
   measure: count_jira_tasks {
     type: count_distinct
     sql: ${TABLE}.reference_id ;;
