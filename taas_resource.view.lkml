@@ -299,6 +299,12 @@ view: taas_resource {
     type: string
     sql: ${TABLE}.verified__c;;
   }
+
+  dimension: job_candidate_id {
+    type: string
+    sql: ${TABLE}.job_candidate_id__c ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [taas_resource_id, name]
