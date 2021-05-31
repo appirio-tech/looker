@@ -273,12 +273,7 @@ view: connect_project {
     sql: ${TABLE}.version ;;
   }
 
-  dimension: wbs_code {
-    type: string
-    description: "Used by Topgear team, WBS code of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
-    group_label: "Topgear"
-  }
+
 
   dimension: business_unit {
     type: string
@@ -298,6 +293,13 @@ view: connect_project {
   }
 
   #-----------------------------------Topgear specific fields------------------------
+
+  dimension: wbs_code {
+    type: string
+    description: "Used by Topgear team, WBS code of the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'wbs_code') ;;
+    group_label: "Topgear"
+  }
 
   dimension: cost_center {
     type: string
@@ -331,7 +333,7 @@ view: connect_project {
   dimension: group_customer_name {
     type: string
     description: "Used by Topgear team, Customer group name to which project belongs"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'group_customer_name') ;;
+    sql: replace(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'group_customer_name'),'&amp;','&');;
     group_label: "Topgear"
   }
 
