@@ -6,6 +6,7 @@ view: taas_resource {
   dimension: taas_resource_id {
     primary_key: yes
     type: string
+    description: "Salesforce Primary Key"
     sql: ${TABLE}.id ;;
   }
 
@@ -83,16 +84,19 @@ view: taas_resource {
 
   dimension: client_poc {
     type: string
+    description: "Client Point of Contact Name"
     sql: ${TABLE}.client_poc__c ;;
   }
 
   dimension: client_poc_email {
     type: string
+    description: "Client Point of Contact Email"
     sql: ${TABLE}.client_poc_email__c ;;
   }
 
   dimension: comments {
     type: string
+    description: "Additional Internal Comments for the Resource"
     sql: ${TABLE}.comments__c ;;
   }
 
@@ -143,6 +147,7 @@ view: taas_resource {
 
   dimension: group_name {
     type: string
+    description: "Group to which the payment task should be assigned, used for Reporting"
     sql: ${TABLE}.group_name__c ;;
   }
 
@@ -237,6 +242,7 @@ view: taas_resource {
 
   measure: weekly_payment {
     type: sum
+    description: "Amount that is being paid per week"
     sql: ${TABLE}.weekly_payment__c ;;
     value_format_name: usd
   }
@@ -302,6 +308,7 @@ view: taas_resource {
 
   dimension: job_candidate_id {
     type: string
+    description: "Recruit CRM Key Combination of Candidate ID and Job ID"
     sql: ${TABLE}.job_candidate_id__c ;;
   }
 

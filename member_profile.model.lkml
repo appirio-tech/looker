@@ -372,7 +372,7 @@ explore: gig {
 
   join: taas_resource {
     type: full_outer
-    sql_on: ${candidate.handle} = ${taas_resource.resource_handle} ;;
+    sql_on: ${hiring_stage.job_candidate_id} = ${taas_resource.job_candidate_id} ;;
     relationship: one_to_one
   }
 
