@@ -322,6 +322,19 @@ explore: member_submission {
     relationship: many_to_many
   }
 
+  #added on 7th Junw 2021
+  join: review {
+    type: left_outer
+    sql_on: ${member_submission.legacy_submission_id} = ${review.submission_id} ;;
+    relationship: one_to_many
+  }
+
+  join: review_summation {
+    type: left_outer
+    sql_on: ${member_submission.legacy_submission_id} = ${review_summation.submission_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: gig_skills_requested {}
@@ -426,9 +439,10 @@ explore: taas_payment {
 
 }
 
-explore: review {}
+#commented out the explore as the same has been moved to member_submission explore
+#explore: review {}
 
-explore: review_summation {}
+#explore: review_summation {}
 
 # 20th April 2021 adding explore for booking
 explore :  jobs {
