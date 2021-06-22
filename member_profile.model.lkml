@@ -3,6 +3,7 @@ connection: "prod_-_topcoder_redshift"
 include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 include : "/bookings/*.view.lkml"            # include all views from booking folder
+include : "/heap/*.view.lkml"                # include all views from heap folder
 
 fiscal_month_offset: -9
 
@@ -481,3 +482,5 @@ explore :  jobs {
   }
 
 }
+
+explore: success_signup {}
