@@ -4,6 +4,8 @@ include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 include : "/bookings/*.view.lkml"            # include all views from booking folder
 include : "/heap/*.view.lkml"                # include all views from heap folder
+include : "/gig/*.view.lkml"                # include all views from gig folder
+
 
 fiscal_month_offset: -9
 
@@ -358,6 +360,12 @@ explore: gig {
     type: left_outer
     sql_on: ${candidate.handle} = ${member_profile_all.handle} ;;
     relationship: one_to_one
+  }
+
+  join: gig_weekly_survey {
+    type: left_outer
+    sql_on: ${candidate.handle} = ${gig_weekly_survey.handle} ;;
+    relationship: one_to_many
   }
 
   join: member_stats {
