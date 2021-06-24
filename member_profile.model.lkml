@@ -398,6 +398,12 @@ explore: gig {
     relationship: one_to_one
   }
 
+  join: taas_payment {
+    type: left_outer
+    sql_on: ${taas_resource.taas_resource_id} = ${taas_payment.taas_resource}  ;;
+    relationship: one_to_many
+  }
+
   join: gig_skills_requested {
     type: left_outer
     sql_on: ${gig.job_id} = ${gig_skills_requested.job_id} ;;
