@@ -6,18 +6,26 @@ view: challenge_resources {
               r.member_handle,
               r.created_by,
               r.role_id,
+              role.name AS role_name,
               r.member_id,
               r.created_date,
               r.updated_by,
               r.updated_date,
               r.is_deleted
       from tcs_dw.resource r
+      inner join tcs_dw.dynamo_ResourceRole role ON r.role_id = role.id
        ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  dimension: role {
+    type: string
+    description: "Resource Role on the Challenge. A person can have multiple roles on the same challenge"
+    sql: ${TABLE}.role_name ;;
   }
 
   dimension: id {
@@ -56,7 +64,7 @@ view: challenge_resources {
     sql: ${TABLE}.member_id ;;
   }
 
-  dimension_group: created_date {
+  dimension_group: created {
     description: ""
     type: time
     sql: ${TABLE}.created_date ;;
@@ -68,7 +76,7 @@ view: challenge_resources {
     sql: ${TABLE}.updated_by ;;
   }
 
-  dimension_group: updated_date {
+  dimension_group: updated {
     description: ""
     type: time
     sql: ${TABLE}.updated_date ;;
@@ -88,9 +96,9 @@ view: challenge_resources {
       created_by,
       role_id,
       member_id,
-      created_date_time,
+      created_date,
       updated_by,
-      updated_date_time,
+      updated_date,
       is_deleted
     ]
   }
