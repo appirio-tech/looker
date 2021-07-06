@@ -12,6 +12,7 @@ include: "*.view.lkml"                       # include all views in this project
 include: "/invoice/*.view.lkml"
 include: "/cost_transaction_temp/*.view.lkml"
 include : "/bookings/*.view.lkml"
+include: "/adhoc/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
@@ -21,6 +22,14 @@ fiscal_month_offset: -9
 explore: copilot_feedback_score {}
 
 explore: groupmanager_batch_record {}
+
+explore: groupmanager_request {
+  join: groupmanager_request_detail {
+    type: left_outer
+    sql_on: ${groupmanager_request.id = ${groupmanager_request_detail.request_id};;
+    relationship: one_to_many
+  }
+}
 
 explore : test_cust {}
 
