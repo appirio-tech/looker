@@ -26,7 +26,7 @@ explore: groupmanager_batch_record {}
 explore: groupmanager_request {
   join: groupmanager_request_detail {
     type: left_outer
-    sql_on: ${groupmanager_request.id = ${groupmanager_request_detail.request_id};;
+    sql_on: ${groupmanager_request.id} = ${groupmanager_request_detail.request_id};;
     relationship: one_to_many
   }
 }

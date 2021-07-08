@@ -43,8 +43,8 @@ view: groupmanager_request {
     sql: ${TABLE}.processed ;;
   }
 
-  dimension: errors {
-    type: number
+  measure: errors {
+    type: sum
     sql: ${TABLE}.errors ;;
   }
 
