@@ -454,10 +454,13 @@ explore: taas_payment {
 
 }
 
-#commented out the explore as the same has been moved to member_submission explore
-#explore: review {}
-
-#explore: review_summation {}
+explore: bookings_role_search {
+  join: bookings_role_search_skill {
+    type: inner
+    sql_on: ${bookings_role_search.id} = ${bookings_role_search_skill.role_search_id};;
+    relationship: one_to_many
+  }
+}
 
 # 20th April 2021 adding explore for booking
 explore :  jobs {

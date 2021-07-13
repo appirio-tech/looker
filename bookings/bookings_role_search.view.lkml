@@ -59,13 +59,13 @@ view: bookings_role_search {
 
   dimension: skills {
     type: string
-    description: "GUID of Skills searched by the user"
+    description: "Skill GUIDs as comma separated string"
     sql: ${TABLE}.skills ;;
   }
 
   dimension: skills_name {
     type: string
-    description: "Skill Names as string, comma separated"
+    description: "Skill Names as comma separated string"
     sql: ${TABLE}.skills_name ;;
   }
 
