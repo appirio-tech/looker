@@ -39,7 +39,7 @@ view: tco_leaderboard{
 
     dimension: challenge_id {
       description: "Challenge id"
-      type: number
+      type: string
       hidden: yes
       sql: ${TABLE}.challenge_id ;;
     }
