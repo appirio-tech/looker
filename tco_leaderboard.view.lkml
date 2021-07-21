@@ -2,7 +2,7 @@ view: tco_leaderboard{
   label: "TCO Leaderboard"
   derived_table: {
     sql:
-    select  leaderboard.challenge_blended_id as challenge_id,
+    select  leaderboard.challenge_id as challenge_id,
             leaderboard.user_id as user_id,
             leaderboard.total_score as total_score,
             leaderboard.round_id as round_id,
@@ -28,7 +28,7 @@ view: tco_leaderboard{
     left join tcs_dw.contest as contest
         on leaderboard.contest_id = contest.contest_id
     left join tcs_dw.project as challenge
-        on leaderboard.challenge_blended_id = challenge.challenge_blended_id
+        on leaderboard.challenge_id = challenge.project_id
     ;;
       #Cache the data as long as their is no new entry
       datagroup_trigger: tco_leaderboard_cache
@@ -39,7 +39,7 @@ view: tco_leaderboard{
 
     dimension: challenge_id {
       description: "Challenge id"
-      type: string
+      type: number
       hidden: yes
       sql: ${TABLE}.challenge_id ;;
     }
