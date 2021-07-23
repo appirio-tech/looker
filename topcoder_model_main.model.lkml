@@ -1079,7 +1079,9 @@ explore: event {
 
 }
 
-explore: jira_issue {}
+explore: jira_issue {
+  hidden: yes
+}
 
 #- explore: monthly_contest_stats
 #- explore: participation

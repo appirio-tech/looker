@@ -362,12 +362,6 @@ explore: gig {
     relationship: one_to_one
   }
 
-  join: gig_weekly_survey {
-    type: left_outer
-    sql_on: ${candidate.handle} = ${gig_weekly_survey.handle} ;;
-    relationship: one_to_many
-  }
-
   join: member_stats {
     type: left_outer
     sql_on: ${member_profile_all.user_id} = ${member_stats.user_id}  ;;
@@ -391,7 +385,6 @@ explore: gig {
     sql_on: ${connect_project.created_by} = ${member_profile_advanced.user_id} ;;
     relationship: one_to_one
   }
-
   join: taas_resource {
     type: full_outer
     sql_on: ${hiring_stage.job_candidate_id} = ${taas_resource.job_candidate_id} ;;
@@ -418,14 +411,17 @@ explore: gig {
     relationship: one_to_many
   }
 
+  join: job_candidate_history {
+    type: left_outer
+    sql_on: ${gig.slug} = ${job_candidate_history.job_slug} ;;
+    relationship: one_to_many
+  }
+
   join: sfdc_revenue_recognition {
     type: inner
     sql_on: ${project_stream.id} = ${sfdc_revenue_recognition.project_strem} ;;
     relationship: one_to_many
   }
-
-
-
 }
 
 explore: candidate {
@@ -433,6 +429,12 @@ explore: candidate {
   join: hiring_stage {
     type: left_outer
     sql_on: ${candidate.slug} = ${hiring_stage.candidate_slug} ;;
+    relationship: one_to_many
+  }
+
+  join: job_candidate_history {
+    type: left_outer
+    sql_on: ${candidate.slug} = ${job_candidate_history.candidate_slug} ;;
     relationship: one_to_many
   }
 
