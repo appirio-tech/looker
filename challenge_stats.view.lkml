@@ -1,6 +1,8 @@
 view: challenge_stats {
   derived_table: {
-    sql: SELECT p.project_id,
+    sql: SELECT
+       p.project_id + pr.user_id + random() as challenge_stats_pkey,
+       p.project_id,
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
@@ -132,7 +134,9 @@ FROM tcs_dw.project p LEFT OUTER JOIN tcs_dw.project_result pr ON p.project_id =
      LEFT OUTER JOIN tcs_dw.coder challenge_registrant ON pr.user_id = challenge_registrant.coder_id
      LEFT OUTER JOIN tcs_dw.member_profile member_profile ON pr.user_id = member_profile.user_id
 UNION
-SELECT p.project_id,
+SELECT
+       p.project_id + pr.user_id + random() as challenge_stats_pkey,
+       p.project_id,
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
@@ -297,11 +301,18 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   }
 
   dimension: project_id {
-    primary_key: yes
+   # primary_key: yes
     description: "Challenge ID Alias"
     type: number
     hidden: yes
     sql: ${TABLE}.project_id ;;
+  }
+
+  dimension: challenge_stats_pkey {
+    primary_key: yes
+    hidden: yes
+    description: "Primary key"
+    sql: ${TABLE}.challenge_stats_pkey ;;
   }
 
   dimension: challenge_id {
