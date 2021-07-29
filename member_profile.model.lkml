@@ -5,6 +5,7 @@ include: "*.view.lkml"                       # include all views in this project
 include : "/bookings/*.view.lkml"            # include all views from booking folder
 include : "/heap/*.view.lkml"                # include all views from heap folder
 include : "/gig/*.view.lkml"                # include all views from gig folder
+include : "/Community_Metrics/*.view.lkml"                # include all views from communtiy metrics folder
 
 
 fiscal_month_offset: -9
@@ -498,3 +499,12 @@ explore :  jobs {
 }
 
 explore: success_signup {}
+
+explore:  community_monthly_active_users {
+  join: member_profile_all {
+    type: inner
+    sql_on: ${community_monthly_active_users.user_id} = ${member_profile_all.user_id} ;;
+    relationship: one_to_one
+  }
+
+}
