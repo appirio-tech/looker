@@ -1079,7 +1079,9 @@ explore: event {
 
 }
 
-explore: jira_issue {}
+explore: jira_issue {
+  hidden: yes
+}
 
 #- explore: monthly_contest_stats
 #- explore: participation
@@ -1737,7 +1739,7 @@ explore: design_month_tco {
     join: challenge {
       type: left_outer
       relationship: many_to_one
-      sql_on: ${tco_leaderboard.challenge_id} = ${challenge.challenge_id} ;;
+      sql_on: ${tco_leaderboard.challenge_id} = ${challenge.challenge_blended_id} ;;
     }
 
     join: round {

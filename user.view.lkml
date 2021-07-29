@@ -302,6 +302,38 @@ view: user {
     sql: ${TABLE}.status ;;
   }
 
+  dimension: status_desc {
+    type: string
+    description: "User Status Description"
+    case: {
+      when: {
+        sql: ${TABLE}.status = 'A' ;;
+        label: "Active"
+      }
+      when: {
+        sql: ${TABLE}.status = 'U' ;;
+        label: "Unverified"
+      }
+      when: {
+        sql: ${TABLE}.status = 'I' ;;
+        label: "Not Activated"
+      }
+      when: {
+        sql: ${TABLE}.status = '4' ;;
+        label: "Deactivated - User Request"
+      }
+      when: {
+        sql: ${TABLE}.status = '5' ;;
+        label: "Deactivated - Duplicate Account"
+      }
+      when: {
+        sql: ${TABLE}.status = '6' ;;
+        label: "Deactivated - Cheating Account"
+      }
+      else: "Deactivated - Unknown Reason"
+    }
+  }
+
   dimension: utm_campaign {
     type: string
     sql: ${TABLE}.utm_campaign ;;
