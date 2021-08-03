@@ -2,7 +2,8 @@ view: challenge_groups {
   derived_table: {
     sql: select g.id as group_id,
                 g.name as group_name,
-                cg.challenge_id as challenge_id
+                cg.challenge_id as challenge_id,
+                cg.challenge_blended_id as challenge_blended_id
            from challenge_groups cg,
                 "authorization"."group" g
           where cg.group_id = g.id
@@ -28,9 +29,15 @@ view: challenge_groups {
     description: ""
     type: number
     sql: ${TABLE}.challenge_id ;;
-    primary_key: yes
+    #primary_key: yes
   }
 
+  dimension: challenge_blended_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.challenge_blended_id ;;
+    primary_key: yes
+  }
   measure: count {
     type: count
   }
