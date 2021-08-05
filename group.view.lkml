@@ -1,6 +1,6 @@
 view: group {
-  sql_table_name:
-            select  g.id as id,
+  derived_table:{
+    sql:    select  g.id as id,
                     g.name as name ,
                     g.description as description,
                     g.createdat as createdat,
@@ -10,8 +10,12 @@ view: group {
                     guid.group_guid as group_guid
             from "authorization"."group" g
             left join group_guid_legacy_xref guid
-            on g.id = guid.id
-    ;;
+            on g.id = guid.id;;
+    sortkeys: ["name", "group_guid"]
+    distribution: "name"
+    persist_for: "24 hours"
+  }
+
 
   dimension: id {
     primary_key: yes
