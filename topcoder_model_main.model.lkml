@@ -633,6 +633,19 @@ explore: challenge {
     relationship: many_to_one
   }
 
+  #added on 4th Aug for winner country and reporting country
+  join: winner_country {
+    from: country
+    type: left_outer
+    sql_on: ${winner.country_code} = ${winner_country.country_code} ;;
+    relationship: many_to_one
+  }
+
+  join: member_profile_basic {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${winner.coder_id} = ${member_profile_basic.user_id} ;;
+  }
   #5th Nov 2019 : Adding Topcoder X tables
 
   join: topcoder_x_issue {

@@ -1,5 +1,16 @@
 view: group {
-  sql_table_name: "authorization"."group"
+  sql_table_name:
+            select  g.id as id,
+                    g.name as name ,
+                    g.description as description,
+                    g.createdat as createdat,
+                    g.modifiedat as modifiedat,
+                    g.createdby as createdby,
+                    g.modifiedby as modifiedby,
+                    guid.group_guid as group_guid
+            from "authorization"."group" g
+            left join group_guid_legacy_xref guid
+            on g.id = guid.id
     ;;
 
   dimension: id {
@@ -7,6 +18,12 @@ view: group {
     type: number
     sql: ${TABLE}.id ;;
     tags: ["segment_group_id"]
+  }
+
+  dimension: group_guid {
+    type: string
+    sql: ${TABLE}.group_guid ;;
+    tags: ["group_guid"]
   }
 
   dimension_group: createdat {
