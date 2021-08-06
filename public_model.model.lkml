@@ -2,6 +2,7 @@ connection: "prod_-_topcoder_redshift"
 
 # include all the views
 include: "*.view"
+include: "/SRM/*.view.lkml" # include all views from /SRM folder
 
 # include all the dashboards
 # include: "*.dashboard"
