@@ -7,10 +7,10 @@ view: group {
                     g.modifiedat as modifiedat,
                     g.createdby as createdby,
                     g.modifiedby as modifiedby,
-                    guid.group_guid as group_guid
+                    xref.group_guid as group_guid
             from "authorization"."group" g
-            left join group_guid_legacy_xref guid
-            on g.id = guid.id;;
+            left join group_guid_legacy_xref xref
+            on g.id = xref.legacy_id;;
     sortkeys: ["name", "group_guid"]
     distribution: "name"
     persist_for: "24 hours"
