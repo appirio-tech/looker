@@ -318,7 +318,7 @@ view: connect_project {
   dimension: practice {
     type: string
     description: "Used by Topgear team, Practice associated with the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'practice') ;;
+    sql: replace(json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'practice'),'&amp;','&') ;;
     group_label: "Topgear"
   }
 
