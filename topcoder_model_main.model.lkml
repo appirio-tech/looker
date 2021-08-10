@@ -30,6 +30,7 @@ datagroup: tco_leaderboard_cache {
 include: "*.view"
 include: "/loader/*.view.lkml"
 include: "/SRM/*.view.lkml" # include all views from /SRM folder
+include: "/members/*.view.lkml" # include all views from /Members folder
 
 
 # include all the dashboards
