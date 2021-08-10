@@ -31,6 +31,8 @@ include: "*.view"
 include: "/loader/*.view.lkml"
 include: "/SRM/*.view.lkml" # include all views from /SRM folder
 include: "/members/*.view.lkml" # include all views from /Members folder
+include: "/topcoder_x/*.view.lkml"             # include all views from /topcoder_x folder
+
 
 
 # include all the dashboards
