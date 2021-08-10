@@ -5,6 +5,7 @@ include: "*.view.lkml"                       # include all views in this project
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 include: "../*.view.lkml" # include all views in parent directory as well
+include: "../salesforce/*.view.lkml"             # include all views from /salesforce folder
 fiscal_month_offset: -9
 
 # sets the week start day to Sunday

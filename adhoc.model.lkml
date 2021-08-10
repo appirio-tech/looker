@@ -14,6 +14,7 @@ include: "/cost_transaction_temp/*.view.lkml"
 include : "/bookings/*.view.lkml"
 include: "/adhoc/*.view.lkml"
 include: "/members/*.view.lkml"             # include all views from /Members folder
+include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
 
 #for fiscal year
 fiscal_month_offset: -9

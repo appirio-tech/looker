@@ -7,7 +7,7 @@ include : "/heap/*.view.lkml"                # include all views from heap folde
 include : "/gig/*.view.lkml"                # include all views from gig folder
 include : "/Community_Metrics/*.view.lkml"                # include all views from communtiy metrics folder
 include: "/members/*.view.lkml"             # include all views from /Members folder
-
+include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
 
 fiscal_month_offset: -9
 
