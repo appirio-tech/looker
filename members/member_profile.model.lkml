@@ -4,10 +4,10 @@ include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 include : "/bookings/*.view.lkml"            # include all views from booking folder
 include : "/heap/*.view.lkml"                # include all views from heap folder
-include : "/gig/*.view.lkml"                # include all views from gig folder
-include : "/Community_Metrics/*.view.lkml"                # include all views from communtiy metrics folder
-include: "/members/*.view.lkml"             # include all views from /Members folder
-include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
+include : "/gig/*.view.lkml"                 # include all views from gig folder
+include : "/Community_Metrics/*.view.lkml"   # include all views from communtiy metrics folder
+include: "/salesforce/*.view.lkml"           # include all views from /salesforce folder
+include: "../*.view.lkml"                    #include all views from parent directory
 
 fiscal_month_offset: -9
 
