@@ -1039,7 +1039,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   }
 
 #Added Temporary field to display score in regional Leaderboards
-  measure : srm_tco19.score {
+  measure : srm_tco19_score {
     label: "Total Score"
     type: sum
     description: "Temporary Field for regional leaderboards"

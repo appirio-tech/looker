@@ -123,6 +123,7 @@ view: heap_profile_events_success_login {
   }
 
   dimension: event_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.event_id ;;
   }

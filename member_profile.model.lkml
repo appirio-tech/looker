@@ -513,3 +513,56 @@ explore:  community_monthly_active_users {
   }
 
 }
+
+explore:  member_engagement_metrics {}
+
+explore: member_engagement_metrics_2 {
+  from: calendar
+  join: pageviews {
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${pageviews.time_date} ;;
+    relationship: one_to_many
+  }
+  join: member_profile_all {
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${member_profile_all.created_date} AND  ${member_profile_all.status} = 'ACTIVE' ;;
+    relationship: one_to_many
+  }
+  join: challenge_registration {
+    from: challenge_stats
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${challenge_registration.inquire_timestamp_date} ;;
+    relationship: one_to_many
+  }
+  join: challenge_submission {
+    from: challenge_stats
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${challenge_submission.submit_timestamp_date} ;;
+    relationship: one_to_many
+  }
+  join: gig_candidate {
+    from: recruit_crm_candidate
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${gig_candidate.created_date} ;;
+    relationship: one_to_many
+  }
+  join: gig_bookings {
+    from: bookings_resource_bookings
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = ${gig_bookings.created_date} ;;
+    relationship: one_to_many
+  }
+  join: members_paid {
+    from: user_payment
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.calendar_id} = ${members_paid.due_calendar_id} ;;
+    relationship: one_to_many
+  }
+  join: logins {
+    from: heap_profile_events_success_login
+    type: left_outer
+    sql_on: ${member_engagement_metrics_2.date_date} = $ ${logins.created_at};;
+    relationship: one_to_many
+  }
+
+}
