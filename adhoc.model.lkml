@@ -9,7 +9,7 @@ include: "*.view.lkml"                       # include all views in this project
 ###########################################################################################
 
 #added on 25th Feb to include lkml files from invoice folder
-include: "/invoice/*.view.lkml"
+#include: "/invoice/*.view.lkml"
 include: "/cost_transaction_temp/*.view.lkml"
 include : "/bookings/*.view.lkml"
 include: "/adhoc/*.view.lkml"
@@ -251,9 +251,8 @@ explore: wipro_payment_validation {
 }
 
 #added invoice staging explore to topcoder main model on 25th Feb 2021
-explore: invoice_staging{
-
-}
+#explore: invoice_staging{}
+#removed invoice staging explore on 11th Aug 2021 as its no longer needed
 
 #explore for challenge resources added on 7th May 2021
 
