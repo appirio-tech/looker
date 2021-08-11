@@ -9,6 +9,7 @@ view: groupmanager_request {
 
   dimension: id {
     type: number
+    value_format: "0"
     primary_key: yes
     sql: ${TABLE}.id ;;
   }
