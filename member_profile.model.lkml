@@ -523,9 +523,10 @@ explore: member_engagement_metrics_2 {
     sql_on: ${member_engagement_metrics_2.date_date} = ${pageviews.time_date} ;;
     relationship: one_to_many
   }
-  join: member_profile_all {
+  join: signups {
+    from: member_profile_all
     type: left_outer
-    sql_on: ${member_engagement_metrics_2.date_date} = ${member_profile_all.created_date} AND  ${member_profile_all.status} = 'ACTIVE' ;;
+    sql_on: ${member_engagement_metrics_2.date_date} = ${signups.created_date} AND  ${signups.status} = 'ACTIVE' ;;
     relationship: one_to_many
   }
   join: challenge_registration {
@@ -561,7 +562,7 @@ explore: member_engagement_metrics_2 {
   join: logins {
     from: heap_profile_events_success_login
     type: left_outer
-    sql_on: ${member_engagement_metrics_2.date_date} = $ ${logins.created_at};;
+    sql_on: ${member_engagement_metrics_2.date_date} = ${logins.time_date};;
     relationship: one_to_many
   }
 
