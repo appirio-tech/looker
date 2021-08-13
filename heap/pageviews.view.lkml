@@ -10,6 +10,13 @@ view: pageviews {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "App Name" in Explore.
 
+
+  dimension: pkey_pageviews {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: ${TABLE}.session_id + ${TABLE}.user_id;;
+  }
   dimension: app_name {
     type: string
     sql: ${TABLE}.app_name ;;

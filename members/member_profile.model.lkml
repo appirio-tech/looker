@@ -521,6 +521,7 @@ explore:  community_monthly_active_users {
 explore:  member_engagement_metrics {}
 
 explore: member_engagement_metrics_2 {
+  persist_for: "8 hours"
   from: calendar
   join: pageviews {
     type: left_outer
