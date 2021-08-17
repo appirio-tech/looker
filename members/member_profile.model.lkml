@@ -433,6 +433,20 @@ explore: gig {
     sql_on:${gig.slug} = ${jobs.external_id}  ;;
     relationship: one_to_one
   }
+
+  join: job_candidates {
+    type: left_outer
+    sql_on: ${jobs.id} = ${job_candidates.job_id}   ;;
+    relationship: one_to_many
+  }
+
+  join: resource_bookings {
+    type: left_outer
+    sql_on:  ${jobs.id} = ${resource_bookings.job_id};;
+    relationship: one_to_many
+    sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
+  }
+
 }
 
 explore: candidate {
