@@ -9,7 +9,7 @@ include : "/Community_Metrics/*.view.lkml"   # include all views from communtiy 
 include: "/salesforce/*.view.lkml"           # include all views from /salesforce folder
 include: "../*.view.lkml"                    #include all views from parent directory
 include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
-
+include: "../bookings/*.view.lkml"            #include all views from /bookings folder
 
 fiscal_month_offset: -9
 
@@ -425,6 +425,13 @@ explore: gig {
     type: inner
     sql_on: ${project_stream.id} = ${sfdc_revenue_recognition.project_strem} ;;
     relationship: one_to_many
+  }
+
+  #added bookings related views to gig explore on 17th Aug
+  join: jobs {
+    type: left_outer
+    sql_on:${gig.slug} = ${jobs.external_id}  ;;
+    relationship: one_to_one
   }
 }
 
