@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Bookings Work Period Payments"
-view: bookings_work_period_payments {
+view: work_period_payments {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.bookings_work_period_payments ;;

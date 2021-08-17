@@ -447,6 +447,31 @@ explore: gig {
     sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
   }
 
+  join: interviews {
+    type: left_outer
+    sql_on: ${job_candidates.job_id} = ${interviews.job_candidate_id} ;;
+    relationship: one_to_many
+  }
+
+  join: work_periods {
+    type: left_outer
+    sql_on:  ${resource_bookings.id} = ${work_periods.resource_booking_id}   ;;
+    relationship: one_to_many
+  }
+
+  join: work_period_payments {
+    type: left_outer
+    sql_on: ${work_periods.id} = ${work_period_payments.work_period_id} ;;
+    relationship: one_to_many
+  }
+
+  join: payment_schedulers {
+    type: left_outer
+    sql_on: ${work_period_payments.id} = ${payment_schedulers.work_period_payment_id} ;;
+    relationship: one_to_many
+  }
+
+
 }
 
 explore: candidate {

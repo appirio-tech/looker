@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Bookings Interviews"
-view: bookings_interviews {
+view: interviews {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.bookings_interviews ;;
