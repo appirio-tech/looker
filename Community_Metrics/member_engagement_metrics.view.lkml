@@ -38,12 +38,20 @@ view: member_engagement_metrics {
   measure: sign_ups {
     description: "The total number of sign_ups"
     type: sum
+    link: {
+      label: "Drill Signups Week "
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?fields=user.engagement_drill_fields*&f[user.status_desc]=Active&f[user.create_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
     sql: ${TABLE}.sign_ups ;;
   }
 
   measure: challenge_registrations {
     description: "The total number of challenge_registrations"
     type: sum
+    link: {
+      label: "Drill Registrations"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?"
+    }
     sql: ${TABLE}.challenge_registrations ;;
   }
 
@@ -92,6 +100,7 @@ view: member_engagement_metrics {
   measure: distinct_logins {
     description: "The total number of distinct_logins"
     type: sum
+    drill_fields: []
     sql: ${TABLE}.distinct_logins ;;
   }
 

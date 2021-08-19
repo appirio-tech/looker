@@ -16,6 +16,10 @@ fiscal_month_offset: -9
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
+
+# sets the week start day to Sunday
+week_start_day: sunday
+
 explore: member_skill {
   join: skill {
       relationship: many_to_many
@@ -614,6 +618,48 @@ explore: member_engagement_metrics_2 {
     from: heap_profile_events_success_login
     type: left_outer
     sql_on: ${member_engagement_metrics_2.date_date} = ${logins.time_date};;
+    relationship: one_to_many
+  }
+}
+
+
+explore: member_engagement_metrics_3 {
+  persist_for: "8 hours"
+  from: calendar
+  join: signups {
+    from: member_profile_all
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.date_date} = ${signups.created_date} AND  ${signups.status} = 'ACTIVE' ;;
+    relationship: one_to_many
+  }
+  join: challenge_registration {
+    from: challenge_stats
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.date_date} = ${challenge_registration.inquire_timestamp_date} ;;
+    relationship: one_to_many
+  }
+  join: challenge_submission {
+    from: challenge_stats
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.date_date} = ${challenge_submission.submit_timestamp_date} ;;
+    relationship: one_to_many
+  }
+  join: gig_candidate {
+    from: recruit_crm_candidate
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.date_date} = ${gig_candidate.created_date} ;;
+    relationship: one_to_many
+  }
+  join: gig_bookings {
+    from: resource_bookings
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.date_date} = ${gig_bookings.created_date} ;;
+    relationship: one_to_many
+  }
+  join: members_paid {
+    from: user_payment
+    type: left_outer
+    sql_on: ${member_engagement_metrics_3.calendar_id} = ${members_paid.due_calendar_id} ;;
     relationship: one_to_many
   }
 

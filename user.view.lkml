@@ -418,4 +418,9 @@ view: user {
     ]
   }
 
+  # The set of fields that are displayed when drilled from engagement metrics explore
+  set: engagement_drill_fields {
+    fields: [ create_week, count]
+  }
+
 }
