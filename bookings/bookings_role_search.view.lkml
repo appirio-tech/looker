@@ -1,5 +1,6 @@
 view: bookings_role_search {
 
+  label: "Bookings Role Search (Connect)"
   sql_table_name: public.bookings_role_search ;;
   drill_fields: [id]
 

@@ -1,11 +1,7 @@
 # The name of this view in Looker is "Recruit Crm Candidate"
 view: recruit_crm_candidate {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: tcs_dw.recruit_crm_candidate ;;
   drill_fields: [id]
-  # This primary key is the unique key for this table in the underlying database.
-  # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
     primary_key: yes
@@ -13,17 +9,11 @@ view: recruit_crm_candidate {
     sql: ${TABLE}.id ;;
   }
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Address" in Explore.
 
   dimension: address {
     type: string
     sql: ${TABLE}.address ;;
   }
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: available_from {
     type: time
@@ -402,7 +392,6 @@ view: recruit_crm_candidate {
 
   measure: total_relevant_experience {
     type: sum
-    hidden: yes
     sql: ${relevant_experience} ;;
   }
 

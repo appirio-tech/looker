@@ -1,5 +1,6 @@
 view: resource_bookings {
 
+  label: "Resource Bookings (Connect)"
   sql_table_name: public.bookings_resource_bookings ;;
   drill_fields: [id]
 

@@ -1,4 +1,7 @@
 view: bookings_role_search_skill {
+
+  label: "Bookings Role Search Skill (Connect)"
+
   sql_table_name: public.bookings_role_search_skill_xref ;;
   drill_fields: [id]
 

@@ -1,21 +1,15 @@
 # The name of this view in Looker is "Bookings Work Period Payments"
 view: work_period_payments {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
+
+  label: "Work Period Payments (Connect)"
   sql_table_name: public.bookings_work_period_payments ;;
   drill_fields: [id]
-  # This primary key is the unique key for this table in the underlying database.
-  # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
-
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Amount" in Explore.
 
   dimension: amount {
     type: number
@@ -31,9 +25,6 @@ view: work_period_payments {
     type: string
     sql: ${TABLE}.challenge_id ;;
   }
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: created {
     type: time
@@ -126,37 +117,26 @@ view: work_period_payments {
 
   measure: total_amount {
     type: sum
-    hidden: yes
     sql: ${amount} ;;
   }
 
   measure: average_amount {
     type: average
-    hidden: yes
     sql: ${amount} ;;
-  }
-
-  measure: total_customer_rate {
-    type: sum
-    hidden: yes
-    sql: ${customer_rate} ;;
   }
 
   measure: average_customer_rate {
     type: average
-    hidden: yes
     sql: ${customer_rate} ;;
   }
 
   measure: total_days {
     type: sum
-    hidden: yes
     sql: ${days} ;;
   }
 
   measure: average_days {
     type: average
-    hidden: yes
     sql: ${days} ;;
   }
 
@@ -168,7 +148,6 @@ view: work_period_payments {
 
   measure: average_member_rate {
     type: average
-    hidden: yes
     sql: ${member_rate} ;;
   }
 }

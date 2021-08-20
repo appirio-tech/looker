@@ -1,4 +1,6 @@
 view: jobs {
+  #this job view is coming from Connect TaaS object.
+  label: "TaaS Job (Connect)"
 
   sql_table_name: public.bookings_jobs ;;
   drill_fields: [id, title,status, duration,num_positions, rate_type, resource_type,

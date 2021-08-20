@@ -1,5 +1,7 @@
 view: job_candidates {
+  #This job candidates are coming from Connect
 
+  label: "Job Candidates (Connect)"
   sql_table_name: public.bookings_job_candidates ;;
   drill_fields: [id]
 
