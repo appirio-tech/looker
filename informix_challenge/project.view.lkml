@@ -201,6 +201,7 @@ view: challenge {
 
   measure: contest_prizes_total {
     type: sum
+    description: "Total Actual Amount Paid on the Challenge (including Copilot Fees, Review Payment etc)"
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
     sql: ${TABLE}.contest_prizes_total ;;
@@ -694,12 +695,11 @@ view: challenge {
       url: "https://www.topcoder.com/direct/projectOverview.action?formData.projectId={{ challenge.tc_direct_project_id._value }}"
       icon_url: "https://looker.com/favicon.ico"
     }
-
   }
 
   measure: total_prize {
     type: sum
-    description: "Total Prize money on the challenge"
+    description: "Advertised Prize money on the challenge.If there are multiple advertised for single prize, all prize is considered"
     value_format: "$#,##0.00;($#,##0.00)"
     drill_fields: [detail*]
     sql: ${TABLE}.total_prize ;;
