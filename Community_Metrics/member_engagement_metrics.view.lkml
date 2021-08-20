@@ -107,6 +107,10 @@ view: member_engagement_metrics {
     description: "The total number of logins"
     type: sum
     sql: ${TABLE}.logins ;;
+    link: {
+      label:"Drill Weekly Logins "
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.time_week,heap_profile_events_success_login.count&fill_fields=heap_profile_events_success_login.time_week&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: distinct_logins {
@@ -114,6 +118,10 @@ view: member_engagement_metrics {
     type: sum
     drill_fields: []
     sql: ${TABLE}.distinct_logins ;;
+    link: {
+      label: "Drill Weekly Distinct Logins"
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.time_week,heap_profile_events_success_login.count_distinct_users&fill_fields=heap_profile_events_success_login.time_week&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: count {
