@@ -77,18 +77,30 @@ view: member_engagement_metrics {
     description: "The total number of gig_applicants"
     type: sum
     sql: ${TABLE}.gig_applicants ;;
+    link: {
+      label:" Drill Weekly Gig applicant "
+      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.created_week,candidate.count&fill_fields=candidate.created_week&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: gig_placements {
     description: "The total number of gig_placements"
     type: sum
     sql: ${TABLE}.gig_placements ;;
+    link: {
+      label: "Drill Weekly Gig Placements"
+      url: "https://topcoder.looker.com/explore/member_profile/gig?fields=resource_bookings.created_week,resource_bookings.count&fill_fields=resource_bookings.created_week&f[resource_bookings.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: members_paid {
     description: "The total number of members_paid"
     type: sum
     sql: ${TABLE}.members_paid ;;
+    link: {
+      label: "Drill Payment Paid Week"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/payment?fields=payment_create_date.date_week,user_payment.distinct_user_count&fill_fields=payment_create_date.date_week&f[payment_create_date.date_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: logins {
