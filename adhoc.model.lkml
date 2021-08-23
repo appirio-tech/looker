@@ -241,15 +241,16 @@ explore: design_month_tco_temp {
   description: "A temp explore for desing month leaderboards "
 }
 
-explore: wipro_payment_validation {
-  description: "A temp explore for wipro payment validation loader"
+#removed wipro payment validation view as its no longer relevant.
+#explore: wipro_payment_validation {
+ # description: "A temp explore for wipro payment validation loader"
 
-  join: payment {
-    type: inner
-    sql_on: ${wipro_payment_validation.payment_id} = ${payment.payment_id} ;;
-    relationship: :one_to_one
-  }
-}
+#  join: payment {
+#    type: inner
+#    sql_on: ${wipro_payment_validation.payment_id} = ${payment.payment_id} ;;
+#    relationship: :one_to_one
+#  }
+#}
 
 #added invoice staging explore to topcoder main model on 25th Feb 2021
 #explore: invoice_staging{}
