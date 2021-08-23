@@ -5,10 +5,14 @@ view: member_engagement_metrics {
     SELECT date,
            (SELECT count(*) FROM heapdata.pageviews WHERE date_trunc('week', time) = c.date ) as pageviews,
            (SELECT count(*)  FROM coder WHERE status = 'A' and date_trunc('week', member_since) = c.date) as sign_ups,
-           (SELECT count(*) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as challenge_registrations,
-           (SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as distinct_challenge_registrants,
-           (SELECT count(*) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as challenge_submissions,
-           (SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as distinct_challenge_submitters,
+           --(SELECT count(*) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as challenge_registrations,
+           --(SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as distinct_challenge_registrants,
+           --(SELECT count(*) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as challenge_submissions,
+           --(SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as distinct_challenge_submitters,
+           (select count(*) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where date_trunc('week', inquire_timestamp) = c.date) as challenge_registrations,
+           (select count(distinct user_id) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where date_trunc('week', inquire_timestamp) = c.date) as distinct_challenge_registrants,
+           (select count(*) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where date_trunc('week', inquire_timestamp) = c.date and submit_ind = 1 ) as challenge_submissions,
+           (select count(distinct user_id ) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where date_trunc('week', inquire_timestamp) = c.date and submit_ind = 1 ) as distinct_challenge_submitters,
            (SELECT count(*) FROM recruit_crm_candidate WHERE date_trunc('week', created_on) = c.date ) as gig_applicants,
            (SELECT count(*) FROM bookings_resource_bookings WHERE date_trunc('week', created_at) = c.date) as gig_placements,
            (SELECT count(distinct user_id) FROM user_payment WHERE date_trunc('week', create_date) = c.date ) as members_paid,
@@ -51,7 +55,7 @@ view: member_engagement_metrics {
     link: {
       label: "Drill Registrations"
       #url: "https://topcoder.looker.com/explore/topcoder_model_main/user?"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.num_registrations&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
     sql: ${TABLE}.challenge_registrations ;;
   }
@@ -71,7 +75,7 @@ view: member_engagement_metrics {
     type: sum
     link: {
       label: "Drill Submissions"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.num_submissions&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
     sql: ${TABLE}.challenge_submissions ;;
   }
@@ -81,7 +85,7 @@ view: member_engagement_metrics {
     type: sum
     link: {
       label: "Drill distinct submitters"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count_distinct_submitter&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count_distinct_submitter&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
     sql: ${TABLE}.distinct_challenge_submitters ;;
   }
