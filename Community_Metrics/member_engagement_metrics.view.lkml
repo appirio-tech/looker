@@ -50,7 +50,8 @@ view: member_engagement_metrics {
     type: sum
     link: {
       label: "Drill Registrations"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?"
+      #url: "https://topcoder.looker.com/explore/topcoder_model_main/user?"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.num_registrations&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
     sql: ${TABLE}.challenge_registrations ;;
   }
@@ -58,18 +59,30 @@ view: member_engagement_metrics {
   measure: distinct_challenge_registrants {
     description: "The total number of distinct_challenge_registrants"
     type: sum
+    link: {
+      label: "Drill Distinct Regisration"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count_distinct_registrant&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
     sql: ${TABLE}.distinct_challenge_registrants ;;
   }
 
   measure: challenge_submissions {
     description: "The total number of challenge_submissions"
     type: sum
+    link: {
+      label: "Drill Submissions"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.num_submissions&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
     sql: ${TABLE}.challenge_submissions ;;
   }
 
   measure: distinct_challenge_submitters {
     description: "The total number of distinct_challenge_submitters"
     type: sum
+    link: {
+      label: "Drill distinct submitters"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.inquire_timestamp_week,challenge_stats.count_distinct_submitter&fill_fields=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]=challenge_stats.inquire_timestamp_week&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
     sql: ${TABLE}.distinct_challenge_submitters ;;
   }
 
