@@ -37,6 +37,10 @@ view: member_engagement_metrics {
     description: "The total number of pageviews"
     type: sum
     sql: ${TABLE}.pageviews ;;
+    link: {
+      label: "Drill page views"
+      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.count,pageviews.time_week&fill_fields=pageviews.time_week&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
   }
 
   measure: sign_ups {

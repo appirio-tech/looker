@@ -26,6 +26,8 @@ include: "../informix_challenge/*.view.lkml"             # include all views fro
 #Week start day set to Sunday
 #week_start_day: sunday
 
+explore: pageviews {}
+
 explore: gigs_apply_button_application_page {
   join: heap_users {
     type: left_outer
