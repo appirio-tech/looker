@@ -16,6 +16,8 @@ include: "/adhoc/*.view.lkml"
 include: "/members/*.view.lkml"             # include all views from /Members folder
 include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
 include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
+include: "/user/*.view.lkml"
+include: "/connect/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9

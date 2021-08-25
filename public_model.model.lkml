@@ -4,7 +4,8 @@ connection: "prod_-_topcoder_redshift"
 include: "*.view"
 include: "/SRM/*.view.lkml" # include all views from /SRM folder
 include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
-
+include: "/user/*.view.lkml"
+include: "/connect/*.view.lkml"
 
 # include all the dashboards
 # include: "*.dashboard"

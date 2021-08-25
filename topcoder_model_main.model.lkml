@@ -34,7 +34,8 @@ include: "/members/*.view.lkml" # include all views from /Members folder
 include: "/topcoder_x/*.view.lkml"             # include all views from /topcoder_x folder
 include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
 include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
-
+include: "/user/*.view.lkml"
+include: "/connect/*.view.lkml"
 
 
 
@@ -1399,7 +1400,7 @@ explore: submission_review {
   }
 }
 
-explore: subjective_response {}
+
 
 #- explore: tcd_project_stat
 explore: track {}
