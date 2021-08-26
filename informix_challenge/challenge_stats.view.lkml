@@ -1405,6 +1405,23 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     #sql: rank() over (partition by challenge_stats.registrant_handle order by challenge_stats.posting_date asc) ;;
   #}
 
+  #drill sets for engagnement metric
+
+  set: engagement_drill_fields_registrants {
+    fields: [inquire_timestamp_week,count]
+  }
+  set: engagement_drill_fields_registrants_distinct {
+    fields: [inquire_timestamp_week,count_distinct_registrant]
+  }
+  set: engagement_drill_fields_submitters {
+    fields: [inquire_timestamp_week,count]
+  }
+  set: engagement_drill_fields_submitters_distinct {
+    fields: [inquire_timestamp_week,count_distinct_submitter]
+  }
+
+
+
   set: detail {
     fields: [
       project_id,
