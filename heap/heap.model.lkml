@@ -8,6 +8,7 @@ include: "/members/*.view.lkml"             # include all views from /Members fo
 include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "../user/*.view.lkml"
 include: "../connect/*.view.lkml"
+include: "../bookings/*.view.lkml"
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
@@ -197,6 +198,7 @@ explore: gigs_apply_button_application_page {
   }
 
   join: candidate {
+    from: recruit_crm_candidate
     type: inner
     sql_on: ${member_profile_all.handle} = ${candidate.handle} ;;
     relationship: one_to_one
