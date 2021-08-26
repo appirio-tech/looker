@@ -148,4 +148,8 @@ view: resource_bookings {
     type: count
     drill_fields: [id]
   }
+
+  set: engagement_drill_fields {
+    fields: [created_week,count]
+  }
 }

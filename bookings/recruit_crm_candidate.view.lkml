@@ -462,4 +462,8 @@ view: recruit_crm_candidate {
     hidden: yes
     sql: ${work_ex_year} ;;
   }
+
+  set: engagement_drill_fields {
+    fields: [created_week,count]
+  }
 }

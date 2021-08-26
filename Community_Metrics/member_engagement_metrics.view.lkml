@@ -100,7 +100,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.gig_applicants ;;
     link: {
       label:" Drill Weekly Gig applicant "
-      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.created_week,candidate.count&fill_fields=candidate.created_week&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.engagement_drill_fields*&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
   }
 
@@ -110,7 +110,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.gig_placements ;;
     link: {
       label: "Drill Weekly Gig Placements"
-      url: "https://topcoder.looker.com/explore/member_profile/gig?fields=resource_bookings.created_week,resource_bookings.count&fill_fields=resource_bookings.created_week&f[resource_bookings.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/member_profile/gig?fields=resource_bookings.engagement_drill_fields*&f[resource_bookings.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
   }
 
@@ -141,7 +141,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.distinct_logins ;;
     link: {
       label: "Drill Weekly Distinct Logins"
-      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.time_week,heap_profile_events_success_login.count_distinct_users&fill_fields=heap_profile_events_success_login.time_week&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields_distinct*&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
   }
 

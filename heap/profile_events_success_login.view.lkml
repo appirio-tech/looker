@@ -609,4 +609,7 @@ view: heap_profile_events_success_login {
   set: engagement_drill_fields {
     fields: [ time_week, count]
   }
+  set: engagement_drill_fields_distinct {
+    fields: [ time_week, count_distinct_users]
+  }
 }
