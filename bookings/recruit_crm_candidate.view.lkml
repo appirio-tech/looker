@@ -14,6 +14,7 @@ view: recruit_crm_candidate {
     type: time
     description: "Timestamp when the record was touched by the Loader"
     timeframes: [
+      time,
       raw,
       date,
       month,
@@ -43,21 +44,25 @@ view: recruit_crm_candidate {
   }
 
   dimension: avatar {
+    hidden:yes
     type: string
     sql: ${TABLE}.avatar ;;
   }
 
   dimension: c2c_only {
+    hidden:yes
     type: yesno
     sql: ${TABLE}.c2c_only ;;
   }
 
   dimension: candidate_dob {
+    hidden:yes
     type: string
     sql: ${TABLE}.candidate_dob ;;
   }
 
   dimension: cbr {
+    hidden:yes
     type: string
     sql: ${TABLE}.cbr ;;
   }
@@ -73,6 +78,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: created_by {
+    hidden:yes
     type: string
     sql: ${TABLE}.created_by ;;
   }
@@ -92,6 +98,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: currency_id {
+    hidden:yes
     type: string
     sql: ${TABLE}.currency_id ;;
   }
@@ -112,7 +119,8 @@ view: recruit_crm_candidate {
   }
 
   dimension: current_taas_pay {
-    type: string
+    type: number
+    value_format_name: usd
     sql: ${TABLE}.current_taas_pay ;;
   }
 
@@ -187,6 +195,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: owner {
+    hidden:yes
     type: string
     sql: ${TABLE}.owner ;;
   }
@@ -240,6 +249,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: qualification_id {
+    hidden:yes
     type: string
     sql: ${TABLE}.qualification_id ;;
   }
@@ -270,6 +280,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: resume_filename {
+    hidden:yes
     type: string
     sql: ${TABLE}.resume_filename ;;
   }
@@ -334,6 +345,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: updated_by {
+    hidden:yes
     type: string
     sql: ${TABLE}.updated_by ;;
   }
@@ -353,6 +365,7 @@ view: recruit_crm_candidate {
   }
 
   dimension: w2_only {
+    hidden:yes
     type: yesno
     sql: ${TABLE}.w2_only ;;
   }
