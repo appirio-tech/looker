@@ -47,6 +47,7 @@ explore: member_profile_advanced {
 
   }
   join: candidate {
+    from: recruit_crm_candidate
     type: left_outer
     sql_on: ${member_profile_advanced.handle} = ${candidate.handle};;
     relationship: one_to_one
@@ -266,6 +267,7 @@ explore: member_profile_all {
   }
 
   join: candidate {
+    from: recruit_crm_candidate
     type: inner
     sql_on: ${member_profile_all.handle} = ${candidate.handle} ;;
     relationship: one_to_one
@@ -361,6 +363,7 @@ explore: gig {
   }
 
   join: candidate {
+    from: recruit_crm_candidate
     type: left_outer
     sql_on: ${hiring_stage.candidate_slug} = ${candidate.slug} ;;
     relationship: many_to_one
@@ -481,6 +484,7 @@ explore: gig {
 }
 
 explore: candidate {
+  from: recruit_crm_candidate
 
   join: hiring_stage {
     type: left_outer
@@ -544,6 +548,7 @@ explore :  jobs {
   }
 
   join: candidate {
+    from: recruit_crm_candidate
     type: inner
     sql_on: ${candidate.slug} = ${job_candidates.external_id} ;;
     relationship: one_to_one
