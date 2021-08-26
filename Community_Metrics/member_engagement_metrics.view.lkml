@@ -4,7 +4,7 @@ view: member_engagement_metrics {
     sql:
     SELECT date,
            (SELECT count(*) FROM heapdata.pageviews WHERE DATEADD(day, -1, date_trunc('week', time)) = c.date ) as pageviews,
-           (SELECT count(*)  FROM coder WHERE status = 'A' and DATEADD(day,-1,date_trunc('week', member_since)) = c.date) as sign_ups,
+           (SELECT count(*)  FROM coder WHERE status = 'A' and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as sign_ups,
            --(SELECT count(*) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as challenge_registrations,
            --(SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as distinct_challenge_registrants,
            --(SELECT count(*) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as challenge_submissions,
@@ -13,9 +13,9 @@ view: member_engagement_metrics {
            (select count(distinct user_id) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as distinct_challenge_registrants,
            (select count(*) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as challenge_submissions,
            (select count(distinct user_id ) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as distinct_challenge_submitters,
-           (SELECT count(*) FROM recruit_crm_candidate WHERE DATEADD(day,-1,date_trunc('week', created_on)) = c.date ) as gig_applicants,
-           (SELECT count(*) FROM bookings_resource_bookings WHERE DATEADD(day,-1,date_trunc('week', created_at)) = c.date) as gig_placements,
-           (SELECT count(distinct user_id) FROM user_payment WHERE DATEADD(day,-1,date_trunc('week', create_date)) = c.date ) as members_paid,
+           (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date ) as gig_applicants,
+           (SELECT count(*) FROM bookings_resource_bookings WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_at")::integer), "created_at" )) = c.date) as gig_placements,
+           (SELECT count(distinct user_id) FROM user_payment WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "create_date")::integer), "create_date" )) = c.date ) as members_paid,
            (SELECT count(*) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date ) as logins,
            (SELECT count(distinct nickname) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date ) as distinct_logins
     FROM calendar c
