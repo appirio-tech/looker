@@ -262,7 +262,13 @@ view: pageviews {
     type: count
     drill_fields: [heap_app_name, app_name]
   }
+
+  set: engagement_drill_fields {
+    fields: [ time_week, count]
+  }
 }
+
+
 
 # These sum and average measures are hidden by default.
 # If you want them to show up in your explore, remove hidden: yes.

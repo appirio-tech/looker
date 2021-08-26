@@ -39,7 +39,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.pageviews ;;
     link: {
       label: "Drill page views"
-      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.count,pageviews.time_week&fill_fields=pageviews.time_week&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
   }
 
@@ -130,7 +130,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.logins ;;
     link: {
       label:"Drill Weekly Logins "
-      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.time_week,heap_profile_events_success_login.count&fill_fields=heap_profile_events_success_login.time_week&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields*&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
   }
 

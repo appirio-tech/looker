@@ -605,4 +605,8 @@ view: heap_profile_events_success_login {
       sessions.app_name
     ]
   }
+
+  set: engagement_drill_fields {
+    fields: [ time_week, count]
+  }
 }
