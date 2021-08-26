@@ -52,7 +52,8 @@ view: gig {
       job.client_rate_type as client_rate_type,
       job.account_executive as account_executive,
       job.completion_date as completion_date,
-      job.completion_reason as completion_reason
+      job.completion_reason as completion_reason,
+      job.system_modified_timestamp as system_modified_timestamp
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
        ;;
@@ -65,6 +66,19 @@ view: gig {
     type: number
     hidden: yes
     sql: ${TABLE}.company_id ;;
+  }
+
+  dimension_group: system_modified_timestamp {
+    label: "System Modified"
+    type: time
+    description: "Timestamp when the record was touched by the Loader"
+    timeframes: [
+      raw,
+      date,
+      month,
+      year
+    ]
+
   }
 
   dimension: company_name {

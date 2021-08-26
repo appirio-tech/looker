@@ -8,6 +8,19 @@ view: candidate {
     sql: ${TABLE}.id ;;
   }
 
+  dimension_group: system_modified_timestamp {
+    label: "System Modified"
+    type: time
+    description: "Timestamp when the record was touched by the Loader"
+    timeframes: [
+      time,
+      raw,
+      date,
+      month,
+      year
+    ]
+  }
+
   dimension: address {
     type: string
     sql: ${TABLE}.address ;;
