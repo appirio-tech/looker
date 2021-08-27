@@ -12,6 +12,8 @@ include: "../informix_challenge/*.view.lkml"             # include all views fro
 include: "../bookings/*.view.lkml"            #include all views from /bookings folder
 include: "../user/*.view.lkml"
 include: "../connect/*.view.lkml"
+include: "../leaderboards/*.view.lkml"
+include: "../submission/*.view.lkml"
 
 fiscal_month_offset: -9
 

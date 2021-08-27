@@ -36,6 +36,8 @@ include: "/salesforce/*.view.lkml"             # include all views from /salesfo
 include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "/user/*.view.lkml"
 include: "/connect/*.view.lkml"
+include: "/leaderboards/*.view.lkml"
+include: "/submission/*.view.lkml"
 
 
 

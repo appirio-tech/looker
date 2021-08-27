@@ -6,6 +6,8 @@ include: "/SRM/*.view.lkml" # include all views from /SRM folder
 include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "/user/*.view.lkml"
 include: "/connect/*.view.lkml"
+include: "/leaderboards/*.view.lkml"
+include: "/submission/*.view.lkml"
 
 # include all dashboards in this project
 # include: "*.dashboard"

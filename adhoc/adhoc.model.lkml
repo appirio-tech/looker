@@ -10,14 +10,17 @@ include: "*.view.lkml"                       # include all views in this project
 
 #added on 25th Feb to include lkml files from invoice folder
 #include: "/invoice/*.view.lkml"
-include: "/cost_transaction_temp/*.view.lkml"
-include : "/bookings/*.view.lkml"
+include: "../cost_transaction_temp/*.view.lkml"
+include : "../bookings/*.view.lkml"
 include: "/adhoc/*.view.lkml"
-include: "/members/*.view.lkml"             # include all views from /Members folder
-include: "/salesforce/*.view.lkml"             # include all views from /salesforce folder
-include: "/informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
-include: "/user/*.view.lkml"
-include: "/connect/*.view.lkml"
+include: "../members/*.view.lkml"             # include all views from /Members folder
+include: "../salesforce/*.view.lkml"             # include all views from /salesforce folder
+include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
+include: "../user/*.view.lkml"
+include: "../connect/*.view.lkml"
+include: "../leaderboards/*.view.lkml"
+include: "../submission/*.view.lkml"
+include: "../*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
