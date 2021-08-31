@@ -4,13 +4,14 @@ view: member_engagement_metrics {
     sql:
     SELECT date,
            (SELECT count(*) FROM heapdata.pageviews WHERE DATEADD(day, -1, date_trunc('week', time)) = c.date ) as pageviews,
-           (SELECT count(*)  FROM coder WHERE status = 'A' and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as sign_ups,
+           (SELECT count(*)  FROM coder WHERE status = 'A' and (email like '%wipro.com%' OR email like '%appirio.com%') and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as topgear_sign_ups,
+           (SELECT count(*)  FROM coder WHERE status = 'A' and (email not like '%wipro.com%' AND email not like '%appirio.com%') and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as non_topgear_sign_ups,
            --(SELECT count(*) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as challenge_registrations,
            --(SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as distinct_challenge_registrants,
            --(SELECT count(*) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as challenge_submissions,
            --(SELECT count(distinct user_id) FROM project_result WHERE date_trunc('week', submit_timestamp) = c.date AND submit_ind = 1 ) as distinct_challenge_submitters,
-           (SELECT count(*) FROM project WHERE date_trunc('week', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id != 80000062  ) as challenges_non_topgear,
-           (SELECT count(*) FROM project WHERE date_trunc('week', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id = 80000062) as challenges_topgear,
+           (SELECT count(*) FROM project WHERE date_trunc('week', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id != 80000062  ) as non_topgear_challenges,
+           (SELECT count(*) FROM project WHERE date_trunc('week', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id = 80000062) as topgear_challenges,
            (select count(*) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as challenge_registrations,
            (select count(distinct user_id) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as distinct_challenge_registrants,
            (select count(*) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as challenge_submissions,
@@ -35,9 +36,8 @@ view: member_engagement_metrics {
     sql: ${TABLE}.date ;;
   }
 
-  measure: challenges_topgear {
+  measure: topgear_challenges {
     description: "Topgear Challenges Count"
-    label: "Challenges Count"
     type: sum
     sql: ${TABLE}.challenges_topgear ;;
     link: {
@@ -47,8 +47,7 @@ view: member_engagement_metrics {
     group_label: "Topgear"
   }
 
-  measure: challenges_non_topgear {
-    label: "Challenges Count"
+  measure: non_topgear_challenges {
     description: "Non Topgear Challenges Count"
     type: sum
     sql: ${TABLE}.challenges_non_topgear ;;
@@ -69,15 +68,28 @@ view: member_engagement_metrics {
     }
   }
 
-  measure: sign_ups {
-    description: "The total number of sign_ups"
+  measure: topgear_sign_ups {
+    description: "Topgear total number of sign ups"
     type: sum
     link: {
-      label: "Drill Signups Week "
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?fields=user.engagement_drill_fields*&f[user.status_desc]=Active&f[user.create_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label: "Drill Topgear Signups Week "
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?fields=user.engagement_drill_fields*&f[user.email]=%25wipro.com%25%2C%25appirio.com%25&f[user.status_desc]=Active&f[user.create_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
-    sql: ${TABLE}.sign_ups ;;
+    sql: ${TABLE}.topgear_sign_ups ;;
+    group_label: "Topgear"
   }
+
+  measure: non_topgear_sign_ups {
+    description: "Non Topgear total number of sign ups"
+    type: sum
+    link: {
+      label: "Drill Non Topgear Signups Week "
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/user?fields=user.engagement_drill_fields*&f[user.email]=-%25wipro.com%25%2C-%25appirio.com%25&f[user.status_desc]=Active&f[user.create_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    sql: ${TABLE}.non_topgear_sign_ups ;;
+    group_label: "Non Topgear"
+  }
+
 
   measure: challenges {
     description: "The total number of challenges"
