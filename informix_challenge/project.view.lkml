@@ -924,6 +924,12 @@ view: challenge {
   }
 
 
+  #----Set for engagement metric-----
+
+  set: engagement_metric_set {
+    fields: [posting_week, count]
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

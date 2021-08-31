@@ -37,14 +37,26 @@ view: member_engagement_metrics {
 
   measure: challenges_topgear {
     description: "Topgear Challenges Count"
+    label: "Challenges Count"
     type: sum
     sql: ${TABLE}.challenges_topgear ;;
+    link: {
+      label: "Drill Topgear Challenge Count"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.posting_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Topgear"
   }
 
   measure: challenges_non_topgear {
+    label: "Challenges Count"
     description: "Non Topgear Challenges Count"
     type: sum
     sql: ${TABLE}.challenges_non_topgear ;;
+    link: {
+      label: "Drill Non Topgear Challenge Count"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.posting_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
   }
 
   measure: pageviews {
