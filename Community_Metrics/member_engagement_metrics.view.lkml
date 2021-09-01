@@ -19,8 +19,10 @@ view: member_engagement_metrics {
            (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date ) as gig_applicants,
            (SELECT count(*) FROM bookings_resource_bookings WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_at")::integer), "created_at" )) = c.date) as gig_placements,
            (SELECT count(distinct user_id) FROM user_payment WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "create_date")::integer), "create_date" )) = c.date ) as members_paid,
-           (SELECT count(*) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date ) as logins,
-           (SELECT count(distinct nickname) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date ) as distinct_logins
+           (SELECT count(*) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date  and (email like '%wipro.com%' OR email like '%appirio.com%') ) as topgear_logins,
+           (SELECT count(*) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date  and (email not like '%wipro.com%' OR email not like '%appirio.com%') ) as non_topgear_logins,
+           (SELECT count(distinct nickname) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date and (email like '%wipro.com%' OR email like '%appirio.com%')  ) as topgear_distinct_logins,
+           (SELECT count(distinct nickname) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date and (email not like '%wipro.com%' OR email not like '%appirio.com%')  ) as non_topgear_distinct_logins
     FROM calendar c
     WHERE c.date < getdate()
     GROUP BY 1
@@ -39,7 +41,7 @@ view: member_engagement_metrics {
   measure: topgear_challenges {
     description: "Topgear Challenges Count"
     type: sum
-    sql: ${TABLE}.challenges_topgear ;;
+    sql: ${TABLE}.topgear_challenges ;;
     link: {
       label: "Drill Topgear Challenge Count"
       url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.posting_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
@@ -50,7 +52,7 @@ view: member_engagement_metrics {
   measure: non_topgear_challenges {
     description: "Non Topgear Challenges Count"
     type: sum
-    sql: ${TABLE}.challenges_non_topgear ;;
+    sql: ${TABLE}.non_topgear_challenges ;;
     link: {
       label: "Drill Non Topgear Challenge Count"
       url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.posting_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
@@ -166,28 +168,55 @@ view: member_engagement_metrics {
       label: "Drill Payment Paid Week"
       url: "https://topcoder.looker.com/explore/topcoder_model_main/payment?fields=payment_create_date.date_week,user_payment.distinct_user_count&fill_fields=payment_create_date.date_week&f[payment_create_date.date_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
+
   }
 
-  measure: logins {
+  measure: topgear_logins {
     description: "The total number of logins"
     type: sum
-    sql: ${TABLE}.logins ;;
+    sql: ${TABLE}.topgear_logins ;;
     link: {
-      label:"Drill Weekly Logins "
-      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields*&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label:"Drill Weekly Topgear Logins "
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields*&f[heap_profile_events_success_login.email]=%25wipro.com%25%2C%25appirio.com%25&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
+    group_label: "Topgear"
   }
 
-  measure: distinct_logins {
+  measure: non_topgear_logins {
+    description: "The total number of logins"
+    type: sum
+    sql: ${TABLE}.non_topgear_logins ;;
+    link: {
+      label:"Drill Weekly Non Topgear Logins "
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields*&f[heap_profile_events_success_login.email]=-%25wipro.com%25%2C-%25appirio.com%25&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
+  }
+
+  measure: topgear_distinct_logins {
     description: "The total number of distinct_logins"
     type: sum
     drill_fields: []
-    sql: ${TABLE}.distinct_logins ;;
+    sql: ${TABLE}.topgear_distinct_logins ;;
     link: {
-      label: "Drill Weekly Distinct Logins"
-      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields_distinct*&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label: "Drill Weekly Topgear Distinct Logins"
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields_distinct*&f[heap_profile_events_success_login.email]=%25wipro.com%25%2C%25appirio.com%25&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
+    group_label: "Topgear"
   }
+
+  measure: non_topgear_distinct_logins {
+    description: "The total number of distinct_logins"
+    type: sum
+    drill_fields: []
+    sql: ${TABLE}.non_topgear_distinct_logins ;;
+    link: {
+      label: "Drill Weekly Non Topgear Distinct Logins"
+      url: "https://topcoder.looker.com/explore/heap/heap_profile_events_success_login?fields=heap_profile_events_success_login.engagement_drill_fields_distinct*&f[heap_profile_events_success_login.email]=-%25wipro.com%25%2C-%25appirio.com%25&f[heap_profile_events_success_login.time_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
+  }
+
 
   measure: count {
     type: count
