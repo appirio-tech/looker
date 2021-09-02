@@ -22,6 +22,7 @@ include: "../leaderboards/*.view.lkml"
 include: "../submission/*.view.lkml"
 include: "../*.view.lkml"
 include: "../groups/*.view.lkml"
+include: "../copilot/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
