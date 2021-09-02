@@ -16,7 +16,8 @@ view: member_engagement_metrics {
            (select count(distinct user_id) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as distinct_challenge_registrants,
            (select count(*) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as challenge_submissions,
            (select count(distinct user_id ) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as distinct_challenge_submitters,
-           (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date ) as gig_applicants,
+           (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date and (email like '%wipro.com%' OR email like '%appirio.com%') ) as topgear_gig_applicants,
+           (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date and (email not like '%wipro.com%' OR email not like '%appirio.com%')) as non_topgear_gig_applicants,
            (SELECT count(*) FROM bookings_resource_bookings WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_at")::integer), "created_at" )) = c.date) as gig_placements,
            (SELECT count(distinct user_id) FROM user_payment WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "create_date")::integer), "create_date" )) = c.date ) as members_paid,
            (SELECT count(*) FROM heapdata.profile_events_success_login WHERE DATEADD(day,-1,date_trunc('week', time)) = c.date  and (email like '%wipro.com%' OR email like '%appirio.com%') ) as topgear_logins,
@@ -140,14 +141,26 @@ view: member_engagement_metrics {
     sql: ${TABLE}.distinct_challenge_submitters ;;
   }
 
-  measure: gig_applicants {
+  measure: topgear_gig_applicants {
     description: "The total number of gig_applicants"
     type: sum
-    sql: ${TABLE}.gig_applicants ;;
+    sql: ${TABLE}.topgear_gig_applicants ;;
     link: {
-      label:" Drill Weekly Gig applicant "
-      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.engagement_drill_fields*&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label:" Drill Weekly Topgear Gig applicant "
+      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.engagement_drill_fields*&f[candidate.email]=%25wipro.com%25%2C%25appirio.com%25&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
+    group_label: "Topgear"
+  }
+
+  measure: non_topgear_gig_applicants {
+    description: "The total number of gig_applicants"
+    type: sum
+    sql: ${TABLE}.non_topgear_gig_applicants ;;
+    link: {
+      label:" Drill Weekly Non Topgear Gig applicant "
+      url: "https://topcoder.looker.com/explore/member_profile/candidate?fields=candidate.engagement_drill_fields*&f[candidate.email]=-%25wipro.com%25%2C-%25appirio.com%25&f[candidate.created_week]={{_filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
   }
 
   measure: gig_placements {
