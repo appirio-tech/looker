@@ -42,14 +42,15 @@ view: submission_review {
     sql: ${TABLE}.reviewer_id ;;
   }
 
+  dimension: review_id {
+    type: number
+    primary_key: yes
+    sql: ${TABLE}.review_id ;;
+  }
+
   dimension: scorecard_id {
     type: number
     sql: ${TABLE}.scorecard_id ;;
-  }
-
-  dimension: scorecard_template_id {
-    type: number
-    sql: ${TABLE}.scorecard_template_id ;;
   }
 
   dimension: user_id {
