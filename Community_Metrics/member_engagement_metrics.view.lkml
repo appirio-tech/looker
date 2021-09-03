@@ -14,9 +14,12 @@ view: member_engagement_metrics {
            (SELECT count(*) FROM project WHERE date_trunc('week', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id = 80000062) as topgear_challenges,
            (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as topgear_challenge_registrations,
            (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id != 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id != 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as non_topgear_challenge_registrations,
-           (select count(distinct user_id) from (select project_id , user_id , inquire_timestamp from design_project_result union select project_id , user_id , inquire_timestamp from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as distinct_challenge_registrants,
-           (select count(*) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as challenge_submissions,
-           (select count(distinct user_id ) from (select project_id , user_id , inquire_timestamp , submit_ind from design_project_result union select project_id , user_id , inquire_timestamp , submit_ind from project_result ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as distinct_challenge_submitters,
+           (select count(distinct user_id) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as topgear_distinct_challenge_registrants,
+           (select count(distinct user_id) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id != 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id != 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date) as non_topgear_distinct_challenge_registrants,
+           (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id, dpr.submit_ind from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id , pr.submit_ind from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_submission_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as topgear_challenge_submissions,
+           (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id, dpr.submit_ind from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id != 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id , pr.submit_ind from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id != 80000062 ) as challenge_submission_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as non_topgear_challenge_submissions,
+           (select count(distinct user_id ) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id, dpr.submit_ind from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id , pr.submit_ind from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_submission_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as topgear_distinct_challenge_submitters,
+           (select count(distinct user_id ) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id, dpr.submit_ind from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id != 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id , pr.submit_ind from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id != 80000062 ) as challenge_submission_union where DATEADD(day,-1,date_trunc('week', inquire_timestamp)) = c.date and submit_ind = 1 ) as non_topgear_distinct_challenge_submitters,
            (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date and (email like '%wipro.com%' OR email like '%appirio.com%') ) as topgear_gig_applicants,
            (SELECT count(*) FROM recruit_crm_candidate WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_on")::integer), "created_on" )) = c.date and (email not like '%wipro.com%' AND email not like '%appirio.com%')) as non_topgear_gig_applicants,
            (SELECT count(*) FROM bookings_resource_bookings WHERE DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "created_at")::integer), "created_at" )) = c.date) as gig_placements,
@@ -96,13 +99,7 @@ view: member_engagement_metrics {
   }
 
 
-  measure: challenges {
-    description: "The total number of challenges"
-    type: sum
-    sql: ${TABLE}.challenge_registrations ;;
-  }
-
-  measure: topgear_challenge_registrations {
+   measure: topgear_challenge_registrations {
     description: "The total number of Topgear challengeregistrations"
     type: sum
     link: {
@@ -127,34 +124,70 @@ view: member_engagement_metrics {
     group_label: "Non Topgear"
   }
 
-  measure: distinct_challenge_registrants {
-    description: "The total number of distinct_challenge_registrants"
+  measure: topgear_distinct_challenge_registrants {
+    description: "The total number of distinct topgear challenge registrants"
     type: sum
     link: {
-      label: "Drill Distinct Regisration"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_registrants_distinct*&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label: "Drill Topgear Distinct Regisration"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_registrants_distinct*&f[client_project_dim.billing_account_id]=80000062&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
-    sql: ${TABLE}.distinct_challenge_registrants ;;
+    sql: ${TABLE}.topgear_distinct_challenge_registrants ;;
+    group_label: "Topgear"
   }
 
-  measure: challenge_submissions {
-    description: "The total number of challenge_submissions"
+  measure: non_topgear_distinct_challenge_registrants {
+    description: "The total number of distinct non topgear challenge registrants"
+    type: sum
+    link: {
+      label: "Drill Non Topgear Distinct Regisration"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_registrants_distinct*&f[client_project_dim.billing_account_id]=not+80000062&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    sql: ${TABLE}.non_topgear_distinct_challenge_registrants ;;
+    group_label: "Non Topgear"
+  }
+
+  measure: topgear_challenge_submissions {
+    description: "The total number of topgear challenge submissions"
     type: sum
     link: {
       label: "Drill Submissions"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters*&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters*&f[client_project_dim.billing_account_id]=80000062&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
-    sql: ${TABLE}.challenge_submissions ;;
+    sql: ${TABLE}.topgear_challenge_submissions ;;
+    group_label: "Topgear"
   }
 
-  measure: distinct_challenge_submitters {
-    description: "The total number of distinct_challenge_submitters"
+  measure: non_topgear_challenge_submissions {
+    description: "The total number of non topgear challenge submissions"
     type: sum
     link: {
-      label: "Drill distinct submitters"
-     url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters_distinct*&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label: "Drill Submissions"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters*&f[client_project_dim.billing_account_id]=not+80000062&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
-    sql: ${TABLE}.distinct_challenge_submitters ;;
+    sql: ${TABLE}.non_topgear_challenge_submissions ;;
+    group_label: "Non Topgear"
+  }
+
+  measure: topgear_distinct_challenge_submitters {
+    description: "The total number of topgear distinct challenge submitters"
+    type: sum
+    link: {
+      label: "Drill distinct topgear submitters"
+     url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters_distinct*&f[client_project_dim.billing_account_id]=80000062&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    sql: ${TABLE}.topgear_distinct_challenge_submitters ;;
+    group_label: "Topgear"
+  }
+
+  measure: non_topgear_distinct_challenge_submitters {
+    description: "The total number of non topgear distinct challenge submitters"
+    type: sum
+    link: {
+      label: "Drill distinct non topgear submitters"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge_stats?fields=challenge_stats.engagement_drill_fields_submitters_distinct*&f[client_project_dim.billing_account_id]=not+80000062&f[challenge_stats.submit_ind]=1&f[challenge_stats.inquire_timestamp_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    sql: ${TABLE}.non_topgear_distinct_challenge_submitters ;;
+    group_label: "Non Topgear"
   }
 
   measure: topgear_gig_applicants {
