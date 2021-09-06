@@ -693,6 +693,13 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  join: resource_profile {
+    from: user
+    type: left_outer
+    sql_on: ${challenge_resources.member_id} = ${resource_profile.coder_id} ;;
+    relationship: one_to_many
+  }
+
 }
 
 explore: project_result {
