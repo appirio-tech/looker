@@ -1339,12 +1339,25 @@ explore: submission_review {
     relationship: many_to_one
   }
 
-  join: reviewer_responsibility {
-    from: review_resp
+  join: submitter {
+    from: user
     type: inner
-    sql_on: ${submission_review.review_resp_id} = ${reviewer_responsibility.review_resp_id} ;;
+    sql_on: ${submission_review.reviewer_id} = ${submitter.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: submission_review_answer {
+    type: inner
+    sql_on: ${submission_review.review_id} = ${submission_review_answer.review_id} ;;
+    relationship: many_to_one
+  }
+
+  #join: reviewer_responsibility {
+  #  from: review_resp
+  #  type: inner
+  #  sql_on: ${submission_review.review_resp_id} = ${reviewer_responsibility.review_resp_id} ;;
+  #  relationship: many_to_one
+  #}
 
   join: challenge {
     type: inner
@@ -1352,23 +1365,23 @@ explore: submission_review {
     relationship: many_to_one
   }
 
-  join: client_project_dim {
-    type: left_outer
-    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
-    relationship: many_to_one
-  }
+  #join: client_project_dim {
+  #  type: left_outer
+  #  sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: direct_project_dim {
-    type: left_outer
-    sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
-    relationship: many_to_one
-  }
+  #join: direct_project_dim {
+  #  type: left_outer
+  #  sql_on: ${challenge.tc_direct_project_id} = ${direct_project_dim.direct_project_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: connect_project {
-    type: left_outer
-    sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
-    relationship: many_to_one
-  }
+  #join: connect_project {
+  #  type: left_outer
+  #  sql_on: ${direct_project_dim.direct_project_id} = ${connect_project.direct_project_id} ;;
+  #  relationship: many_to_one
+  #}
 
   join: copilot {
     from: user
@@ -1377,32 +1390,32 @@ explore: submission_review {
     relationship: many_to_one
   }
 
-  join: creator {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id} ;;
-    relationship: many_to_one
-  }
+  #join: creator {
+  #  from: user
+  #  type: left_outer
+  #  sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: manager {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id} ;;
-    relationship: many_to_one
-  }
+  #join: manager {
+  #  from: user
+  #  type: left_outer
+  #  sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: launcher {
-    from: user
-    type: left_outer
-    sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
-    relationship: many_to_one
-  }
+  #join: launcher {
+  #  from: user
+  #  type: left_outer
+  #  sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
+  #  relationship: many_to_one
+  #}
 
-  join: challenge_groups {
-    type: left_outer
-    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
-    relationship: one_to_many
-  }
+  #join: challenge_groups {
+  #  type: left_outer
+  #  sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+  #  relationship: one_to_many
+  #}
 }
 
 
