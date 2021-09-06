@@ -82,7 +82,9 @@ view: user {
     sql: ${TABLE}.create_date ;;
   }
 
+  #--------------------Not Relevant ---------------------------#
   dimension_group: dw_stats_updated {
+    hidden: yes
     type: time
     timeframes: [
       time,
@@ -407,7 +409,6 @@ view: user {
   }
 
   #Added Count Distinct for handle
-
   measure: distinct_user {
     type: count_distinct
     sql: ${coder_id} ;;
