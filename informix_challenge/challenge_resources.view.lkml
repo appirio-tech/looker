@@ -13,8 +13,7 @@ view: challenge_resources {
               r.updated_date,
               r.is_deleted
       from tcs_dw.resource r
-      inner join tcs_dw.dynamo_ResourceRole role ON r.role_id = role.id
-       ;;
+      inner join tcs_dw.dynamo_ResourceRole role ON r.role_id = role.id;;
   }
 
   measure: count {

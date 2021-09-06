@@ -3,7 +3,8 @@ view: member_engagement_metrics {
   derived_table: {
     sql:
     SELECT date,
-           (SELECT count(*) FROM heapdata.pageviews WHERE DATEADD(day, -1, date_trunc('week', time)) = c.date ) as pageviews,
+           (SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where DATEADD(day, -1, date_trunc('week', time)) = c.date and  (u._email like '%wipro.com%' OR u._email like '%appirio.com%') ) as topgear_pageviews,
+           (SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where DATEADD(day, -1, date_trunc('week', time)) = c.date and  (u._email not like '%wipro.com%' AND u._email not like '%appirio.com%') ) as non_topgear_pageviews,
            (SELECT count(*)  FROM coder WHERE status = 'A' and (email like '%wipro.com%' OR email like '%appirio.com%') and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as topgear_sign_ups,
            (SELECT count(*)  FROM coder WHERE status = 'A' and (email not like '%wipro.com%' AND email not like '%appirio.com%') and DATE(DATEADD(day,(0 - EXTRACT(DOW FROM "member_since")::integer), "member_since" )) = c.date) as non_topgear_sign_ups,
            --(SELECT count(*) FROM project_result WHERE date_trunc('week', inquire_timestamp) = c.date ) as challenge_registrations,
@@ -66,14 +67,26 @@ view: member_engagement_metrics {
     group_label: "Non Topgear"
   }
 
-  measure: pageviews {
-    description: "The total number of pageviews"
+  measure: topgear_pageviews {
+    description: "The total number of topgear pageviews"
     type: sum
-    sql: ${TABLE}.pageviews ;;
+    sql: ${TABLE}.topgear_pageviews ;;
     link: {
-      label: "Drill page views"
-      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      label: "Drill topgear page views"
+      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[heap_users._email]=%25wipro.com%25%2C%25appirio.com%25&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
+    group_label: "Topgear"
+  }
+
+  measure: non_topgear_pageviews {
+    description: "The total number of non topgear pageviews"
+    type: sum
+    sql: ${TABLE}.non_topgear_pageviews ;;
+    link: {
+      label: "Drill non topgear page views"
+      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[heap_users._email]=-%25wipro.com%25%2C-%25appirio.com%25%2C-NULL&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
   }
 
   measure: topgear_sign_ups {

@@ -29,7 +29,14 @@ include: "../groups/*.view.lkml"
 #Week start day set to Sunday
 #week_start_day: sunday
 
-explore: pageviews {}
+explore: pageviews {
+
+ join: heap_users  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${pageviews.user_id} = ${heap_users.user_id} ;;
+  }
+}
 
 explore: gigs_apply_button_application_page {
   join: heap_users {
