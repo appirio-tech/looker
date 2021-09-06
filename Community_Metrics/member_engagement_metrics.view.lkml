@@ -84,7 +84,7 @@ view: member_engagement_metrics {
     sql: ${TABLE}.non_topgear_pageviews ;;
     link: {
       label: "Drill non topgear page views"
-      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[heap_users._email]=-%25wipro.com%25%2C-%25appirio.com%25%2C-NULL&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/heap/pageviews?fields=pageviews.engagement_drill_fields*&f[heap_users._email]=-NULL%2C-%25wipro.com%25%2C-%25appirio.com%25&f[pageviews.time_week]={{ _filters['member_engagement_metrics.event_date_week'] | urlencode}}"
     }
     group_label: "Non Topgear"
   }
@@ -308,6 +308,7 @@ view: member_engagement_metrics {
 
 
   measure: count {
+    hidden: yes
     type: count
   }
 }
