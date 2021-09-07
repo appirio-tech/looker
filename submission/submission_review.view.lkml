@@ -66,6 +66,12 @@ view: submission_review {
   }
 
 
+  dimension: is_deleted {
+    type: yesno
+    hidden: yes
+  }
+
+
   #-----------------------------------------Scorecard fields ------------------------#
 
   dimension: question_count {

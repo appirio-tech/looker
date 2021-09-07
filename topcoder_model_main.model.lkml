@@ -1339,6 +1339,7 @@ explore: streak_type_lu {}
 explore: submission {}
 
 explore: submission_review {
+  sql_always_where: ${is_deleted} is null;;
   join: reviewer {
     from: user
     type: inner
