@@ -26,6 +26,7 @@ include: "../copilot/*.view.lkml"
 include: "../direct_project/*.view.lkml"
 include: "../payments/*.view.lkml"
 include: "../sfdc/*.view.lkml"
+include: "../legacy/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
