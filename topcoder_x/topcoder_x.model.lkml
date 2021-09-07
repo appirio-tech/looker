@@ -9,6 +9,9 @@ include: "../salesforce/*.view.lkml"             # include all views from /sales
 include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "../user/*.view.lkml"
 include: "../connect/*.view.lkml"
+include: "../direct_project/*.view.lkml"
+include: "../payments/*.view.lkml"
+include: "../members/*.view.lkml"
 
 
 fiscal_month_offset: -9

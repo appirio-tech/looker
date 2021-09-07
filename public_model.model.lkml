@@ -10,6 +10,9 @@ include: "/leaderboards/*.view.lkml"
 include: "/submission/*.view.lkml"
 include: "/connect_project/*.view.lkml"
 include: "/copilot/*.view.lkml"
+include: "/direct_project/*.view.lkml"
+include: "/payments/*.view.lkml"
+include: "/members/*.view.lkml"
 
 # include all the dashboards
 # include: "*.dashboard"

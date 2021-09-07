@@ -10,6 +10,9 @@ include: "../user/*.view.lkml"
 include: "../connect/*.view.lkml"
 include: "../bookings/*.view.lkml"
 include: "../groups/*.view.lkml"
+include: "../direct_project/*.view.lkml"
+include: "../payments/*.view.lkml"
+
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.

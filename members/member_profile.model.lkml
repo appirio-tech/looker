@@ -16,6 +16,8 @@ include: "../leaderboards/*.view.lkml"
 include: "../submission/*.view.lkml"
 include: "../groups/*.view.lkml"
 include: "../connect_project/*.view.lkml"
+include: "../direct_project/*.view.lkml"
+include: "../payments/*.view.lkml"
 
 fiscal_month_offset: -9
 

@@ -41,6 +41,8 @@ include: "/submission/*.view.lkml"
 include: "/groups/*.view.lkml"
 include: "/connect_project/*.view.lkml"
 include: "/copilot/*.view.lkml"
+include: "/direct_project/*.view.lkml"
+include: "/payments/*.view.lkml"
 
 
 

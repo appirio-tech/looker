@@ -23,6 +23,8 @@ include: "../submission/*.view.lkml"
 include: "../*.view.lkml"
 include: "../groups/*.view.lkml"
 include: "../copilot/*.view.lkml"
+include: "../direct_project/*.view.lkml"
+include: "../payments/*.view.lkml"
 
 #for fiscal year
 fiscal_month_offset: -9
