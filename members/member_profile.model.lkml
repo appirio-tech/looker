@@ -18,6 +18,7 @@ include: "../groups/*.view.lkml"
 include: "../connect/*.view.lkml"
 include: "../direct_project/*.view.lkml"
 include: "../payments/*.view.lkml"
+include: "../taas/*.view.lkml"
 
 fiscal_month_offset: -9
 

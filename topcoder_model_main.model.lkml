@@ -44,6 +44,7 @@ include: "/copilot/*.view.lkml"
 include: "/direct_project/*.view.lkml"
 include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
+include: "/sfdc/*.view.lkml"
 
 
 
