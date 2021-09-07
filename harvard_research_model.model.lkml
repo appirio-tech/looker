@@ -12,6 +12,7 @@ include: "/connect/*.view.lkml"
 include: "/direct_project/*.view.lkml"
 include: "/payments/*.view.lkml"
 include: "/members/*.view.lkml"
+include: "/legacy/*.view.lkml"
 
 
 # include all dashboards in this project
