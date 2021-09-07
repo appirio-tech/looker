@@ -27,7 +27,7 @@ datagroup: tco_leaderboard_cache {
 
 
 # include all the views
-include: "*.view"
+#include: "*.view"
 include: "/adhoc/*.view.lkml"
 include: "/SRM/*.view.lkml" # include all views from /SRM folder
 include: "/members/*.view.lkml" # include all views from /Members folder

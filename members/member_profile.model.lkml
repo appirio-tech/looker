@@ -7,7 +7,7 @@ include : "/heap/*.view.lkml"                # include all views from heap folde
 #include : "/gig/*.view.lkml"                 # include all views from gig folder
 include : "/Community_Metrics/*.view.lkml"   # include all views from communtiy metrics folder
 include: "/salesforce/*.view.lkml"           # include all views from /salesforce folder
-include: "../*.view.lkml"                    #include all views from parent directory
+#include: "../*.view.lkml"                    #include all views from parent directory
 include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "../bookings/*.view.lkml"            #include all views from /bookings folder
 include: "../user/*.view.lkml"

@@ -4,7 +4,7 @@ include: "*.view.lkml"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
-include: "../*.view.lkml" # include all views in parent directory as well
+#include: "../*.view.lkml" # include all views in parent directory as well
 include: "../salesforce/*.view.lkml"             # include all views from /salesforce folder
 include: "../informix_challenge/*.view.lkml"             # include all views from /informix_challenge folder
 include: "../user/*.view.lkml"
