@@ -1354,7 +1354,7 @@ explore: submission_review {
   join: submitter {
     from: user
     type: inner
-    sql_on: ${submission_review.reviewer_id} = ${submitter.coder_id} ;;
+    sql_on: ${submission_review.user_id} = ${submitter.coder_id} ;;
     relationship: many_to_one
   }
 

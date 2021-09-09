@@ -58,4 +58,10 @@ view: submission_review_answer {
     drill_fields: []
   }
 
+  measure: score {
+    description: "fraction value of the score obtained for the question"
+    type: sum
+    sql: ${TABLE}.computed_score ;;
+  }
+
 }
