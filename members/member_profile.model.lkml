@@ -581,6 +581,7 @@ explore:  community_monthly_active_users {
 
 }
 
+explore: member_engagement_metric_daywise {}
 
 explore:  member_engagement_metrics {}
 
