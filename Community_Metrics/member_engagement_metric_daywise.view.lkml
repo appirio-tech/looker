@@ -41,7 +41,7 @@ view: member_engagement_metric_daywise {
                   {% elsif member_engagement_metric_daywise.event_date_week._is_filtered %}
                       pageviews.time_week
                   {% else %}
-                  {% endif %}]={{urlencode}}"
+                  {% endif %}]="
     }
     group_label: "Topgear"
   }
