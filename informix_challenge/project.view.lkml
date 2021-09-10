@@ -1,6 +1,29 @@
 view: challenge {
   sql_table_name: tcs_dw.project ;;
 
+  # -------------------------------- Metadata extracts -------------------------------#
+  dimension: practice {
+    type: string
+    description: "Topgear - Challenge Practice"
+    sql: json_extract_path_text(challenge.metadata, 'practice') ;;
+    group_label: "Metadata"
+  }
+
+  dimension: sub_practice {
+    type: string
+    description: "Topgear - Challenge SubPractice"
+    sql: json_extract_path_text(challenge.metadata, 'subPractice') ;;
+    group_label: "Metadata"
+  }
+
+  dimension: creator_email {
+    type: string
+    description: "Topgear - Challenge Creator Email"
+    sql: json_extract_path_text(challenge.metadata, 'creatorEmail') ;;
+    group_label: "Metadata"
+  }
+
+
   # ------------------------------------Challenge IDs ------------------------------- #
   dimension: challenge_id {
     type: number
