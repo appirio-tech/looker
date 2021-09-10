@@ -53,7 +53,14 @@ view: gig {
       job.account_executive as account_executive,
       job.completion_date as completion_date,
       job.completion_reason as completion_reason,
-      job.system_modified_timestamp as system_modified_timestamp
+      job.system_modified_timestamp as system_modified_timestamp,
+
+      json_extract_path_text(custom_fields,'18','value', true) as taas_app_link,
+      json_extract_path_text(custom_fields,'19','value', true) as wipro,
+      json_extract_path_text(custom_fields,'20','value', true) as wipro_smu,
+      json_extract_path_text(custom_fields,'22','value', true) as wipro_centralization_spoc
+
+
       from recruit_crm_job as job
       inner join recruit_crm_company as company ON job.company_slug = company.slug
        ;;
@@ -61,6 +68,37 @@ view: gig {
     distribution_style: "even"
     indexes: ["company_id", "job_id", "slug"]
   }
+
+  #------------------------------------Metadata extracts -------------------#
+  dimension: taas_app_link {
+    label: "TaaS App Link"
+    type: string
+
+    link: {
+      label: "App Link"
+      url: "{{value}}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
+  }
+
+  dimension: wipro {
+    label: "Wipro"
+    type: string
+    description: "Is the Job Posted on behalf of Wipro ?"
+  }
+
+  dimension: wipro_smu {
+    label: "Wipro SMU"
+    type: string
+    description: "Wipro SMU for the Gig"
+  }
+
+  dimension: wipro_centralization_spoc {
+    label: "Wipro Centralization SPOC"
+    type: string
+  }
+
+  #-----------------------------------------------------------------------#
 
   dimension: company_id {
     type: number
