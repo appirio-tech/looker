@@ -29,6 +29,20 @@ fiscal_month_offset: -9
 # sets the week start day to Sunday
 week_start_day: sunday
 
+explore: referral {
+  join: gig {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${referral.gig_id} = ${gig.slug} ;;
+  }
+  join: referrer {
+    from: user
+    relationship: one_to_one
+    type: inner
+    sql_on: ${referrer.handle_lower} = ${referral.handle} ;;
+  }
+}
+
 explore: member_skill {
   join: skill {
       relationship: many_to_many
@@ -486,8 +500,6 @@ explore: gig {
     sql_on: ${work_period_payments.id} = ${payment_schedulers.work_period_payment_id} ;;
     relationship: one_to_many
   }
-
-
 }
 
 explore: candidate {
@@ -580,6 +592,13 @@ explore:  community_monthly_active_users {
   }
 
 }
+
+#explore: gig_referrer {
+#  join: gig_referral {
+#    type: left_outer
+#    sql_on: ${gig_referrer.id} = ${gig_referral.referred_by} ;;
+#  }
+#}
 
 explore: member_engagement_metric_daywise {}
 

@@ -50,7 +50,7 @@ view: submission_review_answer {
   dimension: weight {
     type: number
     description: "Relative weight of the question in scorecard"
-    sql: ${TABLE}.sort;;
+    sql: ${TABLE}.weight;;
   }
 
   measure: count {
