@@ -24,7 +24,7 @@ view: referral {
 
 
       json_extract_path_text(participant.metadata,'gigId') as gig_id,
-      json_extract_path_text(participant.metadata,'tcHandle') as handle
+      LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle
 
       FROM growsurf_participant AS participant
       LEFT JOIN growsurf_referral ON participant.id = growsurf_referral.id

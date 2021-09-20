@@ -35,11 +35,10 @@ explore: referral {
     type: left_outer
     sql_on: ${referral.gig_id} = ${gig.slug} ;;
   }
-  join: referrer {
-    from: user
+  join: user {
     relationship: one_to_one
     type: inner
-    sql_on: ${referrer.handle_lower} = ${referral.handle} ;;
+    sql_on: ${referral.handle} = ${user.handle_lower} ;;
   }
 }
 
