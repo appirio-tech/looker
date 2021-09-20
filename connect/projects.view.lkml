@@ -407,6 +407,14 @@ view: connect_project {
     group_label: "Topgear"
   }
 
+  dimension: initiator_email {
+    type: string
+    description: "Used by Topgear team, user who initiated the project"
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\\.')), 'project_data', 'initiator_email') ;;
+    group_label: "Topgear"
+  }
+
+
   #-------------------------------------- End -------------------------------------#
 
   dimension: product {
