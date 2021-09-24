@@ -7,8 +7,11 @@ view: member_engagement_metric_daywise {
            (SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where DATEADD(day, -1, date_trunc('day', time)) = c.date and  (u._email not like '%wipro.com%' AND u._email not like '%appirio.com%') ) as non_topgear_pageviews,
            (SELECT count(*)  FROM coder WHERE status = 'A' and (email like '%wipro.com%' OR email like '%appirio.com%') and CAST(member_since AS DATE) = c.date) as topgear_sign_ups,
            (SELECT count(*)  FROM coder WHERE status = 'A' and (email not like '%wipro.com%' AND email not like '%appirio.com%') and CAST(member_since AS DATE) = c.date) as non_topgear_sign_ups,
-           (SELECT count(*) FROM project WHERE date_trunc('day', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id != 80000062  ) as non_topgear_challenges,
+        -- (SELECT count(*) FROM project WHERE date_trunc('day', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id != 80000062  ) as non_topgear_challenges,
            (SELECT count(*) FROM project WHERE date_trunc('day', posting_date) = c.date and status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and client_project_id = 80000062) as topgear_challenges,
+           (SELECT count(*) FROM project p left join client_project_dim pd on p.client_project_id = pd.client_project_id WHERE date_trunc('day', p.posting_date) = c.date and p.status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and p.client_project_id != 80000062 and p.task_ind = 0 ) as non_topgear_challenges,
+           (SELECT count(*) FROM project p left join client_project_dim pd on p.client_project_id = pd.client_project_id WHERE date_trunc('day', p.posting_date) = c.date and p.status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and p.client_project_id != 80000062 and p.task_ind = 1 and pd.is_taas_billing_account != true ) as non_topgear_tasks,
+           (SELECT count(*) FROM project p left join client_project_dim pd on p.client_project_id = pd.client_project_id WHERE date_trunc('day', p.posting_date) = c.date and p.status_desc not in ('Draft', 'Deleted', 'New', 'Inactive') and p.client_project_id != 80000062 and p.task_ind = 1 and pd.is_taas_billing_account = true ) as non_topgear_TaaS,
            (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('day', inquire_timestamp)) = c.date) as topgear_challenge_registrations,
            (select count(*) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id != 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id != 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('day', inquire_timestamp)) = c.date) as non_topgear_challenge_registrations,
            (select count(distinct user_id) from (select dpr.project_id , dpr.user_id , dpr.inquire_timestamp, p.client_project_id from tcs_dw.design_project_result dpr left join tcs_dw.project p on dpr.project_id = p.project_id where p.client_project_id = 80000062 union select pr.project_id , pr.user_id , pr.inquire_timestamp, p.client_project_id from tcs_dw.project_result pr left join tcs_dw.project p on pr.project_id = p.project_id where p.client_project_id = 80000062 ) as challenge_registration_union where DATEADD(day,-1,date_trunc('day', inquire_timestamp)) = c.date) as topgear_distinct_challenge_registrants,
@@ -61,10 +64,33 @@ view: member_engagement_metric_daywise {
     sql: ${TABLE}.non_topgear_challenges ;;
     link: {
       label: "Drill Non Topgear Challenge Count"
-      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.posting_week]={{_filters['member_engagement_metric_daywise.event_date_week'] | urlencode}}"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.task_ind]=0&f[challenge.posting_week]={{_filters['member_engagement_metric_daywise.event_date_week'] | urlencode}}"
     }
     group_label: "Non Topgear"
   }
+
+  measure: non_topgear_tasks {
+    description: "Non Topgear tasks Count"
+    type: sum
+    sql: ${TABLE}.non_topgear_tasks ;;
+    link: {
+      label: "Drill Non Topgear tasks Count"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactive&f[challenge.task_ind]=1&f[client_project_dim.is_taas_billing_account]=No&f[challenge.posting_week]={{_filters['member_engagement_metric_daywise.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
+  }
+
+  measure: non_topgear_TaaS {
+    description: "Non Topgear TaaS Count"
+    type: sum
+    sql: ${TABLE}.non_topgear_TaaS ;;
+    link: {
+      label: "Drill Non Topgear TaaS Count"
+      url: "https://topcoder.looker.com/explore/topcoder_model_main/challenge?fields=challenge.engagement_metric_set*&f[challenge.client_project_id]=not+80000062&f[challenge.status_desc]=-Draft%2C-Deleted%2C-New%2C-Inactivef[challenge.task_ind]=1&f[client_project_dim.is_taas_billing_account]=Yes&f[challenge.posting_week]={{_filters['member_engagement_metric_daywise.event_date_week'] | urlencode}}"
+    }
+    group_label: "Non Topgear"
+  }
+
 
   measure: topgear_pageviews {
     description: "The total number of topgear pageviews"
