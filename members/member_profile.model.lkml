@@ -574,8 +574,9 @@ explore :  jobs {
 
   join: resource_bookings {
     type: left_outer
-    sql_on:  ${connect_project.id} = ${resource_bookings.project_id}  AND ${job_candidates.user_id} = ${resource_bookings.user_id};;
-    relationship: one_to_many
+    sql_on:  ${connect_project.id} = ${resource_bookings.project_id}  AND ${job_candidates.user_id} = ${resource_bookings.user_id}
+            AND   ${resource_bookings.job_id} = ${jobs.id};;
+    relationship: one_to_one
     sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
   }
 
