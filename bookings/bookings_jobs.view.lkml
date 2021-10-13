@@ -3,8 +3,10 @@ view: jobs {
   label: "TaaS Job (Connect)"
 
   sql_table_name: public.bookings_jobs ;;
-  drill_fields: [id, title,status, duration,num_positions, rate_type, resource_type,
-        created_date, updated_date ]
+  drill_fields: [id, title,status,min_salary ,max_salary ,hours_per_week ,
+      job_location ,job_timezone ,currency ,show_in_hot_list ,featured,hot_list_excerpt ,
+      job_tag ,skill_ids ,skill_names , duration,num_positions, rate_type, resource_type,
+      created_date, updated_date ]
 
   dimension: id {
     primary_key: yes
@@ -28,6 +30,79 @@ view: jobs {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: min_salary {
+    description: "Minimum Salary offered on the Job"
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.min_salary ;;
+  }
+
+  dimension: max_salary {
+    description: "Maximum Salary offered on the job"
+    type: number
+    value_format: "$#,##0.00;($#,##0.00)"
+    sql: ${TABLE}.max_salary ;;
+  }
+
+  dimension: hours_per_week {
+    description: "No of hours per week"
+    type: number
+    sql: ${TABLE}.hours_per_week ;;
+  }
+
+  dimension: job_location {
+    type: string
+    sql: ${TABLE}.job_location ;;
+  }
+
+  dimension: job_timezone {
+    description: "Timezone the work is expected to carry out"
+    type: string
+    sql: ${TABLE}.job_timezone ;;
+  }
+
+  dimension: currency {
+    description: "Client Currency"
+    type: string
+    sql: ${TABLE}.currency ;;
+  }
+
+  dimension: show_in_hot_list {
+    description: "Is this job needs to shown in Hotlist ?"
+    type: yesno
+    sql: ${TABLE}.show_in_hot_list ;;
+  }
+
+
+  dimension: featured {
+    description: "Is this job featured ?"
+    type: yesno
+    sql: ${TABLE}.featured ;;
+  }
+
+  dimension: hot_list_excerpt {
+    description: "Blurb associated with job hot list description"
+    type: string
+    sql: ${TABLE}.hot_list_excerpt ;;
+  }
+
+  dimension: job_tag {
+    description: "Custom tags applied to the Job"
+    type: string
+    sql: ${TABLE}.job_tag ;;
+  }
+
+  dimension: skill_ids {
+    description: "Comma separated list of Skill Ids"
+    type: string
+    sql: ${TABLE}.skill_ids ;;
+  }
+
+  dimension: skill_names {
+    description: "Comma separated list of skill names on the job"
+    type: string
+    sql: ${TABLE}.skill_names ;;
+  }
   dimension: created_by {
     description: "created by user"
     type: string
