@@ -24,11 +24,14 @@ view: referral {
 
 
       json_extract_path_text(participant.metadata,'gigId') as gig_id,
-      LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle
+      LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle,
+
+      reward.status AS reward_status
 
       FROM growsurf_participant AS participant
       LEFT JOIN growsurf_referral ON participant.id = growsurf_referral.id
       LEFT JOIN growsurf_participant AS referred_by ON growsurf_referral.referred_by = referred_by.id
+      LEFT JOIN growsurf_reward AS reward ON reward.referred_id = participant.id
       ;;
     persist_for: "24 hours"
     distribution_style: "even"
@@ -44,6 +47,26 @@ view: referral {
   dimension: handle {
     type: string
     description: "Topcoder Handle"
+  }
+
+  dimension: topcoder_payment_status {
+    type: string
+    description: "Topcoder Reward Status for this member. Gig Pending, Payment Pending, Paid"
+    case: {
+      when: {
+        sql: ${TABLE}.did_referrer_receive_credit = 'CREDIT_PENDING';;
+        label: "Gig Pending"
+      }
+      when: {
+        sql: ${TABLE}.reward_status = 'PENDING';;
+        label: "Payment Pending"
+      }
+      when: {
+        sql: ${TABLE}.reward_status = 'FULFILLED';;
+        label: "Paid"
+      }
+    }
+
   }
 
 
@@ -128,10 +151,15 @@ view: referral {
     hidden: yes
   }
 
+  dimension: reward_status {
+    type: string
+    description: "Is the Reward for this user has been processed ?"
+  }
+
 
   dimension: did_referrer_receive_credit {
     type: string
-    description: "Did referrer receive credit ?"
+    description: "Did referrer receive credit for this user ?"
   }
 
   dimension: referred_by_id {
