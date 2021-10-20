@@ -26,6 +26,8 @@ view: referral {
       json_extract_path_text(participant.metadata,'gigId') as gig_id,
       LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle,
       json_extract_path_text(participant.metadata,'emailInvitesSent') as email_invites_sent,
+      LOWER(json_extract_path_text(participant.metadata,'emailInvitesLog')) as email_invites_log,
+
 
 
       reward.status AS reward_status
@@ -53,6 +55,11 @@ view: referral {
                WHEN 0 THEN null
                ELSE CAST(${TABLE}.email_invites_sent AS int)
          END;;
+  }
+
+  dimension: email_invites_log {
+    type: string
+    description: "List of email addresses that have been invited"
   }
 
   dimension: handle {
