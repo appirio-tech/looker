@@ -25,6 +25,8 @@ view: referral {
 
       json_extract_path_text(participant.metadata,'gigId') as gig_id,
       LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle,
+      json_extract_path_text(participant.metadata,'emailInvitesSent') as email_invites_sent,
+
 
       reward.status AS reward_status
 
@@ -42,6 +44,15 @@ view: referral {
   dimension: gig_id {
     type: string
     description: "Gig Job ID, that has been referred"
+  }
+
+  dimension: email_invites_sent {
+    type: number
+    description: "Number of email invites sent by the member"
+    sql: CASE LEN(${TABLE}.email_invites_sent)
+               WHEN 0 THEN null
+               ELSE CAST(${TABLE}.email_invites_sent AS int)
+         END;;
   }
 
   dimension: handle {
