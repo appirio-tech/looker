@@ -27,8 +27,7 @@ view: referral {
       LOWER(json_extract_path_text(participant.metadata,'tcHandle')) as handle,
       json_extract_path_text(participant.metadata,'emailInvitesSent') as email_invites_sent,
       LOWER(json_extract_path_text(participant.metadata,'emailInvitesLog')) as email_invites_log,
-
-
+      json_extract_path_text(participant.metadata,'emailInvitesStatus') as email_invites_status,
 
       reward.status AS reward_status
 
@@ -55,6 +54,11 @@ view: referral {
                WHEN 0 THEN null
                ELSE CAST(${TABLE}.email_invites_sent AS int)
          END;;
+  }
+
+  dimension: email_invites_status {
+    type: string
+    description: "Payment Status for Email Invites sent by the participant"
   }
 
   dimension: email_invites_log {
