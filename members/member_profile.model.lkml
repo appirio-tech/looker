@@ -446,7 +446,7 @@ explore: gig {
 
   join: job_candidate_history {
     type: left_outer
-    sql_on: ${gig.slug} = ${job_candidate_history.job_slug} ;;
+    sql_on: ${gig.slug} = ${job_candidate_history.job_slug} AND ${candidate.slug} = ${job_candidate_history.candidate_slug} ;;
     relationship: one_to_many
   }
 
