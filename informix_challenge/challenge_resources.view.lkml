@@ -21,6 +21,12 @@ view: challenge_resources {
     drill_fields: [detail*]
   }
 
+  measure: count_handle {
+    type: count_distinct
+    description: "Distinct handles in the result"
+    sql: ${member_handle} ;;
+  }
+
   dimension: role {
     type: string
     description: "Resource Role on the Challenge. A person can have multiple roles on the same challenge"
@@ -82,7 +88,7 @@ view: challenge_resources {
   }
 
   dimension: is_deleted {
-    description: ""
+    description: "Has the user unregistered from the challenge ?"
     type: string
     sql: ${TABLE}.is_deleted ;;
   }
