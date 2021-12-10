@@ -344,6 +344,11 @@ FROM tcs_dw.project p LEFT OUTER JOIN
   dimension: challenge_url {
     type: string
     sql: 'https://www.topcoder.com/challenges/' || ${TABLE}.project_id ;;
+    link: {
+      label: "Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{ challenge_stats.challenge_id._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   dimension: exclude_from_TCO {
