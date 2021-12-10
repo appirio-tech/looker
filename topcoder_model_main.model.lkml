@@ -1728,6 +1728,11 @@ explore: dec_give_away_submission {
     relationship: many_to_one
     sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
   }
+  join: user {
+    type: left_outer
+    sql_on: ${dec_give_away_submission.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
 }
 
 #for Design month TCO leaderboards
