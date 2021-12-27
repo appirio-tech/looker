@@ -46,13 +46,16 @@ view: salesforce_segment_leads {
   dimension_group: changed_from_open_on_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.changed_from_open_on_c ;;
   }
@@ -65,13 +68,16 @@ view: salesforce_segment_leads {
   dimension_group: closed_on_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.closed_on_c ;;
   }
@@ -114,13 +120,16 @@ view: salesforce_segment_leads {
   dimension_group: converted {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.converted_date ;;
   }
@@ -144,13 +153,16 @@ view: salesforce_segment_leads {
   dimension_group: created {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.created_date ;;
   }
@@ -163,13 +175,16 @@ view: salesforce_segment_leads {
   dimension_group: date_connect_project_created_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_connect_project_created_c ;;
   }
@@ -247,13 +262,16 @@ view: salesforce_segment_leads {
   dimension_group: email_bounced {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.email_bounced_date ;;
   }
@@ -411,13 +429,16 @@ view: salesforce_segment_leads {
   dimension_group: last_activity {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_activity_date ;;
   }
@@ -435,13 +456,16 @@ view: salesforce_segment_leads {
   dimension_group: last_modified {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_modified_date ;;
   }
@@ -454,13 +478,16 @@ view: salesforce_segment_leads {
   dimension_group: last_status_change_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_status_change_c ;;
   }
@@ -513,13 +540,16 @@ view: salesforce_segment_leads {
   dimension_group: lead_status_change_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.lead_status_change_c ;;
   }
@@ -557,13 +587,16 @@ view: salesforce_segment_leads {
   dimension_group: legitimate_lead_established_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.legitimate_lead_established_date_c ;;
   }
@@ -601,13 +634,16 @@ view: salesforce_segment_leads {
   dimension_group: meeting_scheduled_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.meeting_scheduled_date_c ;;
   }
@@ -630,13 +666,16 @@ view: salesforce_segment_leads {
   dimension_group: mql_established_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.mql_established_date_c ;;
   }
@@ -739,13 +778,16 @@ view: salesforce_segment_leads {
   dimension_group: received {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.received_at ;;
   }
@@ -818,13 +860,16 @@ view: salesforce_segment_leads {
   dimension_group: system_modstamp {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.system_modstamp ;;
   }
@@ -927,13 +972,16 @@ view: salesforce_segment_leads {
   dimension_group: uuid_ts {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.uuid_ts ;;
   }

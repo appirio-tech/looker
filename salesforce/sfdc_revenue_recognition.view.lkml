@@ -21,13 +21,16 @@ view: sfdc_revenue_recognition {
   dimension_group: accrual_date {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.accrual_date__c ;;
   }
@@ -62,13 +65,16 @@ view: sfdc_revenue_recognition {
   dimension_group: bill_date_of_accrual {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.bill_date_of_accrual__c ;;
   }
@@ -97,13 +103,16 @@ view: sfdc_revenue_recognition {
   dimension_group: date {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date__c ;;
   }
@@ -207,13 +216,16 @@ view: sfdc_revenue_recognition {
   dimension_group: opportunity_project_close {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.opportunity_project_close_date__c ;;
   }
@@ -287,13 +299,16 @@ view: sfdc_revenue_recognition {
   dimension_group: revenue_recognise_master {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.revenue_recognise_master_generate_date__c ;;
   }
