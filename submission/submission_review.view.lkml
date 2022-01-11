@@ -112,14 +112,23 @@ view: submission_review {
     sql: ${TABLE}.scorecard_type ;;
   }
 
-  #---------------------------------- Measures -------------------------------#
+  dimension: raw_score {
+    type: number
+    description: "Initial score before appeals and adjustments"
+    value_format: "##0.00"
+    sql: ${TABLE}.raw_score ;;
+  }
 
-  measure: final_score {
-    type: sum
+  dimension: final_score {
+    type: number
     description: "Final Score"
     value_format: "##0.00"
     sql: ${TABLE}.final_score ;;
   }
+
+  #---------------------------------- Measures -------------------------------#
+
+
 
   measure: num_appeals {
     type: sum
@@ -135,12 +144,7 @@ view: submission_review {
     sql: ${TABLE}.num_successful_appeals ;;
   }
 
-  measure: raw_score {
-    type: sum
-    description: "Initial score before appeals and adjustments"
-    value_format: "##0.00"
-    sql: ${TABLE}.raw_score ;;
-  }
+
 
   measure: count {
     type: count
