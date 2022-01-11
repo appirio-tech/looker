@@ -271,7 +271,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
  ;;
     sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date", "complete_date"]
     distribution: "complete_date"
-    persist_for: "8 hours"
+    persist_for: "4 hours"
   }
 
   #added on 20/11/2019
