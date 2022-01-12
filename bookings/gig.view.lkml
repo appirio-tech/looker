@@ -114,7 +114,11 @@ view: gig {
       raw,
       date,
       month,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
 
   }
@@ -180,7 +184,11 @@ view: gig {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.created_on ;;
   }
@@ -284,7 +292,11 @@ view: gig {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.completion_date ;;
   }
@@ -385,7 +397,11 @@ view: gig {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.updated_on ;;
   }
