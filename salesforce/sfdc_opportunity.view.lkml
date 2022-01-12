@@ -1509,7 +1509,8 @@ view: sfdc_opportunity {
 
   dimension: subcontracting_tier {
     type: string
-    sql: ${TABLE}.subcontracting_tier__c ;;
+    description: "Reporting Account Tier In SFDC"
+    sql: ${TABLE}.Reporting_Account_Tier__c ;;
   }
 
   measure: subscription_amount {
