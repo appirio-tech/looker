@@ -131,6 +131,7 @@ explore: challenge_stats {
 
   #Comment Ends
 
+  # Member profile
   join: member_profile_advanced {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
@@ -785,6 +786,13 @@ explore: design_project_result {
     type: inner
     sql_on: ${design_project_result.user_id} = ${submitter.coder_id} ;;
     relationship: many_to_one
+  }
+
+  join: submitter_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${design_project_result.user_id} = ${submitter_profile.user_id} ;;
+    relationship: one_to_one
   }
 
   join: submitter_country {
