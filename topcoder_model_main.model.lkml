@@ -705,6 +705,14 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  # Added on 25 Jan for member_ratig field
+  join: copilot_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${challenge.copilot_id} = ${copilot_profile.user_id} ;;
+    relationship: one_to_one
+  }
+
 }
 
 explore: project_result {
@@ -788,6 +796,7 @@ explore: design_project_result {
     relationship: many_to_one
   }
 
+  #Added on 25 Jan for max_rating field
   join: submitter_profile {
     from: member_profile_basic
     type: inner
@@ -1372,6 +1381,14 @@ explore: submission_review {
     relationship: many_to_one
   }
 
+  #Added on 25 Jan for max_rating field
+  join: submitter_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${submission_review.user_id} = ${submitter_profile.user_id} ;;
+    relationship: one_to_one
+  }
+
   #join: reviewer_responsibility {
   #  from: review_resp
   #  type: inner
@@ -1622,6 +1639,14 @@ explore: connect_project_phases {
       type:left_outer
       sql_on: ${newest_submitters.user_id} = ${user.coder_id};;
       relationship: many_to_one
+    }
+
+    #Added on 25 Jan for max_rating field
+    join: submitter_profile {
+      from: member_profile_basic
+      type: inner
+      sql_on: ${newest_submitters.user_id} = ${submitter_profile.user_id} ;;
+      relationship: one_to_one
     }
 
   }
