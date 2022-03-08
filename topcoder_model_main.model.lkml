@@ -45,6 +45,7 @@ include: "/direct_project/*.view.lkml"
 include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
+include: "/Finance/*.view.lkml"
 
 
 
