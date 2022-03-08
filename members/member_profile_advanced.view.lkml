@@ -57,7 +57,10 @@ view: member_profile_advanced {
     member.competition_country_name,
     member.status,
     member.tracks,
-    member.user_id
+    member.user_id,
+    member.max_rating,
+    member.rating_color,
+    member.sub_track
     from tcs_dw.member_profile member LEFT OUTER JOIN tcs_dw.member_basic_info basic ON member.user_id = basic.user_id
     LEFT OUTER JOIN tcs_dw.member_customer_info customer ON member.user_id = customer.user_id
     LEFT OUTER JOIN tcs_dw.member_personalization personalization ON member.user_id = personalization.user_id
@@ -65,6 +68,27 @@ view: member_profile_advanced {
     ;;
 
     }
+
+  dimension: sub_track {
+    type: string
+    description: "Sub track associated with Maximum rating"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.sub_track ;;
+  }
+
+  dimension: rating_color {
+    type: string
+    description: "Color coding corrosponding to Maximum rating"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.rating_color ;;
+  }
+
+  dimension: max_rating {
+    type: number
+    description: "Maximum rating for a user irresepctive of track"
+    group_label: "Maximum Rating"
+    sql: ${TABLE}.max_rating ;;
+  }
 
   dimension_group: birth {
     type: time

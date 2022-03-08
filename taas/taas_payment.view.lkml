@@ -32,7 +32,11 @@ view: taas_payment {
         week,
         month,
         quarter,
-        year
+        year,
+        fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
       ]
       sql: ${TABLE}.createddate ;;
     }
@@ -61,7 +65,11 @@ view: taas_payment {
         week,
         month,
         quarter,
-        year
+        year,
+        fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
       ]
       sql: ${TABLE}.lastmodifieddate ;;
     }
@@ -85,7 +93,11 @@ view: taas_payment {
         week,
         month,
         quarter,
-        year
+        year,
+        fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
       ]
       sql: ${TABLE}.payment_date__c ;;
     }
@@ -139,7 +151,11 @@ view: taas_payment {
         week,
         month,
         quarter,
-        year
+        year,
+        fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
       ]
       sql: ${TABLE}.week_end_date__c ;;
     }
@@ -153,7 +169,11 @@ view: taas_payment {
         week,
         month,
         quarter,
-        year
+        year,
+        fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
       ]
       sql: ${TABLE}.week_start_date__c ;;
     }

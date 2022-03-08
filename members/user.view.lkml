@@ -384,6 +384,25 @@ view: user {
     description: "Payment method name like paypal, western union and payoneer etc "
   }
 
+
+  dimension_group: payment_method_modify {
+    type: time
+    description: "When did the user last update their payment method"
+    timeframes: [
+      time,
+      date,
+      week,
+      month,
+      year,
+      quarter,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: ${TABLE}.payment_method_modify_date ;;
+  }
+
 #  dimension: is_copilot {
 #    type:  string
 #    case: {

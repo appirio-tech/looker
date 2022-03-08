@@ -356,13 +356,16 @@ view: salesforce_segment_opportunities {
   dimension_group: contract_end_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.contract_end_date_c ;;
   }
@@ -370,13 +373,16 @@ view: salesforce_segment_opportunities {
   dimension_group: contract_start_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.contract_start_date_c ;;
   }
@@ -454,13 +460,16 @@ view: salesforce_segment_opportunities {
   dimension_group: created {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.created_date ;;
   }
@@ -503,13 +512,16 @@ view: salesforce_segment_opportunities {
   dimension_group: date_of_last_completed_milestone_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_of_last_completed_milestone_c ;;
   }
@@ -517,13 +529,16 @@ view: salesforce_segment_opportunities {
   dimension_group: date_of_last_stage_or_probability_change_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_of_last_stage_or_probability_change_c ;;
   }
@@ -586,13 +601,16 @@ view: salesforce_segment_opportunities {
   dimension_group: due_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.due_date_c ;;
   }
@@ -625,13 +643,16 @@ view: salesforce_segment_opportunities {
   dimension_group: engagement_start_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.engagement_start_date_c ;;
   }
@@ -689,13 +710,16 @@ view: salesforce_segment_opportunities {
   dimension_group: first_forecast_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.first_forecast_date_c ;;
   }
@@ -889,13 +913,16 @@ view: salesforce_segment_opportunities {
   dimension_group: last_activity {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_activity_date ;;
   }
@@ -913,13 +940,16 @@ view: salesforce_segment_opportunities {
   dimension_group: last_modified {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_modified_date ;;
   }
@@ -927,13 +957,16 @@ view: salesforce_segment_opportunities {
   dimension_group: last_referenced {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_referenced_date ;;
   }
@@ -941,13 +974,16 @@ view: salesforce_segment_opportunities {
   dimension_group: last_viewed {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_viewed_date ;;
   }
@@ -1050,13 +1086,16 @@ view: salesforce_segment_opportunities {
   dimension_group: next_step_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.next_step_date_c ;;
   }
@@ -1124,13 +1163,16 @@ view: salesforce_segment_opportunities {
   dimension_group: opportunity_stage_min_change_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.opportunity_stage_min_change_date_c ;;
   }
@@ -1308,13 +1350,16 @@ view: salesforce_segment_opportunities {
   dimension_group: received {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.received_at ;;
   }
@@ -1467,13 +1512,16 @@ view: salesforce_segment_opportunities {
   dimension_group: system_modstamp {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.system_modstamp ;;
   }
@@ -1486,13 +1534,16 @@ view: salesforce_segment_opportunities {
   dimension_group: target_ppw_date_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.target_ppw_date_c ;;
   }
@@ -1600,13 +1651,16 @@ view: salesforce_segment_opportunities {
   dimension_group: uuid_ts {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.uuid_ts ;;
   }

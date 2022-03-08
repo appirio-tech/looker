@@ -1119,6 +1119,12 @@ view: sfdc_opportunity {
     value_format_name: usd
   }
 
+  measure: total_converted_expected_revenue {
+    type: sum_distinct
+    sql: ${TABLE}.converted_expected_revenue__c ;;
+    value_format_name: usd
+  }
+
   dimension: next_quarter_unweighted {
     type: number
     sql: ${TABLE}.next_quarter_unweighted__c ;;
@@ -1503,7 +1509,8 @@ view: sfdc_opportunity {
 
   dimension: subcontracting_tier {
     type: string
-    sql: ${TABLE}.subcontracting_tier__c ;;
+    description: "Reporting Account Tier In SFDC"
+    sql: ${TABLE}.Reporting_Account_Tier__c ;;
   }
 
   measure: subscription_amount {

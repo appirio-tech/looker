@@ -76,13 +76,16 @@ view: salesforce_segment_accounts {
   dimension_group: created {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.created_date ;;
   }
@@ -110,13 +113,16 @@ view: salesforce_segment_accounts {
   dimension_group: date_of_first_win_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_of_first_win_c ;;
   }
@@ -124,13 +130,16 @@ view: salesforce_segment_accounts {
   dimension_group: date_of_last_won_opportunity_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date_of_last_won_opportunity_c ;;
   }
@@ -203,13 +212,16 @@ view: salesforce_segment_accounts {
   dimension_group: last_activity {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_activity_date ;;
   }
@@ -222,13 +234,16 @@ view: salesforce_segment_accounts {
   dimension_group: last_modified {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_modified_date ;;
   }
@@ -236,13 +251,16 @@ view: salesforce_segment_accounts {
   dimension_group: last_referenced {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_referenced_date ;;
   }
@@ -250,13 +268,16 @@ view: salesforce_segment_accounts {
   dimension_group: last_viewed {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.last_viewed_date ;;
   }
@@ -454,13 +475,16 @@ view: salesforce_segment_accounts {
   dimension_group: received {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.received_at ;;
   }
@@ -543,13 +567,16 @@ view: salesforce_segment_accounts {
   dimension_group: subscription_level_expiration_c {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.subscription_level_expiration_c ;;
   }
@@ -557,13 +584,16 @@ view: salesforce_segment_accounts {
   dimension_group: system_modstamp {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.system_modstamp ;;
   }
@@ -641,13 +671,16 @@ view: salesforce_segment_accounts {
   dimension_group: uuid_ts {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.uuid_ts ;;
   }

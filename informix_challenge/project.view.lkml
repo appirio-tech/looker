@@ -9,6 +9,20 @@ view: challenge {
     group_label: "Metadata"
   }
 
+  dimension: crowd_type  {
+    type: string
+    description: "Topgear - Crowd Type"
+    sql: json_extract_path_text(challenge.metadata, 'crowdType') ;;
+    group_label: "Metadata"
+  }
+
+  dimension: challenge_category  {
+    type: string
+    description: "Topgear - Challenge Category"
+    sql: json_extract_path_text(challenge.metadata, 'challengeCategory') ;;
+    group_label: "Metadata"
+  }
+
   dimension: sub_practice {
     type: string
     description: "Topgear - Challenge SubPractice"

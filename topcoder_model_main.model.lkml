@@ -131,6 +131,7 @@ explore: challenge_stats {
 
   #Comment Ends
 
+  # Member profile
   join: member_profile_advanced {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${member_profile_advanced.user_id} ;;
@@ -704,6 +705,14 @@ explore: challenge {
     relationship: one_to_many
   }
 
+  # Added on 25 Jan for member_ratig field
+  join: copilot_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${challenge.copilot_id} = ${copilot_profile.user_id} ;;
+    relationship: one_to_one
+  }
+
 }
 
 explore: project_result {
@@ -785,6 +794,14 @@ explore: design_project_result {
     type: inner
     sql_on: ${design_project_result.user_id} = ${submitter.coder_id} ;;
     relationship: many_to_one
+  }
+
+  #Added on 25 Jan for max_rating field
+  join: submitter_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${design_project_result.user_id} = ${submitter_profile.user_id} ;;
+    relationship: one_to_one
   }
 
   join: submitter_country {
@@ -1364,6 +1381,14 @@ explore: submission_review {
     relationship: many_to_one
   }
 
+  #Added on 25 Jan for max_rating field
+  join: submitter_profile {
+    from: member_profile_basic
+    type: inner
+    sql_on: ${submission_review.user_id} = ${submitter_profile.user_id} ;;
+    relationship: one_to_one
+  }
+
   #join: reviewer_responsibility {
   #  from: review_resp
   #  type: inner
@@ -1616,6 +1641,14 @@ explore: connect_project_phases {
       relationship: many_to_one
     }
 
+    #Added on 25 Jan for max_rating field
+    join: submitter_profile {
+      from: member_profile_basic
+      type: inner
+      sql_on: ${newest_submitters.user_id} = ${submitter_profile.user_id} ;;
+      relationship: one_to_one
+    }
+
   }
 
 # Added 25th September - 2018
@@ -1727,6 +1760,11 @@ explore: dec_give_away_submission {
   join: member_profile_basic {
     relationship: many_to_one
     sql_on: ${member_profile_basic.user_id} = ${dec_give_away_submission.user_id};;
+  }
+  join: user {
+    type: left_outer
+    sql_on: ${dec_give_away_submission.user_id} = ${user.coder_id} ;;
+    relationship: many_to_one
   }
 }
 

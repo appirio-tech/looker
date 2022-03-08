@@ -78,13 +78,16 @@ view: sfdc_forecast {
   dimension_group: date {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.date__c ;;
   }
@@ -206,13 +209,16 @@ view: sfdc_forecast {
   dimension_group: project_end {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
       month,
+      year,
       quarter,
-      year
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.project_end_date__c ;;
   }
