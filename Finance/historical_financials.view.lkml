@@ -61,10 +61,10 @@ view: historical_financials {
     sql: ${TABLE}.quarter_date ;;
   }
 
- # dimension: value {
- #   type: number
- #   sql: ${TABLE}.value ;;
- # }
+ dimension: value {
+    type: number
+    sql: ${TABLE}.value ;;
+  }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
@@ -72,7 +72,7 @@ view: historical_financials {
 
   measure: total_value {
     type: sum
-    sql: ${TABLE}.total_value ;;
+    sql: ${TABLE}.value ;;
   }
 
   measure: amount {
@@ -82,7 +82,7 @@ view: historical_financials {
 
   measure: average_value {
     type: average
-    sql: ${TABLE}.average_value ;;
+    sql: ${TABLE}.value ;;
   }
 
   measure: count {
