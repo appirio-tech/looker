@@ -15,7 +15,7 @@ view: pageviews {
     type: string
     primary_key: yes
     hidden: yes
-    sql: ${TABLE}.session_id + ${TABLE}.user_id;;
+    sql:${TABLE}.user_id + ${TABLE}.session_id;;
   }
   dimension: app_name {
     type: string
@@ -260,6 +260,12 @@ view: pageviews {
 
   measure: count {
     type: count
+    drill_fields: [heap_app_name, app_name]
+  }
+
+  measure: count_unique {
+    type: count_distinct
+    sql: ${user_id} ;;
     drill_fields: [heap_app_name, app_name]
   }
 

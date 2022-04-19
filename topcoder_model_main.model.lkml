@@ -63,6 +63,7 @@ fiscal_month_offset: -9
 
 explore: member_activity_tenure {}
 explore: salesforce_segment_leads {}
+explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
 
