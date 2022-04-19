@@ -29,6 +29,11 @@ view: calendar {
     sql: MIN(${date_date}) ;;
   }
 
+  measure: max_date {
+    type: date
+    sql: MAX(${date_date}) ;;
+  }
+
   dimension: day_of_month {
     type: number
     sql: ${TABLE}.day_of_month ;;
