@@ -85,7 +85,7 @@ view: salesforce_segment_opportunities {
   }
 
   dimension: amount {
-    type: string
+    type: number
     sql: ${TABLE}.amount ;;
   }
 
@@ -668,7 +668,7 @@ view: salesforce_segment_opportunities {
   }
 
   dimension: expected_revenue {
-    type: string
+    type: number
     sql: ${TABLE}.expected_revenue ;;
   }
 
