@@ -103,4 +103,15 @@ view: calendar {
     type: count
     drill_fields: [calendar_id]
   }
+
+  measure: count_active_challenges {
+    type: sum
+    sql: (select count(*) from ${challenge.SQL_TABLE_NAME} p where ${TABLE}.date >= p.posting_date and ${TABLE}.date <= p.complete_date)  ;;
+    link: {
+      label: "View Data"
+      url: "create_explore_that_we_can_use_to_view_all_the_challenges"
+    }
+
+  }
+
 }
