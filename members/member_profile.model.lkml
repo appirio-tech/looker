@@ -580,16 +580,16 @@ explore :  jobs {
     sql_where: ${resource_bookings.deleted_date} IS NULL ;; #Exclude records that are deleted
   }
 
-}
 
-explore: success_signup {}
 
-explore:  community_monthly_active_users {
-  join: member_profile_all {
-    type: inner
-    sql_on: ${community_monthly_active_users.user_id} = ${member_profile_all.user_id} ;;
-    relationship: one_to_one
-  }
+#explore: success_signup {}
+
+#explore:  community_monthly_active_users {
+ # join: member_profile_all {
+#    type: inner
+ #   sql_on: ${community_monthly_active_users.user_id} = ${member_profile_all.user_id} ;;
+#    relationship: one_to_one
+#  }
 
 }
 

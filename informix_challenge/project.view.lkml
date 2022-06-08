@@ -906,6 +906,14 @@ view: challenge {
          END ;;
   }
 
+  dimension: Is_greater_1_total_prize {
+    type: string
+    description: "Indicates a challenge if prize is greater than 1"
+    sql: CASE WHEN ${TABLE}.total_prize > 1 THEN 'Yes'
+              ELSE 'No'
+         END ;;
+  }
+
   measure: avg_final_score {
     type: average
     drill_fields: [detail*]

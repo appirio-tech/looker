@@ -85,7 +85,7 @@ view: salesforce_segment_opportunities {
   }
 
   dimension: amount {
-    type: string
+    type: number
     sql: ${TABLE}.amount ;;
   }
 
@@ -298,7 +298,11 @@ view: salesforce_segment_opportunities {
       week,
       month,
       quarter,
-      year
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
     ]
     sql: ${TABLE}.close_date ;;
   }
@@ -668,7 +672,7 @@ view: salesforce_segment_opportunities {
   }
 
   dimension: expected_revenue {
-    type: string
+    type: number
     sql: ${TABLE}.expected_revenue ;;
   }
 
