@@ -52,7 +52,7 @@ LEFT JOIN tcs_dw.sfdc_account  AS sfdc_account ON (CASE
 
 (SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where date_trunc('day', time) = c.date and  (u._email not like '%wipro.com%' AND u._email not like '%appirio.com%' AND u._email not like '%topcoder.com%') ) as Pageviews,
 
-(SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where date_trunc('day', time) = c.date and  p.domain = 'www.topcoder.com' and (u._email not like '%wipro.com%' AND u._email not like '%appirio.com%' AND u._email not like '%topcoder.com%') ) as Topcoder.com_Pageviews
+(SELECT count(*) FROM heapdata.pageviews p left join heapdata.users  u on  p.user_id = u.user_id  where date_trunc('day', time) = c.date and  p.domain = 'www.topcoder.com' and (u._email not like '%wipro.com%' AND u._email not like '%appirio.com%' AND u._email not like '%topcoder.com%') ) as Topcoder_Domain_Pageviews
 
 
 (SELECT count(*)  FROM coder WHERE status = 'A' and email not like '%wipro.com%' AND email not like '%appirio.com%' AND email not like '%topcoder.com%'  and  date_trunc('day', create_date) = c.date) as Active_Members,
@@ -1014,9 +1014,9 @@ FROM tcs_dw.project p LEFT OUTER JOIN
     group_label: "Website"
   }
 
-  measure: Topcoder.com_Pageviews{
+  measure: Topcoder_Domain_Pageviews{
     type: sum
-    sql: ${TABLE}.Topcoder.com_Pageviews ;;
+    sql: ${TABLE}.Topcoder_Domain_Pageviews ;;
     group_label: "Website"
   }
 
