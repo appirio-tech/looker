@@ -46,6 +46,7 @@ include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
+include: "/Executive_Board/Executive_Board.view.lkml"
 
 
 
@@ -66,6 +67,10 @@ explore: salesforce_segment_leads {}
 explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
+explore: executive_board{}
+
+
+
 
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
@@ -78,6 +83,8 @@ explore: project_scorecard {
     relationship: one_to_one
   }
 }
+
+
 
 # Derived Views
 explore: challenge_stats {
@@ -435,10 +442,7 @@ explore: user {
 
 explore: country {}
 
-# Hide the Calendar explore as it doesn't seem to be useful
-explore: calendar {
-  hidden: yes
-}
+
 
 explore: challenge_groups {
   join: group {
@@ -715,6 +719,7 @@ explore: challenge {
     sql_on: ${challenge.copilot_id} = ${copilot_profile.user_id} ;;
     relationship: one_to_one
   }
+
 
 }
 

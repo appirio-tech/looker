@@ -263,6 +263,7 @@ view: pageviews {
     drill_fields: [heap_app_name, app_name]
   }
 
+
   measure: count_unique {
     type: count_distinct
     sql: ${user_id} ;;
@@ -273,6 +274,7 @@ view: pageviews {
     fields: [ time_week, count]
   }
 }
+
 
 
 

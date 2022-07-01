@@ -4,7 +4,7 @@ view: skill {
   dimension: skill_id {
     primary_key: yes
     type: number
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.skill_id ;;
   }
 
@@ -49,6 +49,8 @@ view: skill {
     description: "alternate name for a particular skill e.g. .NET includes .NET2.0, .NET3.0, .NET3.5 etc."
     sql: ${TABLE}.synonyms ;;
   }
+
+
 
   measure: count {
     type: count
