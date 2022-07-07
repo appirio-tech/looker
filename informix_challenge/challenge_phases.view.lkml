@@ -188,4 +188,11 @@ view: challenge_phases {
   measure: phase_count {
     type: count
   }
+
+  measure: average_duration {
+    type: average
+    sql: ${TABLE}.duration / ( 60 * 60 * 24 * 1000) ;;
+  }
+
+
 }
