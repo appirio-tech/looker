@@ -906,6 +906,16 @@ view: challenge {
          END ;;
   }
 
+  dimension: Is_zero_contest_prize {
+    type: string
+    description: "Indicates whether the contest money on the challenge is zero or not"
+    sql: CASE WHEN ${TABLE}.contest_prizes_total = 0 THEN 'Yes'
+              ELSE 'No'
+         END ;;
+  }
+
+
+
   dimension: Is_greater_1_total_prize {
     type: string
     description: "Indicates a challenge if prize is greater than 1"
