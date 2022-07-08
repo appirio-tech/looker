@@ -914,6 +914,14 @@ view: challenge {
          END ;;
   }
 
+  dimension: is_paid {
+    type: string
+    description: "Indicates whether the contest money on the challenge is zero or not"
+    sql: CASE WHEN ${TABLE}.total_prize < 5
+    and ${TABLE}.contest_prizes_total <  5 then 'No'
+              ELSE 'Yes'
+         END ;;
+  }
 
 
   dimension: Is_greater_1_total_prize {
