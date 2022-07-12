@@ -47,6 +47,7 @@ include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
 include: "/Executive_Board/Executive_Board.view.lkml"
+include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
 
 
 
@@ -68,6 +69,7 @@ explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
 explore: executive_board{}
+explore: home_page_skill_visitors {}
 
 
 
