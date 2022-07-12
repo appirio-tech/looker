@@ -359,9 +359,9 @@ view: connect_project {
  }
 
   dimension: sow_number {
-    type: number
+    type: string
     description: "Used by Topgear team, Sow number of the project"
-    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\.')), 'project_data', 'sow_number');;
+    sql: json_extract_path_text((regexp_replace(connect_project.details,'\\\.')), 'project_data', 'sow_number') ;;
     group_label: "Topgear"
   }
 
