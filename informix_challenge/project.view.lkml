@@ -51,6 +51,7 @@ view: challenge {
   }
 
   dimension: challenge_system_id {
+    primary_key: yes
     type: string
     description:  "If Legacy Id is present,display legacy Id else GUID"
     sql: NVL(TRIM(${TABLE}.challenge_blended_id),'-') ;;
@@ -64,7 +65,7 @@ view: challenge {
   }
 
   dimension: project_id {
-    primary_key: yes
+#    primary_key: yes
     type: number
     description: "Challenge ID Alias"
     sql: ${TABLE}.project_id ;;
