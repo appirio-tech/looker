@@ -368,7 +368,8 @@ view: connect_project {
   dimension: sow_number_integer {
     type: number
     description: "Used by Topgear team, Sow number of the project"
-    sql: regexp_replace(json_extract_path_text(regexp_replace(connect_project.details, '\\\.'), 'project_data', 'sow_number'),'[^0-9]+','',1,'i')::bigint  ;;
+    sql: case when json_extract_path_text((regexp_replace(connect_project.details,'\\\.')), 'project_data', 'sow_number')
+    ~ '^[0-9]+$' then regexp_replace(json_extract_path_text(regexp_replace(connect_project.details, '\\\.'), 'project_data', 'sow_number'),'[^0-9]+','',1,'i')::bigint else null end;;
     group_label: "Topgear"
   }
 
