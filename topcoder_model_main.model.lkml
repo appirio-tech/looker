@@ -1002,6 +1002,32 @@ explore: payment {
     sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
     relationship: many_to_one
   }
+
+  # Left join additional information about challenge in payment explore
+  join: creator {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: manager {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: launcher {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
+    relationship: many_to_one
+  }
+
+
+
+
 }
 
 #added on 27th Jan 2020

@@ -787,7 +787,7 @@ view: challenge {
   measure: count {
     type: count
     description: "Total no of challenges"
-    drill_fields: [detail*]
+    drill_fields: [challenge_id,challenge_name,challenge_category_name,track,task_ind]
   }
 
   #count distinct blended id , added on 28th May 2021
