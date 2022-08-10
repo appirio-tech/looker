@@ -37,6 +37,8 @@ explore: copilot_feedback_score {}
 
 explore: groupmanager_batch_record {}
 
+explore: groupmanager_group_bulk_import_record {}
+
 explore: groupmanager_request {
   join: groupmanager_request_detail {
     type: left_outer
