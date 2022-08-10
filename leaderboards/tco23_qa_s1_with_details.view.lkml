@@ -1,4 +1,5 @@
 view: tco23_qa_s1_with_details {
+  label: "TCO23 Leaderboard"
   derived_table: {
     sql: SELECT pr.project_id AS "challenge.project_id", pr.challenge_guid AS "challenge.challenge_guid_1",
       RANK () OVER (
