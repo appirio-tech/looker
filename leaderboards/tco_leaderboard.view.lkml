@@ -153,8 +153,7 @@ view: tco_leaderboard{
     type: sum
     description: "Computed TCO points"
     value_format: "#,##0"
-    sql:  ROUND(1.1, 1)
-          END;;
+    sql:  ROUND(1.1, 1);;
   }
 
     dimension:status_desc  {
