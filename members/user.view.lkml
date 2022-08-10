@@ -124,6 +124,8 @@ view: user {
     sql: ${TABLE}.first_name ;;
   }
 
+
+
   dimension: handle {
     type: string
     sql: ${TABLE}.handle ;;
