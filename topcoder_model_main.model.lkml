@@ -46,6 +46,7 @@ include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
+include: "/Auth0/*.view.lkml"
 
 
 
@@ -66,6 +67,7 @@ explore: salesforce_segment_leads {}
 explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
+explore: success_login {}
 
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
