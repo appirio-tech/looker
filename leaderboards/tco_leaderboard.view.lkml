@@ -148,6 +148,15 @@ view: tco_leaderboard{
           END;;
     }
 
+  measure: tco23_points {
+    label: "TCO23 Points"
+    type: sum
+    description: "Computed TCO points"
+    value_format: "#,##0"
+    sql:  ROUND(1.1, 1)
+          END;;
+  }
+
     dimension:status_desc  {
       hidden: yes
       sql: ${TABLE}.status_desc ;;
