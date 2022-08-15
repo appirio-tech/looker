@@ -48,6 +48,7 @@ include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
 include: "/Executive_Board/Executive_Board.view.lkml"
 include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
+include: "/Salesforce_Objects/topcoder_billing_accounts.view.lkml"
 
 
 
@@ -70,6 +71,7 @@ explore: loader_events {}
 explore: historical_financials {}
 explore: executive_board{}
 explore: home_page_skill_visitors {}
+explore: topcoder_billing_accounts {}
 
 
 
