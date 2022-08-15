@@ -51,6 +51,7 @@ view: challenge {
   }
 
   dimension: challenge_system_id {
+    primary_key: yes
     type: string
     description:  "If Legacy Id is present,display legacy Id else GUID"
     sql: NVL(TRIM(${TABLE}.challenge_blended_id),'-') ;;
@@ -64,7 +65,7 @@ view: challenge {
   }
 
   dimension: project_id {
-    primary_key: yes
+#    primary_key: yes
     type: number
     description: "Challenge ID Alias"
     sql: ${TABLE}.project_id ;;
@@ -786,7 +787,7 @@ view: challenge {
   measure: count {
     type: count
     description: "Total no of challenges"
-    drill_fields: [detail*]
+    drill_fields: [challenge_id,challenge_name,challenge_category_name,track,task_ind]
   }
 
   #count distinct blended id , added on 28th May 2021
@@ -906,6 +907,24 @@ view: challenge {
          END ;;
   }
 
+  dimension: Is_zero_contest_prize {
+    type: string
+    description: "Indicates whether the contest money on the challenge is zero or not"
+    sql: CASE WHEN ${TABLE}.contest_prizes_total = 0 THEN 'Yes'
+              ELSE 'No'
+         END ;;
+  }
+
+  dimension: is_paid {
+    type: string
+    description: "Indicates whether the contest money on the challenge is zero or not"
+    sql: CASE WHEN ${TABLE}.total_prize < 5
+    and ${TABLE}.contest_prizes_total <  5 then 'No'
+              ELSE 'Yes'
+         END ;;
+  }
+
+
   dimension: Is_greater_1_total_prize {
     type: string
     description: "Indicates a challenge if prize is greater than 1"
@@ -967,6 +986,8 @@ view: challenge {
     drill_fields: [detail*]
     sql: ${num_registrations}/ NULLIF(${count}, 0) ;;
   }
+
+
 
 
   #----Set for engagement metric-----

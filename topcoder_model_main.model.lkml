@@ -46,7 +46,11 @@ include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
+# <<<<<<< HEAD
 include: "/Auth0/*.view.lkml"
+include: "/Executive_Board/Executive_Board.view.lkml"
+include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
+# >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 
 
 
@@ -69,6 +73,12 @@ explore: loader_events {}
 explore: historical_financials {}
 explore: success_login {}
 explore: auth0 {}
+explore: executive_board{}
+explore: home_page_skill_visitors {}
+
+
+
+
 
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
@@ -81,6 +91,8 @@ explore: project_scorecard {
     relationship: one_to_one
   }
 }
+
+
 
 # Derived Views
 explore: challenge_stats {
@@ -438,10 +450,7 @@ explore: user {
 
 explore: country {}
 
-# Hide the Calendar explore as it doesn't seem to be useful
-explore: calendar {
-  hidden: yes
-}
+
 
 explore: challenge_groups {
   join: group {
@@ -718,6 +727,7 @@ explore: challenge {
     sql_on: ${challenge.copilot_id} = ${copilot_profile.user_id} ;;
     relationship: one_to_one
   }
+
 
 }
 
@@ -998,6 +1008,32 @@ explore: payment {
     sql_on: ${user_tax_form.user_id} = ${payee.coder_id} ;;
     relationship: many_to_one
   }
+
+  # Left join additional information about challenge in payment explore
+  join: creator {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_creator_id} = ${creator.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: manager {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_manager_id} = ${manager.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: launcher {
+    from: user
+    type: left_outer
+    sql_on: ${challenge.challenge_launcher_id} = ${launcher.coder_id} ;;
+    relationship: many_to_one
+  }
+
+
+
+
 }
 
 #added on 27th Jan 2020

@@ -75,7 +75,7 @@ view: member_skill {
 
   dimension: skill_id {
     type: number
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.skill_id ;;
   }
 

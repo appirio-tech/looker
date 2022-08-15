@@ -3,6 +3,7 @@ view: member_stats_history {
 
   dimension: challenge_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.challenge_id ;;
   }
 
@@ -115,5 +116,13 @@ view: member_stats_history {
     description: "Distinct Challenges / SRM / Marathon Matches "
     sql: ${TABLE}.challenge_id ;;
   }
+
+
+measure: Average {
+  type: average
+  sql: case when ${TABLE}.rating is not null then ${TABLE}.rating else 0 end;;
+}
+
+
 
 }
