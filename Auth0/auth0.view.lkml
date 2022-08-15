@@ -73,6 +73,8 @@ view: auth0 {
     sql: ${TABLE}.day ;;
   }
 
+
+
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
@@ -219,6 +221,13 @@ view: auth0 {
 
   measure: count {
     type: count
-    drill_fields: [source_name, client_name, hostname, user_name]
+    drill_fields: [client_name, type, hostname, user_name,year,month,day]
   }
+
+  measure: count_distinct {
+    type: count_distinct
+    sql: ${user_name} ;;
+    drill_fields: [client_name, type, hostname, user_name,year,month,day]
+  }
+
 }
