@@ -426,6 +426,11 @@ view: salesforce_segment_leads {
     sql: ${TABLE}.landing_page_id_c ;;
   }
 
+  dimension: disqualified_reason{
+    type: string
+    sql: ${TABLE}.disqualified_reason ;;
+  }
+
   dimension_group: last_activity {
     type: time
     timeframes: [
