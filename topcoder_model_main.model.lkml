@@ -68,6 +68,7 @@ explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
 explore: success_login {}
+explore: auth0 {}
 
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
