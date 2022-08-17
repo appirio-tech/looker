@@ -229,5 +229,9 @@ view: auth0 {
     sql: ${user_name} ;;
     drill_fields: [client_name, type, hostname, user_name,year,month,day]
   }
+  measure: min_date {
+    type: string
+    sql: MIN(${date_date});;
+  }
 
 }
