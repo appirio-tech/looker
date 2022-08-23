@@ -1,7 +1,8 @@
 view: tco23_qa_s1_with_details {
   label: "TCO23 Leaderboard"
   derived_table: {
-    sql: SELECT pr.project_id AS "challenge.project_id", pr.challenge_guid AS "challenge.challenge_guid_1",
+    sql:
+    SELECT pr.project_id AS "challenge.project_id", pr.challenge_guid AS "challenge.challenge_guid_1",
       RANK () OVER (
         PARTITION BY pr.project_id
         ORDER BY rw.final_score DESC, rw.submission_id ASC
@@ -15,7 +16,9 @@ view: tco23_qa_s1_with_details {
       INNER JOIN submission_review rw ON pr.project_id = rw.project_id
       LEFT JOIN tcs_dw.member_profile  AS member_profile_basic ON rw.user_id = member_profile_basic.user_id
       WHERE tco_track='2023 TCO QA Stage 1' and status_id=7 and rw.scorecard_type='Review'
-       ;;
+    ;;
+    distribution_style: "even"
+    indexes: ["challenge.challenge_guid_1", "member_profile_basic.user_id"]
   }
 
   measure: count {
