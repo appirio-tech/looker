@@ -8,7 +8,6 @@ view: topcoder_billing_accounts {
   # You need to define a primary key in a view in order to join to other views.
 
   dimension: topcoder_billing_account_id_formula_c {
-    primary_key: yes
     type: string
     sql: ${TABLE}.topcoder_billing_account_id_formula_c ;;
   }
@@ -48,12 +47,12 @@ view: topcoder_billing_accounts {
   }
 
   dimension: actual_fee_c {
-    type: string
+    type: number
     sql: ${TABLE}.actual_fee_c ;;
   }
 
   dimension: actual_member_payment_c {
-    type: string
+    type: number
     sql: ${TABLE}.actual_member_payment_c ;;
   }
 
@@ -63,17 +62,17 @@ view: topcoder_billing_accounts {
   }
 
   dimension: actual_member_payment_payment_c {
-    type: string
+    type: number
     sql: ${TABLE}.actual_member_payment_payment_c ;;
   }
 
   dimension: actual_payment_to_consumed_budget_ratio_c {
-    type: string
+    type: number
     sql: ${TABLE}.actual_payment_to_consumed_budget_ratio_c ;;
   }
 
   dimension: actual_total_challenge_c {
-    type: string
+    type: number
     sql: ${TABLE}.actual_total_challenge_c ;;
   }
 
@@ -163,7 +162,7 @@ view: topcoder_billing_accounts {
   }
 
   dimension: challenge_budget_c {
-    type: string
+    type: number
     sql: ${TABLE}.challenge_budget_c ;;
   }
 
@@ -273,15 +272,7 @@ view: topcoder_billing_accounts {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_duration_days_c {
-    type: sum
-    sql: ${duration_days_c} ;;
-  }
 
-  measure: average_duration_days_c {
-    type: average
-    sql: ${duration_days_c} ;;
-  }
 
   dimension: effective_budget_for_forecast_c {
     type: string
@@ -313,6 +304,7 @@ view: topcoder_billing_accounts {
   }
 
   dimension: id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
@@ -590,7 +582,7 @@ view: topcoder_billing_accounts {
   }
 
   dimension: remaining_budget_c {
-    type: string
+    type: number
     sql: ${TABLE}.remaining_budget_c ;;
   }
 
