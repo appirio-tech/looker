@@ -46,8 +46,16 @@ include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
+# <<<<<<< HEAD
+include: "/Auth0/*.view.lkml"
 include: "/Executive_Board/Executive_Board.view.lkml"
 include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
+# <<<<<<< HEAD
+include: "/Salesforce_Objects/topcoder_billing_accounts.view.lkml"
+include: "/Auth0/auth0_derived_table.view.lkml"
+
+# >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
+# >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 
 
 
@@ -68,8 +76,13 @@ explore: salesforce_segment_leads {}
 explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
+explore: success_login {}
+explore: auth0 {}
 explore: executive_board{}
 explore: home_page_skill_visitors {}
+explore: topcoder_billing_accounts {}
+explore: auth0_derived_table {}
+
 
 
 
