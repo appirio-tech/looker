@@ -20,7 +20,11 @@ view: tco_leaderboard{
             contest.sub_track as tco_sub_track,
             contest.contest_name as tco_contest_name,
             challenge.status_id,
-            challenge.status_desc
+            challenge.status_desc,
+            challenge.num_submissions_passed_review,
+            review.final_score as final_score,
+            review.max_score as max_score,
+            review.scorecard_type
     from tcs_dw.tco_leaderboard as leaderboard
     left join tcs_dw.tco_rating_booster as rating_booster
         on leaderboard.contest_id = rating_booster.contest_id
@@ -29,6 +33,8 @@ view: tco_leaderboard{
         on leaderboard.contest_id = contest.contest_id
     left join tcs_dw.project as challenge
         on leaderboard.challenge_blended_id = challenge.challenge_blended_id
+    left join tcs_dw.submission_review as review
+        on leaderboard.submission_id = review.submission_id
     ;;
       #Cache the data as long as their is no new entry
       datagroup_trigger: tco_leaderboard_cache
@@ -36,12 +42,36 @@ view: tco_leaderboard{
       indexes: ["challenge_id", "user_id", "contest_id"]
     }
 
+    dimension: final_score {
+      description: "Review Final Score"
+      type: number
+      hidden: yes
+      sql: NULLIF(${TABLE}.final_score, 0) ;;
+    }
+
+    dimension: max_score {
+      description: "Review Max Score"
+      type: number
+      sql: NULLIF(${TABLE}.max_score, 0) ;;
+    }
+
+    dimension: num_submissions_passed_review {
+      description: "Number of Submissions Passed Review"
+      type: number
+      sql: NULLIF(${TABLE}.num_submissions_passed_review, 0) ;;
+    }
 
     dimension: challenge_id {
       description: "Challenge id"
       type: string
       hidden: yes
       sql: ${TABLE}.challenge_id ;;
+    }
+
+    dimension: scorecard_type {
+      description: "Review Scorecard Type"
+      type: string
+      sql: ${TABLE}.scorecard_type ;;
     }
 
     dimension: user_id {
@@ -83,7 +113,7 @@ view: tco_leaderboard{
     dimension: placement {
       description: "Placement earned by the member "
       type: number
-      sql: ${TABLE}.placement ;;
+      sql: NULLIF(${TABLE}.placement, 0) ;;
     }
 
     dimension: total_prize {
@@ -136,6 +166,7 @@ view: tco_leaderboard{
       type: string
       sql: ${TABLE}.tco_contest_name ;;
     }
+
     measure: tco_points {
       label: "TCO Points"
       type: sum
@@ -148,13 +179,16 @@ view: tco_leaderboard{
           END;;
     }
 
-  measure: tco23_points {
-    label: "TCO23 Points"
-    type: sum
-    description: "Computed TCO points"
-    value_format: "#,##0"
-    sql:  ${total_prize} * tcs_dw.project.num_submissions_passed_review ;;
-  }
+    measure: tco23_points {
+      label: "TCO23 Points"
+      type: sum
+      description: "Computed TCO23 points"
+      value_format: "#,##0.00"
+      sql: CASE
+              WHEN ${TABLE}.fixed_score IS NOT NULL THEN ${TABLE}.fixed_score
+              ELSE ROUND(${TABLE}.total_prize * ((${num_submissions_passed_review} - ${placement} + 1)/${num_submissions_passed_review}) * (${final_score}/${max_score}), 1)
+           END;;
+    }
 
     dimension:status_desc  {
       hidden: yes
