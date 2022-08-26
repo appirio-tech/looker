@@ -1922,6 +1922,33 @@ explore: design_month_tco {
 
   }
 
+explore: tco23_leaderboard {
+
+  join: challenge {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tco23_leaderboard.challenge_id} = ${challenge.challenge_blended_id} ;;
+  }
+
+  # join: round {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${tco23_leaderboard.round_id} = ${round.round_id} ;;
+  # }
+
+  join: member_profile_basic {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tco23_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
+  }
+
+  # join : member_profile_all {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on:  ${tco23_leaderboard.user_id} = ${member_profile_all.user_id} ;;
+  # }
+}
+
 
 include: "/cost_transaction_temp/*.view.lkml"
 
