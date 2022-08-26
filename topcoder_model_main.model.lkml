@@ -53,6 +53,11 @@ include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
 # <<<<<<< HEAD
 include: "/Salesforce_Objects/topcoder_billing_accounts.view.lkml"
 include: "/Auth0/auth0_derived_table.view.lkml"
+include: "/Salesforce_Objects/subscriptions.view.lkml"
+include: "/Salesforce_Objects/projects.view.lkml"
+include: "/Auth0/auth0_derived_weekly.view.lkml"
+include: "/Auth0/auth0_derived_distinct.view.lkml"
+include: "/Salesforce_Objects/billing_account_actuals.view.lkml"
 
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
@@ -82,6 +87,9 @@ explore: executive_board{}
 explore: home_page_skill_visitors {}
 explore: topcoder_billing_accounts {}
 explore: auth0_derived_table {}
+explore: auth0_derived_weekly {}
+explore: auth0_derived_distinct {}
+
 
 
 
@@ -102,6 +110,30 @@ explore: project_scorecard {
 
 
 # Derived Views
+# Adding SFDC Objects 8/22/2022
+explore: subscriptions {
+  join: projects {
+    type: left_outer
+    sql_on: ${subscriptions.id} = ${projects.subscription_c} ;;
+    relationship: one_to_many
+  }
+
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${projects.id} = ${topcoder_billing_accounts.subscription_project_c} ;;
+    relationship: one_to_many
+  }
+
+  join: billing_account_actuals {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.id} = ${billing_account_actuals.topcoder_billing_account_c} ;;
+    relationship: one_to_many
+}
+
+
+}
+
+
 explore: challenge_stats {
   join: challenge_groups {
     type: left_outer
