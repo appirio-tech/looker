@@ -9,9 +9,10 @@ view: tco23_leaderboard {
         rw.user_id as user_id,
         rw.max_score as max_score,
         max(rw.final_score) as max_final_score,
+        max(rw.submission_id) as max_sub_id,
         RANK () OVER (
           PARTITION BY challenge_id
-          ORDER BY max_final_score DESC
+          ORDER BY max_final_score DESC, max_sub_id ASC
         ) AS placement,
         COUNT (*) OVER (
           PARTITION BY challenge_id
