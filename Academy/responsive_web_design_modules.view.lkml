@@ -1,4 +1,4 @@
-view: responsive_web_design_modules {
+view: modules{
   derived_table: {
     sql: select
       s.i as ss,
@@ -9,7 +9,7 @@ view: responsive_web_design_modules {
       json_extract_path_text(json_extract_array_element_text(modules, s.i),'lessonCount') as lesson_count,
       course_id as course_id
       from academy.certification_progress,academy.sequence as s
-      where course_id = 'b33cc02c-302d-4dd7-8e1d-7ad980477fd9' and s.i < json_array_length(modules)
+      where  s.i < json_array_length(modules)
        ;;
   }
 

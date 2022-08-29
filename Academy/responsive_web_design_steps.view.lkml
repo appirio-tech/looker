@@ -10,10 +10,11 @@ view: responsive_web_design_steps {
       course_id as course_id,
       json_extract_path_text(json_extract_array_element_text(modules, s.i),'completedLessons') as test1
       from academy.certification_progress,academy.sequence as s
-      where course_id = 'b33cc02c-302d-4dd7-8e1d-7ad980477fd9' and s.i < json_array_length(modules))
+      where s.i < json_array_length(modules))
 
       select
       t1.user_id,
+      t1.course_id as course_id,
       t1.module_name as module_name,
       t1.module_status as module_status,
       t1.ss + 1 as module_number,
@@ -53,6 +54,11 @@ view: responsive_web_design_steps {
     type: number
     primary_key: yes
     sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: course_id {
+    type: string
+    sql: ${TABLE}.course_id ;;
   }
 
   dimension: module_name {
