@@ -16,8 +16,6 @@ view: modules{
     distribution_style: even #Required for saving the look
     indexes: ["user_id"]
 
-
-
   }
 
   measure: count {
