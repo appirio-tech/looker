@@ -132,6 +132,14 @@ explore: certification_progress {
   }
 
 
+  join:member_profile_all {
+    type: inner
+    sql_on: ${certification_progress.user_id} = ${member_profile_all.user_id};;
+    relationship: one_to_one
+    view_label: "Member Profile"
+  }
+
+
 }
 
 # Derived Views

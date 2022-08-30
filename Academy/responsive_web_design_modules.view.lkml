@@ -11,6 +11,13 @@ view: modules{
       from academy.certification_progress,academy.sequence as s
       where  s.i < json_array_length(modules)
        ;;
+
+    persist_for: "8 hours" #Persist for 8 hours as data gets loaded in every 8 hours
+    distribution_style: even #Required for saving the look
+    indexes: ["user_id"]
+
+
+
   }
 
   measure: count {
