@@ -109,7 +109,7 @@ view: auth0_derived_weekly {
 
     persist_for: "8 hours" #Persist for 8 hours as data gets loaded in every 8 hours
     distribution_style: even #Required for saving the look
-    indexes: ["t1.user_id"]
+    indexes: ["user_id"]
 
   }
 
