@@ -121,6 +121,12 @@ FROM T1 left join t2 on t1.user_id = t2.user_id and t1.day = t2.day1 and t2.mont
       t1.login_date desc
 
        ;;
+
+    persist_for: "8 hours" #Persist for 8 hours as data gets loaded in every 8 hours
+    distribution_style: even #Required for saving the look
+    indexes: ["user_id"]
+
+
   }
 
   measure: count {

@@ -58,6 +58,9 @@ include: "/Salesforce_Objects/projects.view.lkml"
 include: "/Auth0/auth0_derived_weekly.view.lkml"
 include: "/Auth0/auth0_derived_distinct.view.lkml"
 include: "/Salesforce_Objects/billing_account_actuals.view.lkml"
+include: "/Academy/certification_progress.view.lkml"
+include: "/Academy/responsive_web_design_modules.view.lkml"
+include: "/Academy/responsive_web_design_steps.view.lkml"
 
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
@@ -93,8 +96,6 @@ explore: auth0_derived_distinct {}
 
 
 
-
-
 #Moved from Adhoc model to topcoder_model_main
 # Find new challenges that are launched to help detect new challenge scorecards
 explore: project_scorecard {
@@ -108,6 +109,38 @@ explore: project_scorecard {
 }
 
 
+
+
+
+## adding academy data for responsive web design
+
+explore: certification_progress {
+  join: responsive_web_design_modules {
+    from: modules
+    type: left_outer
+    sql_on: ${responsive_web_design_modules.user_id} = ${certification_progress.user_id} and  ${responsive_web_design_modules.course_id} = ${certification_progress.course_id} ;;
+    relationship: one_to_many
+    view_label: "Modules"
+}
+
+
+  join:responsive_web_design_steps {
+    type: left_outer
+    sql_on: ${responsive_web_design_modules.module_name} = ${responsive_web_design_steps.module_name} and ${responsive_web_design_modules.user_id} = ${responsive_web_design_steps.user_id} and ${responsive_web_design_modules.course_id} = ${responsive_web_design_steps.course_id};;
+    relationship: one_to_many
+    view_label: "Steps"
+  }
+
+
+  join:member_profile_all {
+    type: inner
+    sql_on: ${certification_progress.user_id} = ${member_profile_all.user_id};;
+    relationship: one_to_one
+    view_label: "Member Profile"
+  }
+
+
+}
 
 # Derived Views
 # Adding SFDC Objects 8/22/2022
