@@ -20,10 +20,13 @@ view: tco23_leaderboard {
         (total_prize * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score) as tco_score
       FROM tcs_dw.submission_review rw
       INNER JOIN tcs_dw.project as pr
-        ON pr.project_id = rw.project_id
+        ON pr.project_id = rw.project_id AND pr.is_private = 0
       where (rw.scorecard_type = 'Review' OR rw.scorecard_type = 'Iterative Review') AND rw.final_score > rw.min_score
       group by user_id,challenge_id,challenge_guid,max_score,total_prize
     ;;
+    datagroup_trigger: project_cache
+    distribution_style: "even"
+    indexes: ["challenge_id", "user_id"]
   }
 
   dimension: challenge_id {
@@ -56,6 +59,7 @@ view: tco23_leaderboard {
     type: sum
     description: "Computed TCO23 points"
     value_format: "#,##0.00"
+    # TODO: add rating booster and/or way to support custom TCO scoring per challenge and/or user
     sql: ROUND(${TABLE}.tco_score, 1) ;;
   }
 
