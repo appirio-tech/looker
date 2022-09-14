@@ -12,7 +12,7 @@ view: tco23_leaderboard {
         max(rw.submission_id) as max_sub_id,
         RANK () OVER (
           PARTITION BY challenge_id
-          ORDER BY max_final_score DESC, max_sub_id ASC
+          ORDER BY max_final_score DESC, max_sub_id DESC
         ) AS placement,
         COUNT (*) OVER (
           PARTITION BY challenge_id
