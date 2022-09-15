@@ -801,6 +801,20 @@ explore: challenge {
   }
 
 
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${topcoder_billing_accounts.top_coder_billing_account_id_c} ;;
+    relationship: one_to_one
+    view_label: "SFDC Topcoder Billing Accounts"
+  }
+
+  join: projects {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.subscription_project_c} = ${projects.id} ;;
+    relationship: many_to_one
+    view_label: "SFDC Projects"
+  }
+
 }
 
 explore: project_result {
@@ -1103,6 +1117,20 @@ explore: payment {
     relationship: many_to_one
   }
 
+
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${topcoder_billing_accounts.top_coder_billing_account_id_c} ;;
+    relationship: one_to_one
+    view_label: "SFDC Topcoder Billing Accounts"
+  }
+
+  join: projects {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.subscription_project_c} = ${projects.id} ;;
+    relationship: many_to_one
+    view_label: "SFDC Projects"
+  }
 
 
 
