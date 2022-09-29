@@ -17,7 +17,7 @@ view: tco23_leaderboard {
           ) AS placement
         FROM tcs_dw.submission_review rw
         INNER JOIN tcs_dw.project as pr
-          ON pr.project_id = rw.project_id AND pr.is_private = 0
+          ON pr.project_id = rw.project_id AND pr.is_private = 0 AND pr.status_id = 7
         where (rw.scorecard_type = 'Review' OR rw.scorecard_type = 'Iterative Review')
         group by user_id,challenge_id,challenge_guid,min_score,max_score,total_prize
       )
