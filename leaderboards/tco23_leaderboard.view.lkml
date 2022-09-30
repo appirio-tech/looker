@@ -10,7 +10,10 @@ view: tco23_leaderboard {
           rw.user_id as user_id,
           rw.min_score as min_score,
           rw.max_score as max_score,
-          avg(rw.final_score) as max_final_score,
+          CASE
+            WHEN pr.tco_track LIKE '%Design%' THEN max(rw.final_score)
+            ELSE avg(rw.final_score)
+          END as max_final_score,
           RANK () OVER (
             PARTITION BY challenge_id
             ORDER BY max_final_score DESC, max(rw.create_date) ASC
@@ -19,7 +22,7 @@ view: tco23_leaderboard {
         INNER JOIN tcs_dw.project as pr
           ON pr.project_id = rw.project_id AND pr.is_private = 0 AND pr.status_id = 7
         where (rw.scorecard_type = 'Review' OR rw.scorecard_type = 'Iterative Review')
-        group by user_id,challenge_id,challenge_guid,min_score,max_score,total_prize
+        group by user_id,challenge_id,challenge_guid,min_score,max_score,total_prize,tco_track
       )
       SELECT
         *,
