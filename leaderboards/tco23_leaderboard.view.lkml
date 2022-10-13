@@ -6,6 +6,7 @@ view: tco23_leaderboard {
         SELECT
           pr.project_id AS challenge_id,
           pr.challenge_guid AS challenge_guid,
+          pr.tco_track as tco_track,
           pr.total_prize as total_prize,
           rw.user_id as user_id,
           rw.min_score as min_score,
@@ -30,7 +31,10 @@ view: tco23_leaderboard {
         COUNT (*) OVER (
           PARTITION BY challenge_id
         ) as passed_review,
-        (total_prize * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score) as tco_score
+        CASE
+          WHEN tco_track LIKE '%Data Science%' THEN (2500 * LOG(cast((1 + (total_prize/2500)) as double precision)) * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score)
+          ELSE (total_prize * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score)
+        END as tco_score
       FROM subs
       WHERE subs.max_final_score > subs.min_score
     ;;
