@@ -90,6 +90,17 @@ view: certification_progress {
     sql: timestamp 'epoch' + cast(${created_at_conversion}  as bigint) / 1000 * interval '1 second';;
   }
 
+  dimension: completed_date_conversion {
+    type: number
+    sql: ${TABLE}.completed_date ;;
+  }
+
+
+  dimension: completed_date {
+    type: date
+    sql: timestamp 'epoch' + cast(${completed_date_conversion}  as bigint) / 1000 * interval '1 second';;
+  }
+
 
 
   dimension: current_lesson {
