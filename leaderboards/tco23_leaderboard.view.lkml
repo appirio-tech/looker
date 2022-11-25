@@ -37,6 +37,8 @@ view: tco23_leaderboard {
         END as tco_score
       FROM subs
       WHERE subs.max_final_score > subs.min_score
+      UNION
+      SELECT * FROM tcs_dw.tco_ds_member_scores
     ;;
     datagroup_trigger: project_cache
     distribution_style: "even"
