@@ -79,10 +79,29 @@ view: certification_progress {
     sql: ${TABLE}.course_key ;;
   }
 
-  dimension: created_at {
+  dimension: created_at_conversion {
     type: number
+    hidden: yes
     sql: ${TABLE}.created_at ;;
   }
+
+  dimension: created_at {
+    type: date
+    sql: timestamp 'epoch' + cast(${created_at_conversion}  as bigint) / 1000 * interval '1 second';;
+  }
+
+  dimension: completed_date_conversion {
+    type: number
+    sql: ${TABLE}.completed_date ;;
+  }
+
+
+  dimension: completed_date {
+    type: date
+    sql: timestamp 'epoch' + cast(${completed_date_conversion}  as bigint) / 1000 * interval '1 second';;
+  }
+
+
 
   dimension: current_lesson {
     type: string
@@ -104,10 +123,17 @@ view: certification_progress {
     sql: ${TABLE}.provider_url ;;
   }
 
-  dimension: start_date {
+  dimension: start_date_converstion {
     type: number
+    hidden: yes
     sql: ${TABLE}.start_date ;;
   }
+
+  dimension: start_date {
+    type: date
+    sql: timestamp 'epoch' + cast(${start_date_converstion}  as bigint) / 1000 * interval '1 second';;
+  }
+
 
   dimension: status {
     type: string
@@ -116,7 +142,6 @@ view: certification_progress {
 
   dimension: last_updated {
     type: date
-    hidden: yes
     sql: timestamp 'epoch' + cast(${updated_at}  as bigint) / 1000 * interval '1 second';;
   }
 
@@ -130,12 +155,14 @@ view: certification_progress {
       quarter,
       year
     ]
-    sql: ${last_updated} ;;
+    sql: ${last_updated}
+    ;;
   }
 
 
   dimension: updated_at {
     type: number
+    hidden: yes
     sql:${TABLE}.updated_at;;
     }
 
