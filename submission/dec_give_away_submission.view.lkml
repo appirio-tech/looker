@@ -66,6 +66,7 @@ view: dec_give_away_submission {
     sql: ${TABLE}.challenge_id ;;
   }
 
+
   dimension_group: submission_time {
     type: time
     sql: ${TABLE}.submission_time ;;
