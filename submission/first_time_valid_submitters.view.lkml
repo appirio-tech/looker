@@ -61,6 +61,7 @@ view: first_time_valid_submitters {
   }
 
   dimension: submission_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.submission_id ;;
   }
