@@ -41,6 +41,7 @@ view: first_time_valid_submitters {
   }
 
   dimension: user_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
@@ -61,7 +62,7 @@ view: first_time_valid_submitters {
   }
 
   dimension: submission_id {
-    primary_key: yes
+
     type: string
     sql: ${TABLE}.submission_id ;;
   }
