@@ -949,7 +949,7 @@ explore: payment {
 
   join: challenge_groups {
     type: left_outer
-    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} or ${challenge.challenge_GUID} = ${challenge_groups.challenge_blended_id} ;;
     relationship: many_to_many
   }
 
