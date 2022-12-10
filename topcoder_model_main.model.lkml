@@ -110,7 +110,8 @@ explore: project_scorecard {
 }
 
 
-
+## srm test
+explore: srm_challenge {}
 
 
 ## adding academy data for responsive web design
@@ -1846,16 +1847,6 @@ explore: connect_project_phases {
 
   }
 
-# Added 25th September - 2018
-explore: problem {
-
-  join: round {
-    type: left_outer
-    sql_on: ${problem.round_id} = ${round.round_id} ;;
-    relationship: many_to_one
-  }
-
-}
 
 # Added 28th September - 2018
 explore: non_qa_dev_challenges {
