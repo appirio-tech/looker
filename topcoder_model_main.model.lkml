@@ -61,6 +61,7 @@ include: "/Salesforce_Objects/billing_account_actuals.view.lkml"
 include: "/Academy/certification_progress.view.lkml"
 include: "/Academy/responsive_web_design_modules.view.lkml"
 include: "/Academy/responsive_web_design_steps.view.lkml"
+include: "/submission/first_time_valid_submitters.view.lkml"
 
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 # >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
@@ -109,7 +110,8 @@ explore: project_scorecard {
 }
 
 
-
+## srm test
+explore: srm_challenge {}
 
 
 ## adding academy data for responsive web design
@@ -1041,7 +1043,7 @@ explore: payment {
 
   join: challenge_groups {
     type: left_outer
-    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} or ${challenge.challenge_GUID} = ${challenge_groups.challenge_blended_id} ;;
     relationship: many_to_many
   }
 
@@ -1499,7 +1501,46 @@ explore: streak {}
 
 explore: streak_type_lu {}
 
-explore: submission {}
+explore: member_submission {
+
+  join: review_summation {
+    type: left_outer
+    sql_on: ${member_submission.submission_id} = ${review_summation.id} ;;
+    relationship:one_to_one
+  }
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${member_submission.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+    relationship: many_to_one
+    }
+
+  join: submitter {
+    from: user
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${submitter.coder_id} ;;
+    relationship: one_to_one
+  }
+
+  join: project_result {
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${project_result.user_id} and ${member_submission.challenge_id} = ${project_result.project_id};;
+    relationship: one_to_one
+  }
+
+  join: first_time_valid_submitters {
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${first_time_valid_submitters.user_id} and ${member_submission.submission_id} = ${first_time_valid_submitters.submission_id};;
+    relationship: one_to_one
+  }
+
+}
 
 explore: submission_review {
   sql_always_where: ${is_deleted} is null;;
@@ -1509,6 +1550,19 @@ explore: submission_review {
     sql_on: ${submission_review.reviewer_id} = ${reviewer.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: submission {
+    type: left_outer
+    sql_on: ${submission_review.submission_id} = ${submission.submission_id} ;;
+    relationship:one_to_one
+  }
+
+  join: review_summation {
+    type: left_outer
+    sql_on: ${submission_review.submission_id} = ${review_summation.id} ;;
+    relationship:one_to_one
+  }
+
 
   join: submitter {
     from: user
@@ -1793,16 +1847,6 @@ explore: connect_project_phases {
 
   }
 
-# Added 25th September - 2018
-explore: problem {
-
-  join: round {
-    type: left_outer
-    sql_on: ${problem.round_id} = ${round.round_id} ;;
-    relationship: many_to_one
-  }
-
-}
 
 # Added 28th September - 2018
 explore: non_qa_dev_challenges {
