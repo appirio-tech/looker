@@ -36,7 +36,7 @@ view: tco23_leaderboard {
           ELSE (total_prize * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score)
         END as tco_score
       FROM subs
-      WHERE subs.max_final_score > subs.min_score
+      WHERE subs.max_final_score >= subs.min_score
       UNION
       SELECT * FROM tcs_dw.tco_ds_member_scores
     ;;
