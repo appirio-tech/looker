@@ -5,7 +5,6 @@ view: distinct_members_updated_skills_after_encouragement_modal_added_on_12_6_ad
           CAST("updated_at" AS DATE) as update_date
       FROM
           "tcs_dw"."member_skill" AS "member_skill"
-      WHERE ("updated_at") >= (TIMESTAMP '2022-12-06')
       GROUP BY update_date
        ;;
   }
