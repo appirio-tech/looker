@@ -94,6 +94,7 @@ explore: auth0_derived_table {}
 explore: auth0_derived_weekly {}
 explore: auth0_derived_distinct {}
 explore: distinct_members_updated_skills_after_encouragement_modal_added_on_12_6_add {}
+explore: skill_updates {}
 
 
 
