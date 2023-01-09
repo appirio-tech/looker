@@ -27,15 +27,47 @@ view: tco23_leaderboard {
         group by user_id,challenge_id,challenge_guid,min_score,max_score,total_prize,tco_track,project_category_name
       )
       SELECT
-        *,
-        COUNT (*) OVER (
-          PARTITION BY challenge_id
-        ) as passed_review,
+        subs.challenge_id,
+        subs.challenge_guid,
         CASE
-          WHEN tco_track LIKE '%Data Science%' THEN (2500 * LOG(cast((1 + (total_prize/2500)) as double precision)) * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score)
-          ELSE (total_prize * (passed_review - placement + 1)/passed_review) * (max_final_score/max_score)
+          WHEN custom_tco.tco_track IS NOT NULL THEN custom_tco.tco_track
+          ELSE subs.tco_track
+        END as tco_track,
+        CASE
+          WHEN custom_tco.total_prize IS NOT NULL THEN custom_tco.total_prize
+          ELSE subs.total_prize
+        END as total_prize,
+        subs.user_id,
+        CASE
+          WHEN custom_tco.min_score IS NOT NULL THEN custom_tco.min_score
+          ELSE subs.min_score
+        END as min_score,
+        CASE
+          WHEN custom_tco.max_score IS NOT NULL THEN custom_tco.max_score
+          ELSE subs.max_score
+        END as max_score,
+        CASE
+          WHEN custom_tco.max_final_score is NOT NULL THEN custom_tco.max_final_score
+          ELSE subs.max_final_score
+        END as max_final_score,
+        CASE
+          WHEN custom_tco.placement IS NOT NULL THEN custom_tco.placement
+          ELSE subs.placement
+        END as placement,
+        CASE
+          WHEN custom_tco.passed_review IS NOT NULL THEN custom_tco.passed_review
+          ELSE COUNT (*) OVER (
+            PARTITION BY subs.challenge_id
+          )
+        END as passed_review,
+        CASE
+          WHEN custom_tco.tco_score IS NOT NULL THEN custom_tco.tco_score
+          WHEN subs.tco_track LIKE '%Data Science%' THEN (2500 * LOG(cast((1 + (subs.total_prize/2500)) as double precision)) * (COUNT (*) OVER (PARTITION BY subs.challenge_id) - subs.placement + 1)/COUNT (*) OVER (PARTITION BY subs.challenge_id)) * (subs.max_final_score/subs.max_score)
+          ELSE (subs.total_prize * (COUNT (*) OVER (PARTITION BY subs.challenge_id) - subs.placement + 1)/COUNT (*) OVER (PARTITION BY subs.challenge_id)) * (subs.max_final_score/subs.max_score)
         END as tco_score
       FROM subs
+      LEFT JOIN tco_custom_member_scores as custom_tco
+        ON custom_tco.challenge_id = subs.challenge_id and custom_tco.user_id = subs.user_id
       WHERE subs.max_final_score >= subs.min_score
       UNION
       SELECT * FROM tcs_dw.tco_ds_member_scores
