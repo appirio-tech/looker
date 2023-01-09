@@ -8,8 +8,8 @@ view: challenge_groups {
                 "authorization"."group" g
           where cg.group_id = g.id
        ;;
-    sortkeys: ["group_name", "challenge_id"]
-    distribution: "group_name"
+    sortkeys: ["group_name", "challenge_id", "challenge_blended_id"]
+    distribution: "challenge_blended_id"
     persist_for: "30 minutes"
   }
 
