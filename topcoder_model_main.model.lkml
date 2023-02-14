@@ -184,6 +184,14 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
+join: winner {
+from: user
+type: left_outer
+sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
+relationship: many_to_one
+}
+
+
   join: user_payment {
     type: left_outer
     sql_on: ${challenge_stats.registrant_id} = ${user_payment.user_id} ;;

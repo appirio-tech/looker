@@ -94,6 +94,7 @@ view: job_candidate_history {
     drill_fields: [detail*]
   }
 
+
   set: detail {
     fields: [
       id,
