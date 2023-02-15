@@ -644,6 +644,11 @@ view: salesforce_segment_opportunities {
     sql: ${TABLE}.engagement_manager_c ;;
   }
 
+  dimension: engagement_offering_type_c {
+    type: string
+    sql: ${TABLE}.engagement_offering_type_c ;;
+  }
+
   dimension_group: engagement_start_date_c {
     type: time
     timeframes: [
@@ -1647,10 +1652,7 @@ view: salesforce_segment_opportunities {
     sql: ${TABLE}.type ;;
   }
 
-  dimension: unbooked_capacity_c {
-    type: string
-    sql: ${TABLE}.unbooked_capacity_c ;;
-  }
+
 
   dimension_group: uuid_ts {
     type: time
@@ -1686,18 +1688,9 @@ view: salesforce_segment_opportunities {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [id, name,product_list_names_c]
+
   }
 
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      stage_name,
-      forecast_category_name,
-      name,
-      accounts.name,
-      accounts.id
-    ]
+
   }
-}
