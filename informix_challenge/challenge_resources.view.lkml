@@ -93,6 +93,11 @@ view: challenge_resources {
     sql: ${TABLE}.is_deleted ;;
   }
 
+  measure: count_of_role_players{
+    type: count_distinct
+    sql: ${member_id} ;;
+  }
+
   set: detail {
     fields: [
       id,
