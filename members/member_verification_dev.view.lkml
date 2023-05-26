@@ -1,4 +1,5 @@
 view: member_verification_dev {
+  label: "Member Status Verification DEV"
   sql_table_name: tcs_dw.member_verification_DEV;;
 
   dimension: compound_primary_key {
