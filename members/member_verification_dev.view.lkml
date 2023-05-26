@@ -91,6 +91,12 @@ view: member_verification_dev {
     sql: ${TABLE}.watch_list ;;
   }
 
+  dimension: handle {
+    type: string
+    description: "Topcoder Member Handle - DEV"
+    sql: ${TABLE}.handle ;;
+  }
+
   measure: member_verification_count {
     type: count
 
