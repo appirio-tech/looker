@@ -333,6 +333,10 @@ explore: member_verification {
   }
 }
 
+explore: member_verification_dev {
+  from: member_verification_dev
+}
+
 # Added 2nd November - 2018, Member Submission pulled from DynamoDb
 explore: member_submission {
   join: member_profile_basic {
