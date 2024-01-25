@@ -433,7 +433,12 @@ explore: gig {
     sql_on: ${taas_resource.taas_resource_id} = ${taas_payment.taas_resource}  ;;
     relationship: one_to_many
   }
-
+  #joined payment explore on 25 Jan 2024
+  join: user_payment {
+    type: left_outer
+    sql_on: ${member_profile_all.user_id} = ${user_payment.user_id} ;;
+    relationship: one_to_many
+  }
   join: gig_skills_requested {
     type: left_outer
     sql_on: ${gig.job_id} = ${gig_skills_requested.job_id} ;;
