@@ -34,9 +34,15 @@ view: submission {
     sql: ${TABLE}.submitter_id ;;
   }
 
-  measure: count {
+  measure: submissions {
     type: count
     drill_fields: [detail*]
+  }
+
+
+  measure: submitters {
+    type: count_distinct
+    sql: ${submitter_id} ;;
   }
 
   # ----- Sets of fields for drilling ------

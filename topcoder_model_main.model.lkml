@@ -46,8 +46,25 @@ include: "/payments/*.view.lkml"
 include: "/legacy/*.view.lkml"
 include: "/sfdc/*.view.lkml"
 include: "/Finance/*.view.lkml"
+# <<<<<<< HEAD
+include: "/Auth0/*.view.lkml"
 include: "/Executive_Board/Executive_Board.view.lkml"
 include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
+# <<<<<<< HEAD
+include: "/Salesforce_Objects/topcoder_billing_accounts.view.lkml"
+include: "/Auth0/auth0_derived_table.view.lkml"
+include: "/Salesforce_Objects/subscriptions.view.lkml"
+include: "/Salesforce_Objects/projects.view.lkml"
+include: "/Auth0/auth0_derived_weekly.view.lkml"
+include: "/Auth0/auth0_derived_distinct.view.lkml"
+include: "/Salesforce_Objects/billing_account_actuals.view.lkml"
+include: "/Academy/certification_progress.view.lkml"
+include: "/Academy/responsive_web_design_modules.view.lkml"
+include: "/Academy/responsive_web_design_steps.view.lkml"
+include: "/submission/first_time_valid_submitters.view.lkml"
+
+# >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
+# >>>>>>> branch 'master' of git@github.com:topcoder-platform/looker.git
 
 
 
@@ -69,8 +86,16 @@ explore: salesforce_segment_leads {}
 explore: salesforce_segment_opportunities {}
 explore: loader_events {}
 explore: historical_financials {}
+explore: success_login {}
+explore: auth0 {}
 explore: executive_board{}
 explore: home_page_skill_visitors {}
+explore: topcoder_billing_accounts {}
+explore: auth0_derived_table {}
+explore: auth0_derived_weekly {}
+explore: auth0_derived_distinct {}
+explore: distinct_members_updated_skills_after_encouragement_modal_added_on_12_6_add {}
+explore: skill_updates {}
 
 
 
@@ -88,8 +113,65 @@ explore: project_scorecard {
 }
 
 
+## srm test
+explore: srm_challenge {}
+
+
+## adding academy data for responsive web design
+
+explore: certification_progress {
+  join: responsive_web_design_modules {
+    from: modules
+    type: left_outer
+    sql_on: ${responsive_web_design_modules.user_id} = ${certification_progress.user_id} and  ${responsive_web_design_modules.course_id} = ${certification_progress.course_id} ;;
+    relationship: one_to_many
+    view_label: "Modules"
+}
+
+
+  join:responsive_web_design_steps {
+    type: left_outer
+    sql_on: ${responsive_web_design_modules.module_name} = ${responsive_web_design_steps.module_name} and ${responsive_web_design_modules.user_id} = ${responsive_web_design_steps.user_id} and ${responsive_web_design_modules.course_id} = ${responsive_web_design_steps.course_id};;
+    relationship: one_to_many
+    view_label: "Steps"
+  }
+
+
+  join:member_profile_all {
+    type: inner
+    sql_on: ${certification_progress.user_id} = ${member_profile_all.user_id};;
+    relationship: one_to_one
+    view_label: "Member Profile"
+  }
+
+
+}
 
 # Derived Views
+# Adding SFDC Objects 8/22/2022
+explore: subscriptions {
+  join: projects {
+    type: left_outer
+    sql_on: ${subscriptions.id} = ${projects.subscription_c} ;;
+    relationship: one_to_many
+  }
+
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${projects.id} = ${topcoder_billing_accounts.subscription_project_c} ;;
+    relationship: one_to_many
+  }
+
+  join: billing_account_actuals {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.id} = ${billing_account_actuals.topcoder_billing_account_c} ;;
+    relationship: one_to_many
+}
+
+
+}
+
+
 explore: challenge_stats {
   join: challenge_groups {
     type: left_outer
@@ -102,6 +184,14 @@ explore: challenge_stats {
     sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
+
+join: winner {
+from: user
+type: left_outer
+sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
+relationship: many_to_one
+}
+
 
   join: user_payment {
     type: left_outer
@@ -724,6 +814,20 @@ explore: challenge {
   }
 
 
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${topcoder_billing_accounts.top_coder_billing_account_id_c} ;;
+    relationship: one_to_one
+    view_label: "SFDC Topcoder Billing Accounts"
+  }
+
+  join: projects {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.subscription_project_c} = ${projects.id} ;;
+    relationship: many_to_one
+    view_label: "SFDC Projects"
+  }
+
 }
 
 explore: project_result {
@@ -950,7 +1054,7 @@ explore: payment {
 
   join: challenge_groups {
     type: left_outer
-    sql_on: ${challenge.project_id} = ${challenge_groups.challenge_id} ;;
+    sql_on: ${challenge.challenge_blended_id} = ${challenge_groups.challenge_blended_id} ;;
     relationship: many_to_many
   }
 
@@ -1026,6 +1130,20 @@ explore: payment {
     relationship: many_to_one
   }
 
+
+  join: topcoder_billing_accounts {
+    type: left_outer
+    sql_on: ${client_project_dim.billing_account_id} = ${topcoder_billing_accounts.top_coder_billing_account_id_c} ;;
+    relationship: one_to_one
+    view_label: "SFDC Topcoder Billing Accounts"
+  }
+
+  join: projects {
+    type: left_outer
+    sql_on: ${topcoder_billing_accounts.subscription_project_c} = ${projects.id} ;;
+    relationship: many_to_one
+    view_label: "SFDC Projects"
+  }
 
 
 
@@ -1394,7 +1512,46 @@ explore: streak {}
 
 explore: streak_type_lu {}
 
-explore: submission {}
+explore: member_submission {
+
+  join: review_summation {
+    type: left_outer
+    sql_on: ${member_submission.submission_id} = ${review_summation.id} ;;
+    relationship:one_to_one
+  }
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${member_submission.challenge_id} = ${challenge.project_id} ;;
+    relationship: many_to_one
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${client_project_dim.client_project_id} = ${challenge.client_project_id} ;;
+    relationship: many_to_one
+    }
+
+  join: submitter {
+    from: user
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${submitter.coder_id} ;;
+    relationship: one_to_one
+  }
+
+  join: project_result {
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${project_result.user_id} and ${member_submission.challenge_id} = ${project_result.project_id};;
+    relationship: one_to_one
+  }
+
+  join: first_time_valid_submitters {
+    type: left_outer
+    sql_on: ${member_submission.user_id} = ${first_time_valid_submitters.user_id} and ${member_submission.submission_id} = ${first_time_valid_submitters.submission_id};;
+    relationship: one_to_one
+  }
+
+}
 
 explore: submission_review {
   sql_always_where: ${is_deleted} is null;;
@@ -1404,6 +1561,19 @@ explore: submission_review {
     sql_on: ${submission_review.reviewer_id} = ${reviewer.coder_id} ;;
     relationship: many_to_one
   }
+
+  join: submission {
+    type: left_outer
+    sql_on: ${submission_review.submission_id} = ${submission.submission_id} ;;
+    relationship:one_to_one
+  }
+
+  join: review_summation {
+    type: left_outer
+    sql_on: ${submission_review.submission_id} = ${review_summation.id} ;;
+    relationship:one_to_one
+  }
+
 
   join: submitter {
     from: user
@@ -1688,16 +1858,6 @@ explore: connect_project_phases {
 
   }
 
-# Added 25th September - 2018
-explore: problem {
-
-  join: round {
-    type: left_outer
-    sql_on: ${problem.round_id} = ${round.round_id} ;;
-    relationship: many_to_one
-  }
-
-}
 
 # Added 28th September - 2018
 explore: non_qa_dev_challenges {
@@ -1909,6 +2069,33 @@ explore: design_month_tco {
 
 
   }
+
+explore: tco23_leaderboard {
+
+  join: challenge {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tco23_leaderboard.challenge_id} = ${challenge.challenge_blended_id} ;;
+  }
+
+  # join: round {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${tco23_leaderboard.round_id} = ${round.round_id} ;;
+  # }
+
+  join: member_profile_basic {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tco23_leaderboard.user_id} = ${member_profile_basic.user_id} ;;
+  }
+
+  # join : member_profile_all {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on:  ${tco23_leaderboard.user_id} = ${member_profile_all.user_id} ;;
+  # }
+}
 
 
 include: "/cost_transaction_temp/*.view.lkml"

@@ -16,13 +16,15 @@ week_start_day: sunday
 # filters will NOT be case sensitive
 case_sensitive: no
 
-explore: round {}
 
-explore: user {
-label:"SRM Submission"
-join:problem_submission{
+explore: srm_challenge  {
+
+
+join:user{
   type: left_outer
-  sql_on: ${user.coder_id}=${problem_submission.coder_id} ;;
+  sql_on: ${user.coder_id} = ${srm_challenge.challenger_id} ;;
   relationship: one_to_many
 }
+
+
 }

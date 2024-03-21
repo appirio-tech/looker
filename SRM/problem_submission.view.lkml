@@ -64,8 +64,26 @@ view: problem_submission {
 
   dimension: submit_time {
     type: number
+    hidden: yes
     sql: ${TABLE}.submit_time ;;
   }
+
+  dimension: submission_time{
+    type: date
+  sql: timestamp 'epoch' + cast(${submit_time}  as bigint) / 1000 * interval '1 second';;
+}
+
+  dimension_group: submission_date {
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${submission_time} ;;
+    }
 
   measure: count {
     type: count
