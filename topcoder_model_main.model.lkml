@@ -2170,6 +2170,25 @@ include: "/postgres_std_skills/*.view.lkml"
 
 # Derived Views
 explore: user_skill_stats {
+
+  join: challenge {
+    type: left_outer
+    sql_on: ${challenge_resources.challenge_id} = ${challenge.challenge_GUID} ;;
+    relationship: many_to_one
+  }
+  join: challenge_resources {
+    view_label: "Resources"
+    type: left_outer
+    sql_on: ${user_skill_stats.user_id} = ${challenge_resources.member_id} ;;
+    relationship: one_to_many
+  }
+
+  join: user {
+    type: left_outer
+    sql_on: ${challenge_resources.member_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
   join: v5_skill {
     type: inner
     sql_on: ${user_skill_stats.skill_id} = ${v5_skill.skill_id} ;;
