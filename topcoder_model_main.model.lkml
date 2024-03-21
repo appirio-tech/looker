@@ -51,6 +51,7 @@ include: "/Ticket_Requests/home_page_skill_visitors.view.lkml"
 
 
 
+
 # include all the dashboards
 # include: "*.dashboard"
 
@@ -1973,6 +1974,19 @@ explore: cost_transaction_sfdc {
     type: left_outer
     sql_on: ${cost_transaction_sfdc.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: one_to_one
+  }
+
+}
+
+# Challenge Innovation
+include: "/postgres_std_skills/*.view.lkml"
+
+# Derived Views
+explore: user_skill_stats {
+  join: v5_skill {
+    type: inner
+    sql_on: ${user_skill_stats.skill_id} = ${v5_skill.skill_id} ;;
+    relationship: one_to_many
   }
 
 }
