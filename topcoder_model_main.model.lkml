@@ -2190,6 +2190,7 @@ explore: user_skill_stats {
   }
 
   join: v5_skill {
+    view_label: "Skill"
     type: inner
     sql_on: ${user_skill_stats.skill_id} = ${v5_skill.skill_id} ;;
     relationship: one_to_many
