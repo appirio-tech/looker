@@ -2176,6 +2176,12 @@ explore: user_skill_stats {
     sql_on: ${user_skill_stats.user_id} = ${challenge_stats.registrant_id} ;;
     relationship: many_to_one
   }
+
+  # join: challenge {
+  #   type: left_outer
+  #   sql_on: ${challenge_resources.challenge_id} = ${challenge.challenge_GUID} ;;
+  #   relationship: many_to_one
+  # }
   # join: challenge_resources {
   #   view_label: "Resources"
   #   type: left_outer
