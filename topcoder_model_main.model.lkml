@@ -186,11 +186,11 @@ explore: challenge_stats {
   }
 
   join: winner {
-from: user
-type: left_outer
-sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
-relationship: many_to_one
-}
+    from: user
+    type: left_outer
+    sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
+    relationship: many_to_one
+  }
 
 
   join: user_payment {
@@ -2171,21 +2171,21 @@ include: "/postgres_std_skills/*.view.lkml"
 # Derived Views
 explore: user_skill_stats {
 
-  join: challenge {
+  join: challenge_stats {
     type: left_outer
-    sql_on: ${challenge_resources.challenge_id} = ${challenge.challenge_GUID} ;;
+    sql_on: ${user_skill_stats.user_id} = ${challenge_stats.registrant_id} ;;
     relationship: many_to_one
   }
-  join: challenge_resources {
-    view_label: "Resources"
-    type: left_outer
-    sql_on: ${user_skill_stats.user_id} = ${challenge_resources.member_id} ;;
-    relationship: many_to_one
-  }
+  # join: challenge_resources {
+  #   view_label: "Resources"
+  #   type: left_outer
+  #   sql_on: ${user_skill_stats.user_id} = ${challenge_resources.member_id} ;;
+  #   relationship: many_to_one
+  # }
 
   join: user {
     type: left_outer
-    sql_on: ${challenge_resources.member_id} = ${user.coder_id} ;;
+    sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
     relationship: many_to_one
   }
 
@@ -2240,7 +2240,10 @@ explore: user_skill_stats {
     relationship: one_to_many
   }
 
-
-
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${challenge_stats.billing_account_id} = ${client_project_dim.client_project_id} ;;
+    relationship: many_to_one
+  }
 
 }
