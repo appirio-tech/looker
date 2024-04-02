@@ -1686,6 +1686,11 @@ view: salesforce_segment_opportunities {
     sql: ${TABLE}.won_lost_open_c ;;
   }
 
+  dimension: is_taas_c {
+    type: string
+    sql: ${TABLE}.is_taas_c ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name,product_list_names_c]

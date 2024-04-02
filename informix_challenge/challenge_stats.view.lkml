@@ -3,6 +3,7 @@ view: challenge_stats {
     sql: SELECT
        p.project_id + pr.user_id + random() as challenge_stats_pkey,
        p.project_id,
+       p.challenge_guid,
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
@@ -137,6 +138,7 @@ UNION
 SELECT
        p.project_id + pr.user_id + random() as challenge_stats_pkey,
        p.project_id,
+       p.challenge_guid,
        p.component_id,
        p.component_name,
        p.exclude_from_TCO,
@@ -269,9 +271,28 @@ FROM tcs_dw.project p LEFT OUTER JOIN
      LEFT OUTER JOIN tcs_dw.member_profile member_profile ON pr.user_id = member_profile.user_id
 
  ;;
-    sortkeys: ["project_name", "billing_account_name", "project_id", "project_category_name", "posting_date", "complete_date"]
+    sortkeys: ["project_name", "billing_account_name", "project_id", "challenge_guid", "project_category_name", "posting_date", "complete_date"]
     distribution: "complete_date"
     persist_for: "4 hours"
+  }
+
+
+  dimension: challenge_GUID
+  {
+    label: "Challenge GUID"
+    type: string
+    description: "Challenge 36 character globally unique idenitifier appears in the URL"
+    sql: ${TABLE}.challenge_guid ;;
+    link: {
+      label: "Community Challenge Link"
+      url: "https://www.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+    link: {
+      label: "Work Manager Link"
+      url: "https://challenges.topcoder.com/challenges/{{challenge.challenge_GUID._value}}"
+      icon_url: "https://topcoder.com/favicon.ico"
+    }
   }
 
   #added on 20/11/2019
@@ -292,7 +313,7 @@ FROM tcs_dw.project p LEFT OUTER JOIN
 
   measure: count_distinct_challenge {
     type: count_distinct
-    sql: ${TABLE}.project_id;;
+    sql: ${TABLE}.challenge_GUID;;
   }
 
   measure: count {
