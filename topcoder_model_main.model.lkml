@@ -68,6 +68,7 @@ include: "/submission/first_time_valid_submitters.view.lkml"
 
 
 
+
 # include all the dashboards
 # include: "*.dashboard"
 
@@ -184,12 +185,12 @@ explore: challenge_stats {
     relationship: many_to_one
   }
 
-join: winner {
-from: user
-type: left_outer
-sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
-relationship: many_to_one
-}
+  join: winner {
+    from: user
+    type: left_outer
+    sql_on: ${challenge_stats.winner_id} = ${winner.coder_id} ;;
+    relationship: many_to_one
+  }
 
 
   join: user_payment {
@@ -2160,6 +2161,95 @@ explore: cost_transaction_sfdc {
     type: left_outer
     sql_on: ${cost_transaction_sfdc.direct_project_id} = ${direct_project_dim.direct_project_id} ;;
     relationship: one_to_one
+  }
+
+}
+
+# Challenge Innovation
+include: "/postgres_std_skills/*.view.lkml"
+
+# Derived Views
+explore: user_skill_stats {
+
+  join: challenge_stats {
+    type: left_outer
+    sql_on: ${user_skill_stats.user_id} = ${challenge_stats.registrant_id} ;;
+    relationship: many_to_one
+  }
+
+  # join: challenge {
+  #   type: left_outer
+  #   sql_on: ${challenge_resources.challenge_id} = ${challenge.challenge_GUID} ;;
+  #   relationship: many_to_one
+  # }
+  # join: challenge_resources {
+  #   view_label: "Resources"
+  #   type: left_outer
+  #   sql_on: ${user_skill_stats.user_id} = ${challenge_resources.member_id} ;;
+  #   relationship: many_to_one
+  # }
+
+  join: user {
+    type: left_outer
+    sql_on: ${challenge_stats.registrant_id} = ${user.coder_id} ;;
+    relationship: many_to_one
+  }
+
+  join: v5_skill {
+    view_label: "Skill"
+    type: inner
+    sql_on: ${user_skill_stats.skill_id} = ${v5_skill.skill_id} ;;
+    relationship: many_to_one
+  }
+
+
+  join: user_skill_level {
+    view_label: "Skill Level"
+    type: inner
+    sql_on: ${user_skill_level.id} = ${user_skill_stats.user_skill_level_id} ;;
+    relationship: many_to_one
+  }
+
+  join: user_skill_display_mode {
+    view_label: "Skill Display"
+    type: inner
+    sql_on: ${user_skill_display_mode.id} = ${user_skill_stats.user_skill_display_mode_id} ;;
+    relationship: many_to_one
+  }
+
+  join: v5skill_category {
+    view_label: "Skill Category"
+    type: inner
+    sql_on: ${v5skill_category.id} = ${v5_skill.category_id} ;;
+    relationship: many_to_one
+  }
+
+  join: skill_v5_event {
+    view_label: "Skill Event"
+    type: left_outer
+    sql_on: ${user_skill_stats.skill_id} = ${skill_v5_event.skill_id} ;;
+    relationship: one_to_many
+  }
+
+  join: skill_event_type {
+    view_label: "Skill Event Type"
+    type: left_outer
+    sql_on: ${skill_v5_event.skill_event_type_id} = ${skill_event_type.id} ;;
+    relationship: one_to_one
+  }
+
+# Skill source can be mulltiple
+  join: v5_source_type {
+    view_label: "Skill Source"
+    type: left_outer
+    sql_on: ${v5_source_type.id} = ${skill_v5_event.source_type_id} ;;
+    relationship: one_to_many
+  }
+
+  join: client_project_dim {
+    type: left_outer
+    sql_on: ${challenge_stats.billing_account_id} = ${client_project_dim.client_project_id} ;;
+    relationship: many_to_one
   }
 
 }

@@ -50,8 +50,6 @@ view: skill {
     sql: ${TABLE}.synonyms ;;
   }
 
-
-
   measure: count {
     type: count
     drill_fields: [skill_id, name, member_skill.count]
